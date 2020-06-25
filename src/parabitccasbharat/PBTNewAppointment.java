@@ -1,5 +1,7 @@
 package parabitccasbharat;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -46,6 +48,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         districts = new javax.swing.JComboBox<>();
         tehsils = new javax.swing.JComboBox<>();
+        popu = new javax.swing.JLabel();
+        population = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,6 +79,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
 
         tehsils.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        popu.setText("Population :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,13 +90,19 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(states, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(districts, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tehsils, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(states, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(districts, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tehsils, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(popu)
+                                .addGap(18, 18, 18)
+                                .addComponent(population)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -103,7 +115,11 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(districts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tehsils, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(popu)
+                    .addComponent(population))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -117,6 +133,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
     private javax.swing.JTable emptable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel popu;
+    private javax.swing.JLabel population;
     private javax.swing.JComboBox<String> states;
     private javax.swing.JComboBox<String> tehsils;
     // End of variables declaration//GEN-END:variables
@@ -162,21 +180,32 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         emptable.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(states.getSelectedItem() == null)
+                if(states.getSelectedItem() == null || districts.getSelectedItem() == null || tehsils.getSelectedItem() == null)
                 {
-                    JOptionPane.showMessageDialog(null,"Select the State Please");
+                    switch(data.getGrade())
+                    {
+                        case 3:
+                            JOptionPane.showMessageDialog(null,"Select the State Please");
+                            break;
+                        case 2:
+                            JOptionPane.showMessageDialog(null,"Select the District Please");
+                            break;
+                        case 1:
+                            JOptionPane.showMessageDialog(null,"Select the Sub-District Please");
+                            break;
+                    }
                 }
                 else
                 {
                     int row = emptable.rowAtPoint(e.getPoint());
                     String geid = emptable.getValueAt(row, 1).toString();
-                    String ceid = "" + new Random().nextInt(100000);
-                    String state,dist,tehsil,query1 = "UPDATE `pbtemployeetable2` SET Status = 1, CEID = '" + ceid +"' , CRepEmpId = '" + data.getCeid() + "'";
+                    String ceid = (data.getGrade()+1) + "" + geid;
+                    String state,dist,subdist,query1 = "UPDATE `pbtemployeetable2` SET Status = 1, CEID = '" + ceid +"' , CRepEmpId = '" + data.getCeid() + "'";
                     switch(data.getGrade())
                     {
                         case 3:
-                            tehsil = tehsils.getSelectedItem().toString();
-                            query1 = query1 + " , AreaCity = '" + tehsil + "'";
+                            subdist = tehsils.getSelectedItem().toString();
+                            query1 = query1 + " , AreaCity = '" + subdist + "'";
                         case 2:
                             dist = districts.getSelectedItem().toString();
                             query1 = query1 + ", AreaDist = '" + dist + "'";
@@ -240,10 +269,60 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 
             }
         });
+        states.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String state = e.getItem().toString();
+                String query = "Select Sum(tpopulation) as pop from `pbtstates5` where states = '" + state + "' group by states";
+                try {
+                    db.rs3 = db.stm.executeQuery(query);
+                    db.rs3.next();
+                    String pop = db.rs3.getString("pop");
+                    System.out.println(pop);
+                    population.setText(pop);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        districts.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String district = e.getItem().toString();
+                String query = "Select Sum(tpopulation) as pop from `pbtstates5` where District = '" + district + "' group by District";
+                try {
+                    db.rs3 = db.stm.executeQuery(query);
+                    db.rs3.next();
+                    String pop = db.rs3.getString("pop");
+                    System.out.println(pop);
+                    population.setText(pop);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }  
+            }
+        });
+        
+        tehsils.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String subdistrict = e.getItem().toString();
+                String query = "Select Sum(tpopulation) as pop from `pbtstates5` where SubDist = '" + subdistrict + "' group by SubDist";
+                try {
+                    db.rs3 = db.stm.executeQuery(query);
+                    db.rs3.next();
+                    String pop = db.rs3.getString("pop");
+                    System.out.println(pop);
+                    population.setText(pop);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }  
+            }
+        });
     }
     
     private void fetchStates() {
-        String query = "SELECT DISTINCT sate FROM `states`";
+        String query = "SELECT DISTINCT states FROM `pbtstates5`";
         //String query = "SELECT sate FROM (SELECT DISTINCT sate FROM `states`) as t1 , (SELECT AreaState FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.sate != t2.AreaState";
         DefaultComboBoxModel model = (DefaultComboBoxModel)states.getModel();
         model.removeAllElements();
@@ -252,7 +331,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
             {
-                String state = db.rs1.getString("sate");
+                String state = db.rs1.getString("states");
                 model.addElement(state);
             }
             model.setSelectedItem(null);
@@ -262,7 +341,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
     }
 
     private void fetchdist(String areastate) {
-        String query = "SELECT DISTINCT District FROM `states` WHERE sate = '" + areastate + "'";
+        String query = "SELECT DISTINCT District FROM `pbtstates5` WHERE states = '" + areastate + "'";
         //String query = "SELECT * FROM (SELECT DISTINCT District FROM `states`) as t1 , (SELECT AreaDist,AreaState FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.district != t2.AreaDist AND t2.AreaState = '" + areastate + "'";
         DefaultComboBoxModel model = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel statemodel  = (DefaultComboBoxModel) states.getModel();
@@ -285,7 +364,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
 
     private void fetchtehsil(String areastate, String areadist) {
         //String query = "SELECT * FROM (SELECT DISTINCT tehsil FROM `states`) as t1 , (SELECT AreaDist,AreaState,AreaCity FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.tehsil != t2.AreaCity AND t2.AreaState = '" + areastate + "' AND t2.AreaDist = '" + areadist + "'" ;
-        String query = "SELECT DISTINCT tehsil FROM `states` Where `sate` = '" + areastate + "' and `district` = '" + areadist + "'" ;
+        String query = "SELECT DISTINCT SubDist FROM `pbtsatates5` Where `states` = '" + areastate + "' and `district` = '" + areadist + "'" ;
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel model = (DefaultComboBoxModel)tehsils.getModel();
@@ -301,7 +380,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             db.rs3 = db.stm.executeQuery(query);
             while(db.rs3.next())
             {
-                String tehsil = db.rs3.getString("tehsil");
+                String tehsil = db.rs3.getString("SubDist");
                 model.addElement(tehsil);
             }
             model.setSelectedItem(null);

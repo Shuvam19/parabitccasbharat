@@ -27,7 +27,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
         initComponents();
         this.data = data;
         this.db = new ParabitDBC();
-        String query = "SELECT * FROM `PBTEmployeeTable2` WHERE grade = " + (data.getGrade()+1);
+        String query = "SELECT * FROM `PBTEmployeeTable2` WHERE grade = " + (data.getGrade()+1) + " and status = 1";
         /*switch(data.getGrade())
         {
             case 1: 
@@ -56,17 +56,17 @@ public class PBTEmpSummary extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Mobile No", "Work Done", "Work Alloted"
+                "Name", "Mobile No", "Work Done", "Work Alloted", "Work Pending", "Not Responding"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -77,13 +77,13 @@ public class PBTEmpSummary extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Mobille No", "Work Done", "Work Alloted"
+                "Name", "Mobille No", "Work Done", "Work Alloted", "Work Pending", "Not Responding"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -132,8 +132,10 @@ public class PBTEmpSummary extends javax.swing.JFrame {
                 String ceid = db.rs1.getString("CEID");
                 ceidlist.add(ceid);
                 String workd = "0";
+                String worka = "0";
                 String workp = "0";
-                Object row[] = {name, mobno, workd,workp};
+                String nores = "0";
+                Object row[] = {name, mobno, workd, workp, worka, nores};
                 model.addRow(row);
             }
         } catch (SQLException ex) {
@@ -147,7 +149,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 int row = jTable1.rowAtPoint(e.getPoint());
                 String ceid = ceidlist.get(row);
-                String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "'";
+                String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "' and status = 1";
                 fetchdatatable(jTable2, query);
             }
 

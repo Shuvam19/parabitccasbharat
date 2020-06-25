@@ -86,6 +86,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
             default:
                 break;
         }
+        query = query + " and status = 1";
         System.out.println(query);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         try {
