@@ -67,10 +67,12 @@ public class PBTManageEmp extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
-        
+        PBTAppointedEmp appointed = new PBTAppointedEmp(data,this,2);
+        appointed.setVisible(true);
     }//GEN-LAST:event_transferActionPerformed
 
     private void newappointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newappointActionPerformed
@@ -79,7 +81,7 @@ public class PBTManageEmp extends javax.swing.JDialog {
     }//GEN-LAST:event_newappointActionPerformed
 
     private void appointedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointedActionPerformed
-        PBTAppointedEmp appointed = new PBTAppointedEmp(data,this);
+        PBTAppointedEmp appointed = new PBTAppointedEmp(data,this,1);
         appointed.setVisible(true);
     }//GEN-LAST:event_appointedActionPerformed
 

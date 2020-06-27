@@ -1,6 +1,9 @@
 
 package parabitccasbharat;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PBTLogin extends javax.swing.JFrame {
@@ -123,6 +126,7 @@ public class PBTLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfempidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfempidActionPerformed
@@ -169,11 +173,22 @@ public class PBTLogin extends javax.swing.JFrame {
                 String adist = db.rs1.getString("AreaDist");
                 String astate = db.rs1.getString("AreaState");
                 String Mobno = db.rs1.getString("EmpOffMob");
+                int status = db.rs1.getInt("status");
+                int preceid = db.rs1.getInt("note");
                 PBTDataOfEmployee data = new PBTDataOfEmployee(username, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
-                PBTHome home = new PBTHome(this,data);
-                this.setVisible(false);
-                home.setVisible(true);
-                //this.setVisible(true);
+                switch(status)
+                {
+                    case -1:
+                        JOptionPane.showMessageDialog(null, "You are Not Allowed To Login");
+                        break;
+                    case 2:
+                        switchrepceid(username,preceid);
+                    case 1:
+                        PBTHome home = new PBTHome(this,data);
+                        this.setVisible(false);
+                        home.setVisible(true);
+                        break;
+                }
             }
             else
             {
@@ -210,4 +225,18 @@ public class PBTLogin extends javax.swing.JFrame {
     private javax.swing.JTextField tfemppass;
     private javax.swing.JTextField tfotp;
     // End of variables declaration//GEN-END:variables
+
+    private void switchrepceid(String username, int preceid) {
+        String query1 = "Update `pbtemployeetable2` set crepempid = '" + username + "' where crepempid = 'R" + preceid + "'";
+        String query2 = "Update `pbtemployeetable2` set status = 1, note = null where ceid = '" + username + "'";
+        System.out.println(query1);
+        System.out.println(query2);
+        try {
+            db.stm.execute(query1);
+            db.stm2.execute(query2);
+            System.out.println("Done");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

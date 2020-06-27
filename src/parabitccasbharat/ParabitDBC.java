@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class ParabitDBC {
     Connection con;
-    Statement stm;
+    Statement stm,stm2;
     ResultSet rs1,rs2,rs3;
     public ParabitDBC()
     {
@@ -23,6 +23,7 @@ public class ParabitDBC {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/parabitCCASbharat", "root", "");
             stm = con.createStatement();
+            stm2 = con.createStatement();
         } catch (Exception e) {
             System.out.println("" + e) ; 
         }

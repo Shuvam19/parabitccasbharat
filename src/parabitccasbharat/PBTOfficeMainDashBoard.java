@@ -164,7 +164,8 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(735, 485));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void manempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manempActionPerformed

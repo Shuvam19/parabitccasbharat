@@ -42,7 +42,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
         fetchdatatable(jTable1 , query);
         clicklisteners();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,6 +110,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 

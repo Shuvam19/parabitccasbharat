@@ -5,9 +5,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +15,28 @@ public class PBTNewAppointment extends javax.swing.JDialog {
     ParabitDBC db;
     public PBTNewAppointment(PBTDataOfEmployee data,PBTManageEmp parent) {
         super(parent , true);
+        initComponents();
+        this.data = data;
+        db = new ParabitDBC();
+        switch (data.getGrade()) {
+            case 1:fetchStates();
+            districts.setVisible(false);
+            tehsils.setVisible(false);
+                break;
+            case 2:fetchdist(data.getAreastate());
+            tehsils.setVisible(false);
+                break;
+            case 3:fetchtehsil(data.getAreastate(),data.getAreadist());
+                break;
+            default:closeall(data);
+                break;
+        }
+        fetchempdata();
+        clickListeners();
+    }
+    
+    public PBTNewAppointment(PBTDataOfEmployee data,PBTAppointedEmp parent) {
+               super(parent , true);
         initComponents();
         this.data = data;
         db = new ParabitDBC();
@@ -124,7 +143,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 .addGap(45, 45, 45))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(627, 488));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -221,23 +241,19 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                     int ans = JOptionPane.showConfirmDialog(null, "Do You Want to add this person");
                     if(ans==0)
                     {
-                        System.err.println("Done");
                         try {
                             db.stm.execute(query1);
                             fetchempdata();
                             switch(data.getGrade())
                             {
                                 case 1:
-                                    DefaultComboBoxModel model = (DefaultComboBoxModel)states.getModel();
-                                    model.setSelectedItem(null);
+                                    fetchStates();
                                     break;
                                 case 2:
-                                    DefaultComboBoxModel model2 = (DefaultComboBoxModel)districts.getModel();
-                                    model2.setSelectedItem(null);
+                                    fetchdist(districts.getSelectedItem().toString());
                                     break;
                                 case 3:
-                                    DefaultComboBoxModel model3 = (DefaultComboBoxModel)tehsils.getModel();
-                                    model3.setSelectedItem(null);
+                                    fetchtehsil(districts.getSelectedItem().toString(), tehsils.getSelectedItem().toString());
                                     break;
                             }
                         } catch (SQLException ex) {
@@ -322,11 +338,12 @@ public class PBTNewAppointment extends javax.swing.JDialog {
     }
     
     private void fetchStates() {
-        String query = "SELECT DISTINCT states FROM `pbtstates5`";
-        //String query = "SELECT sate FROM (SELECT DISTINCT sate FROM `states`) as t1 , (SELECT AreaState FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.sate != t2.AreaState";
+        //String query = "SELECT DISTINCT states FROM `pbtstates5`";
+        String query = "SELECT DISTINCT states FROM `pbtstates5` WHERE states NOT IN (SELECT DISTINCT AreaState FROM `pbtemployeetable2` WHERE Status = 1)";
         DefaultComboBoxModel model = (DefaultComboBoxModel)states.getModel();
         model.removeAllElements();
-        model.addElement(null);
+        System.out.println(query);
+        model.addElement("--select--");
         try {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
@@ -334,21 +351,21 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 String state = db.rs1.getString("states");
                 model.addElement(state);
             }
-            model.setSelectedItem(null);
+            model.setSelectedItem("--select--");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     private void fetchdist(String areastate) {
-        String query = "SELECT DISTINCT District FROM `pbtstates5` WHERE states = '" + areastate + "'";
-        //String query = "SELECT * FROM (SELECT DISTINCT District FROM `states`) as t1 , (SELECT AreaDist,AreaState FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.district != t2.AreaDist AND t2.AreaState = '" + areastate + "'";
+        //String query = "SELECT DISTINCT District FROM `pbtstates5` WHERE states = '" + areastate + "'";
+        String query = "SELECT DISTINCT District FROM `pbtstates5`WHERE District NOT IN (SELECT DISTINCT AreaDist FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "'";
         DefaultComboBoxModel model = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel statemodel  = (DefaultComboBoxModel) states.getModel();
         statemodel.removeAllElements();
         statemodel.addElement(areastate);
         model.removeAllElements();
-        model.addElement(null);
+        model.addElement("--select--");
         try {
             db.rs2 = db.stm.executeQuery(query);
             while(db.rs2.next())
@@ -356,15 +373,15 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 String district = db.rs2.getString("district");
                 model.addElement(district);
             }
-            model.setSelectedItem(null);
+            model.setSelectedItem("--select--");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     private void fetchtehsil(String areastate, String areadist) {
-        //String query = "SELECT * FROM (SELECT DISTINCT tehsil FROM `states`) as t1 , (SELECT AreaDist,AreaState,AreaCity FROM `pbtemployeetable2` WHERE Status = 1) as t2 WHERE t1.tehsil != t2.AreaCity AND t2.AreaState = '" + areastate + "' AND t2.AreaDist = '" + areadist + "'" ;
-        String query = "SELECT DISTINCT SubDist FROM `pbtsatates5` Where `states` = '" + areastate + "' and `district` = '" + areadist + "'" ;
+        String query = "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE SubDist NOT IN (SELECT DISTINCT Areacity FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and AreaDist = '" + data.getAreadist() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "' and District = '" + data.getAreadist() + "'" ;
+        //String query = "SELECT DISTINCT SubDist FROM `pbtstates5` Where `states` = '" + areastate + "' and `district` = '" + areadist + "'" ;
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel model = (DefaultComboBoxModel)tehsils.getModel();
@@ -375,7 +392,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         distmodel.addElement(areadist);
         distmodel.setSelectedItem(areadist);
         model.removeAllElements();
-        model.addElement(null);
+        model.addElement("--select--");
         try {
             db.rs3 = db.stm.executeQuery(query);
             while(db.rs3.next())
@@ -383,7 +400,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                 String tehsil = db.rs3.getString("SubDist");
                 model.addElement(tehsil);
             }
-            model.setSelectedItem(null);
+            model.setSelectedItem("--select--");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
