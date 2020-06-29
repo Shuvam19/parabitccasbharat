@@ -5,6 +5,17 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,12 +34,12 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             districts.setVisible(false);
             tehsils.setVisible(false);
                 break;
-            case 2:fetchdist(data.getAreastate());
+            case 2:fetchDist(data.getAreastate());
             tehsils.setVisible(false);
                 break;
-            case 3:fetchtehsil(data.getAreastate(),data.getAreadist());
+            case 3:fetchTehsil(data.getAreastate(),data.getAreadist());
                 break;
-            default:closeall(data);
+            default:closeAll(data);
                 break;
         }
         fetchempdata();
@@ -45,12 +56,12 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             districts.setVisible(false);
             tehsils.setVisible(false);
                 break;
-            case 2:fetchdist(data.getAreastate());
+            case 2:fetchDist(data.getAreastate());
             tehsils.setVisible(false);
                 break;
-            case 3:fetchtehsil(data.getAreastate(),data.getAreadist());
+            case 3:fetchTehsil(data.getAreastate(),data.getAreadist());
                 break;
-            default:closeall(data);
+            default:closeAll(data);
                 break;
         }
         fetchempdata();
@@ -220,6 +231,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                     int row = emptable.rowAtPoint(e.getPoint());
                     String geid = emptable.getValueAt(row, 1).toString();
                     String ceid = (data.getGrade()+1) + "" + geid;
+                    String name = emptable.getValueAt(row, 2).toString();
                     String state,dist,subdist,query1 = "UPDATE `pbtemployeetable2` SET Status = 1, CEID = '" + ceid +"' , CRepEmpId = '" + data.getCeid() + "'";
                     switch(data.getGrade())
                     {
@@ -243,6 +255,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                     {
                         try {
                             db.stm.execute(query1);
+                            sendNotification(ceid,name);
                             fetchempdata();
                             switch(data.getGrade())
                             {
@@ -250,10 +263,10 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                                     fetchStates();
                                     break;
                                 case 2:
-                                    fetchdist(districts.getSelectedItem().toString());
+                                    fetchDist(states.getSelectedItem().toString());
                                     break;
                                 case 3:
-                                    fetchtehsil(districts.getSelectedItem().toString(), tehsils.getSelectedItem().toString());
+                                    fetchTehsil(states.getSelectedItem().toString(), districts.getSelectedItem().toString());
                                     break;
                             }
                         } catch (SQLException ex) {
@@ -289,15 +302,19 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String state = e.getItem().toString();
+                if(!state.equals("--select--"))
+                {
                 String query = "Select Sum(tpopulation) as pop from `pbtstates5` where states = '" + state + "' group by states";
                 try {
                     db.rs3 = db.stm.executeQuery(query);
-                    db.rs3.next();
+                    if(db.rs3.next()){
                     String pop = db.rs3.getString("pop");
                     System.out.println(pop);
                     population.setText(pop);
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+                }
                 }
             }
         });
@@ -306,16 +323,20 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String district = e.getItem().toString();
+                if(!district.equals("--select--"))
+                {
                 String query = "Select Sum(tpopulation) as pop from `pbtstates5` where District = '" + district + "' group by District";
                 try {
                     db.rs3 = db.stm.executeQuery(query);
-                    db.rs3.next();
+                    if(db.rs3.next()){
                     String pop = db.rs3.getString("pop");
                     System.out.println(pop);
                     population.setText(pop);
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                }  
+                }
+                }
             }
         });
         
@@ -323,22 +344,24 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String subdistrict = e.getItem().toString();
+                if(subdistrict.equals("--select--")){
                 String query = "Select Sum(tpopulation) as pop from `pbtstates5` where SubDist = '" + subdistrict + "' group by SubDist";
                 try {
                     db.rs3 = db.stm.executeQuery(query);
-                    db.rs3.next();
+                    if(db.rs3.next()){
                     String pop = db.rs3.getString("pop");
                     System.out.println(pop);
                     population.setText(pop);
+                    }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                }  
+                }
+                }
             }
         });
     }
     
     private void fetchStates() {
-        //String query = "SELECT DISTINCT states FROM `pbtstates5`";
         String query = "SELECT DISTINCT states FROM `pbtstates5` WHERE states NOT IN (SELECT DISTINCT AreaState FROM `pbtemployeetable2` WHERE Status = 1)";
         DefaultComboBoxModel model = (DefaultComboBoxModel)states.getModel();
         model.removeAllElements();
@@ -357,8 +380,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         }
     }
 
-    private void fetchdist(String areastate) {
-        //String query = "SELECT DISTINCT District FROM `pbtstates5` WHERE states = '" + areastate + "'";
+    private void fetchDist(String areastate) {
         String query = "SELECT DISTINCT District FROM `pbtstates5`WHERE District NOT IN (SELECT DISTINCT AreaDist FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "'";
         DefaultComboBoxModel model = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel statemodel  = (DefaultComboBoxModel) states.getModel();
@@ -379,9 +401,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         }
     }
 
-    private void fetchtehsil(String areastate, String areadist) {
+    private void fetchTehsil(String areastate, String areadist) {
         String query = "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE SubDist NOT IN (SELECT DISTINCT Areacity FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and AreaDist = '" + data.getAreadist() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "' and District = '" + data.getAreadist() + "'" ;
-        //String query = "SELECT DISTINCT SubDist FROM `pbtstates5` Where `states` = '" + areastate + "' and `district` = '" + areadist + "'" ;
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel model = (DefaultComboBoxModel)tehsils.getModel();
@@ -406,7 +427,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         }
     }
 
-    private void closeall(PBTDataOfEmployee data1) {
+    private void closeAll(PBTDataOfEmployee data1) {
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel tehsilmodel = (DefaultComboBoxModel)tehsils.getModel();
@@ -419,5 +440,18 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         distmodel.setSelectedItem(data1.getAreadist());
         tehsilmodel.addElement(data1.getAreacity());
         tehsilmodel.setSelectedItem(data1.getAreacity());
+    }
+    
+    private void sendNotification(String ceid,String name)
+    {
+        String message = "Hello " + name + ". Welcome to CCASBHARAT ";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(timestamp);
+        String query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + ceid +  "', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '1');";
+        try {
+            db.stm2.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
