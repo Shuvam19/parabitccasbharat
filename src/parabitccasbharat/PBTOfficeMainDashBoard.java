@@ -3,7 +3,6 @@ package parabitccasbharat;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
@@ -183,7 +182,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_notifyActionPerformed
 
     private void empsummActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empsummActionPerformed
-    PBTEmpSummary summary = new PBTEmpSummary(data);
+    PBTEmpSummary summary = new PBTEmpSummary(data,1);
     summary.setVisible(true);
     }//GEN-LAST:event_empsummActionPerformed
 
@@ -206,8 +205,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fetchDataOfnotification() {
-        String query = "SELECT * FROM `pbtnotification`";
-        //String query = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "'";
+        String query = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "'";
         DefaultTableModel model = (DefaultTableModel)tablenotify.getModel();
         model.setRowCount(0);
         try {

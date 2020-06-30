@@ -28,6 +28,15 @@
               <Component id="jScrollPane1" pref="535" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="individual" min="-2" pref="110" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="general" min="-2" pref="110" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Component id="channel" min="-2" pref="110" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -35,7 +44,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="145" max="-2" attributes="0"/>
-              <EmptySpace pref="144" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="individual" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="general" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="channel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="69" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,5 +116,23 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="individual">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Individual"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="individualActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="general">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="General"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="channel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Chanel"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

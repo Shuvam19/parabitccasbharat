@@ -3,6 +3,7 @@ package parabitccasbharat;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -170,9 +171,11 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
     private void dismiss(String ceid)
     {
         String query = "UPDATE `pbtemployeetable2` SET Status = -1 WHERE CEID = '" + ceid + "'";
-        System.out.println(query);
+        String query2 = "UPDATE `pbtemployeetable2` SET CRepEmpId = 'T" + data.getCeid() + "' Where CRepEmpId = '" + ceid +"'";
+        System.out.println(query2);
         try {
             db.stm.execute(query);
+            db.stm2.execute(query2);
             fetchemployes();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -200,7 +203,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
                 String adist = db.rs2.getString("AreaDist");
                 String astate = db.rs2.getString("AreaState");
                 String Mobno = db.rs2.getString("EmpOffMob");
-                System.out.println(ceid);
+                //System.out.println(ceid);
                 PBTDataOfEmployee tansdata = new PBTDataOfEmployee(ceid, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
                 PBTAppointedEmp replaceemp = new PBTAppointedEmp(data, parent, 3);
                 replaceemp.initialiseData(tansdata);
@@ -245,18 +248,85 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         query2 = query2 + " where ceid = '" + transdata.getCeid() + "'";
         String query3 = "Update `pbtemployeetable2` set crepempid = 'R" + transdata.getCeid() + "' where crepempid = '" + transdata.getCeid() + "'";
         String query4 = "Update `pbtemployeetable2` set crepempid = 'R" + empdata.getCeid() + "' where crepempid = '" + empdata.getCeid() + "'";
-        System.out.println(query1);
-        System.out.println(query2);
-        System.out.println(query3);
-        System.out.println(query4);
+        //System.out.println(query1);
+        //System.out.println(query2);
+        //System.out.println(query3);
+        //System.out.println(query4);
         try {
             db.stm.execute(query1);
             db.stm2.execute(query2);
             db1.stm.execute(query3);
             db1.stm.execute(query4);
+            sendNotification(empdata,transdata);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        //sendNotification(empdata,transdata);
         this.dispose();
+    }
+
+    private void sendNotification(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) {
+        String message1 = "Congratulation " + empdata.getName() + ". You are transferred From ";
+        String message2 = "Congratulation " + transdata.getName() + ". You are transferred From ";
+        switch(data.getGrade())
+        {
+            case 1:
+                message1 = message1 + empdata.getAreastate() + " To " + transdata.getAreastate() + ".";
+                message2 = message2 + transdata.getAreastate() + " To " + empdata.getAreastate() + ".";
+                break;
+            case 2:
+                message1 = message1 + empdata.getAreadist() + " To " + transdata.getAreadist() + ".";
+                message2 = message2 + transdata.getAreadist() + " To " + empdata.getAreadist() + ".";
+                break;
+            case 3:
+                message1 = message1 + empdata.getAreacity() + " To " + transdata.getAreacity() + ".";
+                message2 = message2 + transdata.getAreacity() + " To " + empdata.getAreacity() + ".";
+                break;
+            case 4:
+                break;
+        }
+        //System.out.println(message1);
+        //System.out.println(message2);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String query1 = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + empdata.getCeid() +  "', '" + timestamp + "', '" + message1 + "', '0', NULL, NULL, '1');";
+        String query2 = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + transdata.getCeid() +  "', '" + timestamp + "', '" + message2 + "', '0', NULL, NULL, '1');";
+        //System.out.println(query1);
+        //System.out.println(query2);
+        try {
+            db.stm.execute(query1);
+            db.stm.execute(query2);
+            sendNotificationToJuniours(empdata,transdata);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        //sendNotificationToJuniours(empdata,transdata);
+    }
+
+    private void sendNotificationToJuniours(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) {
+        String query1 = "SELECT * FROM `pbtemployeetable2` where CRepEmpId = 'R" + empdata.getCeid() + "'";
+        String query2 = "SELECT * FROM `pbtemployeetable2` where CRepEmpId = 'R" + transdata.getCeid() + "'";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        try {
+            db.rs1 = db.stm.executeQuery(query1);
+            while(db.rs1.next())
+            {
+                String message = "Hello " + db.rs1.getString("EmpName") + ". Your Senior " + empdata.getName() + " Got Transfered. Now your new Senior Will be " + transdata.getName();
+                String query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "' , '" + db.rs1.getString("CEID") + "', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '1');";
+                db.stm2.execute(query);
+                //System.out.println(query);
+                //System.out.println(message);
+            }
+            db.rs2 = db.stm.executeQuery(query2);
+            while(db.rs2.next())
+            {
+                String message = "Hello " + db.rs2.getString("EmpName") + ". Your Senior " + transdata.getName() + " Got Transfered. Now your new Senior Will be " + empdata.getName();
+                String query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "' , '" + db.rs2.getString("CEID") + "', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '1');";
+                db.stm2.execute(query);
+                //System.out.println(query);
+                //System.out.println(message);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

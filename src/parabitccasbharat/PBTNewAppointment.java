@@ -232,51 +232,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
                     String geid = emptable.getValueAt(row, 1).toString();
                     String ceid = (data.getGrade()+1) + "" + geid;
                     String name = emptable.getValueAt(row, 2).toString();
-                    String state,dist,subdist,query1 = "UPDATE `pbtemployeetable2` SET Status = 1, CEID = '" + ceid +"' , CRepEmpId = '" + data.getCeid() + "'";
-                    switch(data.getGrade())
-                    {
-                        case 3:
-                            subdist = tehsils.getSelectedItem().toString();
-                            query1 = query1 + " , AreaCity = '" + subdist + "'";
-                        case 2:
-                            dist = districts.getSelectedItem().toString();
-                            query1 = query1 + ", AreaDist = '" + dist + "'";
-                        case 1:
-                            state = states.getSelectedItem().toString();
-                            query1 = query1 + " , AreaState = '" + state + "'";
-                            break;
-                        default:
-                            break;
-                    }
-                    query1 = query1 + "  WHERE GEID = '" + geid + "';";
-                    System.out.println(query1);
-                    int ans = JOptionPane.showConfirmDialog(null, "Do You Want to add this person");
-                    if(ans==0)
-                    {
-                        try {
-                            db.stm.execute(query1);
-                            sendNotification(ceid,name);
-                            fetchempdata();
-                            switch(data.getGrade())
-                            {
-                                case 1:
-                                    fetchStates();
-                                    break;
-                                case 2:
-                                    fetchDist(states.getSelectedItem().toString());
-                                    break;
-                                case 3:
-                                    fetchTehsil(states.getSelectedItem().toString(), districts.getSelectedItem().toString());
-                                    break;
-                            }
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                    else
-                    {
-                        System.err.println("Not Done");
-                    }
+                    addEmployee(ceid,name,geid);
+                    
                 }
             }
 
@@ -452,6 +409,62 @@ public class PBTNewAppointment extends javax.swing.JDialog {
             db.stm2.execute(query);
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    private void addEmployee(String ceid,String name,String geid)
+    {
+        String state,dist,subdist,query1 = "UPDATE `pbtemployeetable2` SET Status = 1, CEID = '" + ceid +"' , CRepEmpId = '" + data.getCeid() + "'";
+        String query2 = "UPDATE `pbtemployeetable2` SET CRepEmpId = '" + ceid + "' WHERE";
+        switch(data.getGrade())
+        {
+            case 3:
+                subdist = tehsils.getSelectedItem().toString();
+                query2 = query2 + " AreaCity = '" + subdist + "' and";
+                query1 = query1 + " , AreaCity = '" + subdist + "'";
+            case 2:
+                dist = districts.getSelectedItem().toString();
+                query2 = query2 + " AreaDist = '" + dist + "' and";
+                query1 = query1 + ", AreaDist = '" + dist + "'";
+            case 1:
+                state = states.getSelectedItem().toString();
+                query2 = query2 + " AreaState = '" + state + "' and";
+                query1 = query1 + " , AreaState = '" + state + "'";
+                break;
+            default:
+                break;
+        }
+        query1 = query1 + "  WHERE GEID = '" + geid + "';";
+        query2 = query2 + " CRepEmpId = 'T" + data.getCeid() + "'";
+        //System.out.println(query1);
+        //System.out.println(query2);
+        int ans = JOptionPane.showConfirmDialog(null, "Do You Want to add this person");
+        if(ans==0)
+        {
+            try {
+                db.stm.execute(query1);
+                sendNotification(ceid,name);
+                db.stm2.execute(query2);
+                fetchempdata();
+                switch(data.getGrade())
+                {
+                    case 1:
+                        fetchStates();
+                        break;
+                    case 2:
+                        fetchDist(states.getSelectedItem().toString());
+                        break;
+                    case 3:
+                        fetchTehsil(states.getSelectedItem().toString(), districts.getSelectedItem().toString());
+                        break;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else
+        {
+            System.err.println("Not Done");
         }
     }
 }

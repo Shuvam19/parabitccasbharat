@@ -22,11 +22,12 @@ public class PBTEmpSummary extends javax.swing.JFrame {
     PBTDataOfEmployee data;
     ParabitDBC db;
     List<String> ceidlist = new ArrayList<>();
-    
-    public PBTEmpSummary(PBTDataOfEmployee data) {
+    int whichtype;
+    public PBTEmpSummary(PBTDataOfEmployee data,int whichtype) {
         initComponents();
         this.data = data;
         this.db = new ParabitDBC();
+        this.whichtype = whichtype;
         String query = "SELECT * FROM `PBTEmployeeTable2` WHERE grade = " + (data.getGrade()+1) + " and status = 1";
         /*switch(data.getGrade())
         {
@@ -150,8 +151,15 @@ public class PBTEmpSummary extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 int row = jTable1.rowAtPoint(e.getPoint());
                 String ceid = ceidlist.get(row);
-                String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "' and status = 1";
-                fetchdatatable(jTable2, query);
+                switch(e.getClickCount())
+                {
+                    case 1:
+                        String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "' and status = 1";
+                        fetchdatatable(jTable2, query);
+                        break;
+                    case 2:
+                        break;
+                }  
             }
 
             @Override
