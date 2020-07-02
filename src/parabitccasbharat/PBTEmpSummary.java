@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package parabitccasbharat;
 
 import java.awt.event.ItemEvent;
@@ -19,10 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author acer
- */
+
 public class PBTEmpSummary extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
@@ -259,19 +252,24 @@ public class PBTEmpSummary extends javax.swing.JDialog {
     }
 
     private void fetchsendtoparent() {
+        String query4 = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = (";
         String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
+        String query3 = query;
         switch(data.getGrade())
         {
             case 5:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 4:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 3:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtemployeetable2` WHERE CEID IN (" + query + ")";
+        String query2 = "SELECT * FROM `pbtemployeetable2` WHERE CEID IN (" + query3 + ")";
+        System.out.println("shuvam " +query2);
         try {
             //System.out.println(query2);
             DefaultComboBoxModel model = (DefaultComboBoxModel)sendtoparent.getModel();

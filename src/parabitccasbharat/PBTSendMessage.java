@@ -90,18 +90,17 @@ public class PBTSendMessage extends javax.swing.JDialog {
 
     private void sendbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendbuttonActionPerformed
         String message = messagetosend.getText();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String query = "";
         switch(messagetye)
         {
             case 1:
-                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + sendingceid +  "', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '1');";
+                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + sendingceid +  "', CURRENT_TIMESTAMP , '" + message + "', '0', NULL, NULL, '1');";
                 break;
             case 2:
-                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + sendingceid +  "', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '2');";
+                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', '" + sendingceid +  "', CURRENT_TIMESTAMP , '" + message + "', '0', NULL, NULL, '2');";
                 break;
             case 3:
-                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', 'null', '" + timestamp + "', '" + message + "', '0', NULL, NULL, '3');";
+                query = "INSERT INTO `pbtnotification` VALUES ('" + data.getCeid() + "', NULL , CURRENT_TIMESTAMP , '" + message + "', '0', NULL, NULL, '3');";
                 break;
         }
         System.out.println(query);

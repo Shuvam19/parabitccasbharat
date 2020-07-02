@@ -179,17 +179,17 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         emptable.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(states.getSelectedItem() == null || districts.getSelectedItem() == null || tehsils.getSelectedItem() == null)
+                if(states.getSelectedItem().equals("--select--") || districts.getSelectedItem().equals("--select--") || tehsils.getSelectedItem().equals("--select--"))
                 {
                     switch(data.getGrade())
                     {
-                        case 3:
+                        case 1:
                             JOptionPane.showMessageDialog(null,"Select the State Please");
                             break;
                         case 2:
                             JOptionPane.showMessageDialog(null,"Select the District Please");
                             break;
-                        case 1:
+                        case 3:
                             JOptionPane.showMessageDialog(null,"Select the Sub-District Please");
                             break;
                     }
@@ -328,6 +328,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
 
     private void fetchTehsil(String areastate, String areadist) {
         String query = "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE SubDist NOT IN (SELECT DISTINCT Areacity FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and AreaDist = '" + data.getAreadist() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "' and District = '" + data.getAreadist() + "'" ;
+        System.out.println(query);
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel model = (DefaultComboBoxModel)tehsils.getModel();
@@ -356,6 +357,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel tehsilmodel = (DefaultComboBoxModel)tehsils.getModel();
+        System.out.println(data1.getAreacity());
         statemodel.removeAllElements();
         distmodel.removeAllElements();
         tehsilmodel.removeAllElements();

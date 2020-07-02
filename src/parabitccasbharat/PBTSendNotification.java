@@ -136,19 +136,23 @@ public class PBTSendNotification extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void fetchdatanotification() {
+        String query4 = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = (";
         String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
+        String query3 = query;
         switch(data.getGrade())
         {
             case 5:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 4:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 3:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query + ")) OR (NotType = 3 and SenderCeId IN (" + query + "))";
+        String query2 = "SELECT * FROM `pbtnotification` WHERE SenderCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + "))";
         System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)notificationtable.getModel();
         model.setRowCount(0);

@@ -91,6 +91,15 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
 
     private void fetchemployes() {
         String query = "SELECT * FROM `pbtemployeetable2` where grade = '" + (data.getGrade()+1) + "' and status = 1";
+        switch(data.getGrade())
+        {
+            case 2: query = query + " and AreaState = '" + data.getAreastate() +"'";
+                break;
+            case 3: query = query + " and AreaDist = '" + data.getAreadist() +"'";
+                break;
+            case 4: query = query + " and AreaCity = '" + data.getAreacity() +"'";
+                break;
+        }
         System.out.println(query);
         model = (DefaultTableModel) appointedemp.getModel();
         model.setRowCount(0);

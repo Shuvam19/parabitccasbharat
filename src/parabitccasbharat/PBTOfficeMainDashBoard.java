@@ -37,6 +37,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         notification = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablenotify = new javax.swing.JTable();
+        logout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +106,13 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
             tablenotify.getColumnModel().getColumn(4).setMaxWidth(200);
         }
 
+        logout.setText("Log out");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,21 +128,23 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(manemp)
+                                .addGap(144, 144, 144)
+                                .addComponent(workass)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(notify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(129, 129, 129)
                                 .addComponent(empsumm)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                                 .addComponent(censumm)
-                                .addGap(32, 32, 32))
+                                .addGap(69, 69, 69))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(124, 124, 124)
-                                        .addComponent(manemp)
-                                        .addGap(139, 139, 139)
-                                        .addComponent(workass))
-                                    .addComponent(pername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(pername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(logout)
+                                .addGap(49, 49, 49))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -143,10 +153,11 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name)
-                    .addComponent(pername))
+                    .addComponent(pername)
+                    .addComponent(logout))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(manemp, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +174,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(735, 485));
+        setSize(new java.awt.Dimension(792, 485));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,11 +201,17 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_censummActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        new PBTLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton censumm;
     private javax.swing.JButton empsumm;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logout;
     private javax.swing.JButton manemp;
     private javax.swing.JLabel name;
     private javax.swing.JLabel notification;
@@ -205,19 +222,23 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fetchDataOfnotification() {
+        String query4 = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = (";
         String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
+        String query3 = query;
         switch(data.getGrade())
         {
             case 5:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 4:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
+                query = query4 + query + ")";
             case 3:
-                query = query + "or CEID = (" + query + ")";
+                query3 = query3 + "or CEID = (" + query + ")";
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtnotification` WHERE MsgStatus = 0 and ((NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query + ")) OR (NotType = 3 and SenderCeId IN (" + query + ")))";
+        String query2 = "SELECT * FROM `pbtnotification` WHERE MsgStatus = 0 and ((NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + ")))";
         System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)tablenotify.getModel();
         model.setRowCount(0);
