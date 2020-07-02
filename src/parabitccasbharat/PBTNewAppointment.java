@@ -6,16 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,30 +14,8 @@ public class PBTNewAppointment extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
-    public PBTNewAppointment(PBTDataOfEmployee data,PBTManageEmp parent) {
+    public PBTNewAppointment(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent) {
         super(parent , true);
-        initComponents();
-        this.data = data;
-        db = new ParabitDBC();
-        switch (data.getGrade()) {
-            case 1:fetchStates();
-            districts.setVisible(false);
-            tehsils.setVisible(false);
-                break;
-            case 2:fetchDist(data.getAreastate());
-            tehsils.setVisible(false);
-                break;
-            case 3:fetchTehsil(data.getAreastate(),data.getAreadist());
-                break;
-            default:closeAll(data);
-                break;
-        }
-        fetchempdata();
-        clickListeners();
-    }
-    
-    public PBTNewAppointment(PBTDataOfEmployee data,PBTAppointedEmp parent) {
-               super(parent , true);
         initComponents();
         this.data = data;
         db = new ParabitDBC();

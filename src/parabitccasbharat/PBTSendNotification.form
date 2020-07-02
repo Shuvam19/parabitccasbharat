@@ -25,17 +25,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="535" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="676" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Component id="individual" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               <Component id="general" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
               <Component id="channel" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,8 +70,8 @@
                 <Column editable="false" title="From" type="java.lang.Object"/>
                 <Column editable="false" title="To" type="java.lang.Object"/>
                 <Column editable="false" title="Message ID" type="java.lang.Object"/>
-                <Column editable="false" title="Message" type="java.lang.Object"/>
-                <Column editable="true" title="Time" type="java.lang.Object"/>
+                <Column editable="false" title="Time" type="java.lang.Object"/>
+                <Column editable="true" title="Message" type="java.lang.Object"/>
                 <Column editable="true" title="Type" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -92,12 +92,12 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="200" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="200" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -128,11 +128,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="General"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generalActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="channel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Chanel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="channelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

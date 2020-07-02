@@ -182,7 +182,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_notifyActionPerformed
 
     private void empsummActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empsummActionPerformed
-    PBTEmpSummary summary = new PBTEmpSummary(data,1);
+    PBTEmpSummary summary = new PBTEmpSummary(data,this,1);
     summary.setVisible(true);
     }//GEN-LAST:event_empsummActionPerformed
 
@@ -205,11 +205,24 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fetchDataOfnotification() {
-        String query = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "'";
+        String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
+        switch(data.getGrade())
+        {
+            case 5:
+                query = query + "or CEID = (" + query + ")";
+            case 4:
+                query = query + "or CEID = (" + query + ")";
+            case 3:
+                query = query + "or CEID = (" + query + ")";
+                break;
+        }
+        System.out.println(query);
+        String query2 = "SELECT * FROM `pbtnotification` WHERE MsgStatus = 0 and ((NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query + ")) OR (NotType = 3 and SenderCeId IN (" + query + ")))";
+        System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)tablenotify.getModel();
         model.setRowCount(0);
         try {
-            db.rs1 = db.stm.executeQuery(query);
+            db.rs1 = db.stm.executeQuery(query2);
             while(db.rs1.next())
             {
                 String from = db.rs1.getString("SenderCeId");
@@ -233,7 +246,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 model.addRow(row);
             }
         } catch (SQLException ex) {
-            System.err.println(ex.toString());
+            ex.printStackTrace();
         }
     }
 
@@ -243,15 +256,16 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 int row = tablenotify.rowAtPoint(e.getPoint());
                 String messageid = tablenotify.getValueAt(row, 1).toString();
-                //System.out.println(messageid);
+                System.out.println(messageid);
                 LocalTime localtime = LocalTime.now();
                 String query = "UPDATE `pbtnotification` SET `MsgStatus` = 1 , `ReadTime` = '" + localtime + "' WHERE `NotId` = '" + messageid + "'";
                 System.out.println(query);
-                /*try {
+                try {
                     db.stm.execute(query);
+                    fetchDataOfnotification();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                }*/
+                }
             }
 
             @Override

@@ -16,11 +16,11 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
     ParabitDBC db,db1;
     PBTDataOfEmployee data,transdata;
     int whichtype;
-    PBTManageEmp parent;
+    PBTOfficeMainDashBoard parent;
     List<PBTDataOfEmployee> listofemp = new ArrayList<>();
     DefaultTableModel model;
     
-    public PBTAppointedEmp(PBTDataOfEmployee data,PBTManageEmp parent,int whichtype) {
+    public PBTAppointedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype) {
         super(parent,true);
         initComponents();
         this.data = data;
@@ -138,6 +138,8 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
                                     break;
                                 case 1:replace(ceid,row);
                                     break;
+                                case 2:
+                                    break;
                             }
                         }
                             break;
@@ -145,6 +147,10 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
                         {
                             replaceperson(listofemp.get(row));
                         }
+                            break;
+                        case 4:
+                            PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 2, ceid);
+                            sendMessage.setVisible(true);
                             break;
                     }
                 }
@@ -183,7 +189,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Appoint new employee for ");
         if(ans == 0)
         {
-            PBTNewAppointment newappoint = new PBTNewAppointment(data, this);
+            PBTNewAppointment newappoint = new PBTNewAppointment(data, parent);
             newappoint.setVisible(true);
         }
     }

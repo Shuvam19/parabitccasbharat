@@ -13,6 +13,8 @@ public class PBTLogin extends javax.swing.JFrame {
     public PBTLogin() {
         initComponents();
         db = new ParabitDBC();
+        tfemppass.setText("qwerty");
+        tfotp.setText("1234");
     }
     
     @SuppressWarnings("unchecked")
@@ -150,7 +152,7 @@ public class PBTLogin extends javax.swing.JFrame {
             {
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Error  Occurred");
-                tfotp.setText("");
+                tfemppass.setText("");
                 tfempid.setText("");
                 this.setVisible(true);
             }

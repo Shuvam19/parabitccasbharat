@@ -8,11 +8,13 @@ public class PBTSendNotification extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
+    PBTOfficeMainDashBoard parent;
 
     public PBTSendNotification(PBTOfficeMainDashBoard parent,PBTDataOfEmployee data) {
         super(parent,true);
         initComponents();
         this.data = data;
+        this.parent = parent;
         db = new ParabitDBC();
         fetchdatanotification();
     }
@@ -35,7 +37,7 @@ public class PBTSendNotification extends javax.swing.JDialog {
 
             },
             new String [] {
-                "From", "To", "Message ID", "Message", "Time", "Type"
+                "From", "To", "Message ID", "Time", "Message", "Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -51,7 +53,7 @@ public class PBTSendNotification extends javax.swing.JDialog {
             notificationtable.getColumnModel().getColumn(0).setMaxWidth(200);
             notificationtable.getColumnModel().getColumn(1).setMaxWidth(200);
             notificationtable.getColumnModel().getColumn(2).setMaxWidth(200);
-            notificationtable.getColumnModel().getColumn(4).setMaxWidth(200);
+            notificationtable.getColumnModel().getColumn(3).setMaxWidth(200);
             notificationtable.getColumnModel().getColumn(5).setMaxWidth(200);
         }
 
@@ -63,8 +65,18 @@ public class PBTSendNotification extends javax.swing.JDialog {
         });
 
         general.setText("General");
+        general.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generalActionPerformed(evt);
+            }
+        });
 
         channel.setText("Chanel");
+        channel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                channelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,16 +84,16 @@ public class PBTSendNotification extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(individual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(109, 109, 109)
                 .addComponent(general, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addGap(83, 83, 83)
                 .addComponent(channel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,9 +113,19 @@ public class PBTSendNotification extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_individualActionPerformed
-        PBTEmpSummary sendnotification = new PBTEmpSummary(data, 2);
+        PBTEmpSummary sendnotification = new PBTEmpSummary(data,parent, 2);
         sendnotification.setVisible(true);
     }//GEN-LAST:event_individualActionPerformed
+
+    private void channelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelActionPerformed
+        PBTAppointedEmp sendnotification = new PBTAppointedEmp(data, parent, 4);
+        sendnotification.setVisible(true);
+    }//GEN-LAST:event_channelActionPerformed
+
+    private void generalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalActionPerformed
+        PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 3, "");
+        sendMessage.setVisible(true);
+    }//GEN-LAST:event_generalActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton channel;
@@ -114,11 +136,24 @@ public class PBTSendNotification extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void fetchdatanotification() {
-        String query = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "' or SenderCeid = '" + data.getCeid() + "'";
+        String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
+        switch(data.getGrade())
+        {
+            case 5:
+                query = query + "or CEID = (" + query + ")";
+            case 4:
+                query = query + "or CEID = (" + query + ")";
+            case 3:
+                query = query + "or CEID = (" + query + ")";
+                break;
+        }
+        System.out.println(query);
+        String query2 = "SELECT * FROM `pbtnotification` WHERE RecieverCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query + ")) OR (NotType = 3 and SenderCeId IN (" + query + "))";
+        System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)notificationtable.getModel();
         model.setRowCount(0);
         try {
-            db.rs1 = db.stm.executeQuery(query);
+            db.rs1 = db.stm.executeQuery(query2);
             while(db.rs1.next())
             {
                 String from = db.rs1.getString("SenderCeId");
