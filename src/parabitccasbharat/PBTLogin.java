@@ -228,7 +228,8 @@ public class PBTLogin extends javax.swing.JFrame {
     private javax.swing.JTextField tfotp;
     // End of variables declaration//GEN-END:variables
 
-    private void switchrepceid(String username, int preceid) {
+    private void switchrepceid(String username, int preceid) 
+    {
         String query1 = "Update `pbtemployeetable2` set crepempid = '" + username + "' where crepempid = 'R" + preceid + "'";
         String query2 = "Update `pbtemployeetable2` set status = 1, note = null where ceid = '" + username + "'";
         System.out.println(query1);

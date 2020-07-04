@@ -152,7 +152,7 @@ public class PBTSendNotification extends javax.swing.JDialog {
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtnotification` WHERE SenderCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + "))";
+        String query2 = "SELECT * FROM `pbtnotification` WHERE SenderCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 +") and RecieverCeId In (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + "))  ORDER BY Time DESC";
         System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)notificationtable.getModel();
         model.setRowCount(0);

@@ -3,8 +3,14 @@ package parabitccasbharat;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -238,7 +244,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtnotification` WHERE MsgStatus = 0 and ((NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + ")))";
+        String query2 = "SELECT * FROM `pbtnotification` WHERE MsgStatus = 0 and ((NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ") and RecieverCeId In (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + ")))  ORDER BY Time DESC";
         System.out.println(query2);
         DefaultTableModel model = (DefaultTableModel)tablenotify.getModel();
         model.setRowCount(0);
@@ -250,6 +256,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 String time = db.rs1.getTimestamp("Time").toString();
                 String message = db.rs1.getString("Message");
                 String msgid = db.rs1.getString("NotId");
+                Date Readtime = db.rs1.getDate("ReadTime");
                 int nottype = db.rs1.getInt("NotType");
                 String type;
                 switch (nottype) {
@@ -258,9 +265,13 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                         break;
                     case 2:
                         type = "Chain";
+                        if(checkDate(Readtime))
+                            continue;
                         break;
                     default:
                         type = "General";
+                        if(checkDate(Readtime))
+                            continue;
                         break;
                 }
                 Object row[] = {from, msgid, time, message, type};
@@ -270,6 +281,24 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
+    
+    private boolean checkDate(Date date)
+    {
+        try {
+            Date today = new Date(System.currentTimeMillis());
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date1 = format.parse(today.toString());
+            java.util.Date date2 = format.parse(date.toString());
+            System.out.println(date1.toString() + " " + date2.toString());
+            if(date1.compareTo(date2) >= 0)
+                return true;
+            else
+                return false;
+        } catch (ParseException ex) {
+            Logger.getLogger(PBTOfficeMainDashBoard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
 
     private void clickListener() {
         tablenotify.addMouseListener(new MouseAdapter() {
@@ -277,7 +306,9 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 int row = tablenotify.rowAtPoint(e.getPoint());
                 String messageid = tablenotify.getValueAt(row, 1).toString();
+                String messagetype = tablenotify.getValueAt(row, 4).toString();
                 System.out.println(messageid);
+                if(messagetype.equals("Individual")){
                 LocalTime localtime = LocalTime.now();
                 String query = "UPDATE `pbtnotification` SET `MsgStatus` = 1 , `ReadTime` = '" + localtime + "' WHERE `NotId` = '" + messageid + "'";
                 System.out.println(query);
@@ -286,6 +317,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                     fetchDataOfnotification();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
+                }
                 }
             }
 

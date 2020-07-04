@@ -19,7 +19,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
     PBTOfficeMainDashBoard parent;
     List<PBTDataOfEmployee> listofemp = new ArrayList<>();
     DefaultTableModel model;
-    
+
     public PBTAppointedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype) {
         super(parent,true);
         initComponents();
@@ -128,7 +128,8 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         }
     }
 
-    private void clicklisteners() {
+    private void clicklisteners() 
+    {
                 appointedemp.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -182,7 +183,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
                 }
             });
     }
-    
+
     private void dismiss(String ceid)
     {
         String query = "UPDATE `pbtemployeetable2` SET Status = -1 WHERE CEID = '" + ceid + "'";
@@ -202,7 +203,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
             newappoint.setVisible(true);
         }
     }
-    
+
     private void replace(String ceid,int row)
     {
         String query = "Select * From `pbtemployeetable2` where ceid = '" + ceid + "'";
@@ -230,12 +231,12 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }
-    
+
     public void initialiseData(PBTDataOfEmployee data)
     {
         this.transdata = data;
     }
-    
+
     private void replaceperson(PBTDataOfEmployee empdata)
     {
         String query1 = "Update `pbtemployeetable2` set status = 2, note = '" + transdata.getCeid() + "', ";
@@ -280,7 +281,8 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         this.dispose();
     }
 
-    private void sendNotification(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) {
+    private void sendNotification(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) 
+    {
         String message1 = "Congratulation " + empdata.getName() + ". You are transferred From ";
         String message2 = "Congratulation " + transdata.getName() + ". You are transferred From ";
         switch(data.getGrade())
@@ -317,7 +319,8 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         //sendNotificationToJuniours(empdata,transdata);
     }
 
-    private void sendNotificationToJuniours(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) {
+    private void sendNotificationToJuniours(PBTDataOfEmployee empdata, PBTDataOfEmployee transdata) 
+    {
         String query1 = "SELECT * FROM `pbtemployeetable2` where CRepEmpId = 'R" + empdata.getCeid() + "'";
         String query2 = "SELECT * FROM `pbtemployeetable2` where CRepEmpId = 'R" + transdata.getCeid() + "'";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
