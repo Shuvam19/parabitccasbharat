@@ -20,7 +20,8 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
     List<PBTDataOfEmployee> listofemp = new ArrayList<>();
     DefaultTableModel model;
 
-    public PBTAppointedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype) {
+    public PBTAppointedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype)
+    {
         super(parent,true);
         initComponents();
         this.data = data;

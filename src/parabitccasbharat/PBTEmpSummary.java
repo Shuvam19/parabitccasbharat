@@ -21,6 +21,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
     PBTDataOfEmployee data;
     ParabitDBC db;
     List<String> ceidlist = new ArrayList<>();
+    List<String> childceidlist = new ArrayList<>();
     List<String> seniourceidlist = new ArrayList<>();
     int whichtype;
     PBTOfficeMainDashBoard parent;
@@ -51,7 +52,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
                 }
                 break;
         }
-        fetchdatatable(parentemp , query);
+        fetchdatatable(parentemp , query,1);
         clicklisteners();
     }
     
@@ -102,6 +103,11 @@ public class PBTEmpSummary extends javax.swing.JDialog {
         jScrollPane2.setViewportView(juniouremp);
 
         sendtoparent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sendtoparent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendtoparentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +140,10 @@ public class PBTEmpSummary extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sendtoparentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendtoparentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendtoparentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
@@ -143,7 +153,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> sendtoparent;
     // End of variables declaration//GEN-END:variables
 
-    private void fetchdatatable(JTable table ,String query) {
+    private void fetchdatatable(JTable table ,String query,int whattype) {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         model.setRowCount(0);
         try {
@@ -153,7 +163,10 @@ public class PBTEmpSummary extends javax.swing.JDialog {
                 String name = db.rs1.getString("EmpName");
                 String mobno = db.rs1.getString("EmpMob");
                 String ceid = db.rs1.getString("CEID");
-                ceidlist.add(ceid);
+                if(whattype == 1)
+                    ceidlist.add(ceid);
+                else
+                    childceidlist.add(ceid);
                 String workd = "0";
                 String worka = "0";
                 String workp = "0";
@@ -176,7 +189,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
                 {
                     case 1:
                         String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "' and status = 1";
-                        fetchdatatable(juniouremp, query);
+                        fetchdatatable(juniouremp, query,2);
                         break;
                     case 2:
                         if(whichtype == 2){
@@ -211,7 +224,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = juniouremp.rowAtPoint(e.getPoint());
-                String ceid = ceidlist.get(row);
+                String ceid = childceidlist.get(row);
                 if(whichtype == 2)
                 {
                     PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 1, ceid);
@@ -238,14 +251,16 @@ public class PBTEmpSummary extends javax.swing.JDialog {
         sendtoparent.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                //System.out.println(sendtoparent.getSelectedItem());
-                String ceid = seniourceidlist.get(sendtoparent.getSelectedIndex()-1);
-                //System.out.println(ceid);
-                int ans = JOptionPane.showConfirmDialog(null, "Do you Want to send message to " + sendtoparent.getSelectedItem());
-                if(ans == 0)
-                {
-                    PBTSendMessage sendmessage = new PBTSendMessage(data, parent, 1, ceid);
-                    sendmessage.setVisible(true);
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println(sendtoparent.getSelectedItem());
+                    String ceid = seniourceidlist.get(sendtoparent.getSelectedIndex()-1);
+                    System.out.println(ceid);
+                    int ans = JOptionPane.showConfirmDialog(null, "Do you Want to send message to " + sendtoparent.getSelectedItem());
+                    if(ans == 0)
+                    {
+                        PBTSendMessage sendmessage = new PBTSendMessage(data, parent, 1, ceid);
+                        sendmessage.setVisible(true);
+                    }
                 }
             }
         });
@@ -269,7 +284,7 @@ public class PBTEmpSummary extends javax.swing.JDialog {
         }
         System.out.println(query);
         String query2 = "SELECT * FROM `pbtemployeetable2` WHERE CEID IN (" + query3 + ")";
-        System.out.println("shuvam " +query2);
+        System.out.println(query2);
         try {
             //System.out.println(query2);
             DefaultComboBoxModel model = (DefaultComboBoxModel)sendtoparent.getModel();
