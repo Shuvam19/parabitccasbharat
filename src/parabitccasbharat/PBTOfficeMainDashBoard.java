@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -26,6 +27,8 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         db = new ParabitDBC();
         fetchDataOfnotification();
         clickListener();
+        if(data.getGrade() != 4)
+            workass.setVisible(false);
     }
 
     
@@ -190,7 +193,8 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_manempActionPerformed
 
     private void workassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workassActionPerformed
-        
+    PBTWorkAssignDashboard dashboard = new PBTWorkAssignDashboard(data, this);
+    dashboard.setVisible(true);
     }//GEN-LAST:event_workassActionPerformed
 
     private void notifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifyActionPerformed
@@ -309,7 +313,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 String messagetype = tablenotify.getValueAt(row, 4).toString();
                 System.out.println(messageid);
                 if(messagetype.equals("Individual")){
-                LocalTime localtime = LocalTime.now();
+                LocalDate localtime = LocalDate.now();
                 String query = "UPDATE `pbtnotification` SET `MsgStatus` = 1 , `ReadTime` = '" + localtime + "' WHERE `NotId` = '" + messageid + "'";
                 System.out.println(query);
                 try {

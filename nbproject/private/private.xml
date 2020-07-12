@@ -5,13 +5,9 @@
         <group>
             <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTOfficeMainDashBoard.java</file>
             <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTSendNotification.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTSendMessage.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTAppointedEmp.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTEmpSummary.java</file>
             <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTWorkAssignment.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTLogin.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTNewAppointment.java</file>
-            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTManageEmp.java</file>
+            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTWorkAssignDashboard.java</file>
+            <file>file:/C:/Projects/Java/ParabitCCASBharat/src/parabitccasbharat/PBTSendMessage.java</file>
         </group>
     </open-files>
 </project-private>

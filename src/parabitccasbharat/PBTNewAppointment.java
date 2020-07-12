@@ -388,6 +388,7 @@ public class PBTNewAppointment extends javax.swing.JDialog {
         String query2 = "UPDATE `pbtemployeetable2` SET CRepEmpId = '" + ceid + "' WHERE";
         switch(data.getGrade())
         {
+            case 4:
             case 3:
                 subdist = tehsils.getSelectedItem().toString();
                 query2 = query2 + " AreaCity = '" + subdist + "' and";
