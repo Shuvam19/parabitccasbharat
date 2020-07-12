@@ -159,7 +159,7 @@ public class PBTSendMessage extends javax.swing.JDialog {
         Date date;
         try {
             date = (Date)format.parse(Datestr);
-            System.out.println(format);
+            //System.out.println(format);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
             String formatedDate = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DATE) ;
