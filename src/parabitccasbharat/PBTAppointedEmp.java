@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class PBTAppointedEmp extends javax.swing.JDialog {
+public class PBTAppointedEmp<T> extends javax.swing.JDialog {
 
     ParabitDBC db,db1;
     PBTDataOfEmployee data,transdata;
     int whichtype;
-    PBTOfficeMainDashBoard parent;
+    T parent;
     List<PBTDataOfEmployee> listofemp = new ArrayList<>();
     DefaultTableModel model;
 
-    public PBTAppointedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype)
+    public PBTAppointedEmp(PBTDataOfEmployee data,T parent,int whichtype)
     {
-        super(parent,true);
+        super((JFrame)parent,true);
         initComponents();
         this.data = data;
         this.parent = parent;
@@ -200,7 +201,7 @@ public class PBTAppointedEmp extends javax.swing.JDialog {
         int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Appoint new employee for ");
         if(ans == 0)
         {
-            PBTNewAppointment newappoint = new PBTNewAppointment(data, parent);
+            PBTNewAppointment<PBTOfficeMainDashBoard> newappoint = new PBTNewAppointment(data, parent);
             newappoint.setVisible(true);
         }
     }

@@ -2,16 +2,17 @@
 package parabitccasbharat;
 
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-public class PBTSendNotification extends javax.swing.JDialog {
+public class PBTSendNotification<T> extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
-    PBTOfficeMainDashBoard parent;
+    T parent;
 
-    public PBTSendNotification(PBTOfficeMainDashBoard parent,PBTDataOfEmployee data) {
-        super(parent,true);
+    public PBTSendNotification(T parent,PBTDataOfEmployee data) {
+        super((JFrame)parent,true);
         initComponents();
         this.data = data;
         this.parent = parent;

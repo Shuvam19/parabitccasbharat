@@ -7,15 +7,16 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class PBTNewAppointment extends javax.swing.JDialog {
+public class PBTNewAppointment<T> extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
-    public PBTNewAppointment(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent) {
-        super(parent , true);
+    public PBTNewAppointment(PBTDataOfEmployee data,T parent) {
+        super((JFrame)parent , true);
         initComponents();
         this.data = data;
         db = new ParabitDBC();

@@ -21,7 +21,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard parent;
     ParabitDBC db;
-    int statecode,distcode,subdistcode,sumofpop;
+    int statecode,distcode,subdistcode,sumofpop,extraemp=0;
     boolean isclickable = false;
     List<Integer> townlist = new ArrayList<>();
     public PBTWorkAssignment(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent) {
@@ -48,7 +48,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         empdata = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        appointemp = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         enumrequire = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,7 +58,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         whentostart = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         selectarea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -95,21 +95,23 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
             enumtable.getColumnModel().getColumn(7).setMaxWidth(300);
         }
 
+        population.setText("        ");
+
         jLabel1.setText("Population :");
 
         empdata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "CEID", "GEID", "Name", "Grade", "Email"
+                "CEID", "GEID", "Name", "Grade", "Email", "PopAlloted"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -118,10 +120,10 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(empdata);
 
-        jButton1.setText("Appoint Emp");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        appointemp.setText("Appoint Emp");
+        appointemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                appointempActionPerformed(evt);
             }
         });
 
@@ -131,7 +133,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
 
         jLabel3.setText("population per Area :");
 
-        popperarea.setText("                ");
+        popperarea.setText("                  ");
 
         pop.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -140,6 +142,8 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Enter Population :");
+
+        whentostart.setMinSelectableDate(new Date(System.currentTimeMillis()));
 
         jLabel5.setText("Choose when to start :");
 
@@ -160,9 +164,9 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                         .addComponent(enumrequire)
                         .addGap(69, 69, 69)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(population, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 51, Short.MAX_VALUE))
+                        .addGap(0, 100, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -172,29 +176,28 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                         .addComponent(popperarea)
                         .addGap(42, 42, 42)
                         .addComponent(jLabel4)
-                        .addGap(26, 26, 26)
-                        .addComponent(pop, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(whentostart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(whentostart, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(appointemp)
                 .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(enumrequire)
-                        .addComponent(jLabel2)
-                        .addComponent(selecttown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(selectarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(enumrequire)
+                    .addComponent(jLabel2)
+                    .addComponent(selecttown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectarea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(population))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,14 +206,14 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(popperarea)
-                        .addComponent(pop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5))
                     .addComponent(whentostart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(appointemp, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addGap(5, 5, 5))
         );
 
@@ -218,13 +221,13 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void appointempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointempActionPerformed
         int enumtrow[] = enumtable.getSelectedRows();
         int emp = empdata.getSelectedRow();
         if(emp!=-1){
             String popl = this.pop.getText();
             int poptogive = 0;
-            if(sumofpop > 1500 && popl.equals(""))
+            if(sumofpop > 1500 && popl.equals("") && extraemp==0)
                 JOptionPane.showMessageDialog(null, "please select population to given to the employee");
             else {
                 if(!popl.equals(""))
@@ -233,8 +236,11 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                 if(whentostart.getDate() != null){
                     for(int i=0;i<enumtrow.length;i++)
                     {
-                        int popofarea = Integer.parseInt(enumtable.getValueAt(enumtrow[i], 6).toString());
+                        int popofarea = Integer.parseInt(enumtable.getValueAt(enumtrow[i], 7).toString());
                         int popgiven = popofarea;
+                        if(popofarea > 1500 && extraemp!=0) {
+                            popgiven = extraemp;
+                        }
                         if(!popl.equals(""))
                             popgiven = Integer.min(poptogive , popofarea);
                         String villcode = enumtable.getValueAt(enumtrow[i], 1).toString();
@@ -251,11 +257,45 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                                 query = query + ",'" + wardcode + "',null,'" + villcode + "'";
                         }
                         query = query + ",'" + subdistcode + "','" + distcode + "','" + statecode + "','" + currdate + "','" + startdate + "','45',null,'" + popgiven + "','0',null,null,null)";
-                        System.out.println(query);
-                        
+                        try {
+                            //System.out.println(query);
+                            db.stm.execute(query);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                         String query2 = "Update `pbtenum` set remainingpop = '" + (popofarea-popgiven) + "' where ward = '" + wardcode + "' and town_vill = '"  + villcode +"' and distcode='" + distcode + "'";
-                        System.out.println(query2);
-                }
+                        try {
+                            //System.out.println(query2);
+                            db.stm2.execute(query2);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    String query3 = "Update `pbtemployeetable2` set percommt=1 where ceid = '" + ceid + "'";
+                    sumofpop = sumofpop + Integer.parseInt(empdata.getValueAt(emp, 5).toString());
+                    if(sumofpop>1000 && sumofpop<1200)
+                    {
+                        int ans = JOptionPane.showConfirmDialog(this, "You have given sufficient population to the employee \n Do you want to appoint more population to this employee");
+                        if(ans == 1)
+                        {
+                            try {
+                                //System.out.println(query3);
+                                db.stm.execute(query3);
+                            } catch (SQLException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
+                    else if (sumofpop>=1200)
+                    {
+                        try {
+                            //System.out.println(query3);
+                            db.stm.execute(query3);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    refreshAllFields();
                 }
                 else
                     JOptionPane.showMessageDialog(null, "please select date to start");
@@ -265,7 +305,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "please select any employee");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_appointempActionPerformed
 
     private void popKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_popKeyReleased
         //System.out.println(pop.getText());
@@ -273,10 +313,10 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton appointemp;
     private javax.swing.JTable empdata;
     private javax.swing.JLabel enumrequire;
     private javax.swing.JTable enumtable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -379,12 +419,21 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         enumtable.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                int row = enumtable.rowAtPoint(e.getPoint());
                 int arr[] = enumtable.getSelectedRows();
                 sumofpop=0;
                 for(int i=0;i<arr.length;i++)
                 {
-                    int popu = Integer.parseInt(enumtable.getValueAt(arr[i], 6).toString());
+                    int popu = Integer.parseInt(enumtable.getValueAt(arr[i], 7).toString());
                     sumofpop = sumofpop + popu;
+                }
+                if(sumofpop>1300 && arr.length!=1)
+                {
+                    String ans = JOptionPane.showInputDialog("You had appointed second emp of larger population. \n Enter population of second area");
+                    if(ans!=null)
+                        extraemp = Integer.parseInt(ans);
+                    else
+                        enumtable.removeRowSelectionInterval(row, row);
                 }
                 population.setText(""+sumofpop);
                 int required = sumofpop/1200;
@@ -396,7 +445,6 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                
             }
 
             @Override
@@ -436,6 +484,9 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                 String type = db.rs3.getString("Rural_urban");
                 String hh = db.rs3.getString("No_HH");
                 String totpop = db.rs3.getString("TotPoulation");
+                String remainingpop = db.rs3.getString("Remainingpop");
+                if(remainingpop.equals("0"))
+                    continue;
                 String wardcode = "0000",villagecode = "";
                 switch(whichtype)
                 {
@@ -445,13 +496,13 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                         villagecode = db.rs3.getString("town_vill");
                         break;
                 }
-                Object row[] = {level,villagecode,wardcode,name,type,hh,totpop,totpop};
+                Object row[] = {level,villagecode,wardcode,name,type,hh,totpop,remainingpop};
                 model.addRow(row);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    } 
+    }
 
     private void fetchEmployees() {
         int selected[] = enumtable.getSelectedRows();
@@ -468,7 +519,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         {
             condition = condition + "status =1 )";
         }
-        String query = "Select *,IF(" + condition + ",1,2) as a from `PBTEmployeetable2` where (grade = 5 and cRepEmpID ='" + data.getCeid() + "') order by a";
+        String query = "Select a.*,IF(" + condition + ",1,2) as pref,b.popalloted from `PBTEmployeetable2` as a left JOIN (SELECT CEID,sum(TotalRes) as popalloted FROM `pbtempschecdule` GROUP BY CEID) as b on a.ceid=b.ceid where (a.grade = 5 and a.cRepEmpID ='" + data.getCeid() + "' and a.percommt != 1) order by pref";
         DefaultTableModel model = (DefaultTableModel) empdata.getModel();
         model.setRowCount(0);
         //System.out.println(query);
@@ -481,11 +532,28 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
                 String name = db.rs1.getString("EmpName");
                 String grade = "5";
                 String email = db.rs1.getString("Email");
-                Object row[] = {ceid,geid,name,grade,email};
+                String popall = db.rs1.getString("popalloted");
+                if(popall==null)
+                    popall="0";
+                Object row[] = {ceid,geid,name,grade,email,popall};
                 model.addRow(row);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void refreshAllFields() {
+        ((DefaultTableModel)enumtable.getModel()).setRowCount(0);
+        ((DefaultTableModel)empdata.getModel()).setRowCount(0);
+        selectarea.setSelectedIndex(0);
+        selecttown.setVisible(false);
+        enumrequire.setText("");
+        population.setText("");
+        popperarea.setText("");
+        pop.setText("");
+        whentostart.setCalendar(null);
+        sumofpop = 0;
+        extraemp = 0;
     }
 }
