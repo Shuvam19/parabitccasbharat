@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
-public class PBTEmpSummary extends javax.swing.JDialog {
+public class PBTEmpSummary<T> extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
@@ -24,10 +25,10 @@ public class PBTEmpSummary extends javax.swing.JDialog {
     List<String> childceidlist = new ArrayList<>();
     List<String> seniourceidlist = new ArrayList<>();
     int whichtype;
-    PBTOfficeMainDashBoard parent;
+    T parent;
     
-    public PBTEmpSummary(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype) {
-        super(parent,true);
+    public PBTEmpSummary(PBTDataOfEmployee data,T parent,int whichtype) {
+        super((JFrame)parent,true);
         initComponents();
         this.data = data;
         this.parent = parent;

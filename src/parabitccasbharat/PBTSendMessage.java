@@ -10,19 +10,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.text.DateFormatter;
 
-public class PBTSendMessage extends javax.swing.JDialog {
+public class PBTSendMessage<T> extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
-    PBTOfficeMainDashBoard parent;
+    T parent;
     String sendingceid;
     int messagetye;
     ParabitDBC db;
     
-    public PBTSendMessage(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int messagetype,String sendingceid) 
+    public PBTSendMessage(PBTDataOfEmployee data,T parent,int messagetype,String sendingceid) 
     {
-        super(parent,true);
+        super((JFrame)parent,true);
         initComponents();
         this.data = data;
         this.parent = parent;

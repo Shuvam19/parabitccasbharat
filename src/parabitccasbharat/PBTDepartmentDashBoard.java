@@ -12,13 +12,13 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
         initComponents();
         this.data = data;
         this.login = login;
-        if(data.getGrade() == 1 || data.getGrade() == 2 || data.getGrade() == 3 || data.getGrade() == 4 )
+        if(data.getGrade() == 1 || data.getGrade() == 2 || data.getGrade() == 3 || data.getGrade() == 4)
         {
             field.setEnabled(false);
         }
         else
         {
-            field.setEnabled(false);
+            office.setEnabled(false);
         }
     }
 
@@ -71,9 +71,12 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldActionPerformed
-        PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(data);
+     /*   PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(data);
         login.dispose();
-        dashBoard.setVisible(true);
+        dashBoard.setVisible(true);*/
+     PBTSelectAreaForEnum select = new PBTSelectAreaForEnum(data);
+     login.dispose();
+     select.setVisible(true);
     }//GEN-LAST:event_fieldActionPerformed
 
     private void officeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officeActionPerformed
@@ -81,8 +84,6 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
         login.dispose();
         dashBoard.setVisible(true);
     }//GEN-LAST:event_officeActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton field;
