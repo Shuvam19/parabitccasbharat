@@ -5,17 +5,30 @@
  */
 package parabitccasbharat;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 /**
  *
  * @author acer
  */
 public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTPersonInfoDashBoard
-     */
+    PBTAadhar aadhar;
+    PBTHouseHoldModel persondata;
+    PBTQRCode scanner;
+    PBTTextWatchers textwatcher;
+    ParabitDBC2 db2;
+    QrCapture frame;
     public PBTPersonInfoDashBoard() {
         initComponents();
+        textwatcher = new PBTTextWatchers();
+        this.db2 = new ParabitDBC2();
+        persondata = new PBTHouseHoldModel();
+        addTextWatchers();
     }
 
     /**
@@ -28,22 +41,28 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        aadharno = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        name = new javax.swing.JTextField();
+        scanbutton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        pan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        passport = new javax.swing.JTextField();
+        basicdetails = new javax.swing.JButton();
+        eductiondetails = new javax.swing.JButton();
+        medicaldetails = new javax.swing.JButton();
+        workdetails = new javax.swing.JButton();
+        bankdetails = new javax.swing.JButton();
+        others = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        saveproceed = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        dl = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        vid = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        pension = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,114 +70,172 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
 
         jLabel2.setText("Aadhar : ");
 
-        jButton1.setText("Scan");
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameKeyReleased(evt);
+            }
+        });
+
+        scanbutton.setText("Scan");
+        scanbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scanbuttonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Pan No :");
 
         jLabel4.setText("PassPort No : ");
 
-        jButton2.setText("Basic Details");
-
-        jButton3.setText("Educational Detail ");
-
-        jButton4.setText("Medical Details");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        basicdetails.setText("Basic Details");
+        basicdetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                basicdetailsActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Work Details");
+        eductiondetails.setText("Educational Detail ");
+        eductiondetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eductiondetailsActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Bank Details");
+        medicaldetails.setText("Medical Details");
+        medicaldetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicaldetailsActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Others");
+        workdetails.setText("Work Details");
+        workdetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workdetailsActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("Save");
+        bankdetails.setText("Bank Details");
+        bankdetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bankdetailsActionPerformed(evt);
+            }
+        });
 
-        jButton9.setText("Save and Proceed");
+        others.setText("Others");
+
+        save.setText("Save");
+
+        saveproceed.setText("Save and Proceed");
+
+        jLabel5.setText("Driving Lic No :");
+
+        jLabel6.setText("VoterCard No:");
+
+        jLabel7.setText("PensionId No :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(saveproceed, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(71, 71, 71)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jButton1))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jTextField3)))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel4)
-                                    .addGap(9, 9, 9))))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(45, 45, 45))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pan)
+                            .addComponent(aadharno, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(name))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scanbutton)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(workdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bankdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(basicdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(102, 102, 102)
+                            .addComponent(eductiondetails))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(passport, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dl)
+                                .addComponent(pension, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
+                        .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(medicaldetails, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vid, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(aadharno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scanbutton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(passport, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(dl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(vid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(pension, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(eductiondetails, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(basicdetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(medicaldetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(workdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(others, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bankdetails, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveproceed, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -166,9 +243,48 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void medicaldetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicaldetailsActionPerformed
+        PBTMedicalDetailsFrame frame = new PBTMedicalDetailsFrame(persondata);
+        frame.setVisible(true);
+    }//GEN-LAST:event_medicaldetailsActionPerformed
+
+    private void basicdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicdetailsActionPerformed
+        PBTBasicDetailsFrame frame = new PBTBasicDetailsFrame(persondata);
+        frame.setVisible(true);
+    }//GEN-LAST:event_basicdetailsActionPerformed
+
+    private void scanbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanbuttonActionPerformed
+        String uid = "";
+        if(aadharno.getText().isEmpty()){
+            try {
+                startWebCam();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }else{
+            uid = aadharno.getText();
+            getAllInformation(uid);
+            setAllTnformation();
+        }
+    }//GEN-LAST:event_scanbuttonActionPerformed
+
+    private void eductiondetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eductiondetailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_eductiondetailsActionPerformed
+
+    private void workdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workdetailsActionPerformed
+        PBTWorkDetailsFrame frame = new PBTWorkDetailsFrame(persondata);
+        frame.setVisible(true);
+    }//GEN-LAST:event_workdetailsActionPerformed
+
+    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
+        
+    }//GEN-LAST:event_nameKeyReleased
+
+    private void bankdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankdetailsActionPerformed
+        PBTBankDetailsFrame frame = new PBTBankDetailsFrame();
+        frame.setVisible(true);
+    }//GEN-LAST:event_bankdetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,22 +322,239 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JTextField aadharno;
+    private javax.swing.JButton bankdetails;
+    private javax.swing.JButton basicdetails;
+    private javax.swing.JTextField dl;
+    private javax.swing.JButton eductiondetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton medicaldetails;
+    private javax.swing.JTextField name;
+    private javax.swing.JButton others;
+    private javax.swing.JTextField pan;
+    private javax.swing.JTextField passport;
+    private javax.swing.JTextField pension;
+    private javax.swing.JButton save;
+    private javax.swing.JButton saveproceed;
+    private javax.swing.JButton scanbutton;
+    private javax.swing.JTextField vid;
+    private javax.swing.JButton workdetails;
     // End of variables declaration//GEN-END:variables
+
+    private void getAllInformation(String uid) {
+        String query = "select * from pbtaadhar as aadhar LEFT JOIN pbt_itr as itr on aadhar.ANo = itr.ano LEFT JOIN pbtdisability disabity on aadhar.ANo = disabity.Ano LEFT JOIN pbtpass passport on aadhar.ANo = passport.ANo LEFT JOIN pbtpension pension on aadhar.ANo = pension.ANo LEFT JOIN pbt_police_ver police ON aadhar.ANo = police.AadNo LEFT JOIN pbt_rationcarddata ration ON aadhar.ANo = ration.AdhrNo LEFT JOIN pbtarmslicense arms on aadhar.Ano = arms.AadhNo LEFT JOIN pbtdl dl on aadhar.ANo = dl.AdhrNo LEFT JOIN pbtgas gas on aadhar.ANo = gas.AadNo LEFT JOIN pbtmarriage marriage on (aadhar.ANo = marriage.HbAadNo or aadhar.ANo = marriage.WfAadNo) LEFT JOIN pbtpan pan on aadhar.ANo = pan.AdhrNO where aadhar.ANo = '" + uid + "'";
+        try {
+            db2.rs1 = db2.stm.executeQuery(query);
+            if(db2.rs1.next()){
+                 String dist = db2.rs1.getString("aadhar.district");
+                 persondata.setDist(dist);
+                 String tehsil = db2.rs1.getString("aadhar.tehsil");
+                 persondata.setTehsil(tehsil);
+                 String townvillage = db2.rs1.getString("aadhar.vtc");
+                 persondata.setTownvillage(townvillage);
+                 String wardno;
+                 String hnoadd;
+                 String pincode = db2.rs1.getString("aadhar.pin");
+                 persondata.setPincode(pincode);
+                 String rcardno = db2.rs1.getString("ration.rtnid");
+                 persondata.setRcardno(rcardno);
+                 String rcardtype = db2.rs1.getString("ration.typeofcard");
+                 persondata.setRcardtype(rcardtype);
+                 String gconsumerno;
+                 String drivlicno = db2.rs1.getString("dl.dlnumber");
+                 persondata.setDrivlicno(drivlicno);
+                 String armsuino = db2.rs1.getString("arms.lno");////Doubt what is lno in arms and license
+                 persondata.setArmsuino(armsuino);
+                 String birthcertno;
+                 String marrcertno  = db2.rs1.getString("marriage.mrgcno");
+                 persondata.setMarrcertno(marrcertno);
+                 String policeverno = db2.rs1.getString("police.polvernu");
+                 persondata.setPoliceverno(policeverno);
+                 String sssmid;
+                 String name = db2.rs1.getString("aadhar.fstname") + " " + db2.rs1.getString("aadhar.midname") + " " + db2.rs1.getString("aadhar.lstname");
+                 persondata.setName(name);
+                 String mobno = db2.rs1.getString("aadhar.mobno");
+                 persondata.setMobno(mobno);
+                 String altphoneno;
+                 String email = db2.rs1.getString("aadhar.email");
+                 persondata.setEmail(email);
+                 String gender = db2.rs1.getString("aadhar.gender");
+                 persondata.setGender(gender);
+                 String dob = db2.rs1.getString("aadhar.DOB");
+                 persondata.setDob(dob);
+                 String age = calculateAge(dob);
+                 persondata.setAge(age);
+                 String wt;
+                 String ht;
+                 String veg;
+                 String sleephrs;
+                 String health_checkup;
+                 String bmi;
+                 String stem_cell_id;
+                 String bgroup = db2.rs1.getString("disabity.bg");
+                 persondata.setBgroup(bgroup);
+                 String vid;///ye database me nhi hai
+                 String passport = db2.rs1.getString("passport.passno");
+                 persondata.setPassport(passport);
+                 String pancardno = db2.rs1.getString("pan.panno");
+                 persondata.setPancardno(pancardno);
+                 String ifsc;
+                 String bankaccno;
+                 String netbank;
+                 String mobbank;
+                 String pensionid = db2.rs1.getString("pension.pidno");
+                 persondata.setPensionid(pensionid);
+                 String religion;
+                 String community;
+                 String category;
+                 String cast;
+                 String marstatus;
+                 String marriagedate = db2.rs1.getString("marriage.dom");
+                 String apromarriageage = calculateAge(marriagedate);
+                 persondata.setApromarriageage(apromarriageage);
+                 String pwd;
+                 String pwdid;
+                 String mtongue;
+                 String rwlang;
+                 String homelang;
+                 String litstatus;
+                 String cedustatus;
+                 String cinstnmcity;
+                 String cinsttype;
+                 String techdeg;
+                 String nontechdeg;
+                 String nccnss;
+                 String jobseek;
+                 String cworkstat;
+                 String workcategory;
+                 String workingsector;
+                 String natureofwork;
+                 String icsno;
+                 String occupation;
+                 String workexp;
+                 String specdescription;
+                 String specexp;
+                 String proflicno;
+                 String busiregno;
+                 String income = db2.rs1.getString("itr.total_income");
+                 persondata.setIncome(income);
+                 String itr;/////database me nhi mila ye wala
+                 String distfrmworkplace;
+                 String modoftravel;
+                 String nri;
+                 String foreignadd;
+                 String birthplacewithstatecountry;
+                 String pmtstut;
+                 String pmtdist;
+                 String pmttehsil;
+                 String pmttownvillage;
+                 String pmtwardno;
+                 String pmthnoadd;
+                 String pmtpincode;
+                 String rsnofmig;
+                 String durofmig;
+                 String chronicdisease;
+                 String sport;
+                 String yoga;
+                 String spiritual;
+                 String meditation;
+            }
+            System.out.println(persondata.toString());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void setAllTnformation() {
+        if(persondata.getName()!=null) {
+            name.setText(persondata.getName());
+        }
+        if(persondata.getPancardno()!=null) {
+            pan.setText(persondata.getPancardno());
+        }
+        if(persondata.getVid()!=null) {
+            vid.setText(persondata.getVid());
+        }
+        if(persondata.getPassport()!=null){
+            passport.setText(persondata.getPassport());
+        }
+        if(persondata.getDrivlicno()!=null) {
+            dl.setText(persondata.getDrivlicno());
+        }
+        if(persondata.getPensionid()!=null) {
+            pension.setText(persondata.getPensionid());
+        }
+    }
+    
+        public void startWebCam() throws InterruptedException {
+            frame = new QrCapture();
+        final Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+                    try{
+                        frame.setVisible(true);
+                        String result = frame.getResult();
+                        getAadhar(result);
+                        getAllInformation(result);
+                        setAllTnformation();
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                };
+        });
+        thread.start();
+    }
+        
+    public void getAadhar(String result){
+        String uid,name,gender,dateofbirth,careof,building,street,landmark,vtcame,popname,distname,subdistname,statename,pincode;
+        uid = getValues("uid",result);
+        name = getValues("name",result);
+        gender = getValues("gender",result);
+        dateofbirth = getValues("dateofbirth",result);
+        careof = getValues("careof",result);
+        building = getValues("building",result);
+        street = getValues("street",result);
+        landmark = getValues("landmark",result);
+        vtcame = getValues("vtcame",result);
+        popname = getValues("popname",result);
+        distname = getValues("distname",result);
+        subdistname = getValues("subdistname",result);
+        statename = getValues("statename",result);
+        pincode = getValues("pincode",result);
+        aadhar = new PBTAadhar(uid, name, gender, dateofbirth, careof, building, street, landmark, vtcame, popname, distname, subdistname, statename, pincode);
+    }
+    
+    private String getValues(String valueOf,String text){
+        Pattern pattern = Pattern.compile(valueOf + "=\"(.[^\"]*)\"");
+        Matcher matcher = pattern.matcher(text);
+        if(matcher.find()){
+            System.out.println(matcher.group(1));
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+    private void addTextWatchers() {
+        textwatcher.addNameTextWatcher(name);
+        textwatcher.addNumberTextWatcher(vid);
+        textwatcher.addNumberTextWatcher(aadharno);
+        textwatcher.addPanTextWatcher(pan);
+        textwatcher.addNumberTextWatcher(passport);
+        textwatcher.addNumberTextWatcher(dl);
+        textwatcher.addNumberTextWatcher(pension);
+    }
+
+    private String calculateAge(String date) {
+        String dates[] = date.split("-");
+        int year = Integer.parseInt(dates[0]);
+        int todayyear = LocalDate.now().getYear();
+        return "" + (todayyear-year);
+    }
 }

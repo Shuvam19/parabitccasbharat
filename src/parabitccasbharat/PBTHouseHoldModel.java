@@ -1,6 +1,7 @@
 package parabitccasbharat;
 
 import java.lang.reflect.Field;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -1027,6 +1028,145 @@ public class PBTHouseHoldModel {
     
     public String toInsertQuery() {
         return "Insert into `pbtcensus_household` values (" + getNullOrValue(hh_sno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(stut) + "," +getNullOrValue(dist) + "," +getNullOrValue(tehsil) + "," +getNullOrValue(townvillage) + "," +getNullOrValue(wardno) + "," +getNullOrValue(hnoadd) + "," +getNullOrValue(pincode) + "," +getNullOrValue(empenumno) + "," +getNullOrValue(rcardno) + "," +getNullOrValue(rcardtype) + "," +getNullOrValue(uid) + "," +getNullOrValue(gconsumerno) + "," +getNullOrValue(drivlicno) + "," +getNullOrValue(armsuino) + "," +getNullOrValue(birthcertno) + "," +getNullOrValue(marrcertno) + "," +getNullOrValue(policeverno) + "," +getNullOrValue(sssmid) + "," +getNullOrValue(name) + "," +getNullOrValue(reltohead) + "," +getNullOrValue(headuid) + "," +getNullOrValue(headregmobno) + "," +getNullOrValue(mobno) + "," +getNullOrValue(altphoneno) + "," +getNullOrValue(email) + "," +getNullOrValue(gender) + "," +getNullOrValue(dob) + "," +getNullOrValue(age) + "," +getNullOrValue(wt) + "," +getNullOrValue(ht) + "," +getNullOrValue(veg) + "," +getNullOrValue(homefood) + "," +getNullOrValue(outsidefood) + "," +getNullOrValue(sleephrs) + "," +getNullOrValue(health_checkup) + "," +getNullOrValue(addiction) + "," +getNullOrValue(bmi) + "," +getNullOrValue(stem_cell_id) + "," +getNullOrValue(bgroup) + "," +getNullOrValue(vid) + "," +getNullOrValue(passport) + "," +getNullOrValue(pancardno) + "," +getNullOrValue(ifsc) + "," +getNullOrValue(bankaccno) + "," +getNullOrValue(netbank) + "," +getNullOrValue(mobbank) + "," +getNullOrValue(pensionid) + "," +getNullOrValue(religion) + "," +getNullOrValue(community) + "," +getNullOrValue(category) + "," +getNullOrValue(cast) + "," +getNullOrValue(marstatus) + "," +getNullOrValue(apromarriageage) + "," +getNullOrValue(pwd) + "," +getNullOrValue(pwdid) + "," +getNullOrValue(mtongue) + "," +getNullOrValue(rwlang) + "," +getNullOrValue(homelang) + "," +getNullOrValue(litstatus) + "," +getNullOrValue(cedustatus) + "," +getNullOrValue(cinstnmcity) + "," +getNullOrValue(cinsttype) + "," +getNullOrValue(techdeg) + "," +getNullOrValue(nontechdeg) + "," +getNullOrValue(nccnss) + "," +getNullOrValue(jobseek) + "," +getNullOrValue(cworkstat) + "," +getNullOrValue(workcategory) + "," +getNullOrValue(workingsector) + "," +getNullOrValue(natureofwork) + "," +getNullOrValue(icsno) + "," +getNullOrValue(occupation) + "," +getNullOrValue(workexp) + "," +getNullOrValue(specdescription) + "," +getNullOrValue(specexp) + "," +getNullOrValue(proflicno) + "," +getNullOrValue(busiregno) + "," +getNullOrValue(income) + "," +getNullOrValue(itr) + "," +getNullOrValue(distfrmworkplace) + "," +getNullOrValue(modoftravel) + "," +getNullOrValue(nri) + "," +getNullOrValue(foreignadd) + "," +getNullOrValue(birthplacewithstatecountry) + "," +getNullOrValue(pmtstut) + "," +getNullOrValue(pmtdist) + "," +getNullOrValue(pmttehsil) + "," +getNullOrValue(pmttownvillage) + "," +getNullOrValue(pmtwardno) + "," +getNullOrValue(pmthnoadd) + "," +getNullOrValue(pmtpincode) + "," +getNullOrValue(rsnofmig) + "," +getNullOrValue(durofmig) + "," +getNullOrValue(chdnsurv) + "," +getNullOrValue(chdnevenborn) + "," +getNullOrValue(noofchdnalivelastyr) + "," +getNullOrValue(chronicdisease) + "," +getNullOrValue(sport) + "," +getNullOrValue(yoga) + "," +getNullOrValue(spiritual) + "," +getNullOrValue(meditation) + "," +getNullOrValue(ratyourhealth) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
+    }
+    
+    public void getDataFromAadhar(String aadhar){
+        String query = "Select * from `pbtcensus_household` where uid = '" + aadhar + "'";
+        ParabitDBC db = new ParabitDBC();
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            while(db.rs1.next()){
+                hh_sno = db.rs1.getString("hh_sno");
+                hl_sno = db.rs1.getString("hl_sno");
+                ucid = db.rs1.getString("ucid");
+                fsno = db.rs1.getString("fsno");
+                stut = db.rs1.getString("stut");
+                dist = db.rs1.getString("dist");
+                tehsil = db.rs1.getString("tehsil");
+                townvillage = db.rs1.getString("townvillage");
+                wardno = db.rs1.getString("wardno");
+                hnoadd = db.rs1.getString("hnoadd");
+                pincode = db.rs1.getString("pincode");
+                empenumno = db.rs1.getString("empenumno");
+                rcardno = db.rs1.getString("rcardno");
+                rcardtype = db.rs1.getString("rcardtype");
+                uid = db.rs1.getString("uid");
+                gconsumerno = db.rs1.getString("gconsumerno");
+                drivlicno = db.rs1.getString("drivlicno");
+                armsuino = db.rs1.getString("armsuino");
+                birthcertno = db.rs1.getString("birthcertno");
+                marrcertno = db.rs1.getString("marrcertno");
+                policeverno = db.rs1.getString("policeverno");
+                sssmid = db.rs1.getString("sssmid");
+                name = db.rs1.getString("name");
+                reltohead = db.rs1.getString("reltohead");
+                headuid = db.rs1.getString("headuid");
+                headregmobno = db.rs1.getString("headregmobno");
+                mobno = db.rs1.getString("mobno");
+                altphoneno = db.rs1.getString("altphoneno");
+                email = db.rs1.getString("email");
+                gender = db.rs1.getString("gender");
+                dob = db.rs1.getString("dob");
+                age = db.rs1.getString("age");
+                wt = db.rs1.getString("wt");
+                ht = db.rs1.getString("ht");
+                veg = db.rs1.getString("veg");
+                homefood = db.rs1.getString("homefood");
+                outsidefood = db.rs1.getString("outsidefood");
+                sleephrs = db.rs1.getString("sleephrs");
+                health_checkup = db.rs1.getString("health_checkup");
+                addiction = db.rs1.getString("addiction");
+                bmi = db.rs1.getString("bmi");
+                stem_cell_id = db.rs1.getString("stem_cell_id");
+                bgroup = db.rs1.getString("bgroup");
+                vid = db.rs1.getString("vid");
+                passport = db.rs1.getString("passport");
+                pancardno = db.rs1.getString("pancardno");
+                ifsc = db.rs1.getString("ifsc");
+                bankaccno = db.rs1.getString("bankaccno");
+                netbank = db.rs1.getString("netbank");
+                mobbank = db.rs1.getString("mobbank");
+                pensionid = db.rs1.getString("pensionid");
+                religion = db.rs1.getString("religion");
+                community = db.rs1.getString("community");
+                category = db.rs1.getString("category");
+                cast = db.rs1.getString("cast");
+                marstatus = db.rs1.getString("marstatus");
+                apromarriageage = db.rs1.getString("apromarriageage");
+                pwd = db.rs1.getString("pwd");
+                pwdid = db.rs1.getString("pwdid");
+                mtongue = db.rs1.getString("mtongue");
+                rwlang = db.rs1.getString("rwlang");
+                homelang = db.rs1.getString("homelang");
+                litstatus = db.rs1.getString("litstatus");
+                cedustatus = db.rs1.getString("cedustatus");
+                cinstnmcity = db.rs1.getString("cinstnmcity");
+                cinsttype = db.rs1.getString("cinsttype");
+                techdeg = db.rs1.getString("techdeg");
+                nontechdeg = db.rs1.getString("nontechdeg");
+                nccnss = db.rs1.getString("nccnss");
+                jobseek = db.rs1.getString("jobseek");
+                cworkstat = db.rs1.getString("cworkstat");
+                workcategory = db.rs1.getString("workcategory");
+                workingsector = db.rs1.getString("workingsector");
+                natureofwork = db.rs1.getString("natureofwork");
+                icsno = db.rs1.getString("icsno");
+                occupation = db.rs1.getString("occupation");
+                workexp = db.rs1.getString("workexp");
+                specdescription = db.rs1.getString("specdescription");
+                specexp = db.rs1.getString("specexp");
+                proflicno = db.rs1.getString("proflicno");
+                busiregno = db.rs1.getString("busiregno");
+                income = db.rs1.getString("income");
+                itr = db.rs1.getString("itr");
+                distfrmworkplace = db.rs1.getString("distfrmworkplace");
+                modoftravel = db.rs1.getString("modoftravel");
+                nri = db.rs1.getString("nri");
+                foreignadd = db.rs1.getString("foreignadd");
+                birthplacewithstatecountry = db.rs1.getString("birthplacewithstatecountry");
+                pmtstut = db.rs1.getString("pmtstut");
+                pmtdist = db.rs1.getString("pmtdist");
+                pmttehsil = db.rs1.getString("pmttehsil");
+                pmttownvillage = db.rs1.getString("pmttownvillage");
+                pmtwardno = db.rs1.getString("pmtwardno");
+                pmthnoadd = db.rs1.getString("pmthnoadd");
+                pmtpincode = db.rs1.getString("pmtpincode");
+                rsnofmig = db.rs1.getString("rsnofmig");
+                durofmig = db.rs1.getString("durofmig");
+                chdnsurv = db.rs1.getString("chdnsurv");
+                chdnevenborn = db.rs1.getString("chdnevenborn");
+                noofchdnalivelastyr = db.rs1.getString("noofchdnalivelastyr");
+                chronicdisease = db.rs1.getString("chronicdisease");
+                sport = db.rs1.getString("sport");
+                yoga = db.rs1.getString("yoga");
+                spiritual = db.rs1.getString("spiritual");
+                meditation = db.rs1.getString("meditation");
+                ratyourhealth = db.rs1.getString("ratyourhealth");
+                filldate = db.rs1.getString("filldate");
+                timein = db.rs1.getString("timein");
+                timeout = db.rs1.getString("timeout");
+                note = db.rs1.getString("note");
+                comment = db.rs1.getString("comment");
+                status = db.rs1.getString("status");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public boolean insert() {
+        if(uid.isEmpty() || uid==null){
+            return false;
+        }else {
+            String query = this.toInsertQuery();
+            ParabitDBC db = new ParabitDBC();
+            try {
+                db.stm.execute(query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return true;
+        }
     }
     
     public Map<String, Object> toHashMap() {
