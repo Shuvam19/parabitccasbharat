@@ -5,7 +5,10 @@
  */
 package parabitccasbharat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -15,6 +18,7 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
 
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
+    HashMap<String, Object> updatemap = new HashMap<>();
     public PBTBasicDetailsFrame(PBTHouseHoldModel persondata) {
         initComponents();
         this.persondata = persondata;
@@ -65,6 +69,7 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
         chldevrborn = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         noofchldalive = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,12 +133,29 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
 
         jLabel15.setText("No of Child alive :");
 
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -161,14 +183,16 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jRadioButton1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jRadioButton2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton3)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                        .addComponent(jRadioButton3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(dob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(81, 81, 81)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -192,13 +216,8 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
                             .addComponent(matialstatus)
                             .addComponent(aprxmarage)
                             .addComponent(chldevrborn)
-                            .addComponent(noofchldalive, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                            .addComponent(noofchldalive, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,33 +253,36 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
                         .addComponent(jRadioButton3)
                         .addComponent(noofchldalive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(community, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(religion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reltohead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(community, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(religion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(reltohead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cast, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -278,6 +300,10 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
     private void aprxmarageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprxmarageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_aprxmarageActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        System.out.println(persondata.toUpdateQuery(updatemap));
+    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +374,7 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JTextField noofchldalive;
     private javax.swing.JTextField religion;
     private javax.swing.JTextField reltohead;
+    private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
 
     private void getAllLabels() {
@@ -362,6 +389,13 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
         }
         if(persondata.getEmail()!=null){
             email.setText(persondata.getEmail());
+        }
+        if(persondata.getDob()!=null){
+            try {
+                dob.setDate(new SimpleDateFormat("dd-mm-yyyy").parse(persondata.getDob()));
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
         }
         if(persondata.getCommunity()!=null){
             community.setText(persondata.getCommunity());
@@ -396,17 +430,17 @@ public class PBTBasicDetailsFrame extends javax.swing.JFrame {
     }
 
     private void addTextWatchers() {
-        textWatchers.addNameTextWatcher(matialstatus);
-        textWatchers.addNameTextWatcher(mobno);
-        textWatchers.addNameTextWatcher(noofchldalive);
-        textWatchers.addNameTextWatcher(religion);
-        textWatchers.addNameTextWatcher(reltohead);
+        textWatchers.addNameTextWatcher(matialstatus,updatemap,"marstatus");
+        textWatchers.addNameTextWatcher(mobno,updatemap,"mobno");
+        textWatchers.addNameTextWatcher(noofchldalive,updatemap,"noofchdnalivelastyr");
+        textWatchers.addNameTextWatcher(religion,updatemap,"religion");
+        textWatchers.addNameTextWatcher(reltohead,updatemap,"reltohead");
         textWatchers.addEmailTextWatcher(email);
-        textWatchers.addNameTextWatcher(altmobno);
-        textWatchers.addNameTextWatcher(aprxmarage);
-        textWatchers.addNameTextWatcher(cast);
-        textWatchers.addNameTextWatcher(category);
-        textWatchers.addNameTextWatcher(chldevrborn);
-        textWatchers.addNameTextWatcher(community);
+        textWatchers.addNameTextWatcher(altmobno,updatemap,"altphoneno");
+        textWatchers.addNameTextWatcher(aprxmarage,updatemap,"apromarriageage");
+        textWatchers.addNameTextWatcher(cast,updatemap,"cast");
+        textWatchers.addNameTextWatcher(category,updatemap,"category");
+        textWatchers.addNameTextWatcher(chldevrborn,updatemap,"chdnevenborn");
+        textWatchers.addNameTextWatcher(community,updatemap,"community");
     }
 }

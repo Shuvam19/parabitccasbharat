@@ -5,6 +5,8 @@
  */
 package parabitccasbharat;
 
+import java.util.HashMap;
+
 /**
  *
  * @author acer
@@ -14,8 +16,11 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     /**
      * Creates new form PBTBankDetailsFrame
      */
-    public PBTBankDetailsFrame() {
+    PBTHouseHoldModel persondata;
+    HashMap<String, Object> updatemap = new HashMap<>();
+    public PBTBankDetailsFrame(PBTHouseHoldModel persondata) {
         initComponents();
+        this.persondata = persondata;
     }
 
     /**
@@ -37,6 +42,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +59,13 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+            }
+        });
+
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
             }
         });
 
@@ -76,6 +89,10 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
                     .addComponent(jTextField5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap(166, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +117,9 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -109,6 +128,10 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        System.out.println(persondata.toUpdateQuery(updatemap));
+    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +163,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PBTBankDetailsFrame().setVisible(true);
+                //new PBTBankDetailsFrame().setVisible(true);
             }
         });
     }
@@ -156,5 +179,6 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
 }

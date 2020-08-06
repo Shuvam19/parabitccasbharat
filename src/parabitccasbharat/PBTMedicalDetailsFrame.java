@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package parabitccasbharat;
 
-/**
- *
- * @author acer
- */
+import java.util.HashMap;
+
 public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTMedicalDetailsFrame
-     */
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
+    HashMap<String, Object> updatemap = new HashMap<>();
     public PBTMedicalDetailsFrame(PBTHouseHoldModel persondata) {
         initComponents();
         this.persondata = persondata;
@@ -65,6 +57,7 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
         chronicdisease = new javax.swing.JTextField();
         pwd = new javax.swing.JTextField();
         pwdid = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -99,6 +92,13 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
         jLabel15.setText("PWD :");
 
         jLabel16.setText("PWD ID :");
+
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +147,10 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
                     .addComponent(outsidefood)
                     .addComponent(veg))
                 .addGap(104, 104, 104))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,11 +221,17 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(meditations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        System.out.println(persondata.toUpdateQuery(updatemap));
+    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,6 +296,7 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JTextField outsidefood;
     private javax.swing.JTextField pwd;
     private javax.swing.JTextField pwdid;
+    private javax.swing.JButton save;
     private javax.swing.JTextField sleephrs;
     private javax.swing.JTextField sports;
     private javax.swing.JTextField veg;
@@ -345,21 +356,21 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
     }
     
     private void addTextWatchers(){
-        textWatchers.addNameTextWatcher(meditations);
-        textWatchers.addNameTextWatcher(outsidefood);
-        textWatchers.addNameTextWatcher(pwd);
-        textWatchers.addNameTextWatcher(pwdid);
-        textWatchers.addNameTextWatcher(sleephrs);
-        textWatchers.addNameTextWatcher(sports);
-        textWatchers.addNameTextWatcher(veg);
-        textWatchers.addNameTextWatcher(weight);
-        textWatchers.addNameTextWatcher(yoga);
-        textWatchers.addNameTextWatcher(age);
-        textWatchers.addNameTextWatcher(bloodgrp);
-        textWatchers.addNameTextWatcher(bmi);
-        textWatchers.addNameTextWatcher(chronicdisease);
-        textWatchers.addNameTextWatcher(healthcheckup);
-        textWatchers.addNameTextWatcher(height);
-        textWatchers.addNameTextWatcher(homefood);
+        textWatchers.addNameTextWatcher(meditations,updatemap,"meditation");
+        textWatchers.addNameTextWatcher(outsidefood,updatemap,"outsidefood");
+        textWatchers.addNameTextWatcher(pwd,updatemap,"pwd");
+        textWatchers.addNameTextWatcher(pwdid,updatemap,"pwdid");
+        textWatchers.addNameTextWatcher(sleephrs,updatemap,"sleephrs");
+        textWatchers.addNameTextWatcher(sports,updatemap,"sport");
+        textWatchers.addNameTextWatcher(veg,updatemap,"veg");
+        textWatchers.addNameTextWatcher(weight,updatemap,"wt");
+        textWatchers.addNameTextWatcher(yoga,updatemap,"yoga");
+        textWatchers.addNameTextWatcher(age,updatemap,"age");
+        textWatchers.addNameTextWatcher(bloodgrp,updatemap,"bgroup");
+        textWatchers.addNameTextWatcher(bmi,updatemap,"bmi");
+        textWatchers.addNameTextWatcher(chronicdisease,updatemap,"chronicdisease");
+        textWatchers.addNameTextWatcher(healthcheckup,updatemap,"health_checkup");
+        textWatchers.addNameTextWatcher(height,updatemap,"ht");
+        textWatchers.addNameTextWatcher(homefood,updatemap,"homefood");
     }
 }

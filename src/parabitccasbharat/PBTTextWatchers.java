@@ -2,6 +2,7 @@ package parabitccasbharat;
 
 import com.sun.java.swing.plaf.motif.MotifBorders;
 import java.awt.Color;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JTextField;
@@ -9,7 +10,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class PBTTextWatchers {
-    public void addNameTextWatcher(JTextField field){
+    public void addNameTextWatcher(JTextField field,HashMap<String,Object> map,String key){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -18,6 +19,7 @@ public class PBTTextWatchers {
                 } else {
                     showError(field);
                 }
+                map.put(key, field.getText());
             }
 
             @Override
@@ -27,6 +29,7 @@ public class PBTTextWatchers {
                 } else {
                     showError(field);
                 }
+                map.put(key, field.getText());
             }
 
             @Override
@@ -36,7 +39,7 @@ public class PBTTextWatchers {
         });
     }
     
-        public void addNumberTextWatcher(JTextField field){
+        public void addNumberTextWatcher(JTextField field,HashMap<String,Object> map,String key){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -45,6 +48,7 @@ public class PBTTextWatchers {
                 } else {
                     showError(field);
                 }
+                map.put(key, field.getText());
             }
 
             @Override
@@ -54,6 +58,7 @@ public class PBTTextWatchers {
                 } else {
                     showError(field);
                 }
+                map.put(key, field.getText());
             }
 
             @Override
@@ -130,7 +135,7 @@ public class PBTTextWatchers {
     }
     
     private boolean isValidPan(String text) {
-        Pattern pattern = Pattern.compile("((https?://|ftp://|www\\.|[^\\s:=]+@www\\.).*?[a-z_\\/0-9\\-\\#=&])(?=(\\.|,|;|\\?|\\!)?(\"|'|«|»|\\[|\\s|\\r|\\n|$))");
+        Pattern pattern = Pattern.compile("^[1-9]{1}[0-9]{4}[A-Za-z]{4}[0-9]{1}");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
