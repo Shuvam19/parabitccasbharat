@@ -5,17 +5,23 @@
  */
 package parabitccasbharat;
 
+import java.util.HashMap;
+
 /**
  *
  * @author acer
  */
 public class PBTEducationDetailsFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTEducationDetailsFrame
-     */
-    public PBTEducationDetailsFrame() {
+    PBTHouseHoldModel persondata;
+    PBTTextWatchers textWatchers;
+    HashMap<String, Object> updatemap = new HashMap<>();
+    public PBTEducationDetailsFrame(PBTHouseHoldModel persondata) {
         initComponents();
+        this.textWatchers = new PBTTextWatchers();
+        this.persondata = persondata;
+        addTextWatchers();
+        getAllLabels();
     }
 
     /**
@@ -27,21 +33,136 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        litstatus = new javax.swing.JTextField();
+        cedustatus = new javax.swing.JTextField();
+        cinstcity = new javax.swing.JTextField();
+        cinsttype = new javax.swing.JTextField();
+        techdeg = new javax.swing.JTextField();
+        nontechdeg = new javax.swing.JTextField();
+        nccnss = new javax.swing.JTextField();
+        save = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Literacy Status :");
+
+        jLabel2.setText("Curr Education Status :");
+
+        jLabel3.setText("Curr Inst Name City :");
+
+        jLabel4.setText("C Inst Type :");
+
+        jLabel5.setText("Tech Deg :");
+
+        jLabel6.setText("NonTech Deg :");
+
+        jLabel7.setText("Ncc / Nss :");
+
+        nontechdeg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nontechdegActionPerformed(evt);
+            }
+        });
+
+        nccnss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nccnssActionPerformed(evt);
+            }
+        });
+
+        save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(litstatus)
+                    .addComponent(cedustatus)
+                    .addComponent(cinstcity)
+                    .addComponent(cinsttype)
+                    .addComponent(techdeg)
+                    .addComponent(nontechdeg)
+                    .addComponent(nccnss, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(litstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cedustatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cinstcity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cinsttype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(techdeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(nontechdeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(nccnss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        System.out.println(persondata.toUpdateQuery(updatemap));
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void nontechdegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nontechdegActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nontechdegActionPerformed
+
+    private void nccnssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nccnssActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nccnssActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +194,60 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PBTEducationDetailsFrame().setVisible(true);
+                //new PBTEducationDetailsFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cedustatus;
+    private javax.swing.JTextField cinstcity;
+    private javax.swing.JTextField cinsttype;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField litstatus;
+    private javax.swing.JTextField nccnss;
+    private javax.swing.JTextField nontechdeg;
+    private javax.swing.JButton save;
+    private javax.swing.JTextField techdeg;
     // End of variables declaration//GEN-END:variables
+
+    private void addTextWatchers() {
+        textWatchers.addNameTextWatcher(cedustatus,updatemap,"cedustatus");
+        textWatchers.addNameTextWatcher(cinstcity,updatemap,"cinstnmcity");
+        textWatchers.addNameTextWatcher(cinsttype,updatemap,"cinsttype");
+        textWatchers.addNameTextWatcher(litstatus,updatemap,"litstatus");
+        textWatchers.addNameTextWatcher(nccnss,updatemap,"nccnss");
+        textWatchers.addNameTextWatcher(nontechdeg,updatemap,"nontechdeg");
+        textWatchers.addNameTextWatcher(techdeg,updatemap,"techdeg");
+    }
+
+    private void getAllLabels() {
+        if(persondata.getCedustatus()!=null){
+            cedustatus.setText(persondata.getCedustatus());
+        }
+        if(persondata.getCinsttype()!=null){
+            cinsttype.setText(persondata.getCinsttype());
+        }
+        if(persondata.getCinstnmcity()!=null){
+            cinstcity.setText(persondata.getCinstnmcity());
+        }
+        if(persondata.getLitstatus()!=null){
+            litstatus.setText(persondata.getLitstatus());
+        }
+        if(persondata.getNccnss()!=null){
+            nccnss.setText(persondata.getNccnss());
+        }
+        if(persondata.getNontechdeg()!=null){
+            nontechdeg.setText(persondata.getNontechdeg());
+        }
+        if(persondata.getTechdeg()!=null){
+            techdeg.setText(persondata.getTechdeg());
+        }
+    }
 }

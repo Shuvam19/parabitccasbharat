@@ -15,6 +15,13 @@ public class PBTHouseListingModel {
     private int hh_sno;
     private int ucid;
     private int fsno;
+    private String stut;
+    private String dist;
+    private String tehsil;
+    private String townvillage;
+    private String wardno;
+    private String hnoadd;
+    private String pincode;
     private int owspofhouse;
     private int typeofhouse;
     private int roof;
@@ -121,6 +128,62 @@ public class PBTHouseListingModel {
 
     public void setFsno(int fsno) {
         this.fsno = fsno;
+    }
+    
+    public String getStut() {
+        return stut;
+    }
+
+    public void setStut(String stut) {
+        this.stut = stut;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public String getTehsil() {
+        return tehsil;
+    }
+
+    public void setTehsil(String tehsil) {
+        this.tehsil = tehsil;
+    }
+
+    public String getTownvillage() {
+        return townvillage;
+    }
+
+    public void setTownvillage(String townvillage) {
+        this.townvillage = townvillage;
+    }
+
+    public String getWardno() {
+        return wardno;
+    }
+
+    public void setWardno(String wardno) {
+        this.wardno = wardno;
+    }
+
+    public String getHnoadd() {
+        return hnoadd;
+    }
+
+    public void setHnoadd(String hnoadd) {
+        this.hnoadd = hnoadd;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
     }
 
     public int getOwspofhouse() {
@@ -658,10 +721,13 @@ public class PBTHouseListingModel {
     public void setExpectation(String expectation) {
         this.expectation = expectation;
     }
-    
-    public String toInsertQuery() {
-        return "Insert into `pbtcensus_household` values (" + getNullOrValue(empenumno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(hh_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(owspofhouse) + "," +getNullOrValue(typeofhouse) + "," +getNullOrValue(roof) + "," +getNullOrValue(floor) + "," +getNullOrValue(wall) + "," +getNullOrValue(dwellingroom) + "," +getNullOrValue(fndyrofhouse) + "," +getNullOrValue(cndtofhouse) + "," +getNullOrValue(useofhouse) + "," +getNullOrValue(plotarea) + "," +getNullOrValue(builtuparea) + "," +getNullOrValue(nooftrees) + "," +getNullOrValue(noofprottrees) + "," +getNullOrValue(typeofdomanimalwithno) + "," +getNullOrValue(typeofpetanimalwithno) + "," +getNullOrValue(latilongi) + "," +getNullOrValue(ownername) + "," +getNullOrValue(ownerphnno) + "," +getNullOrValue(nomarrcoup) + "," +getNullOrValue(mainsrcdrwater) + "," +getNullOrValue(mainsrclight) + "," +getNullOrValue(altsrcoflight) + "," +getNullOrValue(accessof_l) + "," +getNullOrValue(typeof_l) + "," +getNullOrValue(drainagesys) + "," +getNullOrValue(wtrharv) + "," +getNullOrValue(bathfact) + "," +getNullOrValue(swimmingpool) + "," +getNullOrValue(kitchen) + "," +getNullOrValue(cookfuel) + "," +getNullOrValue(radio) + "," +getNullOrValue(fm) + "," +getNullOrValue(tv) + "," +getNullOrValue(tvsig) + "," +getNullOrValue(refrigerator) + "," +getNullOrValue(coolheatfact) + "," +getNullOrValue(pc) + "," +getNullOrValue(telebroadband) + "," +getNullOrValue(mob) + "," +getNullOrValue(bicycle) + "," +getNullOrValue(r2wheel) + "," +getNullOrValue(r4wheel) + "," +getNullOrValue(tnocommveh) + "," +getNullOrValue(parkingfact) + "," +getNullOrValue(lift) + "," +getNullOrValue(escalator) + "," +getNullOrValue(helipad) + "," +getNullOrValue(gendiss) + "," +getNullOrValue(firstaidkit) + "," +getNullOrValue(h_insu) + "," +getNullOrValue(l_insu) + "," +getNullOrValue(g_insu) + "," +getNullOrValue(nhospdist) + "," +getNullOrValue(deathin10years) + "," +getNullOrValue(reasonofdeath) + "," +getNullOrValue(deathagegroup) + "," +getNullOrValue(courtcase) + "," +getNullOrValue(fincase) + "," +getNullOrValue(foreigndispute) + "," +getNullOrValue(smartsecuritysystem) + "," +getNullOrValue(cctvipadress) + "," +getNullOrValue(fireextinguisher) + "," +getNullOrValue(firealarm) + "," +getNullOrValue(privatesecurityguard) + "," +getNullOrValue(privatelicensearms) + "," +getNullOrValue(burglaralarm) + "," +getNullOrValue(expectation) + ")";
+
+    @Override
+    public String toString() {
+        return "PBTHouseListingModel{" + "empenumno=" + empenumno + ", hl_sno=" + hl_sno + ", hh_sno=" + hh_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", stut=" + stut + ", dist=" + dist + ", tehsil=" + tehsil + ", townvillage=" + townvillage + ", wardno=" + wardno + ", hnoadd=" + hnoadd + ", pincode=" + pincode + ", owspofhouse=" + owspofhouse + ", typeofhouse=" + typeofhouse + ", roof=" + roof + ", floor=" + floor + ", wall=" + wall + ", dwellingroom=" + dwellingroom + ", fndyrofhouse=" + fndyrofhouse + ", cndtofhouse=" + cndtofhouse + ", useofhouse=" + useofhouse + ", plotarea=" + plotarea + ", builtuparea=" + builtuparea + ", nooftrees=" + nooftrees + ", noofprottrees=" + noofprottrees + ", typeofdomanimalwithno=" + typeofdomanimalwithno + ", typeofpetanimalwithno=" + typeofpetanimalwithno + ", latilongi=" + latilongi + ", ownername=" + ownername + ", ownerphnno=" + ownerphnno + ", nomarrcoup=" + nomarrcoup + ", mainsrcdrwater=" + mainsrcdrwater + ", mainsrclight=" + mainsrclight + ", altsrcoflight=" + altsrcoflight + ", accessof_l=" + accessof_l + ", typeof_l=" + typeof_l + ", drainagesys=" + drainagesys + ", wtrharv=" + wtrharv + ", bathfact=" + bathfact + ", swimmingpool=" + swimmingpool + ", kitchen=" + kitchen + ", cookfuel=" + cookfuel + ", radio=" + radio + ", fm=" + fm + ", tv=" + tv + ", tvsig=" + tvsig + ", refrigerator=" + refrigerator + ", coolheatfact=" + coolheatfact + ", pc=" + pc + ", telebroadband=" + telebroadband + ", mob=" + mob + ", bicycle=" + bicycle + ", r2wheel=" + r2wheel + ", r4wheel=" + r4wheel + ", tnocommveh=" + tnocommveh + ", parkingfact=" + parkingfact + ", lift=" + lift + ", escalator=" + escalator + ", helipad=" + helipad + ", gendiss=" + gendiss + ", firstaidkit=" + firstaidkit + ", h_insu=" + h_insu + ", l_insu=" + l_insu + ", g_insu=" + g_insu + ", nhospdist=" + nhospdist + ", deathin10years=" + deathin10years + ", reasonofdeath=" + reasonofdeath + ", deathagegroup=" + deathagegroup + ", courtcase=" + courtcase + ", fincase=" + fincase + ", foreigndispute=" + foreigndispute + ", smartsecuritysystem=" + smartsecuritysystem + ", cctvipadress=" + cctvipadress + ", fireextinguisher=" + fireextinguisher + ", firealarm=" + firealarm + ", privatesecurityguard=" + privatesecurityguard + ", privatelicensearms=" + privatelicensearms + ", burglaralarm=" + burglaralarm + ", expectation=" + expectation + '}';
     }
+    
+
     
     private String getNullOrValue(Object name){
         if(name==null)
