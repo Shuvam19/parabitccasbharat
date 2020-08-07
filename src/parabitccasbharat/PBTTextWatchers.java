@@ -2,9 +2,12 @@ package parabitccasbharat;
 
 import com.sun.java.swing.plaf.motif.MotifBorders;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -39,7 +42,7 @@ public class PBTTextWatchers {
         });
     }
     
-        public void addNumberTextWatcher(JTextField field,HashMap<String,Object> map,String key){
+    public void addNumberTextWatcher(JTextField field,HashMap<String,Object> map,String key){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -68,7 +71,7 @@ public class PBTTextWatchers {
         });
     }
         
-        public void addPanTextWatcher(JTextField field){
+    public void addPanTextWatcher(JTextField field){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -91,6 +94,23 @@ public class PBTTextWatchers {
             @Override
             public void changedUpdate(DocumentEvent e) {
 
+            }
+        });
+    }
+        
+    public void addYesNolistener(JRadioButton buttonyes,JRadioButton buttonno, HashMap<String, Object> updatemap, String key) {
+        buttonyes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println("Yes");
+                updatemap.put(key, "Y");
+            }
+        });
+        buttonno.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println("No");
+                updatemap.put(key, "N");
             }
         });
     }
