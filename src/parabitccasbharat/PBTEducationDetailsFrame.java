@@ -33,6 +33,8 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,14 +42,16 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        litstatus = new javax.swing.JTextField();
         cedustatus = new javax.swing.JTextField();
         cinstcity = new javax.swing.JTextField();
         cinsttype = new javax.swing.JTextField();
         techdeg = new javax.swing.JTextField();
         nontechdeg = new javax.swing.JTextField();
-        nccnss = new javax.swing.JTextField();
         save = new javax.swing.JButton();
+        litt = new javax.swing.JRadioButton();
+        illitt = new javax.swing.JRadioButton();
+        nccyes = new javax.swing.JRadioButton();
+        nccNo = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,18 +75,24 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
             }
         });
 
-        nccnss.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nccnssActionPerformed(evt);
-            }
-        });
-
         save.setText("Save");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
             }
         });
+
+        buttonGroup1.add(litt);
+        litt.setText("Litterate");
+
+        buttonGroup1.add(illitt);
+        illitt.setText("Illettrate");
+
+        buttonGroup2.add(nccyes);
+        nccyes.setText("Yes");
+
+        buttonGroup2.add(nccNo);
+        nccNo.setText("No");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,14 +109,21 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(litstatus)
-                    .addComponent(cedustatus)
-                    .addComponent(cinstcity)
-                    .addComponent(cinsttype)
-                    .addComponent(techdeg)
-                    .addComponent(nontechdeg)
-                    .addComponent(nccnss, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cedustatus, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addComponent(cinstcity)
+                        .addComponent(cinsttype)
+                        .addComponent(techdeg)
+                        .addComponent(nontechdeg))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(litt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(illitt))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nccyes)
+                        .addGap(18, 18, 18)
+                        .addComponent(nccNo)))
                 .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,7 +136,8 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(litstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(litt)
+                    .addComponent(illitt))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -143,10 +161,11 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(nccnss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nccyes)
+                    .addComponent(nccNo))
                 .addGap(18, 18, 18)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,10 +178,6 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     private void nontechdegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nontechdegActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nontechdegActionPerformed
-
-    private void nccnssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nccnssActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nccnssActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,9 +215,12 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField cedustatus;
     private javax.swing.JTextField cinstcity;
     private javax.swing.JTextField cinsttype;
+    private javax.swing.JRadioButton illitt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -210,21 +228,21 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField litstatus;
-    private javax.swing.JTextField nccnss;
+    private javax.swing.JRadioButton litt;
+    private javax.swing.JRadioButton nccNo;
+    private javax.swing.JRadioButton nccyes;
     private javax.swing.JTextField nontechdeg;
     private javax.swing.JButton save;
     private javax.swing.JTextField techdeg;
     // End of variables declaration//GEN-END:variables
 
     private void addTextWatchers() {
-        textWatchers.addNameTextWatcher(cedustatus,updatemap,"cedustatus");
-        textWatchers.addNameTextWatcher(cinstcity,updatemap,"cinstnmcity");
-        textWatchers.addNameTextWatcher(cinsttype,updatemap,"cinsttype");
-        textWatchers.addNameTextWatcher(litstatus,updatemap,"litstatus");
-        textWatchers.addNameTextWatcher(nccnss,updatemap,"nccnss");
-        textWatchers.addNameTextWatcher(nontechdeg,updatemap,"nontechdeg");
-        textWatchers.addNameTextWatcher(techdeg,updatemap,"techdeg");
+        textWatchers.addNameTextWatcher(cedustatus,updatemap,"Cedustatus");
+        textWatchers.addNameTextWatcher(cinstcity,updatemap,"Cinstnmcity");
+        textWatchers.addNameTextWatcher(cinsttype,updatemap,"Cinsttype");
+        textWatchers.addNameTextWatcher(nontechdeg,updatemap,"Nontechdeg");
+        textWatchers.addNameTextWatcher(techdeg,updatemap,"Techdeg");
+        textWatchers.addYesNolistener(nccyes,nccNo,updatemap,"Nccnss");
     }
 
     private void getAllLabels() {
@@ -238,10 +256,18 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
             cinstcity.setText(persondata.getCinstnmcity());
         }
         if(persondata.getLitstatus()!=null){
-            litstatus.setText(persondata.getLitstatus());
+            if(persondata.getLitstatus().equals("L")){
+                litt.setSelected(true);
+            }else{
+                illitt.setSelected(true);
+            }
         }
         if(persondata.getNccnss()!=null){
-            nccnss.setText(persondata.getNccnss());
+            if(persondata.getNccnss().equals("Y")){
+                nccyes.setSelected(true);
+            }else{
+                nccNo.setSelected(true);
+            }
         }
         if(persondata.getNontechdeg()!=null){
             nontechdeg.setText(persondata.getNontechdeg());

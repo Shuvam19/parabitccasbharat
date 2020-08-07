@@ -101,25 +101,20 @@
                                   <Component id="workdetails" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                                   <Component id="basicdetails" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="eductiondetails" min="-2" max="-2" attributes="0"/>
                                   <Component id="bankdetails" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="others" min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="68" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
                               <Component id="medicaldetails" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="passport" alignment="0" pref="175" max="32767" attributes="0"/>
                                   <Component id="dl" alignment="0" max="32767" attributes="0"/>
@@ -129,6 +124,11 @@
                                   <Component id="jTextField6" alignment="1" max="32767" attributes="0"/>
                                   <Component id="jTextField8" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="others" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

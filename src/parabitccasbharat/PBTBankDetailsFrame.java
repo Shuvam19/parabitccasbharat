@@ -13,14 +13,15 @@ import java.util.HashMap;
  */
 public class PBTBankDetailsFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTBankDetailsFrame
-     */
     PBTHouseHoldModel persondata;
+    PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
     public PBTBankDetailsFrame(PBTHouseHoldModel persondata) {
         initComponents();
         this.persondata = persondata;
+        this.textWatchers = new PBTTextWatchers();
+        getAllLabels();
+        addTextWatchers();
     }
 
     /**
@@ -32,17 +33,19 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        ifsc = new javax.swing.JTextField();
+        bankaccno = new javax.swing.JTextField();
         save = new javax.swing.JButton();
+        netbankyes = new javax.swing.JRadioButton();
+        netbankno = new javax.swing.JRadioButton();
+        mobbankyes = new javax.swing.JRadioButton();
+        mobbankno = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,11 +57,9 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Mob Bank :");
 
-        jLabel5.setText("ITR :");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ifsc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ifscActionPerformed(evt);
             }
         });
 
@@ -69,6 +70,18 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(netbankyes);
+        netbankyes.setText("Yes");
+
+        buttonGroup1.add(netbankno);
+        netbankno.setText("No");
+
+        buttonGroup2.add(mobbankyes);
+        mobbankyes.setText("Yes");
+
+        buttonGroup2.add(mobbankno);
+        mobbankno.setText("No");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,19 +89,25 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ifsc, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                        .addComponent(bankaccno))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(netbankyes)
+                            .addComponent(mobbankyes))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mobbankno)
+                            .addComponent(netbankno))))
+                .addContainerGap(78, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,24 +119,22 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ifsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bankaccno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(netbankyes)
+                    .addComponent(netbankno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                    .addComponent(mobbankyes)
+                    .addComponent(mobbankno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -125,9 +142,9 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void ifscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifscActionPerformed
+        
+    }//GEN-LAST:event_ifscActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
@@ -169,16 +186,46 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bankaccno;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JTextField ifsc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JRadioButton mobbankno;
+    private javax.swing.JRadioButton mobbankyes;
+    private javax.swing.JRadioButton netbankno;
+    private javax.swing.JRadioButton netbankyes;
     private javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
+
+    private void getAllLabels() {
+        if(persondata.getIfsc()!=null){
+            ifsc.setText(persondata.getIfsc());
+        }
+        if(persondata.getBankaccno()!=null){
+            bankaccno.setText(persondata.getBankaccno());
+        }
+        if(persondata.getNetbank()!=null){
+            if(persondata.getNetbank().equals("")){
+                netbankyes.setSelected(true);
+            }else{
+                netbankno.setSelected(true);
+            }
+        }
+        if(persondata.getMobbank()!=null){
+            if(persondata.getMobbank().equals("Y")){
+                mobbankyes.setSelected(true);
+            }else{
+                mobbankno.setSelected(true);
+            }
+        }
+    }
+
+    private void addTextWatchers() {
+        textWatchers.addNumberTextWatcher(ifsc, updatemap, "Ifsc");
+        textWatchers.addNumberTextWatcher(bankaccno, updatemap, "Bankaccno");
+    }
 }

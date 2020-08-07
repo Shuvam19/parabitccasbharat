@@ -1129,7 +1129,7 @@ public class PBTHouseHoldModel {
                 query = query + ", ";
             }
         }
-        query = query + " where ";
+        query = query + " where hh_sno ='" + hh_sno + "'";
         return query;
     }
     
