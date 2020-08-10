@@ -71,7 +71,7 @@ public class PBTTextWatchers {
         });
     }
         
-    public void addPanTextWatcher(JTextField field){
+    public void addPanTextWatcher(JTextField field, HashMap<String, Object> updatemap, String key){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -80,6 +80,7 @@ public class PBTTextWatchers {
                 } else {
                     showError(field);
                 }
+                updatemap.put(key, field.getText());
             }
 
             @Override
@@ -160,6 +161,12 @@ public class PBTTextWatchers {
         return matcher.matches();
     }
     
+    private boolean isNameNumber(String text) {
+        Pattern pattern = Pattern.compile("^[A-Za-z0-9\\-]*");
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+    
     private boolean isEmail(String text) {
         Pattern pattern = Pattern.compile("^.[^@]*@.[^\\.]*\\..*");
         Matcher matcher = pattern.matcher(text);
@@ -171,5 +178,34 @@ public class PBTTextWatchers {
     }
     public void showRight(JTextField textarea){
         textarea.setBorder(new MotifBorders.BevelBorder(true, Color.GREEN, Color.GREEN));
+    }
+
+    void addNameNumberTextWatcher(JTextField field, HashMap<String, Object> map, String key) {
+        field.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if(isNameNumber(field.getText())){
+                    showRight(field);
+                } else {
+                    showError(field);
+                }
+                map.put(key, field.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if(isNameNumber(field.getText())){
+                    showRight(field);
+                } else {
+                    showError(field);
+                }
+                map.put(key, field.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
     }
 }
