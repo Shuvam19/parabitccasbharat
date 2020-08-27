@@ -17,13 +17,16 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     ParabitDBC2 db2;
     QrCapture frame;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTPersonInfoDashBoard() {
+    
+    public PBTPersonInfoDashBoard(PBTHouseHoldModel persondata,PBTHouseListingModel personlistingdata) {
         initComponents();
         textwatcher = new PBTTextWatchers();
         this.db2 = new ParabitDBC2();
-        persondata = new PBTHouseHoldModel();
-        personlistingdata = new PBTHouseListingModel();
+        this.persondata = persondata;
+        this.personlistingdata = personlistingdata;
+        this.persondata.setHl_sno(personlistingdata.getHl_sno());
         addTextWatchers();
+        setAllTnformation();
     }
 
     @SuppressWarnings("unchecked")
@@ -132,6 +135,11 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
         });
 
         save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         saveproceed.setText("Save and Proceed");
 
@@ -354,12 +362,12 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void medicaldetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicaldetailsActionPerformed
-        PBTMedicalDetailsFrame frame = new PBTMedicalDetailsFrame(persondata);
+        PBTMedicalDetailsFrame frame = new PBTMedicalDetailsFrame(persondata,this);
         frame.setVisible(true);
     }//GEN-LAST:event_medicaldetailsActionPerformed
 
     private void basicdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicdetailsActionPerformed
-        PBTBasicDetailsFrame frame = new PBTBasicDetailsFrame(persondata);
+        PBTBasicDetailsFrame frame = new PBTBasicDetailsFrame(persondata,this);
         frame.setVisible(true);
     }//GEN-LAST:event_basicdetailsActionPerformed
 
@@ -374,64 +382,41 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
             }
         }else{
             uid = aadharno.getText();
+            persondata.setUid(uid);
             getAllInformation(uid);
             setAllTnformation();
+            persondata.insert();
+            System.out.println(persondata.toString());
         }
     }//GEN-LAST:event_scanbuttonActionPerformed
 
     private void eductiondetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eductiondetailsActionPerformed
-        PBTEducationDetailsFrame frame = new PBTEducationDetailsFrame(persondata);
+        PBTEducationDetailsFrame frame = new PBTEducationDetailsFrame(persondata,this);
         frame.setVisible(true);
     }//GEN-LAST:event_eductiondetailsActionPerformed
 
     private void workdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workdetailsActionPerformed
-        PBTWorkDetailsFrame frame = new PBTWorkDetailsFrame(persondata);
+        PBTWorkDetailsFrame frame = new PBTWorkDetailsFrame(persondata,this);
         frame.setVisible(true);
     }//GEN-LAST:event_workdetailsActionPerformed
 
     private void bankdetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankdetailsActionPerformed
-        PBTBankDetailsFrame frame = new PBTBankDetailsFrame(persondata);
+        PBTBankDetailsFrame frame = new PBTBankDetailsFrame(persondata,this);
         frame.setVisible(true);
     }//GEN-LAST:event_bankdetailsActionPerformed
 
     private void othersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_othersActionPerformed
-        // TODO add your handling code here:
+        PBTOthersFrame frame = new PBTOthersFrame(persondata, this);
+        frame.setVisible(true);
     }//GEN-LAST:event_othersActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PBTPersonInfoDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PBTPersonInfoDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PBTPersonInfoDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PBTPersonInfoDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PBTPersonInfoDashBoard().setVisible(true);
-            }
-        });
-    }
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        System.out.println(persondata.toUpdateQuery(updatemap));
+        persondata.update(persondata.toUpdateQuery(updatemap));
+        persondata.getDataFromAadhar(persondata.getUid());
+        System.out.println(persondata.toString());
+        System.out.println(personlistingdata.toString());
+    }//GEN-LAST:event_saveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aadharno;
@@ -573,11 +558,10 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
                  String proflicno;
                  String busiregno;
                  String income = db2.rs1.getString("itr.total_income");
-                 persondata.setIncome(income);
+                 persondata.setIncome(Integer.parseInt(income));
                  String itr;/////database me nhi mila ye wala
-                
             }
-            System.out.println(persondata.toString());
+            //System.out.println(persondata.toString());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -641,8 +625,11 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
                     frame.setVisible(true);
                     String result = frame.getResult();
                     getAadhar(result);
+                    persondata.setUid(result);
                     getAllInformation(result);
                     setAllTnformation();
+                    persondata.insert();
+                    System.out.println(persondata.toString());
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

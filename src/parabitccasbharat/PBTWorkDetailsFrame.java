@@ -5,18 +5,22 @@
  */
 package parabitccasbharat;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
+import javax.swing.JFrame;
 
 /**
  *
  * @author acer
  */
-public class PBTWorkDetailsFrame extends javax.swing.JFrame {
+public class PBTWorkDetailsFrame<T> extends javax.swing.JDialog {
 
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTWorkDetailsFrame(PBTHouseHoldModel persondata) {
+    public PBTWorkDetailsFrame(PBTHouseHoldModel persondata,T parent) {
+        super((JFrame)parent,true);
         initComponents();
         this.textWatchers = new PBTTextWatchers();
         this.persondata = persondata;
@@ -71,8 +75,10 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         modoftravel = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Occupation :");
 
@@ -162,7 +168,32 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Mode Of Travel :");
 
+        modoftravel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modoftravelActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Select");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Select");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,17 +202,14 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(noneconomicactivity)
-                            .addComponent(bothactivity))
-                        .addGap(213, 213, 213)
-                        .addComponent(jLabel14))
+                    .addComponent(jLabel14)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(36, 36, 36)
                         .addComponent(worksector, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(16, 16, 16)
                         .addComponent(jLabel11)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -192,7 +220,7 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                         .addComponent(itryes)
                         .addGap(18, 18, 18)
                         .addComponent(itrno)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -207,43 +235,41 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(workexp, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel7)
-                        .addGap(36, 36, 36)
-                        .addComponent(economicactivity)
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(specdiscip, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel9)
+                        .addGap(36, 36, 36)
+                        .addComponent(modoftravel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(211, 211, 211)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jLabel6)
-                        .addGap(36, 36, 36)
-                        .addComponent(natofwork, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(36, 36, 36)
+                                .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(160, 160, 160)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(36, 36, 36)
+                                .addComponent(icsno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
+                                .addComponent(jLabel16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(36, 36, 36)
+                                .addComponent(natofwork, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel15)))
                         .addGap(18, 18, 18)
-                        .addComponent(proflicno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel13)
-                        .addGap(36, 36, 36)
-                        .addComponent(icsno, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(bussregno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)
-                        .addGap(36, 36, 36)
-                        .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172)
-                        .addComponent(jLabel12)
-                        .addGap(40, 40, 40)
-                        .addComponent(jobseekyes)
-                        .addGap(18, 18, 18)
-                        .addComponent(jobseekno))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(proflicno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bussregno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabel4)
@@ -252,17 +278,26 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                         .addGap(119, 119, 119)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(distfromwork, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jobseekyes)
+                                .addGap(18, 18, 18)
+                                .addComponent(jobseekno))
+                            .addComponent(distfromwork, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel7)
                         .addGap(36, 36, 36)
-                        .addComponent(modoftravel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(211, 211, 211)
-                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noneconomicactivity)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(economicactivity)
+                                .addGap(136, 136, 136)
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(specdiscip, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bothactivity))))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,6 +330,7 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(noneconomicactivity)
+                        .addGap(0, 0, 0)
                         .addComponent(bothactivity)
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -306,29 +342,33 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(worksector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(worksector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel11))
                     .addComponent(specexp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(natofwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(natofwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3))
                     .addComponent(proflicno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel15))))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icsno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bussregno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bussregno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel16))))
+                        .addComponent(jLabel13)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -337,11 +377,10 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel12))
                     .addComponent(jobseekyes)
-                    .addComponent(jobseekno))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(jobseekno)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(income, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,14 +401,19 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jButton1))
-                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
+        persondata.update(persondata.toUpdateQuery(updatemap));
+        persondata.getDataFromAadhar(persondata.getUid());
+        this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
     private void jobseekyesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobseekyesActionPerformed
@@ -387,6 +431,31 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
     private void proflicnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proflicnoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_proflicnoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PBTModOfTravel frame = new PBTModOfTravel(persondata, this);
+        frame.setVisible(true);
+        modoftravel.setText(PBTUtilities.getModOfTravel(persondata.getModoftravel()));
+        updatemap.put("Modoftravel", persondata.getModoftravel());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PBTWorkingSector frame = new PBTWorkingSector(persondata, this);
+        frame.setVisible(true);
+        worksector.setText(PBTUtilities.getWorkSector(persondata.getWorkingsector()));
+        updatemap.put("Workingsector", persondata.getWorkingsector());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        PBTNatureOfWork frame = new PBTNatureOfWork(persondata, this);
+        frame.setVisible(true);
+        natofwork.setText(PBTUtilities.getNatureWork(persondata.getNatureofwork()));
+        updatemap.put("NatureofWork", persondata.getNatureofwork());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void modoftravelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modoftravelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modoftravelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,6 +506,8 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton itrno;
     private javax.swing.JRadioButton itryes;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -471,18 +542,18 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
 
     private void getAllLabels() {
         if(persondata.getCworkstat()!=null){
-            if(persondata.getCworkstat().equals("W")){
+            if(persondata.getCworkstat().equals("Y")){
                 working.setSelected(true);
             }else{
                 notworking.setSelected(true);
             }
         }
-        if(persondata.getWorkcategory()!=null){
+        if(persondata.getWorkcategory()!=0){
             switch (persondata.getWorkcategory()) {
-                case "E":
+                case 0:
                     economicactivity.setSelected(true);
                     break;
-                case "N":
+                case 1:
                     noneconomicactivity.setSelected(true);
                     break;
                 default:
@@ -490,23 +561,23 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
                     break;
             }
         }
-        if(persondata.getWorkingsector()!=null){
-            worksector.setText(persondata.getWorkingsector());
+        if(persondata.getWorkingsector()!=0){
+            worksector.setText(PBTUtilities.getWorkSector(persondata.getWorkingsector()));
         }
-        if(persondata.getNatureofwork()!=null){
-            natofwork.setText(persondata.getNatureofwork());
+        if(persondata.getNatureofwork()!=0){
+            natofwork.setText(PBTUtilities.getNatureWork(persondata.getNatureofwork()));
         }
-        if(persondata.getIcsno()!=null){
-            icsno.setText(persondata.getIcsno());
+        if(persondata.getIcsno()!=0){
+            icsno.setText("" + persondata.getIcsno());
         }
         if(persondata.getOccupation()!=null){
             occupation.setText(persondata.getOccupation());
         }
-        if(persondata.getIncome()!=null){
-            income.setText(persondata.getIncome());
+        if(persondata.getIncome()!=0){
+            income.setText("" + persondata.getIncome());
         }
         if(persondata.getModoftravel()!=null){
-            modoftravel.setText(persondata.getModoftravel());
+            modoftravel.setText(PBTUtilities.getModOfTravel(persondata.getModoftravel()));
         }
         if(persondata.getWorkexp()!=null){
             workexp.setText(persondata.getWorkexp());
@@ -545,15 +616,34 @@ public class PBTWorkDetailsFrame extends javax.swing.JFrame {
     private void addTextWatchers() {
         textWatchers.addNameTextWatcher(bussregno,updatemap,"busiregno");
         textWatchers.addNameTextWatcher(distfromwork,updatemap,"distfrmworkplace");
-        textWatchers.addNameTextWatcher(income,updatemap,"income");
-        textWatchers.addNameTextWatcher(natofwork,updatemap,"natureofwork");
+        textWatchers.addNumberTextWatcher(income,updatemap,"income");
+        textWatchers.addNumberTextWatcher(icsno,updatemap,"Icsno");
+        textWatchers.addNameTextWatcher(occupation,updatemap,"Occupation");
         textWatchers.addNameTextWatcher(occupation,updatemap,"occupation");
         textWatchers.addNameTextWatcher(specdiscip,updatemap,"specdescription");
         textWatchers.addNameTextWatcher(specexp,updatemap,"specexp");
-        textWatchers.addNameTextWatcher(worksector,updatemap,"workcategory");
         textWatchers.addNameTextWatcher(workexp,updatemap,"workexp");
-        textWatchers.addNameTextWatcher(worksector,updatemap,"workingsector");
+        textWatchers.addNameTextWatcher(proflicno,updatemap,"Proflicno");
         textWatchers.addYesNolistener(itryes,itrno,updatemap,"Itr");
         textWatchers.addYesNolistener(jobseekyes,jobseekno,updatemap,"Jobseek");
+        textWatchers.addYesNolistener(working, notworking, updatemap, "Cworkstat");
+        economicactivity.addActionListener(new ActionListener() { 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatemap.put("Workcategory", 0);
+            }
+        });
+        noneconomicactivity.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatemap.put("Workcategory", 1);
+            }
+        });
+        bothactivity.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updatemap.put("Workcategory", 2);
+            }
+        });
     }
 }

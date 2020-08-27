@@ -72,7 +72,7 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
                     .addComponent(houselisting, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(industrial, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(land, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -84,9 +84,6 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
     private void houselistingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houselistingActionPerformed
         PBTTypeOfHome newhome = new PBTTypeOfHome(parent,data);
         newhome.setVisible(true);
-        
-        PBTHouseHoldModel model = new PBTHouseHoldModel();
-        //model.toUpdateQuery(model.toHashMap());
     }//GEN-LAST:event_houselistingActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

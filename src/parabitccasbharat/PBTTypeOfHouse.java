@@ -2,7 +2,10 @@ package parabitccasbharat;
 
 public class PBTTypeOfHouse extends javax.swing.JFrame {
 
-    public PBTTypeOfHouse() {
+    PBTHouseListingModel model = new PBTHouseListingModel();
+    public PBTTypeOfHouse(String hlsno) {
+        System.out.println(hlsno);
+        model.getFromhlsno(hlsno);
         initComponents();
     }
 
@@ -10,73 +13,162 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        fixed = new javax.swing.JToggleButton();
+        mobile = new javax.swing.JToggleButton();
+        bunker = new javax.swing.JToggleButton();
+        floating = new javax.swing.JToggleButton();
+        shadow = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Fixed House");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(fixed);
+        fixed.setText("Fixed House");
+        fixed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                fixedActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Mobile House");
+        buttonGroup1.add(mobile);
+        mobile.setText("Mobile House");
+        mobile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mobileActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Bunker House");
+        buttonGroup1.add(bunker);
+        bunker.setText("Bunker House");
+        bunker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bunkerActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Floating House");
+        buttonGroup1.add(floating);
+        floating.setText("Floating House");
+        floating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                floatingActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Shadow House");
+        buttonGroup1.add(shadow);
+        shadow.setText("Shadow House");
+        shadow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shadowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(17, 17, 17)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fixed)
+                        .addGap(18, 18, 18)
+                        .addComponent(mobile)
+                        .addGap(18, 18, 18)
+                        .addComponent(bunker))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(floating)
+                        .addGap(18, 18, 18)
+                        .addComponent(shadow)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bunker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fixed, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mobile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(floating, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shadow, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PBTSmallInfoAtStart smallinfo = new PBTSmallInfoAtStart();
-        smallinfo.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void mobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileActionPerformed
+        setTypeOfHouse(2);
+    }//GEN-LAST:event_mobileActionPerformed
+
+    private void fixedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixedActionPerformed
+        setTypeOfHouse(1);
+    }//GEN-LAST:event_fixedActionPerformed
+
+    private void bunkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bunkerActionPerformed
+        setTypeOfHouse(3);
+    }//GEN-LAST:event_bunkerActionPerformed
+
+    private void floatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floatingActionPerformed
+        setTypeOfHouse(4);
+    }//GEN-LAST:event_floatingActionPerformed
+
+    private void shadowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shadowActionPerformed
+        setTypeOfHouse(5);
+    }//GEN-LAST:event_shadowActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JToggleButton bunker;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JToggleButton fixed;
+    private javax.swing.JToggleButton floating;
+    private javax.swing.JToggleButton mobile;
+    private javax.swing.JToggleButton shadow;
     // End of variables declaration//GEN-END:variables
+
+    private void setTypeOfHouse(int i) {
+        model.setTypeofhouse(i);
+        PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
+        dashboard.setVisible(true);
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PBTHomeDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PBTHomeDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PBTHomeDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PBTHomeDashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PBTTypeOfHouse("8").setVisible(true);
+            }
+        });
+    }
 }

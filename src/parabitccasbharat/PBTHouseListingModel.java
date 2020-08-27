@@ -5,6 +5,10 @@
  */
 package parabitccasbharat;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author acer
@@ -60,7 +64,7 @@ public class PBTHouseListingModel {
     private int coolheatfact;
     private int pc;
     private int telebroadband;
-    private int mob;
+    private String mob;
     private int bicycle;
     private int r2wheel;
     private int r4wheel;
@@ -89,6 +93,12 @@ public class PBTHouseListingModel {
     private int privatelicensearms;
     private int burglaralarm;
     private String expectation;
+    private String filldate;
+    private String timein;
+    private String timeout;
+    private String note;
+    private String comment;
+    private String status;
 
     public String getEmpenumno() {
         return empenumno;
@@ -129,7 +139,7 @@ public class PBTHouseListingModel {
     public void setFsno(int fsno) {
         this.fsno = fsno;
     }
-    
+
     public String getStut() {
         return stut;
     }
@@ -490,11 +500,11 @@ public class PBTHouseListingModel {
         this.telebroadband = telebroadband;
     }
 
-    public int getMob() {
+    public String getMob() {
         return mob;
     }
 
-    public void setMob(int mob) {
+    public void setMob(String mob) {
         this.mob = mob;
     }
 
@@ -722,17 +732,168 @@ public class PBTHouseListingModel {
         this.expectation = expectation;
     }
 
+    public String getFilldate() {
+        return filldate;
+    }
+
+    public void setFilldate(String filldate) {
+        this.filldate = filldate;
+    }
+
+    public String getTimein() {
+        return timein;
+    }
+
+    public void setTimein(String timein) {
+        this.timein = timein;
+    }
+
+    public String getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(String timeout) {
+        this.timeout = timeout;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "PBTHouseListingModel{" + "empenumno=" + empenumno + ", hl_sno=" + hl_sno + ", hh_sno=" + hh_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", stut=" + stut + ", dist=" + dist + ", tehsil=" + tehsil + ", townvillage=" + townvillage + ", wardno=" + wardno + ", hnoadd=" + hnoadd + ", pincode=" + pincode + ", owspofhouse=" + owspofhouse + ", typeofhouse=" + typeofhouse + ", roof=" + roof + ", floor=" + floor + ", wall=" + wall + ", dwellingroom=" + dwellingroom + ", fndyrofhouse=" + fndyrofhouse + ", cndtofhouse=" + cndtofhouse + ", useofhouse=" + useofhouse + ", plotarea=" + plotarea + ", builtuparea=" + builtuparea + ", nooftrees=" + nooftrees + ", noofprottrees=" + noofprottrees + ", typeofdomanimalwithno=" + typeofdomanimalwithno + ", typeofpetanimalwithno=" + typeofpetanimalwithno + ", latilongi=" + latilongi + ", ownername=" + ownername + ", ownerphnno=" + ownerphnno + ", nomarrcoup=" + nomarrcoup + ", mainsrcdrwater=" + mainsrcdrwater + ", mainsrclight=" + mainsrclight + ", altsrcoflight=" + altsrcoflight + ", accessof_l=" + accessof_l + ", typeof_l=" + typeof_l + ", drainagesys=" + drainagesys + ", wtrharv=" + wtrharv + ", bathfact=" + bathfact + ", swimmingpool=" + swimmingpool + ", kitchen=" + kitchen + ", cookfuel=" + cookfuel + ", radio=" + radio + ", fm=" + fm + ", tv=" + tv + ", tvsig=" + tvsig + ", refrigerator=" + refrigerator + ", coolheatfact=" + coolheatfact + ", pc=" + pc + ", telebroadband=" + telebroadband + ", mob=" + mob + ", bicycle=" + bicycle + ", r2wheel=" + r2wheel + ", r4wheel=" + r4wheel + ", tnocommveh=" + tnocommveh + ", parkingfact=" + parkingfact + ", lift=" + lift + ", escalator=" + escalator + ", helipad=" + helipad + ", gendiss=" + gendiss + ", firstaidkit=" + firstaidkit + ", h_insu=" + h_insu + ", l_insu=" + l_insu + ", g_insu=" + g_insu + ", nhospdist=" + nhospdist + ", deathin10years=" + deathin10years + ", reasonofdeath=" + reasonofdeath + ", deathagegroup=" + deathagegroup + ", courtcase=" + courtcase + ", fincase=" + fincase + ", foreigndispute=" + foreigndispute + ", smartsecuritysystem=" + smartsecuritysystem + ", cctvipadress=" + cctvipadress + ", fireextinguisher=" + fireextinguisher + ", firealarm=" + firealarm + ", privatesecurityguard=" + privatesecurityguard + ", privatelicensearms=" + privatelicensearms + ", burglaralarm=" + burglaralarm + ", expectation=" + expectation + '}';
+        return "PBTHouseListingModel{" + "empenumno=" + empenumno + ", hl_sno=" + hl_sno + ", hh_sno=" + hh_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", stut=" + stut + ", dist=" + dist + ", tehsil=" + tehsil + ", townvillage=" + townvillage + ", wardno=" + wardno + ", hnoadd=" + hnoadd + ", pincode=" + pincode + ", owspofhouse=" + owspofhouse + ", typeofhouse=" + typeofhouse + ", roof=" + roof + ", floor=" + floor + ", wall=" + wall + ", dwellingroom=" + dwellingroom + ", fndyrofhouse=" + fndyrofhouse + ", cndtofhouse=" + cndtofhouse + ", useofhouse=" + useofhouse + ", plotarea=" + plotarea + ", builtuparea=" + builtuparea + ", nooftrees=" + nooftrees + ", noofprottrees=" + noofprottrees + ", typeofdomanimalwithno=" + typeofdomanimalwithno + ", typeofpetanimalwithno=" + typeofpetanimalwithno + ", latilongi=" + latilongi + ", ownername=" + ownername + ", ownerphnno=" + ownerphnno + ", nomarrcoup=" + nomarrcoup + ", mainsrcdrwater=" + mainsrcdrwater + ", mainsrclight=" + mainsrclight + ", altsrcoflight=" + altsrcoflight + ", accessof_l=" + accessof_l + ", typeof_l=" + typeof_l + ", drainagesys=" + drainagesys + ", wtrharv=" + wtrharv + ", bathfact=" + bathfact + ", swimmingpool=" + swimmingpool + ", kitchen=" + kitchen + ", cookfuel=" + cookfuel + ", radio=" + radio + ", fm=" + fm + ", tv=" + tv + ", tvsig=" + tvsig + ", refrigerator=" + refrigerator + ", coolheatfact=" + coolheatfact + ", pc=" + pc + ", telebroadband=" + telebroadband + ", mob=" + mob + ", bicycle=" + bicycle + ", r2wheel=" + r2wheel + ", r4wheel=" + r4wheel + ", tnocommveh=" + tnocommveh + ", parkingfact=" + parkingfact + ", lift=" + lift + ", escalator=" + escalator + ", helipad=" + helipad + ", gendiss=" + gendiss + ", firstaidkit=" + firstaidkit + ", h_insu=" + h_insu + ", l_insu=" + l_insu + ", g_insu=" + g_insu + ", nhospdist=" + nhospdist + ", deathin10years=" + deathin10years + ", reasonofdeath=" + reasonofdeath + ", deathagegroup=" + deathagegroup + ", courtcase=" + courtcase + ", fincase=" + fincase + ", foreigndispute=" + foreigndispute + ", smartsecuritysystem=" + smartsecuritysystem + ", cctvipadress=" + cctvipadress + ", fireextinguisher=" + fireextinguisher + ", firealarm=" + firealarm + ", privatesecurityguard=" + privatesecurityguard + ", privatelicensearms=" + privatelicensearms + ", burglaralarm=" + burglaralarm + ", expectation=" + expectation + ", filldate=" + filldate + ", timein=" + timein + ", timeout=" + timeout + ", note=" + note + ", comment=" + comment + ", status=" + status + '}';
     }
     
+    public String toInsertQuery(){
+        return "Insert into `pbtcensus_houselisting` values ( " + getNullOrValue(empenumno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(hh_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(stut) + "," +getNullOrValue(dist) + "," +getNullOrValue(tehsil) + "," +getNullOrValue(townvillage) + "," +getNullOrValue(wardno) + "," +getNullOrValue(hnoadd) + "," +getNullOrValue(pincode) + "," +getNullOrValue(owspofhouse) + "," +getNullOrValue(typeofhouse) + "," +getNullOrValue(roof) + "," +getNullOrValue(floor) + "," +getNullOrValue(wall) + "," +getNullOrValue(dwellingroom) + "," +getNullOrValue(fndyrofhouse) + "," +getNullOrValue(cndtofhouse) + "," +getNullOrValue(useofhouse) + "," +getNullOrValue(plotarea) + "," +getNullOrValue(builtuparea) + "," +getNullOrValue(nooftrees) + "," +getNullOrValue(noofprottrees) + "," +getNullOrValue(typeofdomanimalwithno) + "," +getNullOrValue(typeofpetanimalwithno) + "," +getNullOrValue(latilongi) + "," +getNullOrValue(ownername) + "," +getNullOrValue(ownerphnno) + "," +getNullOrValue(nomarrcoup) + "," +getNullOrValue(mainsrcdrwater) + "," +getNullOrValue(mainsrclight) + "," +getNullOrValue(altsrcoflight) + "," +getNullOrValue(accessof_l) + "," +getNullOrValue(typeof_l) + "," +getNullOrValue(drainagesys) + "," +getNullOrValue(wtrharv) + "," +getNullOrValue(bathfact) + "," +getNullOrValue(swimmingpool) + "," +getNullOrValue(kitchen) + "," +getNullOrValue(cookfuel) + "," +getNullOrValue(radio) + "," +getNullOrValue(fm) + "," +getNullOrValue(tv) + "," +getNullOrValue(tvsig) + "," +getNullOrValue(refrigerator) + "," +getNullOrValue(coolheatfact) + "," +getNullOrValue(pc) + "," +getNullOrValue(telebroadband) + "," +getNullOrValue(mob) + "," +getNullOrValue(bicycle) + "," +getNullOrValue(r2wheel) + "," +getNullOrValue(r4wheel) + "," +getNullOrValue(tnocommveh) + "," +getNullOrValue(parkingfact) + "," +getNullOrValue(lift) + "," +getNullOrValue(escalator) + "," +getNullOrValue(helipad) + "," +getNullOrValue(gendiss) + "," +getNullOrValue(firstaidkit) + "," +getNullOrValue(h_insu) + "," +getNullOrValue(l_insu) + "," +getNullOrValue(g_insu) + "," +getNullOrValue(nhospdist) + "," +getNullOrValue(deathin10years) + "," +getNullOrValue(reasonofdeath) + "," +getNullOrValue(deathagegroup) + "," +getNullOrValue(courtcase) + "," +getNullOrValue(fincase) + "," +getNullOrValue(foreigndispute) + "," +getNullOrValue(smartsecuritysystem) + "," +getNullOrValue(cctvipadress) + "," +getNullOrValue(fireextinguisher) + "," +getNullOrValue(firealarm) + "," +getNullOrValue(privatesecurityguard) + "," +getNullOrValue(privatelicensearms) + "," +getNullOrValue(burglaralarm) + "," +getNullOrValue(expectation) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
+    }
 
-    
     private String getNullOrValue(Object name){
         if(name==null)
             return null;
         else
             return " '" + name + "' ";
+    }
+
+    void getFromhlsno(String hlsno) {
+        String query = "Select * from `pbtcensus_houselisting` where hl_sno = '" + hlsno + "'";
+        getData(query);
+    }
+
+    private void getData(String query) {
+        ParabitDBC db = new ParabitDBC();
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            if(db.rs1.next()){
+                    empenumno = db.rs1.getString("empenumno");
+                    hl_sno = db.rs1.getInt("hl_sno");
+                    hh_sno = db.rs1.getInt("hh_sno");
+                    ucid = db.rs1.getInt("ucid");
+                    fsno = db.rs1.getInt("fsno");
+                    stut = db.rs1.getString("stut");
+                    dist = db.rs1.getString("dist");
+                    tehsil = db.rs1.getString("tehsil");
+                    townvillage = db.rs1.getString("townvillage");
+                    wardno = db.rs1.getString("wardno");
+                    hnoadd = db.rs1.getString("hnoadd");
+                    pincode = db.rs1.getString("pincode");
+                    owspofhouse = db.rs1.getInt("owspofhouse");
+                    typeofhouse = db.rs1.getInt("typeofhouse");
+                    roof = db.rs1.getInt("roof");
+                    floor = db.rs1.getInt("floor");
+                    wall = db.rs1.getInt("wall");
+                    dwellingroom = db.rs1.getString("dwellingroom");
+                    fndyrofhouse = db.rs1.getString("fndyrofhouse");
+                    cndtofhouse = db.rs1.getString("cndtofhouse");
+                    useofhouse = db.rs1.getString("useofhouse");
+                    plotarea = db.rs1.getString("plotarea");
+                    builtuparea = db.rs1.getString("builtuparea");
+                    nooftrees = db.rs1.getString("nooftrees");
+                    noofprottrees = db.rs1.getString("noofprottrees");
+                    typeofdomanimalwithno = db.rs1.getString("typeofdomanimalwithno");
+                    typeofpetanimalwithno = db.rs1.getString("typeofpetanimalwithno");
+                    latilongi = db.rs1.getString("latilongi");
+                    ownername = db.rs1.getString("ownername");
+                    ownerphnno = db.rs1.getString("ownerphnno");
+                    nomarrcoup = db.rs1.getString("nomarrcoup");
+                    mainsrcdrwater = db.rs1.getInt("mainsrcdrwater");
+                    mainsrclight = db.rs1.getInt("mainsrclight");
+                    altsrcoflight = db.rs1.getInt("altsrcoflight");
+                    accessof_l = db.rs1.getInt("accessof_l");
+                    typeof_l = db.rs1.getInt("typeof_l");
+                    drainagesys = db.rs1.getString("drainagesys");
+                    wtrharv = db.rs1.getString("wtrharv");
+                    bathfact = db.rs1.getInt("bathfact");
+                    swimmingpool = db.rs1.getInt("swimmingpool");
+                    kitchen = db.rs1.getInt("kitchen");
+                    cookfuel = db.rs1.getInt("cookfuel");
+                    radio = db.rs1.getString("radio");
+                    fm = db.rs1.getString("fm");
+                    tv = db.rs1.getInt("tv");
+                    tvsig = db.rs1.getInt("tvsig");
+                    refrigerator = db.rs1.getString("refrigerator");
+                    coolheatfact = db.rs1.getInt("coolheatfact");
+                    pc = db.rs1.getInt("pc");
+                    telebroadband = db.rs1.getInt("telebroadband");
+                    mob = db.rs1.getString("mob");
+                    bicycle = db.rs1.getInt("bicycle");
+                    r2wheel = db.rs1.getInt("r2wheel");
+                    r4wheel = db.rs1.getInt("r4wheel");
+                    tnocommveh = db.rs1.getInt("tnocommveh");
+                    parkingfact = db.rs1.getString("parkingfact");
+                    lift = db.rs1.getInt("lift");
+                    escalator = db.rs1.getInt("escalator");
+                    helipad = db.rs1.getInt("helipad");
+                    gendiss = db.rs1.getString("gendiss");
+                    firstaidkit = db.rs1.getString("firstaidkit");
+                    h_insu = db.rs1.getString("h_insu");
+                    l_insu = db.rs1.getString("l_insu");
+                    g_insu = db.rs1.getString("g_insu");
+                    nhospdist = db.rs1.getString("nhospdist");
+                    deathin10years = db.rs1.getInt("deathin10years");
+                    reasonofdeath = db.rs1.getString("reasonofdeath");
+                    deathagegroup = db.rs1.getString("deathagegroup");
+                    courtcase = db.rs1.getString("courtcase");
+                    fincase = db.rs1.getString("fincase");
+                    foreigndispute = db.rs1.getString("foreigndispute");
+                    smartsecuritysystem = db.rs1.getString("smartsecuritysystem");
+                    cctvipadress = db.rs1.getString("cctvipadress");
+                    fireextinguisher = db.rs1.getInt("fireextinguisher");
+                    firealarm = db.rs1.getInt("firealarm");
+                    privatesecurityguard = db.rs1.getInt("privatesecurityguard");
+                    privatelicensearms = db.rs1.getInt("privatelicensearms");
+                    burglaralarm = db.rs1.getInt("burglaralarm");
+                    expectation = db.rs1.getString("expectation");
+                    filldate = db.rs1.getString("filldate");
+                    timein = db.rs1.getString("timein");
+                    timeout = db.rs1.getString("timeout");
+                    note = db.rs1.getString("note");
+                    comment = db.rs1.getString("comment");
+                    status = db.rs1.getString("status");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -5,18 +5,22 @@
  */
 package parabitccasbharat;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.HashMap;
+import javax.swing.JFrame;
 
 /**
  *
  * @author acer
  */
-public class PBTEducationDetailsFrame extends javax.swing.JFrame {
+public class PBTEducationDetailsFrame<T> extends javax.swing.JDialog {
 
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTEducationDetailsFrame(PBTHouseHoldModel persondata) {
+    public PBTEducationDetailsFrame(PBTHouseHoldModel persondata,T parent) {
+        super((JFrame)parent,true);
         initComponents();
         this.textWatchers = new PBTTextWatchers();
         this.persondata = persondata;
@@ -52,8 +56,9 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
         illitt = new javax.swing.JRadioButton();
         nccyes = new javax.swing.JRadioButton();
         nccNo = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Literacy Status :");
 
@@ -94,6 +99,13 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
         buttonGroup2.add(nccNo);
         nccNo.setText("No");
 
+        jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,12 +122,15 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cedustatus, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addComponent(cinstcity)
-                        .addComponent(cinsttype)
-                        .addComponent(techdeg)
-                        .addComponent(nontechdeg))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cedustatus, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(cinstcity)
+                            .addComponent(cinsttype)
+                            .addComponent(techdeg)
+                            .addComponent(nontechdeg))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(litt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,7 +139,7 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                         .addComponent(nccyes)
                         .addGap(18, 18, 18)
                         .addComponent(nccNo)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +156,8 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cedustatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedustatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -165,19 +181,30 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
                     .addComponent(nccNo))
                 .addGap(18, 18, 18)
                 .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
+        persondata.update(persondata.toUpdateQuery(updatemap));
+        persondata.getDataFromAadhar(persondata.getUid());
+        this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
     private void nontechdegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nontechdegActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nontechdegActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PBTCEduStatus frame = new PBTCEduStatus(persondata, this);
+        frame.setVisible(true);
+        cedustatus.setText(PBTUtilities.getCEduStatus(persondata.getCedustatus()));
+        updatemap.put("Cedustatus", persondata.getCedustatus());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +248,7 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JTextField cinstcity;
     private javax.swing.JTextField cinsttype;
     private javax.swing.JRadioButton illitt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,17 +265,28 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void addTextWatchers() {
-        textWatchers.addNameTextWatcher(cedustatus,updatemap,"Cedustatus");
         textWatchers.addNameTextWatcher(cinstcity,updatemap,"Cinstnmcity");
         textWatchers.addNameTextWatcher(cinsttype,updatemap,"Cinsttype");
         textWatchers.addNameTextWatcher(nontechdeg,updatemap,"Nontechdeg");
         textWatchers.addNameTextWatcher(techdeg,updatemap,"Techdeg");
         textWatchers.addYesNolistener(nccyes,nccNo,updatemap,"Nccnss");
+        litt.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){
+                updatemap.put("LitStatus", "Y");
+                literacy(true);
+                }else{
+                updatemap.put("LitStatus", "N");
+                literacy(false); 
+                }
+            }
+        });
     }
 
     private void getAllLabels() {
         if(persondata.getCedustatus()!=null){
-            cedustatus.setText(persondata.getCedustatus());
+            cedustatus.setText(PBTUtilities.getCEduStatus(persondata.getCedustatus()));
         }
         if(persondata.getCinsttype()!=null){
             cinsttype.setText(persondata.getCinsttype());
@@ -256,10 +295,11 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
             cinstcity.setText(persondata.getCinstnmcity());
         }
         if(persondata.getLitstatus()!=null){
-            if(persondata.getLitstatus().equals("L")){
+            if(persondata.getLitstatus().equals("Y")){
                 litt.setSelected(true);
             }else{
                 illitt.setSelected(true);
+                literacy(false); 
             }
         }
         if(persondata.getNccnss()!=null){
@@ -274,6 +314,32 @@ public class PBTEducationDetailsFrame extends javax.swing.JFrame {
         }
         if(persondata.getTechdeg()!=null){
             techdeg.setText(persondata.getTechdeg());
+        }
+    }
+    
+    public void literacy(Boolean visibility){
+        jLabel2.setVisible(visibility);
+        jLabel3.setVisible(visibility);
+        jLabel4.setVisible(visibility);
+        jLabel5.setVisible(visibility);
+        jLabel6.setVisible(visibility);
+        cedustatus.setVisible(visibility);
+        cinsttype.setVisible(visibility);
+        cinstcity.setVisible(visibility);
+        techdeg.setVisible(visibility);
+        nontechdeg.setVisible(visibility);
+        jButton1.setVisible(visibility);
+        if(!visibility){
+            updatemap.remove("Cinstnmcity");
+            updatemap.remove("Cinsttype");
+            updatemap.remove("Nontechdeg");
+            updatemap.remove("Techdeg");
+            updatemap.remove("Cedustatus");
+            cinstcity.setText("");
+            cinsttype.setText("");
+            nontechdeg.setText("");
+            techdeg.setText("");
+            cedustatus.setText("");
         }
     }
 }
