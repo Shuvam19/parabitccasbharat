@@ -8,7 +8,10 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JRadioButton;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -115,13 +118,23 @@ public class PBTTextWatchers {
             }
         });
     }
+    
+    public void addJSliderListener(JSlider slider, HashMap<String, Object> updatemap, String key) {
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                updatemap.put(key, slider.getValue());
+            }
+        });
+    }
         
-    public void addEmailTextWatcher(JTextField field){
+    public void addEmailTextWatcher(JTextField field,HashMap<String, Object> updatemap, String key){
         field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if(isEmail(field.getText())){
                     showRight(field);
+                    updatemap.put(key, field.getText());
                 } else {
                     showError(field);
                 }
@@ -131,6 +144,7 @@ public class PBTTextWatchers {
             public void removeUpdate(DocumentEvent e) {
                 if(isEmail(field.getText())){
                     showRight(field);
+                    updatemap.put(key, field.getText());
                 } else {
                     showError(field);
                 }
@@ -143,40 +157,40 @@ public class PBTTextWatchers {
         });
     }
     
-    private boolean isNumerical(String text) {
+    public static boolean isNumerical(String text) {
         Pattern pattern = Pattern.compile("^[1-9]\\d*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
 
-    private boolean isOnlyString(String text) {
+    public static boolean isOnlyString(String text) {
         Pattern pattern = Pattern.compile("^[A-Za-z ]*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
     
-    private boolean isValidPan(String text) {
+    public static boolean isValidPan(String text) {
         Pattern pattern = Pattern.compile("^[1-9]{1}[0-9]{4}[A-Za-z]{4}[0-9]{1}");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
     
-    private boolean isNameNumber(String text) {
+    public static boolean isNameNumber(String text) {
         Pattern pattern = Pattern.compile("^[A-Za-z0-9\\-]*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
     
-    private boolean isEmail(String text) {
+    public static boolean isEmail(String text) {
         Pattern pattern = Pattern.compile("^.[^@]*@.[^\\.]*\\..*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
     
-    public void showError(JTextField textarea){
+    public static void showError(JTextField textarea){
         textarea.setBorder(new MotifBorders.BevelBorder(true, Color.RED, Color.RED));
     }
-    public void showRight(JTextField textarea){
+    public static void showRight(JTextField textarea){
         textarea.setBorder(new MotifBorders.BevelBorder(true, Color.GREEN, Color.GREEN));
     }
 

@@ -19,6 +19,7 @@ public class ParabitCCASBharat {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        new PBTLogin().setVisible(true);
+        //new PBTLogin().setVisible(true);
+        new PBTTypeOfHouse("8").setVisible(true);
     }
 }

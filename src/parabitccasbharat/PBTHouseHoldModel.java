@@ -4,12 +4,15 @@ import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PBTHouseHoldModel {
-    private String hh_sno;
-    private String hl_sno;
-    private String ucid;
-    private String fsno;
+    
+    private int hh_sno;
+    private int hl_sno;
+    private int ucid;
+    private int fsno;
     private String empenumno;
     private String rcardno;
     private String rcardtype;
@@ -31,7 +34,7 @@ public class PBTHouseHoldModel {
     private String gender;
     private String dob;
     private String age;
-    private String wt;
+    private int wt;
     private String ht;
     private String veg;
     private String homefood;
@@ -53,6 +56,8 @@ public class PBTHouseHoldModel {
     private String religion;
     private String community;
     private String category;
+    private String categorytypename;
+    private String catrgoeryverified;
     private String cast;
     private String marstatus;
     private String apromarriageage;
@@ -70,17 +75,17 @@ public class PBTHouseHoldModel {
     private String nccnss;
     private String jobseek;
     private String cworkstat;
-    private String workcategory;
-    private String workingsector;
-    private String natureofwork;
-    private String icsno;
+    private int workcategory;
+    private int workingsector;
+    private int natureofwork;
+    private int icsno;
     private String occupation;
     private String workexp;
     private String specdescription;
     private String specexp;
     private String proflicno;
     private String busiregno;
-    private String income;
+    private int income;
     private String itr;
     private String distfrmworkplace;
     private String modoftravel;
@@ -104,7 +109,7 @@ public class PBTHouseHoldModel {
     private String yoga;
     private String spiritual;
     private String meditation;
-    private String ratyourhealth;
+    private int ratyourhealth;
     private String filldate;
     private String timein;
     private String timeout;
@@ -112,38 +117,35 @@ public class PBTHouseHoldModel {
     private String comment;
     private String status;
 
-    public PBTHouseHoldModel() {
-    }
-
-    public String getHh_sno() {
+    public int getHh_sno() {
         return hh_sno;
     }
 
-    public void setHh_sno(String hh_sno) {
+    public void setHh_sno(int hh_sno) {
         this.hh_sno = hh_sno;
     }
 
-    public String getHl_sno() {
+    public int getHl_sno() {
         return hl_sno;
     }
 
-    public void setHl_sno(String hl_sno) {
+    public void setHl_sno(int hl_sno) {
         this.hl_sno = hl_sno;
     }
 
-    public String getUcid() {
+    public int getUcid() {
         return ucid;
     }
 
-    public void setUcid(String ucid) {
+    public void setUcid(int ucid) {
         this.ucid = ucid;
     }
 
-    public String getFsno() {
+    public int getFsno() {
         return fsno;
     }
 
-    public void setFsno(String fsno) {
+    public void setFsno(int fsno) {
         this.fsno = fsno;
     }
 
@@ -315,11 +317,11 @@ public class PBTHouseHoldModel {
         this.age = age;
     }
 
-    public String getWt() {
+    public int getWt() {
         return wt;
     }
 
-    public void setWt(String wt) {
+    public void setWt(int wt) {
         this.wt = wt;
     }
 
@@ -491,6 +493,22 @@ public class PBTHouseHoldModel {
         this.category = category;
     }
 
+    public String getCategorytypename() {
+        return categorytypename;
+    }
+
+    public void setCategorytypename(String categorytypename) {
+        this.categorytypename = categorytypename;
+    }
+
+    public String getCatrgoeryverified() {
+        return catrgoeryverified;
+    }
+
+    public void setCatrgoeryverified(String catrgoeryverified) {
+        this.catrgoeryverified = catrgoeryverified;
+    }
+
     public String getCast() {
         return cast;
     }
@@ -627,35 +645,35 @@ public class PBTHouseHoldModel {
         this.cworkstat = cworkstat;
     }
 
-    public String getWorkcategory() {
+    public int getWorkcategory() {
         return workcategory;
     }
 
-    public void setWorkcategory(String workcategory) {
+    public void setWorkcategory(int workcategory) {
         this.workcategory = workcategory;
     }
 
-    public String getWorkingsector() {
+    public int getWorkingsector() {
         return workingsector;
     }
 
-    public void setWorkingsector(String workingsector) {
+    public void setWorkingsector(int workingsector) {
         this.workingsector = workingsector;
     }
 
-    public String getNatureofwork() {
+    public int getNatureofwork() {
         return natureofwork;
     }
 
-    public void setNatureofwork(String natureofwork) {
+    public void setNatureofwork(int natureofwork) {
         this.natureofwork = natureofwork;
     }
 
-    public String getIcsno() {
+    public int getIcsno() {
         return icsno;
     }
 
-    public void setIcsno(String icsno) {
+    public void setIcsno(int icsno) {
         this.icsno = icsno;
     }
 
@@ -707,11 +725,11 @@ public class PBTHouseHoldModel {
         this.busiregno = busiregno;
     }
 
-    public String getIncome() {
+    public int getIncome() {
         return income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(int income) {
         this.income = income;
     }
 
@@ -899,11 +917,11 @@ public class PBTHouseHoldModel {
         this.meditation = meditation;
     }
 
-    public String getRatyourhealth() {
+    public int getRatyourhealth() {
         return ratyourhealth;
     }
 
-    public void setRatyourhealth(String ratyourhealth) {
+    public void setRatyourhealth(int ratyourhealth) {
         this.ratyourhealth = ratyourhealth;
     }
 
@@ -957,138 +975,162 @@ public class PBTHouseHoldModel {
 
     @Override
     public String toString() {
-        return "PBTHouseHoldModel{" + "hh_sno=" + hh_sno + ", hl_sno=" + hl_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", empenumno=" + empenumno + ", rcardno=" + rcardno + ", rcardtype=" + rcardtype + ", uid=" + uid + ", gconsumerno=" + gconsumerno + ", drivlicno=" + drivlicno + ", armsuino=" + armsuino + ", birthcertno=" + birthcertno + ", marrcertno=" + marrcertno + ", policeverno=" + policeverno + ", sssmid=" + sssmid + ", name=" + name + ", reltohead=" + reltohead + ", headuid=" + headuid + ", headregmobno=" + headregmobno + ", mobno=" + mobno + ", altphoneno=" + altphoneno + ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", age=" + age + ", wt=" + wt + ", ht=" + ht + ", veg=" + veg + ", homefood=" + homefood + ", outsidefood=" + outsidefood + ", sleephrs=" + sleephrs + ", health_checkup=" + health_checkup + ", addiction=" + addiction + ", bmi=" + bmi + ", stem_cell_id=" + stem_cell_id + ", bgroup=" + bgroup + ", vid=" + vid + ", passport=" + passport + ", pancardno=" + pancardno + ", ifsc=" + ifsc + ", bankaccno=" + bankaccno + ", netbank=" + netbank + ", mobbank=" + mobbank + ", pensionid=" + pensionid + ", religion=" + religion + ", community=" + community + ", category=" + category + ", cast=" + cast + ", marstatus=" + marstatus + ", apromarriageage=" + apromarriageage + ", pwd=" + pwd + ", pwdid=" + pwdid + ", mtongue=" + mtongue + ", rwlang=" + rwlang + ", homelang=" + homelang + ", litstatus=" + litstatus + ", cedustatus=" + cedustatus + ", cinstnmcity=" + cinstnmcity + ", cinsttype=" + cinsttype + ", techdeg=" + techdeg + ", nontechdeg=" + nontechdeg + ", nccnss=" + nccnss + ", jobseek=" + jobseek + ", cworkstat=" + cworkstat + ", workcategory=" + workcategory + ", workingsector=" + workingsector + ", natureofwork=" + natureofwork + ", icsno=" + icsno + ", occupation=" + occupation + ", workexp=" + workexp + ", specdescription=" + specdescription + ", specexp=" + specexp + ", proflicno=" + proflicno + ", busiregno=" + busiregno + ", income=" + income + ", itr=" + itr + ", distfrmworkplace=" + distfrmworkplace + ", modoftravel=" + modoftravel + ", nri=" + nri + ", foreignadd=" + foreignadd + ", birthplacewithstatecountry=" + birthplacewithstatecountry + ", pmtstut=" + pmtstut + ", pmtdist=" + pmtdist + ", pmttehsil=" + pmttehsil + ", pmttownvillage=" + pmttownvillage + ", pmtwardno=" + pmtwardno + ", pmthnoadd=" + pmthnoadd + ", pmtpincode=" + pmtpincode + ", rsnofmig=" + rsnofmig + ", durofmig=" + durofmig + ", chdnsurv=" + chdnsurv + ", chdnevenborn=" + chdnevenborn + ", noofchdnalivelastyr=" + noofchdnalivelastyr + ", chronicdisease=" + chronicdisease + ", sport=" + sport + ", yoga=" + yoga + ", spiritual=" + spiritual + ", meditation=" + meditation + ", ratyourhealth=" + ratyourhealth + ", filldate=" + filldate + ", timein=" + timein + ", timeout=" + timeout + ", note=" + note + ", comment=" + comment + ", status=" + status + '}';
-    }    
+        return "PBTHouseHoldModel{" + "hh_sno=" + hh_sno + ", hl_sno=" + hl_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", empenumno=" + empenumno + ", rcardno=" + rcardno + ", rcardtype=" + rcardtype + ", uid=" + uid + ", gconsumerno=" + gconsumerno + ", drivlicno=" + drivlicno + ", armsuino=" + armsuino + ", birthcertno=" + birthcertno + ", marrcertno=" + marrcertno + ", policeverno=" + policeverno + ", sssmid=" + sssmid + ", name=" + name + ", reltohead=" + reltohead + ", headuid=" + headuid + ", headregmobno=" + headregmobno + ", mobno=" + mobno + ", altphoneno=" + altphoneno + ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", age=" + age + ", wt=" + wt + ", ht=" + ht + ", veg=" + veg + ", homefood=" + homefood + ", outsidefood=" + outsidefood + ", sleephrs=" + sleephrs + ", health_checkup=" + health_checkup + ", addiction=" + addiction + ", bmi=" + bmi + ", stem_cell_id=" + stem_cell_id + ", bgroup=" + bgroup + ", vid=" + vid + ", passport=" + passport + ", pancardno=" + pancardno + ", ifsc=" + ifsc + ", bankaccno=" + bankaccno + ", netbank=" + netbank + ", mobbank=" + mobbank + ", pensionid=" + pensionid + ", religion=" + religion + ", community=" + community + ", category=" + category + ", categorytypename=" + categorytypename + ", catrgoeryverified=" + catrgoeryverified + ", cast=" + cast + ", marstatus=" + marstatus + ", apromarriageage=" + apromarriageage + ", pwd=" + pwd + ", pwdid=" + pwdid + ", mtongue=" + mtongue + ", rwlang=" + rwlang + ", homelang=" + homelang + ", litstatus=" + litstatus + ", cedustatus=" + cedustatus + ", cinstnmcity=" + cinstnmcity + ", cinsttype=" + cinsttype + ", techdeg=" + techdeg + ", nontechdeg=" + nontechdeg + ", nccnss=" + nccnss + ", jobseek=" + jobseek + ", cworkstat=" + cworkstat + ", workcategory=" + workcategory + ", workingsector=" + workingsector + ", natureofwork=" + natureofwork + ", icsno=" + icsno + ", occupation=" + occupation + ", workexp=" + workexp + ", specdescription=" + specdescription + ", specexp=" + specexp + ", proflicno=" + proflicno + ", busiregno=" + busiregno + ", income=" + income + ", itr=" + itr + ", distfrmworkplace=" + distfrmworkplace + ", modoftravel=" + modoftravel + ", nri=" + nri + ", foreignadd=" + foreignadd + ", birthplacewithstatecountry=" + birthplacewithstatecountry + ", pmtstut=" + pmtstut + ", pmtdist=" + pmtdist + ", pmttehsil=" + pmttehsil + ", pmttownvillage=" + pmttownvillage + ", pmtwardno=" + pmtwardno + ", pmthnoadd=" + pmthnoadd + ", pmtpincode=" + pmtpincode + ", rsnofmig=" + rsnofmig + ", durofmig=" + durofmig + ", chdnsurv=" + chdnsurv + ", chdnevenborn=" + chdnevenborn + ", noofchdnalivelastyr=" + noofchdnalivelastyr + ", chronicdisease=" + chronicdisease + ", sport=" + sport + ", yoga=" + yoga + ", spiritual=" + spiritual + ", meditation=" + meditation + ", ratyourhealth=" + ratyourhealth + ", filldate=" + filldate + ", timein=" + timein + ", timeout=" + timeout + ", note=" + note + ", comment=" + comment + ", status=" + status + '}';
+    }
     
-    public String toInsertQuery() {
-        return "Insert into `pbtcensus_household` values (" + getNullOrValue(hh_sno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(empenumno) + "," +getNullOrValue(rcardno) + "," +getNullOrValue(rcardtype) + "," +getNullOrValue(uid) + "," +getNullOrValue(gconsumerno) + "," +getNullOrValue(drivlicno) + "," +getNullOrValue(armsuino) + "," +getNullOrValue(birthcertno) + "," +getNullOrValue(marrcertno) + "," +getNullOrValue(policeverno) + "," +getNullOrValue(sssmid) + "," +getNullOrValue(name) + "," +getNullOrValue(reltohead) + "," +getNullOrValue(headuid) + "," +getNullOrValue(headregmobno) + "," +getNullOrValue(mobno) + "," +getNullOrValue(altphoneno) + "," +getNullOrValue(email) + "," +getNullOrValue(gender) + "," +getNullOrValue(dob) + "," +getNullOrValue(age) + "," +getNullOrValue(wt) + "," +getNullOrValue(ht) + "," +getNullOrValue(veg) + "," +getNullOrValue(homefood) + "," +getNullOrValue(outsidefood) + "," +getNullOrValue(sleephrs) + "," +getNullOrValue(health_checkup) + "," +getNullOrValue(addiction) + "," +getNullOrValue(bmi) + "," +getNullOrValue(stem_cell_id) + "," +getNullOrValue(bgroup) + "," +getNullOrValue(vid) + "," +getNullOrValue(passport) + "," +getNullOrValue(pancardno) + "," +getNullOrValue(ifsc) + "," +getNullOrValue(bankaccno) + "," +getNullOrValue(netbank) + "," +getNullOrValue(mobbank) + "," +getNullOrValue(pensionid) + "," +getNullOrValue(religion) + "," +getNullOrValue(community) + "," +getNullOrValue(category) + "," +getNullOrValue(cast) + "," +getNullOrValue(marstatus) + "," +getNullOrValue(apromarriageage) + "," +getNullOrValue(pwd) + "," +getNullOrValue(pwdid) + "," +getNullOrValue(mtongue) + "," +getNullOrValue(rwlang) + "," +getNullOrValue(homelang) + "," +getNullOrValue(litstatus) + "," +getNullOrValue(cedustatus) + "," +getNullOrValue(cinstnmcity) + "," +getNullOrValue(cinsttype) + "," +getNullOrValue(techdeg) + "," +getNullOrValue(nontechdeg) + "," +getNullOrValue(nccnss) + "," +getNullOrValue(jobseek) + "," +getNullOrValue(cworkstat) + "," +getNullOrValue(workcategory) + "," +getNullOrValue(workingsector) + "," +getNullOrValue(natureofwork) + "," +getNullOrValue(icsno) + "," +getNullOrValue(occupation) + "," +getNullOrValue(workexp) + "," +getNullOrValue(specdescription) + "," +getNullOrValue(specexp) + "," +getNullOrValue(proflicno) + "," +getNullOrValue(busiregno) + "," +getNullOrValue(income) + "," +getNullOrValue(itr) + "," +getNullOrValue(distfrmworkplace) + "," +getNullOrValue(modoftravel) + "," +getNullOrValue(nri) + "," +getNullOrValue(foreignadd) + "," +getNullOrValue(birthplacewithstatecountry) + "," +getNullOrValue(pmtstut) + "," +getNullOrValue(pmtdist) + "," +getNullOrValue(pmttehsil) + "," +getNullOrValue(pmttownvillage) + "," +getNullOrValue(pmtwardno) + "," +getNullOrValue(pmthnoadd) + "," +getNullOrValue(pmtpincode) + "," +getNullOrValue(rsnofmig) + "," +getNullOrValue(durofmig) + "," +getNullOrValue(chdnsurv) + "," +getNullOrValue(chdnevenborn) + "," +getNullOrValue(noofchdnalivelastyr) + "," +getNullOrValue(chronicdisease) + "," +getNullOrValue(sport) + "," +getNullOrValue(yoga) + "," +getNullOrValue(spiritual) + "," +getNullOrValue(meditation) + "," +getNullOrValue(ratyourhealth) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
+    private String toInsertQuery(){
+        return "Insert into `pbtcensus_household` values (" + getNullOrValue(hh_sno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(empenumno) + "," +getNullOrValue(rcardno) + "," +getNullOrValue(rcardtype) + "," +getNullOrValue(uid) + "," +getNullOrValue(gconsumerno) + "," +getNullOrValue(drivlicno) + "," +getNullOrValue(armsuino) + "," +getNullOrValue(birthcertno) + "," +getNullOrValue(marrcertno) + "," +getNullOrValue(policeverno) + "," +getNullOrValue(sssmid) + "," +getNullOrValue(name) + "," +getNullOrValue(reltohead) + "," +getNullOrValue(headuid) + "," +getNullOrValue(headregmobno) + "," +getNullOrValue(mobno) + "," +getNullOrValue(altphoneno) + "," +getNullOrValue(email) + "," +getNullOrValue(gender) + "," +getNullOrValue(dob) + "," +getNullOrValue(age) + "," +getNullOrValue(wt) + "," +getNullOrValue(ht) + "," +getNullOrValue(veg) + "," +getNullOrValue(homefood) + "," +getNullOrValue(outsidefood) + "," +getNullOrValue(sleephrs) + "," +getNullOrValue(health_checkup) + "," +getNullOrValue(addiction) + "," +getNullOrValue(bmi) + "," +getNullOrValue(stem_cell_id) + "," +getNullOrValue(bgroup) + "," +getNullOrValue(vid) + "," +getNullOrValue(passport) + "," +getNullOrValue(pancardno) + "," +getNullOrValue(ifsc) + "," +getNullOrValue(bankaccno) + "," +getNullOrValue(netbank) + "," +getNullOrValue(mobbank) + "," +getNullOrValue(pensionid) + "," +getNullOrValue(religion) + "," +getNullOrValue(community) + "," +getNullOrValue(category) + "," +getNullOrValue(categorytypename) + "," +getNullOrValue(catrgoeryverified) + "," +getNullOrValue(cast) + "," +getNullOrValue(marstatus) + "," +getNullOrValue(apromarriageage) + "," +getNullOrValue(pwd) + "," +getNullOrValue(pwdid) + "," +getNullOrValue(mtongue) + "," +getNullOrValue(rwlang) + "," +getNullOrValue(homelang) + "," +getNullOrValue(litstatus) + "," +getNullOrValue(cedustatus) + "," +getNullOrValue(cinstnmcity) + "," +getNullOrValue(cinsttype) + "," +getNullOrValue(techdeg) + "," +getNullOrValue(nontechdeg) + "," +getNullOrValue(nccnss) + "," +getNullOrValue(jobseek) + "," +getNullOrValue(cworkstat) + "," +getNullOrValue(workcategory) + "," +getNullOrValue(workingsector) + "," +getNullOrValue(natureofwork) + "," +getNullOrValue(icsno) + "," +getNullOrValue(occupation) + "," +getNullOrValue(workexp) + "," +getNullOrValue(specdescription) + "," +getNullOrValue(specexp) + "," +getNullOrValue(proflicno) + "," +getNullOrValue(busiregno) + "," +getNullOrValue(income) + "," +getNullOrValue(itr) + "," +getNullOrValue(distfrmworkplace) + "," +getNullOrValue(modoftravel) + "," +getNullOrValue(nri) + "," +getNullOrValue(foreignadd) + "," +getNullOrValue(birthplacewithstatecountry) + "," +getNullOrValue(pmtstut) + "," +getNullOrValue(pmtdist) + "," +getNullOrValue(pmttehsil) + "," +getNullOrValue(pmttownvillage) + "," +getNullOrValue(pmtwardno) + "," +getNullOrValue(pmthnoadd) + "," +getNullOrValue(pmtpincode) + "," +getNullOrValue(rsnofmig) + "," +getNullOrValue(durofmig) + "," +getNullOrValue(chdnsurv) + "," +getNullOrValue(chdnevenborn) + "," +getNullOrValue(noofchdnalivelastyr) + "," +getNullOrValue(chronicdisease) + "," +getNullOrValue(sport) + "," +getNullOrValue(yoga) + "," +getNullOrValue(spiritual) + "," +getNullOrValue(meditation) + "," +getNullOrValue(ratyourhealth) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
+    }
+    public PBTHouseHoldModel() {
     }
     
     public void getDataFromAadhar(String aadhar){
         String query = "Select * from `pbtcensus_household` where uid = '" + aadhar + "'";
+        getData(query);
+    }
+    
+    public void getDataFromhhsno(String hhsno){
+        String query = "Select * from `pbtcensus_household` where hh_sno = '" + hhsno + "'";
+        getData(query);
+    }
+    
+    public void getData(String query){
         ParabitDBC db = new ParabitDBC();
         try {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next()){
-                hh_sno = db.rs1.getString("hh_sno");
-                hl_sno = db.rs1.getString("hl_sno");
-                ucid = db.rs1.getString("ucid");
-                fsno = db.rs1.getString("fsno");
-                empenumno = db.rs1.getString("empenumno");
-                rcardno = db.rs1.getString("rcardno");
-                rcardtype = db.rs1.getString("rcardtype");
-                uid = db.rs1.getString("uid");
-                gconsumerno = db.rs1.getString("gconsumerno");
-                drivlicno = db.rs1.getString("drivlicno");
-                armsuino = db.rs1.getString("armsuino");
-                birthcertno = db.rs1.getString("birthcertno");
-                marrcertno = db.rs1.getString("marrcertno");
-                policeverno = db.rs1.getString("policeverno");
-                sssmid = db.rs1.getString("sssmid");
-                name = db.rs1.getString("name");
-                reltohead = db.rs1.getString("reltohead");
-                headuid = db.rs1.getString("headuid");
-                headregmobno = db.rs1.getString("headregmobno");
-                mobno = db.rs1.getString("mobno");
-                altphoneno = db.rs1.getString("altphoneno");
-                email = db.rs1.getString("email");
-                gender = db.rs1.getString("gender");
-                dob = db.rs1.getString("dob");
-                age = db.rs1.getString("age");
-                wt = db.rs1.getString("wt");
-                ht = db.rs1.getString("ht");
-                veg = db.rs1.getString("veg");
-                homefood = db.rs1.getString("homefood");
-                outsidefood = db.rs1.getString("outsidefood");
-                sleephrs = db.rs1.getString("sleephrs");
-                health_checkup = db.rs1.getString("health_checkup");
-                addiction = db.rs1.getString("addiction");
-                bmi = db.rs1.getString("bmi");
-                stem_cell_id = db.rs1.getString("stem_cell_id");
-                bgroup = db.rs1.getString("bgroup");
-                vid = db.rs1.getString("vid");
-                passport = db.rs1.getString("passport");
-                pancardno = db.rs1.getString("pancardno");
-                ifsc = db.rs1.getString("ifsc");
-                bankaccno = db.rs1.getString("bankaccno");
-                netbank = db.rs1.getString("netbank");
-                mobbank = db.rs1.getString("mobbank");
-                pensionid = db.rs1.getString("pensionid");
-                religion = db.rs1.getString("religion");
-                community = db.rs1.getString("community");
-                category = db.rs1.getString("category");
-                cast = db.rs1.getString("cast");
-                marstatus = db.rs1.getString("marstatus");
-                apromarriageage = db.rs1.getString("apromarriageage");
-                pwd = db.rs1.getString("pwd");
-                pwdid = db.rs1.getString("pwdid");
-                mtongue = db.rs1.getString("mtongue");
-                rwlang = db.rs1.getString("rwlang");
-                homelang = db.rs1.getString("homelang");
-                litstatus = db.rs1.getString("litstatus");
-                cedustatus = db.rs1.getString("cedustatus");
-                cinstnmcity = db.rs1.getString("cinstnmcity");
-                cinsttype = db.rs1.getString("cinsttype");
-                techdeg = db.rs1.getString("techdeg");
-                nontechdeg = db.rs1.getString("nontechdeg");
-                nccnss = db.rs1.getString("nccnss");
-                jobseek = db.rs1.getString("jobseek");
-                cworkstat = db.rs1.getString("cworkstat");
-                workcategory = db.rs1.getString("workcategory");
-                workingsector = db.rs1.getString("workingsector");
-                natureofwork = db.rs1.getString("natureofwork");
-                icsno = db.rs1.getString("icsno");
-                occupation = db.rs1.getString("occupation");
-                workexp = db.rs1.getString("workexp");
-                specdescription = db.rs1.getString("specdescription");
-                specexp = db.rs1.getString("specexp");
-                proflicno = db.rs1.getString("proflicno");
-                busiregno = db.rs1.getString("busiregno");
-                income = db.rs1.getString("income");
-                itr = db.rs1.getString("itr");
-                distfrmworkplace = db.rs1.getString("distfrmworkplace");
-                modoftravel = db.rs1.getString("modoftravel");
-                nri = db.rs1.getString("nri");
-                foreignadd = db.rs1.getString("foreignadd");
-                birthplacewithstatecountry = db.rs1.getString("birthplacewithstatecountry");
-                pmtstut = db.rs1.getString("pmtstut");
-                pmtdist = db.rs1.getString("pmtdist");
-                pmttehsil = db.rs1.getString("pmttehsil");
-                pmttownvillage = db.rs1.getString("pmttownvillage");
-                pmtwardno = db.rs1.getString("pmtwardno");
-                pmthnoadd = db.rs1.getString("pmthnoadd");
-                pmtpincode = db.rs1.getString("pmtpincode");
-                rsnofmig = db.rs1.getString("rsnofmig");
-                durofmig = db.rs1.getString("durofmig");
-                chdnsurv = db.rs1.getString("chdnsurv");
-                chdnevenborn = db.rs1.getString("chdnevenborn");
-                noofchdnalivelastyr = db.rs1.getString("noofchdnalivelastyr");
-                chronicdisease = db.rs1.getString("chronicdisease");
-                sport = db.rs1.getString("sport");
-                yoga = db.rs1.getString("yoga");
-                spiritual = db.rs1.getString("spiritual");
-                meditation = db.rs1.getString("meditation");
-                ratyourhealth = db.rs1.getString("ratyourhealth");
-                filldate = db.rs1.getString("filldate");
-                timein = db.rs1.getString("timein");
-                timeout = db.rs1.getString("timeout");
-                note = db.rs1.getString("note");
-                comment = db.rs1.getString("comment");
-                status = db.rs1.getString("status");
+                    hh_sno = db.rs1.getInt("hh_sno");
+                    hl_sno = db.rs1.getInt("hl_sno");
+                    ucid = db.rs1.getInt("ucid");
+                    fsno = db.rs1.getInt("fsno");
+                    empenumno = db.rs1.getString("empenumno");
+                    rcardno = db.rs1.getString("rcardno");
+                    rcardtype = db.rs1.getString("rcardtype");
+                    uid = db.rs1.getString("uid");
+                    gconsumerno = db.rs1.getString("gconsumerno");
+                    drivlicno = db.rs1.getString("drivlicno");
+                    armsuino = db.rs1.getString("armsuino");
+                    birthcertno = db.rs1.getString("birthcertno");
+                    marrcertno = db.rs1.getString("marrcertno");
+                    policeverno = db.rs1.getString("policeverno");
+                    sssmid = db.rs1.getString("sssmid");
+                    name = db.rs1.getString("name");
+                    reltohead = db.rs1.getString("reltohead");
+                    headuid = db.rs1.getString("headuid");
+                    headregmobno = db.rs1.getString("headregmobno");
+                    mobno = db.rs1.getString("mobno");
+                    altphoneno = db.rs1.getString("altphoneno");
+                    email = db.rs1.getString("email");
+                    gender = db.rs1.getString("gender");
+                    dob = db.rs1.getString("dob");
+                    age = db.rs1.getString("age");
+                    wt = db.rs1.getInt("wt");
+                    ht = db.rs1.getString("ht");
+                    veg = db.rs1.getString("veg");
+                    homefood = db.rs1.getString("homefood");
+                    outsidefood = db.rs1.getString("outsidefood");
+                    sleephrs = db.rs1.getString("sleephrs");
+                    health_checkup = db.rs1.getString("health_checkup");
+                    addiction = db.rs1.getString("addiction");
+                    bmi = db.rs1.getString("bmi");
+                    stem_cell_id = db.rs1.getString("stem_cell_id");
+                    bgroup = db.rs1.getString("bgroup");
+                    vid = db.rs1.getString("vid");
+                    passport = db.rs1.getString("passport");
+                    pancardno = db.rs1.getString("pancardno");
+                    ifsc = db.rs1.getString("ifsc");
+                    bankaccno = db.rs1.getString("bankaccno");
+                    netbank = db.rs1.getString("netbank");
+                    mobbank = db.rs1.getString("mobbank");
+                    pensionid = db.rs1.getString("pensionid");
+                    religion = db.rs1.getString("religion");
+                    community = db.rs1.getString("community");
+                    category = db.rs1.getString("category");
+                    categorytypename = db.rs1.getString("categorytypename");
+                    catrgoeryverified = db.rs1.getString("catrgoeryverified");
+                    cast = db.rs1.getString("cast");
+                    marstatus = db.rs1.getString("marstatus");
+                    apromarriageage = db.rs1.getString("apromarriageage");
+                    pwd = db.rs1.getString("pwd");
+                    pwdid = db.rs1.getString("pwdid");
+                    mtongue = db.rs1.getString("mtongue");
+                    rwlang = db.rs1.getString("rwlang");
+                    homelang = db.rs1.getString("homelang");
+                    litstatus = db.rs1.getString("litstatus");
+                    cedustatus = db.rs1.getString("cedustatus");
+                    cinstnmcity = db.rs1.getString("cinstnmcity");
+                    cinsttype = db.rs1.getString("cinsttype");
+                    techdeg = db.rs1.getString("techdeg");
+                    nontechdeg = db.rs1.getString("nontechdeg");
+                    nccnss = db.rs1.getString("nccnss");
+                    jobseek = db.rs1.getString("jobseek");
+                    cworkstat = db.rs1.getString("cworkstat");
+                    workcategory = db.rs1.getInt("workcategory");
+                    workingsector = db.rs1.getInt("workingsector");
+                    natureofwork = db.rs1.getInt("natureofwork");
+                    icsno = db.rs1.getInt("icsno");
+                    occupation = db.rs1.getString("occupation");
+                    workexp = db.rs1.getString("workexp");
+                    specdescription = db.rs1.getString("specdescription");
+                    specexp = db.rs1.getString("specexp");
+                    proflicno = db.rs1.getString("proflicno");
+                    busiregno = db.rs1.getString("busiregno");
+                    income = db.rs1.getInt("income");
+                    itr = db.rs1.getString("itr");
+                    distfrmworkplace = db.rs1.getString("distfrmworkplace");
+                    modoftravel = db.rs1.getString("modoftravel");
+                    nri = db.rs1.getString("nri");
+                    foreignadd = db.rs1.getString("foreignadd");
+                    birthplacewithstatecountry = db.rs1.getString("birthplacewithstatecountry");
+                    pmtstut = db.rs1.getString("pmtstut");
+                    pmtdist = db.rs1.getString("pmtdist");
+                    pmttehsil = db.rs1.getString("pmttehsil");
+                    pmttownvillage = db.rs1.getString("pmttownvillage");
+                    pmtwardno = db.rs1.getString("pmtwardno");
+                    pmthnoadd = db.rs1.getString("pmthnoadd");
+                    pmtpincode = db.rs1.getString("pmtpincode");
+                    rsnofmig = db.rs1.getString("rsnofmig");
+                    durofmig = db.rs1.getString("durofmig");
+                    chdnsurv = db.rs1.getString("chdnsurv");
+                    chdnevenborn = db.rs1.getString("chdnevenborn");
+                    noofchdnalivelastyr = db.rs1.getString("noofchdnalivelastyr");
+                    chronicdisease = db.rs1.getString("chronicdisease");
+                    sport = db.rs1.getString("sport");
+                    yoga = db.rs1.getString("yoga");
+                    spiritual = db.rs1.getString("spiritual");
+                    meditation = db.rs1.getString("meditation");
+                    ratyourhealth = db.rs1.getInt("ratyourhealth");
+                    filldate = db.rs1.getString("filldate");
+                    timein = db.rs1.getString("timein");
+                    timeout = db.rs1.getString("timeout");
+                    note = db.rs1.getString("note");
+                    comment = db.rs1.getString("comment");
+                    status = db.rs1.getString("status");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
     
+    public void update(String query){
+        ParabitDBC db = new ParabitDBC();
+        try {
+            db.stm.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public boolean insert() {
-        if(uid.isEmpty() || uid==null){
+        if(uid==null){
             return false;
         }else {
+            if(uid.isEmpty()){return false;}
             String query = this.toInsertQuery();
             ParabitDBC db = new ParabitDBC();
             try {
                 db.stm.execute(query);
+                getDataFromAadhar(uid);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

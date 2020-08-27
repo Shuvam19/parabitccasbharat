@@ -6,17 +6,19 @@
 package parabitccasbharat;
 
 import java.util.HashMap;
+import javax.swing.JFrame;
 
 /**
  *
  * @author acer
  */
-public class PBTBankDetailsFrame extends javax.swing.JFrame {
+public class PBTBankDetailsFrame<T> extends javax.swing.JDialog {
 
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTBankDetailsFrame(PBTHouseHoldModel persondata) {
+    public PBTBankDetailsFrame(PBTHouseHoldModel persondata,T parent) {
+        super((JFrame)parent,true);
         initComponents();
         this.persondata = persondata;
         this.textWatchers = new PBTTextWatchers();
@@ -47,7 +49,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         mobbankyes = new javax.swing.JRadioButton();
         mobbankno = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("IFSC :");
 
@@ -140,6 +142,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ifscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifscActionPerformed
@@ -148,6 +151,9 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
+        persondata.update(persondata.toUpdateQuery(updatemap));
+        persondata.getDataFromAadhar(persondata.getUid());
+        this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
     /**
@@ -209,7 +215,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
             bankaccno.setText(persondata.getBankaccno());
         }
         if(persondata.getNetbank()!=null){
-            if(persondata.getNetbank().equals("")){
+            if(persondata.getNetbank().equals("Y")){
                 netbankyes.setSelected(true);
             }else{
                 netbankno.setSelected(true);
@@ -227,5 +233,7 @@ public class PBTBankDetailsFrame extends javax.swing.JFrame {
     private void addTextWatchers() {
         textWatchers.addNumberTextWatcher(ifsc, updatemap, "Ifsc");
         textWatchers.addNumberTextWatcher(bankaccno, updatemap, "Bankaccno");
+        textWatchers.addYesNolistener(netbankyes, netbankno, updatemap, "Netbank");
+        textWatchers.addYesNolistener(mobbankyes, mobbankno, updatemap, "Mobbank");
     }
 }

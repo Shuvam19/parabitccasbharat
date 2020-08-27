@@ -5,14 +5,26 @@
  */
 package parabitccasbharat;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
  */
 public class PBTHomeDashBoard extends javax.swing.JFrame {
 
-    public PBTHomeDashBoard() {
+    PBTHouseListingModel listingmodel;
+    List<PBTHouseHoldModel> listofpeople = new ArrayList<>();
+    ParabitDBC db;
+    public PBTHomeDashBoard(PBTHouseListingModel model) {
         initComponents();
+        this.listingmodel = model;
+        this.db = new ParabitDBC();
+        getAllPersonFromHome();
+        setToTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -20,15 +32,15 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        familyinformation = new javax.swing.JTable();
+        houselistingbutton = new javax.swing.JButton();
+        finallock = new javax.swing.JButton();
+        exitwithsave = new javax.swing.JButton();
+        addnewmember = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        familyinformation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -36,31 +48,36 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Age", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        familyinformation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                familyinformationMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(familyinformation);
 
-        jButton1.setText("Information Of House");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        houselistingbutton.setText("Information Of House");
+        houselistingbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                houselistingbuttonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Final Lock");
+        finallock.setText("Final Lock");
 
-        jButton3.setText("Save & Exit With Note");
-
-        jButton4.setText("Add new Member");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        exitwithsave.setText("Save & Exit With Note");
+        exitwithsave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                exitwithsaveActionPerformed(evt);
+            }
+        });
+
+        addnewmember.setText("Add new Member");
+        addnewmember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addnewmemberActionPerformed(evt);
             }
         });
 
@@ -76,14 +93,14 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(exitwithsave)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(finallock, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(houselistingbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(addnewmember)
                         .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
@@ -91,33 +108,38 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(houselistingbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addnewmember))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exitwithsave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finallock, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void houselistingbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houselistingbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_houselistingbuttonActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard();
+    private void familyinformationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_familyinformationMouseClicked
+        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(listofpeople.get(familyinformation.rowAtPoint(evt.getPoint())),listingmodel);
         dashboard.setVisible(true);
-    }//GEN-LAST:event_jTable1MouseClicked
+        
+    }//GEN-LAST:event_familyinformationMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard();
+    private void addnewmemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewmemberActionPerformed
+        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(new PBTHouseHoldModel(),listingmodel);
         dashboard.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_addnewmemberActionPerformed
+
+    private void exitwithsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitwithsaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitwithsaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,17 +172,42 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PBTHomeDashBoard().setVisible(true);
+                //new PBTHomeDashBoard().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton addnewmember;
+    private javax.swing.JButton exitwithsave;
+    private javax.swing.JTable familyinformation;
+    private javax.swing.JButton finallock;
+    private javax.swing.JButton houselistingbutton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void getAllPersonFromHome() {
+        String query = "Select * from `pbtcensus_household` where hl_sno = '" + listingmodel.getHl_sno() + "'";
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            while(db.rs1.next()){
+                PBTHouseHoldModel model = new PBTHouseHoldModel();
+                model.getDataFromhhsno(db.rs1.getString("hh_sno"));
+                listofpeople.add(model);
+          }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void setToTable() {
+        DefaultTableModel model = (DefaultTableModel)familyinformation.getModel();
+        model.setRowCount(0);
+        for(int i=0;i<listofpeople.size();i++){
+            String name = listofpeople.get(i).getName();
+            String age = listofpeople.get(i).getAge();
+            Object row[] = {name,age,null,null};
+            model.addRow(row);
+        }
+    }
 }

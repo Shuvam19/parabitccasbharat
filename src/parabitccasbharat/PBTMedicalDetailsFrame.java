@@ -2,13 +2,17 @@
 package parabitccasbharat;
 
 import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
+public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
 
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTMedicalDetailsFrame(PBTHouseHoldModel persondata) {
+    public PBTMedicalDetailsFrame(PBTHouseHoldModel persondata,T parent) {
+        super((JFrame)parent,true);
         initComponents();
         this.persondata = persondata;
         textWatchers = new PBTTextWatchers();
@@ -59,41 +63,21 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         stemcellid = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        healthrate1 = new javax.swing.JRadioButton();
-        healthrate2 = new javax.swing.JRadioButton();
-        healthrate3 = new javax.swing.JRadioButton();
-        healthrate4 = new javax.swing.JRadioButton();
-        healthrate5 = new javax.swing.JRadioButton();
-        foodyes = new javax.swing.JRadioButton();
-        foodno = new javax.swing.JRadioButton();
-        outfoodyes = new javax.swing.JRadioButton();
-        outfoodno = new javax.swing.JRadioButton();
-        vegyes = new javax.swing.JRadioButton();
-        vegno = new javax.swing.JRadioButton();
-        checkupyes = new javax.swing.JRadioButton();
-        checkupno = new javax.swing.JRadioButton();
-        yogayes = new javax.swing.JRadioButton();
-        yogano = new javax.swing.JRadioButton();
-        meditationyes = new javax.swing.JRadioButton();
-        meditationno = new javax.swing.JRadioButton();
-        spiritualyes = new javax.swing.JRadioButton();
-        spiritualno = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        addictionyes = new javax.swing.JRadioButton();
-        addictionno = new javax.swing.JRadioButton();
-        disabilityyes = new javax.swing.JRadioButton();
-        disabilityno = new javax.swing.JRadioButton();
-        jSlider5 = new javax.swing.JSlider();
-        jSlider11 = new javax.swing.JSlider();
-        jSlider12 = new javax.swing.JSlider();
-        jSlider6 = new javax.swing.JSlider();
-        jSlider13 = new javax.swing.JSlider();
-        jSlider14 = new javax.swing.JSlider();
-        jSlider7 = new javax.swing.JSlider();
-        jSlider15 = new javax.swing.JSlider();
-        jSlider16 = new javax.swing.JSlider();
+        veg = new javax.swing.JSlider();
+        homefood = new javax.swing.JSlider();
+        outsidefood = new javax.swing.JSlider();
+        medications = new javax.swing.JSlider();
+        yogas = new javax.swing.JSlider();
+        health = new javax.swing.JSlider();
+        Disability = new javax.swing.JSlider();
+        addictions = new javax.swing.JSlider();
+        spirituals = new javax.swing.JSlider();
+        jButton1 = new javax.swing.JButton();
+        Select = new javax.swing.JButton();
+        ratehealth = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,139 +118,94 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
 
         jLabel17.setText("Rate Your Health :");
 
-        buttonGroup1.add(healthrate1);
-        healthrate1.setText("1");
-
-        buttonGroup1.add(healthrate2);
-        healthrate2.setText("2");
-
-        buttonGroup1.add(healthrate3);
-        healthrate3.setText("3");
-
-        buttonGroup1.add(healthrate4);
-        healthrate4.setText("4");
-
-        buttonGroup1.add(healthrate5);
-        healthrate5.setText("5");
-
-        homeFood.add(foodyes);
-        foodyes.setText("Yes");
-
-        homeFood.add(foodno);
-        foodno.setText("No");
-
-        outsideFood.add(outfoodyes);
-        outfoodyes.setText("Yes");
-
-        outsideFood.add(outfoodno);
-        outfoodno.setText("No");
-
-        Vegitarian.add(vegyes);
-        vegyes.setText("Yes");
-
-        Vegitarian.add(vegno);
-        vegno.setText("No");
-
-        healthcheckup.add(checkupyes);
-        checkupyes.setText("Yes");
-        checkupyes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkupyesActionPerformed(evt);
-            }
-        });
-
-        healthcheckup.add(checkupno);
-        checkupno.setText("No");
-
-        yoga.add(yogayes);
-        yogayes.setText("Yes");
-
-        yoga.add(yogano);
-        yogano.setText("No");
-
-        meditation.add(meditationyes);
-        meditationyes.setText("Yes");
-
-        meditation.add(meditationno);
-        meditationno.setText("No");
-
-        spiritual.add(spiritualyes);
-        spiritualyes.setText("Yes");
-
-        spiritual.add(spiritualno);
-        spiritualno.setText("No");
-
         jLabel15.setText("Spritual :");
 
         jLabel16.setText("Addiction :");
 
         jLabel18.setText("Disability :");
 
-        addiction.add(addictionyes);
-        addictionyes.setText("Yes");
+        veg.setMajorTickSpacing(1);
+        veg.setMaximum(5);
+        veg.setMinimum(1);
+        veg.setMinorTickSpacing(1);
+        veg.setPaintLabels(true);
+        veg.setPaintTicks(true);
 
-        addiction.add(addictionno);
-        addictionno.setText("No");
+        homefood.setMajorTickSpacing(1);
+        homefood.setMaximum(5);
+        homefood.setMinimum(1);
+        homefood.setMinorTickSpacing(1);
+        homefood.setPaintLabels(true);
+        homefood.setPaintTicks(true);
+        homefood.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                homefoodStateChanged(evt);
+            }
+        });
 
-        disability.add(disabilityyes);
-        disabilityyes.setText("Yes");
+        outsidefood.setMajorTickSpacing(1);
+        outsidefood.setMaximum(5);
+        outsidefood.setMinimum(1);
+        outsidefood.setMinorTickSpacing(1);
+        outsidefood.setPaintLabels(true);
+        outsidefood.setPaintTicks(true);
 
-        disability.add(disabilityno);
-        disabilityno.setText("No");
+        medications.setMajorTickSpacing(1);
+        medications.setMaximum(5);
+        medications.setMinimum(1);
+        medications.setMinorTickSpacing(1);
+        medications.setPaintLabels(true);
+        medications.setPaintTicks(true);
 
-        jSlider5.setMaximum(5);
-        jSlider5.setMinimum(1);
-        jSlider5.setMinorTickSpacing(1);
-        jSlider5.setPaintLabels(true);
-        jSlider5.setPaintTicks(true);
+        yogas.setMajorTickSpacing(1);
+        yogas.setMaximum(5);
+        yogas.setMinimum(1);
+        yogas.setMinorTickSpacing(1);
+        yogas.setPaintLabels(true);
+        yogas.setPaintTicks(true);
 
-        jSlider11.setMaximum(5);
-        jSlider11.setMinimum(1);
-        jSlider11.setMinorTickSpacing(1);
-        jSlider11.setPaintLabels(true);
-        jSlider11.setPaintTicks(true);
+        health.setMajorTickSpacing(1);
+        health.setMaximum(5);
+        health.setMinimum(1);
+        health.setMinorTickSpacing(1);
+        health.setPaintLabels(true);
+        health.setPaintTicks(true);
 
-        jSlider12.setMaximum(5);
-        jSlider12.setMinimum(1);
-        jSlider12.setMinorTickSpacing(1);
-        jSlider12.setPaintLabels(true);
-        jSlider12.setPaintTicks(true);
+        Disability.setMajorTickSpacing(1);
+        Disability.setMaximum(5);
+        Disability.setMinimum(1);
+        Disability.setMinorTickSpacing(1);
+        Disability.setPaintLabels(true);
+        Disability.setPaintTicks(true);
 
-        jSlider6.setMaximum(5);
-        jSlider6.setMinimum(1);
-        jSlider6.setMinorTickSpacing(1);
-        jSlider6.setPaintLabels(true);
-        jSlider6.setPaintTicks(true);
+        addictions.setMajorTickSpacing(1);
+        addictions.setMaximum(5);
+        addictions.setMinimum(1);
+        addictions.setMinorTickSpacing(1);
+        addictions.setPaintLabels(true);
+        addictions.setPaintTicks(true);
 
-        jSlider13.setMaximum(5);
-        jSlider13.setMinimum(1);
-        jSlider13.setMinorTickSpacing(1);
-        jSlider13.setPaintLabels(true);
-        jSlider13.setPaintTicks(true);
+        spirituals.setMajorTickSpacing(1);
+        spirituals.setMaximum(5);
+        spirituals.setMinimum(1);
+        spirituals.setMinorTickSpacing(1);
+        spirituals.setPaintLabels(true);
+        spirituals.setPaintTicks(true);
 
-        jSlider14.setMaximum(5);
-        jSlider14.setMinimum(1);
-        jSlider14.setMinorTickSpacing(1);
-        jSlider14.setPaintLabels(true);
-        jSlider14.setPaintTicks(true);
+        jButton1.setText("Select");
 
-        jSlider7.setMaximum(5);
-        jSlider7.setMinimum(1);
-        jSlider7.setMinorTickSpacing(1);
-        jSlider7.setPaintLabels(true);
-        jSlider7.setPaintTicks(true);
+        Select.setText("Select");
+        Select.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectActionPerformed(evt);
+            }
+        });
 
-        jSlider15.setMaximum(5);
-        jSlider15.setMinimum(1);
-        jSlider15.setMinorTickSpacing(1);
-        jSlider15.setPaintLabels(true);
-        jSlider15.setPaintTicks(true);
-
-        jSlider16.setMaximum(5);
-        jSlider16.setMinimum(1);
-        jSlider16.setMinorTickSpacing(1);
-        jSlider16.setPaintLabels(true);
-        jSlider16.setPaintTicks(true);
+        ratehealth.setMajorTickSpacing(1);
+        ratehealth.setMaximum(5);
+        ratehealth.setMinimum(1);
+        ratehealth.setPaintLabels(true);
+        ratehealth.setPaintTicks(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,369 +214,251 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(50, 50, 50)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102)
+                        .addGap(101, 101, 101)
                         .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(foodyes)
-                        .addGap(27, 27, 27)
-                        .addComponent(foodno)
-                        .addGap(68, 68, 68)
-                        .addComponent(jSlider11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(49, 49, 49)
+                        .addComponent(homefood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel10)
+                        .addGap(46, 46, 46)
+                        .addComponent(outsidefood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(bmi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(jLabel11)
+                        .addGap(45, 45, 45)
+                        .addComponent(veg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jLabel4)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bmi, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(81, 81, 81)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(jLabel10))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jLabel11))
-                                    .addComponent(jLabel12))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(outfoodyes)
-                                    .addComponent(vegyes)
-                                    .addComponent(checkupyes))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(outfoodno)
-                                    .addComponent(vegno)
-                                    .addComponent(checkupno)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(stemcellid, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(132, 132, 132)
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(yogayes)
-                                .addGap(18, 18, 18)
-                                .addComponent(yogano))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(bloodgrp, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(meditationyes)
-                                .addGap(27, 27, 27)
-                                .addComponent(meditationno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(sleephrs, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(spiritualyes)
-                                .addGap(27, 27, 27)
-                                .addComponent(spiritualno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel7))
-                                    .addComponent(jLabel14))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sports, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chronicdisease, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(112, 112, 112)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jLabel18)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addictionyes)
-                                    .addComponent(disabilityyes))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addictionno)
-                                    .addComponent(disabilityno)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel17)
-                                .addGap(18, 18, 18)
-                                .addComponent(healthrate1)
-                                .addGap(0, 0, 0)
-                                .addComponent(healthrate2)
-                                .addGap(0, 0, 0)
-                                .addComponent(healthrate3)
-                                .addGap(0, 0, 0)
-                                .addComponent(healthrate4)
-                                .addGap(0, 0, 0)
-                                .addComponent(healthrate5)))
-                        .addGap(68, 68, 68)
+                                .addGap(5, 5, 5)
+                                .addComponent(jLabel3))
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSlider14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSlider7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(154, 154, 154))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165))
+                            .addComponent(stemcellid, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bloodgrp, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addComponent(Select)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel12)
+                        .addGap(38, 38, 38)
+                        .addComponent(health, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(sleephrs, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(jLabel13)
+                        .addGap(39, 39, 39)
+                        .addComponent(yogas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(sports, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel8)
+                        .addGap(28, 28, 28)
+                        .addComponent(medications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(chronicdisease, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton1)
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel15)
+                        .addGap(37, 37, 37)
+                        .addComponent(spirituals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel17)
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ratehealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel18))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addictions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Disability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(homefood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(jLabel1))
-                    .addComponent(height, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel9))
-                    .addComponent(foodyes)
-                    .addComponent(foodno)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jSlider11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel2)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel4))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(outsidefood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel10)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel11)
-                        .addGap(11, 11, 11)
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel4))
+                    .addComponent(bmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(veg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(stemcellid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(bloodgrp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(Select))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel12))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(outfoodyes)
-                        .addGap(3, 3, 3)
-                        .addComponent(vegyes)
-                        .addGap(3, 3, 3)
-                        .addComponent(checkupyes))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(outfoodno)
-                        .addGap(11, 11, 11)
-                        .addComponent(vegno)
-                        .addGap(5, 5, 5)
-                        .addComponent(checkupno))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSlider12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17)
+                        .addComponent(health, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jSlider14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jSlider13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(sleephrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13)
+                    .addComponent(yogas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel7))
+                    .addComponent(sports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel8))
+                    .addComponent(medications, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jSlider6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSlider16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jSlider15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jSlider7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(chronicdisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(spirituals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel16)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel18))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(stemcellid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel13))
-                                    .addComponent(yogayes)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(yogano)))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel5))
-                            .addComponent(bloodgrp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(meditationyes))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(meditationno)))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel6))
-                            .addComponent(sleephrs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel15))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(spiritualyes))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(spiritualno)))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel7)
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel14))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(sports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)
-                                .addComponent(chronicdisease, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel16)
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(addictionyes)
-                                    .addComponent(addictionno))
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(disabilityyes)
-                                    .addComponent(disabilityno))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel17))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(healthrate1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(healthrate2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(healthrate3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(healthrate4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(healthrate5)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                        .addComponent(ratehealth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel17))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(addictions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Disability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
+        persondata.update(persondata.toUpdateQuery(updatemap));
+        persondata.getDataFromAadhar(persondata.getUid());
+        this.dispose();
     }//GEN-LAST:event_saveActionPerformed
 
-    private void checkupyesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkupyesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkupyesActionPerformed
+    private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
+        PBTBloodGroup frame = new PBTBloodGroup(persondata, this);
+        frame.setVisible(true);
+        bloodgrp.setText(PBTUtilities.getBloodGroup(persondata.getBgroup()));
+        updatemap.put("Bgroup", persondata.getBgroup());
+    }//GEN-LAST:event_SelectActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PBTMedicalDetailsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PBTMedicalDetailsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PBTMedicalDetailsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PBTMedicalDetailsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void homefoodStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_homefoodStateChanged
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new PBTMedicalDetailsFrame().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_homefoodStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSlider Disability;
+    private javax.swing.JButton Select;
     private javax.swing.ButtonGroup Vegitarian;
     private javax.swing.ButtonGroup addiction;
-    private javax.swing.JRadioButton addictionno;
-    private javax.swing.JRadioButton addictionyes;
+    private javax.swing.JSlider addictions;
     private javax.swing.JTextField bloodgrp;
     private javax.swing.JTextField bmi;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JRadioButton checkupno;
-    private javax.swing.JRadioButton checkupyes;
     private javax.swing.JTextField chronicdisease;
     private javax.swing.ButtonGroup disability;
-    private javax.swing.JRadioButton disabilityno;
-    private javax.swing.JRadioButton disabilityyes;
-    private javax.swing.JRadioButton foodno;
-    private javax.swing.JRadioButton foodyes;
+    private javax.swing.JSlider health;
     private javax.swing.ButtonGroup healthcheckup;
-    private javax.swing.JRadioButton healthrate1;
-    private javax.swing.JRadioButton healthrate2;
-    private javax.swing.JRadioButton healthrate3;
-    private javax.swing.JRadioButton healthrate4;
-    private javax.swing.JRadioButton healthrate5;
     private javax.swing.JTextField height;
     private javax.swing.ButtonGroup homeFood;
+    private javax.swing.JSlider homefood;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -656,42 +477,29 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSlider jSlider11;
-    private javax.swing.JSlider jSlider12;
-    private javax.swing.JSlider jSlider13;
-    private javax.swing.JSlider jSlider14;
-    private javax.swing.JSlider jSlider15;
-    private javax.swing.JSlider jSlider16;
-    private javax.swing.JSlider jSlider5;
-    private javax.swing.JSlider jSlider6;
-    private javax.swing.JSlider jSlider7;
+    private javax.swing.JSlider medications;
     private javax.swing.ButtonGroup meditation;
-    private javax.swing.JRadioButton meditationno;
-    private javax.swing.JRadioButton meditationyes;
-    private javax.swing.JRadioButton outfoodno;
-    private javax.swing.JRadioButton outfoodyes;
     private javax.swing.ButtonGroup outsideFood;
+    private javax.swing.JSlider outsidefood;
+    private javax.swing.JSlider ratehealth;
     private javax.swing.JButton save;
     private javax.swing.JTextField sleephrs;
     private javax.swing.ButtonGroup spiritual;
-    private javax.swing.JRadioButton spiritualno;
-    private javax.swing.JRadioButton spiritualyes;
+    private javax.swing.JSlider spirituals;
     private javax.swing.JTextField sports;
     private javax.swing.JTextField stemcellid;
-    private javax.swing.JRadioButton vegno;
-    private javax.swing.JRadioButton vegyes;
+    private javax.swing.JSlider veg;
     private javax.swing.JTextField weight;
     private javax.swing.ButtonGroup yoga;
-    private javax.swing.JRadioButton yogano;
-    private javax.swing.JRadioButton yogayes;
+    private javax.swing.JSlider yogas;
     // End of variables declaration//GEN-END:variables
 
     private void getAllLabels() {
         if(persondata.getHt()!=null){
             height.setText(persondata.getHt());
         }
-        if(persondata.getWt()!=null){
-            weight.setText(persondata.getWt());
+        if(persondata.getWt()!=0){
+            weight.setText("" + persondata.getWt());
         }
         if(persondata.getBmi()!=null){
             bmi.setText(persondata.getBmi());
@@ -700,7 +508,7 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
             stemcellid.setText(persondata.getStem_cell_id());
         }
         if(persondata.getBgroup()!=null){
-           bloodgrp.setText(persondata.getBgroup());
+           bloodgrp.setText(PBTUtilities.getBloodGroup(persondata.getBgroup()));
         }
         if(persondata.getSleephrs()!=null){
             sleephrs.setText(persondata.getSleephrs());
@@ -708,89 +516,38 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
         if(persondata.getSport()!=null){
             sports.setText(persondata.getSport());
         }
-        if(persondata.getRatyourhealth()!=null){
-            switch(persondata.getRatyourhealth()){
-                case "1":healthrate1.setSelected(true);
-                break;
-                case "2":healthrate2.setSelected(true);
-                break;
-                case "3":healthrate3.setSelected(true);
-                break;
-                case "4":healthrate4.setSelected(true);
-                break;
-                case "5":healthrate5.setSelected(true);
-                break;
-            }
+        if(persondata.getRatyourhealth()!=0){
+            ratehealth.setValue(persondata.getRatyourhealth());
         }
         if(persondata.getMeditation()!=null){
-            if(persondata.getMeditation().equals("y")){
-                meditationyes.setSelected(true);
-            }else{
-                meditationno.setSelected(false);
-            }
+            medications.setValue(Integer.parseInt(persondata.getMeditation()));
         }
         if(persondata.getHomefood()!=null){
-            if(persondata.getHomefood().equals("y")){
-                foodyes.setSelected(true);
-            }else{
-                foodno.setSelected(false);
-            }
+            homefood.setValue(Integer.parseInt(persondata.getHomefood()));
         }
         if(persondata.getOutsidefood()!=null){
-            if(persondata.getOutsidefood().equals("y")){
-                outfoodyes.setSelected(true);
-            }else{
-                outfoodno.setSelected(false);
-            }
+            outsidefood.setValue(Integer.parseInt(persondata.getOutsidefood()));
         }
         if(persondata.getVeg()!=null){
-            if(persondata.getVeg().equals("y")){
-                vegyes.setSelected(true);
-            }else{
-                vegno.setSelected(false);
-            }
+            veg.setValue(Integer.parseInt(persondata.getVeg()));
         }
         if(persondata.getHealth_checkup()!=null){
-            if(persondata.getHealth_checkup().equals("y")){
-                checkupyes.setSelected(true);
-            }else{
-                checkupno.setSelected(false);
-            }
+            health.setValue(Integer.parseInt(persondata.getHealth_checkup()));
         }
         if(persondata.getYoga()!=null){
-            if(persondata.getYoga().equals("y")){
-                yogayes.setSelected(true);
-            }else{
-                yogano.setSelected(false);
-            }
+            yogas.setValue(Integer.parseInt(persondata.getYoga()));
         }
         if(persondata.getMeditation()!=null){
-            if(persondata.getMeditation().equals("y")){
-                meditationyes.setSelected(true);
-            }else{
-                meditationno.setSelected(false);
-            }
+            medications.setValue(Integer.parseInt(persondata.getMeditation()));
         }
         if(persondata.getSpiritual()!=null){
-            if(persondata.getSpiritual().equals("y")){
-                spiritualyes.setSelected(true);
-            }else{
-                spiritualno.setSelected(false);
-            }
+            spirituals.setValue(Integer.parseInt(persondata.getSpiritual()));
         }
         if(persondata.getAddiction()!=null){
-            if(persondata.getAddiction().equals("y")){
-                addictionyes.setSelected(true);
-            }else{
-                addictionno.setSelected(false);
-            }
+            addictions.setValue(Integer.parseInt(persondata.getAddiction()));
         }
         if(persondata.getPwd()!=null){
-            if(persondata.getPwd().equals("y")){
-                disabilityyes.setSelected(true);
-            }else{
-                disabilityno.setSelected(false);
-            }
+            Disability.setValue(Integer.parseInt(persondata.getPwd()));
         }
         if(persondata.getChronicdisease()!=null){
             chronicdisease.setText(persondata.getChronicdisease());
@@ -801,19 +558,19 @@ public class PBTMedicalDetailsFrame extends javax.swing.JFrame {
         textWatchers.addNumberTextWatcher(sleephrs,updatemap,"sleephrs");
         textWatchers.addNameTextWatcher(sports,updatemap,"sport");
         textWatchers.addNumberTextWatcher(weight,updatemap,"wt");
-        textWatchers.addNameTextWatcher(bloodgrp,updatemap,"bgroup");
         textWatchers.addNumberTextWatcher(bmi,updatemap,"bmi");
         textWatchers.addNameTextWatcher(chronicdisease,updatemap,"chronicdisease");
         textWatchers.addNumberTextWatcher(height,updatemap,"ht");
         textWatchers.addNameTextWatcher(stemcellid, updatemap, "Stem_cell_id");
-        textWatchers.addYesNolistener(foodyes,foodno,updatemap,"Homefood");
-        textWatchers.addYesNolistener(outfoodyes,outfoodno,updatemap,"Outsidefood");
-        textWatchers.addYesNolistener(vegyes,vegno,updatemap,"Veg");
-        textWatchers.addYesNolistener(checkupyes,checkupno,updatemap,"Health_checkup");
-        textWatchers.addYesNolistener(yogayes,yogano,updatemap,"Yoga");
-        textWatchers.addYesNolistener(meditationyes,meditationno,updatemap,"Meditation");
-        textWatchers.addYesNolistener(spiritualyes,spiritualno,updatemap,"Spiritual");
-        textWatchers.addYesNolistener(addictionyes,addictionno,updatemap,"Addiction");
-        textWatchers.addYesNolistener(disabilityyes,disabilityno,updatemap,"Pwd");
+        textWatchers.addJSliderListener(homefood,updatemap,"Homefood");
+        textWatchers.addJSliderListener(outsidefood,updatemap,"Outsidefood");
+        textWatchers.addJSliderListener(veg,updatemap,"Veg");
+        textWatchers.addJSliderListener(health,updatemap,"Health_checkup");
+        textWatchers.addJSliderListener(yogas,updatemap,"Yoga");
+        textWatchers.addJSliderListener(medications,updatemap,"Meditation");
+        textWatchers.addJSliderListener(spirituals,updatemap,"Spiritual");
+        textWatchers.addJSliderListener(addictions,updatemap,"Addiction");
+        textWatchers.addJSliderListener(Disability,updatemap,"Pwd");
+        textWatchers.addJSliderListener(ratehealth, updatemap, "Ratyourhealth");
     }
 }
