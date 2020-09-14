@@ -1,10 +1,15 @@
 
 package parabitccasbharat;
 
+import Models.PBTHouseHoldModel;
+import parabitccasbharat.Utilities.PBTTextWatchers;
+import parabitccasbharat.Utilities.PBTBloodGroup;
+import parabitccasbharat.Utilities.PBTUtilities;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import parabitccasbharat.Utilities.PBTChronicDisease;
 
 public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
 
@@ -193,6 +198,11 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
         spirituals.setPaintTicks(true);
 
         jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         Select.setText("Select");
         Select.addActionListener(new java.awt.event.ActionListener() {
@@ -442,6 +452,13 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
 
     }//GEN-LAST:event_homefoodStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PBTChronicDisease frame = new PBTChronicDisease(persondata, this);
+        frame.setVisible(true);
+        chronicdisease.setText(PBTUtilities.getTypesofchronicdisease(persondata.getChronicdisease()));
+        updatemap.put("Bgroup", persondata.getChronicdisease());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider Disability;
     private javax.swing.JButton Select;
@@ -550,7 +567,7 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
             Disability.setValue(Integer.parseInt(persondata.getPwd()));
         }
         if(persondata.getChronicdisease()!=null){
-            chronicdisease.setText(persondata.getChronicdisease());
+            chronicdisease.setText(PBTUtilities.getTypesofchronicdisease(persondata.getChronicdisease()));
         }
     }
     
@@ -559,7 +576,6 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
         textWatchers.addNameTextWatcher(sports,updatemap,"sport");
         textWatchers.addNumberTextWatcher(weight,updatemap,"wt");
         textWatchers.addNumberTextWatcher(bmi,updatemap,"bmi");
-        textWatchers.addNameTextWatcher(chronicdisease,updatemap,"chronicdisease");
         textWatchers.addNumberTextWatcher(height,updatemap,"ht");
         textWatchers.addNameTextWatcher(stemcellid, updatemap, "Stem_cell_id");
         textWatchers.addJSliderListener(homefood,updatemap,"Homefood");

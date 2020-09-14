@@ -1,8 +1,7 @@
 package parabitccasbharat;
 
+import Models.PBTHouseListingModel;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PBTTypeOfHome<T> extends javax.swing.JFrame {
 

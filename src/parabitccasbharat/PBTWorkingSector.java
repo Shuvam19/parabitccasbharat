@@ -5,6 +5,7 @@
  */
 package parabitccasbharat;
 
+import Models.PBTHouseHoldModel;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 

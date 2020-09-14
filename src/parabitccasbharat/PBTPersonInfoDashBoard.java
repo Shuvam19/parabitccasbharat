@@ -1,5 +1,9 @@
 package parabitccasbharat;
 
+import Models.PBTAadhar;
+import Models.PBTHouseHoldModel;
+import Models.PBTHouseListingModel;
+import parabitccasbharat.Utilities.PBTTextWatchers;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -568,6 +572,9 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     }
 
     private void setAllTnformation() {
+        if(persondata.getUid()!=null){
+            aadharno.setText(persondata.getUid());
+        }
         if(persondata.getName()!=null) {
             name.setText(persondata.getName());
         }

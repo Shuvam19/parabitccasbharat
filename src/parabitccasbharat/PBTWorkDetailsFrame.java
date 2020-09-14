@@ -5,6 +5,11 @@
  */
 package parabitccasbharat;
 
+import Models.PBTHouseHoldModel;
+import parabitccasbharat.Utilities.PBTNatureOfWork;
+import parabitccasbharat.Utilities.PBTModOfTravel;
+import parabitccasbharat.Utilities.PBTTextWatchers;
+import parabitccasbharat.Utilities.PBTUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -615,7 +620,7 @@ public class PBTWorkDetailsFrame<T> extends javax.swing.JDialog {
 
     private void addTextWatchers() {
         textWatchers.addNameTextWatcher(bussregno,updatemap,"busiregno");
-        textWatchers.addNameTextWatcher(distfromwork,updatemap,"distfrmworkplace");
+        textWatchers.addNumberTextWatcher(distfromwork,updatemap,"distfrmworkplace");
         textWatchers.addNumberTextWatcher(income,updatemap,"income");
         textWatchers.addNumberTextWatcher(icsno,updatemap,"Icsno");
         textWatchers.addNameTextWatcher(occupation,updatemap,"Occupation");

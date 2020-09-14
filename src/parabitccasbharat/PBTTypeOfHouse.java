@@ -1,11 +1,13 @@
 package parabitccasbharat;
 
+import Models.PBTHouseListingModel;
+
 public class PBTTypeOfHouse extends javax.swing.JFrame {
 
     PBTHouseListingModel model = new PBTHouseListingModel();
     public PBTTypeOfHouse(String hlsno) {
         System.out.println(hlsno);
-        model.getFromhlsno(hlsno);
+        model.getFromhlsno(Integer.parseInt(hlsno));
         initComponents();
     }
 
