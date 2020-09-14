@@ -5,6 +5,8 @@
  */
 package parabitccasbharat;
 
+import Models.PBTHouseHoldModel;
+import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,16 +122,17 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void houselistingbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houselistingbuttonActionPerformed
-        // TODO add your handling code here:
+        PBTHouseListDashboard dashboard = new PBTHouseListDashboard(listingmodel);
+        dashboard.setVisible(true);
     }//GEN-LAST:event_houselistingbuttonActionPerformed
 
     private void familyinformationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_familyinformationMouseClicked
         PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(listofpeople.get(familyinformation.rowAtPoint(evt.getPoint())),listingmodel);
         dashboard.setVisible(true);
-        
     }//GEN-LAST:event_familyinformationMouseClicked
 
     private void addnewmemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewmemberActionPerformed
@@ -138,7 +141,7 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_addnewmemberActionPerformed
 
     private void exitwithsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitwithsaveActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_exitwithsaveActionPerformed
 
     /**

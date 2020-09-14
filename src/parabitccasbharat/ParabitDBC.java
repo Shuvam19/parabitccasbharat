@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 public class ParabitDBC {
     Connection con;
-    Statement stm,stm2;
-    ResultSet rs1,rs2,rs3;
+    public Statement stm,stm2;
+    public ResultSet rs1,rs2,rs3;
     public ParabitDBC()
     {
         try {

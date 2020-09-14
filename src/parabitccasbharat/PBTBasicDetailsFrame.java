@@ -1,5 +1,10 @@
 package parabitccasbharat;
 
+import Models.PBTHouseHoldModel;
+import parabitccasbharat.Utilities.PBTTextWatchers;
+import parabitccasbharat.Utilities.PBTCategory;
+import parabitccasbharat.Utilities.PBTReligion;
+import parabitccasbharat.Utilities.PBTUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -704,7 +709,7 @@ public class PBTBasicDetailsFrame<T> extends javax.swing.JDialog {
     }
     
     private void FemaleParts(Boolean visibility) {
-        if(married.isSelected()){
+        if(!unmarried.isSelected()){
             jLabel14.setVisible(visibility);
             jLabel15.setVisible(visibility);
             chldevrborn.setVisible(visibility);

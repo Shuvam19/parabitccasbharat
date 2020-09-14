@@ -3,7 +3,7 @@ package parabitccasbharat;
 public class ParabitCCASBharat {
 
     public static void main(String[] args) {
-                try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -20,6 +20,6 @@ public class ParabitCCASBharat {
             java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //new PBTLogin().setVisible(true);
-        new PBTTypeOfHouse("8").setVisible(true);
+        new PBTTypeOfHouse("10").setVisible(true);
     }
 }
