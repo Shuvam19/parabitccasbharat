@@ -86,7 +86,7 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
 
         jLabel4.setText("No Of Dwelling Wall :");
 
-        jLabel5.setText("Finalcial Year Of Census House :");
+        jLabel5.setText("Foundationl Year Of Census House :");
 
         jLabel6.setText("Condition Of Census House :");
 
@@ -97,6 +97,12 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
         jLabel9.setText("Build Up Area Of Census House :");
 
         jLabel10.setText("Number Of Trees in Area :");
+
+        finyearcenhouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finyearcenhouseActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Number Of Protected Trees In Area :");
 
@@ -242,30 +248,6 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
                         .addGap(6, 6, 6)
                         .addComponent(jButton5))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel5)
-                        .addGap(27, 27, 27)
-                        .addComponent(finyearcenhouse, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(153, 153, 153)
-                        .addComponent(jLabel14)
-                        .addGap(29, 29, 29)
-                        .addComponent(drainage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel6)
-                        .addGap(27, 27, 27)
-                        .addComponent(condnofhouse, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton9)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel15)
-                        .addGap(29, 29, 29)
-                        .addComponent(bathing, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel7)
                         .addGap(27, 27, 27)
@@ -293,8 +275,35 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
                         .addGap(27, 27, 27)
                         .addComponent(areaofchouse, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(319, 319, 319)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(27, 27, 27)
+                                .addComponent(finyearcenhouse, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(134, 134, 134)
+                                .addComponent(jLabel14))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(27, 27, 27)
+                                .addComponent(condnofhouse, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton9)
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel15)))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bathing, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(drainage, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,15 +362,15 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
                         .addGap(11, 11, 11)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(dwellingwall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel13))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(typeoftoilet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(dwellingwall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -373,10 +382,9 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(drainage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4)
+                        .addComponent(drainage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -514,6 +522,10 @@ public class PBTInfrastructureDashboard<T> extends JDialog {
         this.toilet.setText(PBTUtilities.getAccessoflatrine(houselistingdata.getAccessof_l()));
         updatemap.put("Accessof_l", houselistingdata.getAccessof_l());
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void finyearcenhouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finyearcenhouseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finyearcenhouseActionPerformed
 
     /**
      * @param args the command line arguments

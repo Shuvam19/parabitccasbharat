@@ -463,4 +463,14 @@ public class PBTUtilities {
             default : return "Vacant";
         }
     }
+    
+    public static String getMarital_status(String marital_status) {
+        switch(marital_status){
+            case "1": return "Never Married";
+            case "2": return "Currently Married";
+            case "3": return "Widowed";
+            case "4": return "Separated";
+            default : return "Divorced";
+        }
+    }
 }

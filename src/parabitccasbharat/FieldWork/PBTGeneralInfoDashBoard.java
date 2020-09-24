@@ -40,12 +40,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
         buttonGroup7 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -57,18 +52,8 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
         deathagegrp = new javax.swing.JTextField();
         firstaidyes = new javax.swing.JRadioButton();
         firstaidno = new javax.swing.JRadioButton();
-        insuranceyes = new javax.swing.JRadioButton();
-        Insuranceno = new javax.swing.JRadioButton();
-        lifeinsyes = new javax.swing.JRadioButton();
-        lifeinsno = new javax.swing.JRadioButton();
         geninsyes = new javax.swing.JRadioButton();
         geninsno = new javax.swing.JRadioButton();
-        courtcaseyes = new javax.swing.JRadioButton();
-        courtcaseno = new javax.swing.JRadioButton();
-        fincaseyes = new javax.swing.JRadioButton();
-        fincaseno = new javax.swing.JRadioButton();
-        foriegndisyes = new javax.swing.JRadioButton();
-        foriendisputeno = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         save = new javax.swing.JButton();
 
@@ -78,17 +63,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
 
         jLabel2.setText("First Aid Available :");
 
-        jLabel3.setText("Health Insurance of Individual :");
-
-        jLabel4.setText("Life Insurance Of Individual :");
-
         jLabel5.setText("General Insurance Of Individual :");
-
-        jLabel6.setText("Any Court Case on Fammily :");
-
-        jLabel7.setText("Any Financial Case :");
-
-        jLabel8.setText("Any Foreign Dispute in Family :");
 
         jLabel9.setText("Nearest Hospital Distance :");
 
@@ -110,41 +85,11 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
         buttonGroup1.add(firstaidno);
         firstaidno.setText("No");
 
-        buttonGroup2.add(insuranceyes);
-        insuranceyes.setText("Yes");
-
-        buttonGroup2.add(Insuranceno);
-        Insuranceno.setText("No");
-
-        buttonGroup3.add(lifeinsyes);
-        lifeinsyes.setText("Yes");
-
-        buttonGroup3.add(lifeinsno);
-        lifeinsno.setText("No");
-
         buttonGroup4.add(geninsyes);
         geninsyes.setText("Yes");
 
         buttonGroup4.add(geninsno);
         geninsno.setText("No");
-
-        buttonGroup5.add(courtcaseyes);
-        courtcaseyes.setText("Yes");
-
-        buttonGroup5.add(courtcaseno);
-        courtcaseno.setText("No");
-
-        buttonGroup6.add(fincaseyes);
-        fincaseyes.setText("Yes");
-
-        buttonGroup6.add(fincaseno);
-        fincaseno.setText("No");
-
-        buttonGroup7.add(foriegndisyes);
-        foriegndisyes.setText("Yes");
-
-        buttonGroup7.add(foriendisputeno);
-        foriendisputeno.setText("No");
 
         jButton1.setText("Select");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -171,12 +116,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
                     .addComponent(jLabel11)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
@@ -188,29 +128,9 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(firstaidno))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(insuranceyes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Insuranceno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lifeinsyes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lifeinsno))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(geninsyes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(geninsno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(courtcaseyes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(courtcaseno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(fincaseyes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fincaseno))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(foriegndisyes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(foriendisputeno))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(geneticdisease, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -241,36 +161,11 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(firstaidyes)
                         .addComponent(firstaidno)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(insuranceyes)
-                    .addComponent(Insuranceno))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lifeinsyes)
-                    .addComponent(lifeinsno))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(geninsyes)
                     .addComponent(geninsno))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(courtcaseyes)
-                    .addComponent(courtcaseno))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(fincaseyes)
-                    .addComponent(fincaseno))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(foriegndisyes)
-                    .addComponent(foriendisputeno))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -357,7 +252,6 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Insuranceno;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -365,35 +259,21 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
-    private javax.swing.JRadioButton courtcaseno;
-    private javax.swing.JRadioButton courtcaseyes;
     private javax.swing.JTextField deathagegrp;
     private javax.swing.JTextField deathinpast;
-    private javax.swing.JRadioButton fincaseno;
-    private javax.swing.JRadioButton fincaseyes;
     private javax.swing.JRadioButton firstaidno;
     private javax.swing.JRadioButton firstaidyes;
-    private javax.swing.JRadioButton foriegndisyes;
-    private javax.swing.JRadioButton foriendisputeno;
     private javax.swing.JTextField geneticdisease;
     private javax.swing.JRadioButton geninsno;
     private javax.swing.JRadioButton geninsyes;
-    private javax.swing.JRadioButton insuranceyes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton lifeinsno;
-    private javax.swing.JRadioButton lifeinsyes;
     private javax.swing.JTextField nearesthospdis;
     private javax.swing.JTextField reasonofdeath;
     private javax.swing.JButton save;
@@ -401,12 +281,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
 
     private void addTextWatchers() {
         textwatcher.addYesNolistener(firstaidyes, firstaidno, updatemap, "Firstaidkit");
-        textwatcher.addYesNolistener(insuranceyes, Insuranceno, updatemap, "H_insu");
-        textwatcher.addYesNolistener(lifeinsyes, lifeinsno, updatemap, "L_insu");
         textwatcher.addYesNolistener(geninsyes, geninsno, updatemap, "G_insu");
-        textwatcher.addYesNolistener(courtcaseyes, courtcaseno, updatemap, "Courtcase");
-        textwatcher.addYesNolistener(fincaseyes, fincaseno, updatemap, "Fincase");
-        textwatcher.addYesNolistener(foriegndisyes, foriendisputeno, updatemap, "Foreigndispute");
         textwatcher.addNumberTextWatcher(nearesthospdis, updatemap, "Nhospdist");
         textwatcher.addNumberTextWatcher(deathinpast, updatemap, "Deathin10years");
         textwatcher.addNameTextWatcher(reasonofdeath, updatemap, "Reasonofdeath");
@@ -424,46 +299,12 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
                 firstaidno.setSelected(true);
             }
         }
-        if(houselistingdata.getH_insu()!=null){
-            if(houselistingdata.getH_insu().equals("Y")){
-                insuranceyes.setSelected(true);
-            }else{
-                Insuranceno.setSelected(true);
-            }
-        }
-        if(houselistingdata.getL_insu()!=null){
-            if(houselistingdata.getL_insu().equals("Y")){
-                lifeinsyes.setSelected(true);
-            }else{
-                lifeinsno.setSelected(true);
-            }
-        }
+        
         if(houselistingdata.getG_insu()!=null){
             if(houselistingdata.getG_insu().equals("Y")){
                 geninsyes.setSelected(true);
             }else{
                 geninsno.setSelected(true);
-            }
-        }
-        if(houselistingdata.getCourtcase()!=null){
-            if(houselistingdata.getCourtcase().equals("Y")){
-                courtcaseyes.setSelected(true);
-            }else{
-                courtcaseno.setSelected(true);
-            }
-        }
-        if(houselistingdata.getFincase()!=null){
-            if(houselistingdata.getFincase().equals("Y")){
-                fincaseyes.setSelected(true);
-            }else{
-                fincaseno.setSelected(true); 
-            }
-        }
-        if(houselistingdata.getForeigndispute()!=null){
-            if(houselistingdata.getForeigndispute().equals("Y")){
-               foriegndisyes.setSelected(true);
-            }else{
-                foriendisputeno.setSelected(true); 
             }
         }
         if(houselistingdata.getNhospdist()!=null){

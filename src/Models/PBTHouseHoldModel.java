@@ -111,6 +111,11 @@ public class PBTHouseHoldModel {
     private String spiritual;
     private String meditation;
     private int ratyourhealth;
+    private String courtcase;
+    private String fincase;
+    private String foreigndispute;
+    private String h_insu;
+    private String l_insu;
     private String filldate;
     private String timein;
     private String timeout;
@@ -926,6 +931,48 @@ public class PBTHouseHoldModel {
         this.ratyourhealth = ratyourhealth;
     }
 
+    public String getCourtcase() {
+        return courtcase;
+    }
+
+    public void setCourtcase(String courtcase) {
+        this.courtcase = courtcase;
+    }
+
+    public String getFincase() {
+        return fincase;
+    }
+
+    public void setFincase(String fincase) {
+        this.fincase = fincase;
+    }
+
+    public String getForeigndispute() {
+        return foreigndispute;
+    }
+
+    public void setForeigndispute(String foreigndispute) {
+        this.foreigndispute = foreigndispute;
+    }
+
+    public String getH_insu() {
+        return h_insu;
+    }
+
+    public void setH_insu(String h_insu) {
+        this.h_insu = h_insu;
+    }
+
+    public String getL_insu() {
+        return l_insu;
+    }
+
+    public void setL_insu(String l_insu) {
+        this.l_insu = l_insu;
+    }
+    
+    
+
     public String getFilldate() {
         return filldate;
     }
@@ -979,9 +1026,10 @@ public class PBTHouseHoldModel {
         return "PBTHouseHoldModel{" + "hh_sno=" + hh_sno + ", hl_sno=" + hl_sno + ", ucid=" + ucid + ", fsno=" + fsno + ", empenumno=" + empenumno + ", rcardno=" + rcardno + ", rcardtype=" + rcardtype + ", uid=" + uid + ", gconsumerno=" + gconsumerno + ", drivlicno=" + drivlicno + ", armsuino=" + armsuino + ", birthcertno=" + birthcertno + ", marrcertno=" + marrcertno + ", policeverno=" + policeverno + ", sssmid=" + sssmid + ", name=" + name + ", reltohead=" + reltohead + ", headuid=" + headuid + ", headregmobno=" + headregmobno + ", mobno=" + mobno + ", altphoneno=" + altphoneno + ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", age=" + age + ", wt=" + wt + ", ht=" + ht + ", veg=" + veg + ", homefood=" + homefood + ", outsidefood=" + outsidefood + ", sleephrs=" + sleephrs + ", health_checkup=" + health_checkup + ", addiction=" + addiction + ", bmi=" + bmi + ", stem_cell_id=" + stem_cell_id + ", bgroup=" + bgroup + ", vid=" + vid + ", passport=" + passport + ", pancardno=" + pancardno + ", ifsc=" + ifsc + ", bankaccno=" + bankaccno + ", netbank=" + netbank + ", mobbank=" + mobbank + ", pensionid=" + pensionid + ", religion=" + religion + ", community=" + community + ", category=" + category + ", categorytypename=" + categorytypename + ", catrgoeryverified=" + catrgoeryverified + ", cast=" + cast + ", marstatus=" + marstatus + ", apromarriageage=" + apromarriageage + ", pwd=" + pwd + ", pwdid=" + pwdid + ", mtongue=" + mtongue + ", rwlang=" + rwlang + ", homelang=" + homelang + ", litstatus=" + litstatus + ", cedustatus=" + cedustatus + ", cinstnmcity=" + cinstnmcity + ", cinsttype=" + cinsttype + ", techdeg=" + techdeg + ", nontechdeg=" + nontechdeg + ", nccnss=" + nccnss + ", jobseek=" + jobseek + ", cworkstat=" + cworkstat + ", workcategory=" + workcategory + ", workingsector=" + workingsector + ", natureofwork=" + natureofwork + ", icsno=" + icsno + ", occupation=" + occupation + ", workexp=" + workexp + ", specdescription=" + specdescription + ", specexp=" + specexp + ", proflicno=" + proflicno + ", busiregno=" + busiregno + ", income=" + income + ", itr=" + itr + ", distfrmworkplace=" + distfrmworkplace + ", modoftravel=" + modoftravel + ", nri=" + nri + ", foreignadd=" + foreignadd + ", birthplacewithstatecountry=" + birthplacewithstatecountry + ", pmtstut=" + pmtstut + ", pmtdist=" + pmtdist + ", pmttehsil=" + pmttehsil + ", pmttownvillage=" + pmttownvillage + ", pmtwardno=" + pmtwardno + ", pmthnoadd=" + pmthnoadd + ", pmtpincode=" + pmtpincode + ", rsnofmig=" + rsnofmig + ", durofmig=" + durofmig + ", chdnsurv=" + chdnsurv + ", chdnevenborn=" + chdnevenborn + ", noofchdnalivelastyr=" + noofchdnalivelastyr + ", chronicdisease=" + chronicdisease + ", sport=" + sport + ", yoga=" + yoga + ", spiritual=" + spiritual + ", meditation=" + meditation + ", ratyourhealth=" + ratyourhealth + ", filldate=" + filldate + ", timein=" + timein + ", timeout=" + timeout + ", note=" + note + ", comment=" + comment + ", status=" + status + '}';
     }
     
-    private String toInsertQuery(){
-        return "Insert into `pbtcensus_household` values (" + getNullOrValue(hh_sno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(empenumno) + "," +getNullOrValue(rcardno) + "," +getNullOrValue(rcardtype) + "," +getNullOrValue(uid) + "," +getNullOrValue(gconsumerno) + "," +getNullOrValue(drivlicno) + "," +getNullOrValue(armsuino) + "," +getNullOrValue(birthcertno) + "," +getNullOrValue(marrcertno) + "," +getNullOrValue(policeverno) + "," +getNullOrValue(sssmid) + "," +getNullOrValue(name) + "," +getNullOrValue(reltohead) + "," +getNullOrValue(headuid) + "," +getNullOrValue(headregmobno) + "," +getNullOrValue(mobno) + "," +getNullOrValue(altphoneno) + "," +getNullOrValue(email) + "," +getNullOrValue(gender) + "," +getNullOrValue(dob) + "," +getNullOrValue(age) + "," +getNullOrValue(wt) + "," +getNullOrValue(ht) + "," +getNullOrValue(veg) + "," +getNullOrValue(homefood) + "," +getNullOrValue(outsidefood) + "," +getNullOrValue(sleephrs) + "," +getNullOrValue(health_checkup) + "," +getNullOrValue(addiction) + "," +getNullOrValue(bmi) + "," +getNullOrValue(stem_cell_id) + "," +getNullOrValue(bgroup) + "," +getNullOrValue(vid) + "," +getNullOrValue(passport) + "," +getNullOrValue(pancardno) + "," +getNullOrValue(ifsc) + "," +getNullOrValue(bankaccno) + "," +getNullOrValue(netbank) + "," +getNullOrValue(mobbank) + "," +getNullOrValue(pensionid) + "," +getNullOrValue(religion) + "," +getNullOrValue(community) + "," +getNullOrValue(category) + "," +getNullOrValue(categorytypename) + "," +getNullOrValue(catrgoeryverified) + "," +getNullOrValue(cast) + "," +getNullOrValue(marstatus) + "," +getNullOrValue(apromarriageage) + "," +getNullOrValue(pwd) + "," +getNullOrValue(pwdid) + "," +getNullOrValue(mtongue) + "," +getNullOrValue(rwlang) + "," +getNullOrValue(homelang) + "," +getNullOrValue(litstatus) + "," +getNullOrValue(cedustatus) + "," +getNullOrValue(cinstnmcity) + "," +getNullOrValue(cinsttype) + "," +getNullOrValue(techdeg) + "," +getNullOrValue(nontechdeg) + "," +getNullOrValue(nccnss) + "," +getNullOrValue(jobseek) + "," +getNullOrValue(cworkstat) + "," +getNullOrValue(workcategory) + "," +getNullOrValue(workingsector) + "," +getNullOrValue(natureofwork) + "," +getNullOrValue(icsno) + "," +getNullOrValue(occupation) + "," +getNullOrValue(workexp) + "," +getNullOrValue(specdescription) + "," +getNullOrValue(specexp) + "," +getNullOrValue(proflicno) + "," +getNullOrValue(busiregno) + "," +getNullOrValue(income) + "," +getNullOrValue(itr) + "," +getNullOrValue(distfrmworkplace) + "," +getNullOrValue(modoftravel) + "," +getNullOrValue(nri) + "," +getNullOrValue(foreignadd) + "," +getNullOrValue(birthplacewithstatecountry) + "," +getNullOrValue(pmtstut) + "," +getNullOrValue(pmtdist) + "," +getNullOrValue(pmttehsil) + "," +getNullOrValue(pmttownvillage) + "," +getNullOrValue(pmtwardno) + "," +getNullOrValue(pmthnoadd) + "," +getNullOrValue(pmtpincode) + "," +getNullOrValue(rsnofmig) + "," +getNullOrValue(durofmig) + "," +getNullOrValue(chdnsurv) + "," +getNullOrValue(chdnevenborn) + "," +getNullOrValue(noofchdnalivelastyr) + "," +getNullOrValue(chronicdisease) + "," +getNullOrValue(sport) + "," +getNullOrValue(yoga) + "," +getNullOrValue(spiritual) + "," +getNullOrValue(meditation) + "," +getNullOrValue(ratyourhealth) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
+    public String toInsertQuery(){
+        return "Insert into `pbtcensus_household` values( " + getNullOrValue(hh_sno) + "," +getNullOrValue(hl_sno) + "," +getNullOrValue(ucid) + "," +getNullOrValue(fsno) + "," +getNullOrValue(empenumno) + "," +getNullOrValue(rcardno) + "," +getNullOrValue(rcardtype) + "," +getNullOrValue(uid) + "," +getNullOrValue(gconsumerno) + "," +getNullOrValue(drivlicno) + "," +getNullOrValue(armsuino) + "," +getNullOrValue(birthcertno) + "," +getNullOrValue(marrcertno) + "," +getNullOrValue(policeverno) + "," +getNullOrValue(sssmid) + "," +getNullOrValue(name) + "," +getNullOrValue(reltohead) + "," +getNullOrValue(headuid) + "," +getNullOrValue(headregmobno) + "," +getNullOrValue(mobno) + "," +getNullOrValue(altphoneno) + "," +getNullOrValue(email) + "," +getNullOrValue(gender) + "," +getNullOrValue(dob) + "," +getNullOrValue(age) + "," +getNullOrValue(wt) + "," +getNullOrValue(ht) + "," +getNullOrValue(veg) + "," +getNullOrValue(homefood) + "," +getNullOrValue(outsidefood) + "," +getNullOrValue(sleephrs) + "," +getNullOrValue(health_checkup) + "," +getNullOrValue(addiction) + "," +getNullOrValue(bmi) + "," +getNullOrValue(stem_cell_id) + "," +getNullOrValue(bgroup) + "," +getNullOrValue(vid) + "," +getNullOrValue(passport) + "," +getNullOrValue(pancardno) + "," +getNullOrValue(ifsc) + "," +getNullOrValue(bankaccno) + "," +getNullOrValue(netbank) + "," +getNullOrValue(mobbank) + "," +getNullOrValue(pensionid) + "," +getNullOrValue(religion) + "," +getNullOrValue(community) + "," +getNullOrValue(category) + "," +getNullOrValue(categorytypename) + "," +getNullOrValue(catrgoeryverified) + "," +getNullOrValue(cast) + "," +getNullOrValue(marstatus) + "," +getNullOrValue(apromarriageage) + "," +getNullOrValue(pwd) + "," +getNullOrValue(pwdid) + "," +getNullOrValue(mtongue) + "," +getNullOrValue(rwlang) + "," +getNullOrValue(homelang) + "," +getNullOrValue(litstatus) + "," +getNullOrValue(cedustatus) + "," +getNullOrValue(cinstnmcity) + "," +getNullOrValue(cinsttype) + "," +getNullOrValue(techdeg) + "," +getNullOrValue(nontechdeg) + "," +getNullOrValue(nccnss) + "," +getNullOrValue(jobseek) + "," +getNullOrValue(cworkstat) + "," +getNullOrValue(workcategory) + "," +getNullOrValue(workingsector) + "," +getNullOrValue(natureofwork) + "," +getNullOrValue(icsno) + "," +getNullOrValue(occupation) + "," +getNullOrValue(workexp) + "," +getNullOrValue(specdescription) + "," +getNullOrValue(specexp) + "," +getNullOrValue(proflicno) + "," +getNullOrValue(busiregno) + "," +getNullOrValue(income) + "," +getNullOrValue(itr) + "," +getNullOrValue(distfrmworkplace) + "," +getNullOrValue(modoftravel) + "," +getNullOrValue(nri) + "," +getNullOrValue(foreignadd) + "," +getNullOrValue(birthplacewithstatecountry) + "," +getNullOrValue(pmtstut) + "," +getNullOrValue(pmtdist) + "," +getNullOrValue(pmttehsil) + "," +getNullOrValue(pmttownvillage) + "," +getNullOrValue(pmtwardno) + "," +getNullOrValue(pmthnoadd) + "," +getNullOrValue(pmtpincode) + "," +getNullOrValue(rsnofmig) + "," +getNullOrValue(durofmig) + "," +getNullOrValue(chdnsurv) + "," +getNullOrValue(chdnevenborn) + "," +getNullOrValue(noofchdnalivelastyr) + "," +getNullOrValue(chronicdisease) + "," +getNullOrValue(sport) + "," +getNullOrValue(yoga) + "," +getNullOrValue(spiritual) + "," +getNullOrValue(meditation) + "," +getNullOrValue(ratyourhealth) + "," +getNullOrValue(courtcase) + "," +getNullOrValue(fincase) + "," +getNullOrValue(foreigndispute) + "," +getNullOrValue(h_insu) + "," +getNullOrValue(l_insu) + "," +getNullOrValue(filldate) + "," +getNullOrValue(timein) + "," +getNullOrValue(timeout) + "," +getNullOrValue(note) + "," +getNullOrValue(comment) + "," +getNullOrValue(status) + ")";
     }
+    
     public PBTHouseHoldModel() {
     }
     
@@ -1101,6 +1149,11 @@ public class PBTHouseHoldModel {
                     spiritual = db.rs1.getString("spiritual");
                     meditation = db.rs1.getString("meditation");
                     ratyourhealth = db.rs1.getInt("ratyourhealth");
+                    courtcase = db.rs1.getString("courtcase");
+                    fincase = db.rs1.getString("fincase");
+                    foreigndispute = db.rs1.getString("foreigndispute");
+                    h_insu = db.rs1.getString("h_insu");
+                    l_insu = db.rs1.getString("l_insu");
                     filldate = db.rs1.getString("filldate");
                     timein = db.rs1.getString("timein");
                     timeout = db.rs1.getString("timeout");
@@ -1128,6 +1181,7 @@ public class PBTHouseHoldModel {
         }else {
             if(uid.isEmpty()){return false;}
             String query = this.toInsertQuery();
+            System.out.println(query);
             ParabitDBC db = new ParabitDBC();
             try {
                 db.stm.execute(query);

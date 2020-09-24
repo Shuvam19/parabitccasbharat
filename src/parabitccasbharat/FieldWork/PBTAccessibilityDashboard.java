@@ -51,12 +51,6 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
         swimmingyes = new javax.swing.JRadioButton();
         parkingno = new javax.swing.JRadioButton();
         parkingyes = new javax.swing.JRadioButton();
-        escalatorno = new javax.swing.JRadioButton();
-        escalatoryes = new javax.swing.JRadioButton();
-        lifeno = new javax.swing.JRadioButton();
-        lifeyes = new javax.swing.JRadioButton();
-        helipadno = new javax.swing.JRadioButton();
-        helipadyes = new javax.swing.JRadioButton();
         srcofDrinkin = new javax.swing.JTextField();
         srcoflight = new javax.swing.JTextField();
         altsrcoflight = new javax.swing.JTextField();
@@ -71,15 +65,16 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         securityno = new javax.swing.JRadioButton();
         securityyes = new javax.swing.JRadioButton();
-        fireno = new javax.swing.JRadioButton();
-        fireyes = new javax.swing.JRadioButton();
-        privatesecurityno = new javax.swing.JRadioButton();
-        privsecurityyes = new javax.swing.JRadioButton();
         bulalarmno = new javax.swing.JRadioButton();
         bulalarmyes = new javax.swing.JRadioButton();
         fireextinguisher = new javax.swing.JTextField();
         ipadress = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        firealarm = new javax.swing.JTextField();
+        privatesecguard = new javax.swing.JTextField();
+        escalator = new javax.swing.JTextField();
+        lift = new javax.swing.JTextField();
+        helipad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,24 +114,6 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
         buttonGroup3.add(parkingyes);
         parkingyes.setText("Yes");
 
-        buttonGroup4.add(escalatorno);
-        escalatorno.setText("No");
-
-        buttonGroup4.add(escalatoryes);
-        escalatoryes.setText("Yes");
-
-        buttonGroup5.add(lifeno);
-        lifeno.setText("No");
-
-        buttonGroup5.add(lifeyes);
-        lifeyes.setText("Yes");
-
-        buttonGroup6.add(helipadno);
-        helipadno.setText("No");
-
-        buttonGroup6.add(helipadyes);
-        helipadyes.setText("Yes");
-
         jButton1.setText("Select");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,18 +152,6 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
 
         buttonGroup7.add(securityyes);
         securityyes.setText("Yes");
-
-        buttonGroup8.add(fireno);
-        fireno.setText("No");
-
-        buttonGroup8.add(fireyes);
-        fireyes.setText("Yes");
-
-        buttonGroup9.add(privatesecurityno);
-        privatesecurityno.setText("No");
-
-        buttonGroup9.add(privsecurityyes);
-        privsecurityyes.setText("Yes");
 
         buttonGroup10.add(bulalarmno);
         bulalarmno.setText("No");
@@ -232,32 +197,6 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(fireextinguisher, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(altsrcoflight, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(fireyes)
-                        .addGap(18, 18, 18)
-                        .addComponent(fireno))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(wateryes)
-                        .addGap(18, 18, 18)
-                        .addComponent(waterno)
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(privsecurityyes)
-                        .addGap(18, 18, 18)
-                        .addComponent(privatesecurityno))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
@@ -282,29 +221,47 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(ipadress, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel8)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(escalatoryes)
-                            .addComponent(lifeyes))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(escalatorno)
-                            .addComponent(lifeno))
-                        .addGap(247, 247, 247)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(altsrcoflight, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addGap(155, 155, 155)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(firealarm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(wateryes)
+                                .addGap(18, 18, 18)
+                                .addComponent(waterno)
+                                .addGap(194, 194, 194)
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(privatesecguard, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(helipadyes)
-                        .addGap(18, 18, 18)
-                        .addComponent(helipadno)))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(helipad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jLabel8)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lift))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(escalator, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(227, 227, 227)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -339,31 +296,34 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(fireextinguisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel3))
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(altsrcoflight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel12))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(altsrcoflight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel12))
-                    .addComponent(fireyes)
-                    .addComponent(fireno))
-                .addGap(21, 21, 21)
+                        .addGap(23, 23, 23)
+                        .addComponent(firealarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(wateryes)
                     .addComponent(waterno)
-                    .addComponent(privsecurityyes)
-                    .addComponent(privatesecurityno)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel13))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13)
+                                .addComponent(privatesecguard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -385,29 +345,24 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(ipadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(escalatoryes)
-                        .addGap(17, 17, 17)
-                        .addComponent(lifeyes))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(escalatorno)
-                        .addGap(17, 17, 17)
-                        .addComponent(lifeno))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(escalator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lift, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(helipadyes)
-                    .addComponent(helipadno))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(helipad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -456,13 +411,10 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup7;
     private javax.swing.ButtonGroup buttonGroup8;
     private javax.swing.ButtonGroup buttonGroup9;
-    private javax.swing.JRadioButton escalatorno;
-    private javax.swing.JRadioButton escalatoryes;
+    private javax.swing.JTextField escalator;
+    private javax.swing.JTextField firealarm;
     private javax.swing.JTextField fireextinguisher;
-    private javax.swing.JRadioButton fireno;
-    private javax.swing.JRadioButton fireyes;
-    private javax.swing.JRadioButton helipadno;
-    private javax.swing.JRadioButton helipadyes;
+    private javax.swing.JTextField helipad;
     private javax.swing.JTextField ipadress;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -483,12 +435,10 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton lifeno;
-    private javax.swing.JRadioButton lifeyes;
+    private javax.swing.JTextField lift;
     private javax.swing.JRadioButton parkingno;
     private javax.swing.JRadioButton parkingyes;
-    private javax.swing.JRadioButton privatesecurityno;
-    private javax.swing.JRadioButton privsecurityyes;
+    private javax.swing.JTextField privatesecguard;
     private javax.swing.JRadioButton securityno;
     private javax.swing.JRadioButton securityyes;
     private javax.swing.JTextField srcofDrinkin;
@@ -503,12 +453,12 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
         textwathers.addYesNolistener(wateryes, waterno, updatemap, "Wtrharv");
         textwathers.addYesNolistener(swimmingyes, swimmingno, updatemap, "Swimmingpool");
         textwathers.addYesNolistener(parkingyes, parkingno, updatemap, "Parkingfact");
-        textwathers.addYesNolistener(escalatoryes, escalatorno, updatemap, "Escalator");
-        textwathers.addYesNolistener(lifeyes, lifeno, updatemap, "Lift");
-        textwathers.addYesNolistener(helipadyes, helipadno, updatemap, "Helipad");
+        textwathers.addNumberTextWatcher(escalator, updatemap, "Escalator");
+        textwathers.addNumberTextWatcher(lift, updatemap, "Lift");
+        textwathers.addNumberTextWatcher(helipad, updatemap, "Helipad");
         textwathers.addYesNolistener(securityyes, securityno, updatemap, "Smartsecuritysystem");
-        textwathers.addYesNolistener(fireyes, fireno, updatemap, "Firealarm");
-        textwathers.addYesNolistener(privsecurityyes, privatesecurityno, updatemap, "Privatesecurityguard");
+        textwathers.addNumberTextWatcher(firealarm, updatemap, "Firealarm");
+        textwathers.addNumberTextWatcher(privatesecguard, updatemap, "Privatesecurityguard");
         textwathers.addYesNolistener(bulalarmyes, bulalarmno, updatemap, "Burglaralarm");
         textwathers.addNumberTextWatcher(fireextinguisher, updatemap, "Fireextinguisher");
     }
@@ -545,25 +495,13 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
             }
         }
         if(houselistingdata.getEscalator()!=null){
-            if(houselistingdata.getEscalator().equals("Y")){
-                escalatoryes.setSelected(true);
-            }else{
-                escalatorno.setSelected(true);
-            }
+            escalator.setText(houselistingdata.getEscalator());
         }
         if(houselistingdata.getLift()!=null){
-            if(houselistingdata.getLift().equals("Y")){
-                lifeyes.setSelected(true);
-            }else{
-                lifeno.setSelected(true);
-            }
+            lift.setText(houselistingdata.getLift());
         }
         if(houselistingdata.getHelipad()!=null){
-            if(houselistingdata.getHelipad().equals("Y")){
-                helipadyes.setSelected(true);
-            }else{
-                helipadno.setSelected(true);
-            }
+            helipad.setText(houselistingdata.getHelipad());
         }
         if(houselistingdata.getSmartsecuritysystem()!=null){
             if(houselistingdata.getSmartsecuritysystem().equals("Y")){
@@ -576,18 +514,10 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
             fireextinguisher.setText("" + houselistingdata.getFireextinguisher());
         }
         if(houselistingdata.getFirealarm()!=null){
-            if(houselistingdata.getFirealarm().equals("Y")){
-                fireyes.setSelected(true);
-            }else{
-                fireno.setSelected(true);
-            }
+            firealarm.setText(houselistingdata.getFirealarm());
         }
         if(houselistingdata.getPrivatesecurityguard()!=null){
-            if(houselistingdata.getPrivatesecurityguard().equals("Y")){
-                privsecurityyes.setSelected(true);
-            }else{
-                privatesecurityno.setSelected(true);
-            }
+            privatesecguard.setText(houselistingdata.getPrivatesecurityguard());
         }
         if(houselistingdata.getBurglaralarm()!=null){
             if(houselistingdata.getBurglaralarm().equals("Y")){
