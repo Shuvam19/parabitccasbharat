@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class savingtime {
     
     public static void main(String[] args) {
-        String table[] = {"typesofchronicdisease","tv","tvsig","coolheatfact","pc","telebroadband","phone","typesofgeneticdisease"};
+        String table[] = {"marital_status","tv","tvsig","coolheatfact","pc","telebroadband","phone","typesofgeneticdisease"};
         String table2[] = {"Accessof_l","Typeof_l","Bathfact","Kitchen","Cookfuel"};
         for(int i=0;i<table2.length;i++){
             solve(table[i]);

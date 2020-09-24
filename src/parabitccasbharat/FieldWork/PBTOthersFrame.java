@@ -67,6 +67,15 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
         timeofmigration = new javax.swing.JTextField();
         Save = new javax.swing.JButton();
         foriegnadress = new javax.swing.JTextField();
+        courtcaseyes = new javax.swing.JRadioButton();
+        courtcaseno = new javax.swing.JRadioButton();
+        fincaseyes = new javax.swing.JRadioButton();
+        fincaseno = new javax.swing.JRadioButton();
+        foriegndisyes = new javax.swing.JRadioButton();
+        foriendisputeno = new javax.swing.JRadioButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,44 +128,67 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
             }
         });
 
+        courtcaseyes.setText("Yes");
+
+        courtcaseno.setText("No");
+
+        fincaseyes.setText("Yes");
+
+        fincaseno.setText("No");
+
+        foriegndisyes.setText("Yes");
+
+        foriendisputeno.setText("No");
+
+        jLabel14.setText("Any Court Case on Fammily :");
+
+        jLabel15.setText("Any Financial Case :");
+
+        jLabel16.setText("Any Foreign Dispute in Family :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(134, 134, 134))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(house, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(69, 69, 69)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ward)
+                                .addComponent(town)
+                                .addComponent(tehsil)
+                                .addComponent(district)
+                                .addComponent(pincode)
+                                .addComponent(state, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addComponent(birthplace, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(birthplace, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(house, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ward)
-                                    .addComponent(town)
-                                    .addComponent(tehsil)
-                                    .addComponent(district)
-                                    .addComponent(pincode)
-                                    .addComponent(state, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))))
-                        .addGap(41, 41, 41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
@@ -169,30 +201,64 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(nrino))
                             .addComponent(reasonofmigration)
-                            .addComponent(timeofmigration)
-                            .addComponent(foriegnadress, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))))
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
+                            .addComponent(foriegnadress)
+                            .addComponent(timeofmigration, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(courtcaseyes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(courtcaseno))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fincaseyes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fincaseno))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(foriegndisyes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(foriendisputeno)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(birthplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(house, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addComponent(birthplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(house, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(courtcaseyes)
+                            .addComponent(courtcaseno))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(fincaseyes)
+                            .addComponent(fincaseno))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(foriegndisyes)
+                            .addComponent(foriendisputeno))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(ward, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,7 +275,6 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
                             .addComponent(jLabel7)
                             .addComponent(district, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -298,14 +363,23 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
     private javax.swing.JButton Save;
     private javax.swing.JTextField birthplace;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton courtcaseno;
+    private javax.swing.JRadioButton courtcaseyes;
     private javax.swing.JTextField district;
+    private javax.swing.JRadioButton fincaseno;
+    private javax.swing.JRadioButton fincaseyes;
     private javax.swing.JTextField foriegnadress;
+    private javax.swing.JRadioButton foriegndisyes;
+    private javax.swing.JRadioButton foriendisputeno;
     private javax.swing.JTextField house;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -337,6 +411,9 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
         textWatchers.addNameTextWatcher(reasonofmigration, updatemap, "Rsnofmig");
         textWatchers.addNumberTextWatcher(timeofmigration, updatemap, "Durofmig");
         textWatchers.addNumberTextWatcher(ward, updatemap, "Pmtwardno");
+        textWatchers.addYesNolistener(courtcaseyes, courtcaseno, updatemap, "Courtcase");
+        textWatchers.addYesNolistener(fincaseyes, fincaseno, updatemap, "Fincase");
+        textWatchers.addYesNolistener(foriegndisyes, foriendisputeno, updatemap, "Foreigndispute");
         nriyes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -388,6 +465,27 @@ public class PBTOthersFrame<T> extends javax.swing.JDialog {
         }
         if(persondata.getDurofmig()!=null){
             timeofmigration.setText(persondata.getDurofmig());
+        }
+        if(persondata.getCourtcase()!=null){
+            if(persondata.getCourtcase().equals("Y")){
+                courtcaseyes.setSelected(true);
+            }else{
+                courtcaseno.setSelected(true);
+            }
+        }
+        if(persondata.getFincase()!=null){
+            if(persondata.getFincase().equals("Y")){
+                fincaseyes.setSelected(true);
+            }else{
+                fincaseno.setSelected(true); 
+            }
+        }
+        if(persondata.getForeigndispute()!=null){
+            if(persondata.getForeigndispute().equals("Y")){
+               foriegndisyes.setSelected(true);
+            }else{
+                foriendisputeno.setSelected(true); 
+            }
         }
         if(persondata.getNri()!=null){
             if(persondata.getNri().equals("Y")){

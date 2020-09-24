@@ -113,21 +113,24 @@
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="basicdetails" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="48" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="basicdetails" max="32767" attributes="0"/>
+                  <Component id="workdetails" pref="118" max="32767" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="eductiondetails" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                       <Component id="medicaldetails" min="-2" pref="125" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="save" min="-2" pref="94" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="workdetails" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="bankdetails" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                       <Component id="others" min="-2" pref="125" max="-2" attributes="0"/>
@@ -249,11 +252,14 @@
                   <Component id="eductiondetails" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="medicaldetails" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="save" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="workdetails" min="-2" pref="69" max="-2" attributes="0"/>
-                  <Component id="bankdetails" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="bankdetails" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                      <Component id="workdetails" alignment="3" min="-2" pref="69" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="others" min="-2" pref="69" max="-2" attributes="0"/>
                   <Component id="saveproceed" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
@@ -443,6 +449,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="rationcardtype">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Happiness"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
