@@ -1,4 +1,3 @@
-
 package parabitccasbharat.FieldWork;
 
 import Models.PBTHouseHoldModel;
@@ -16,8 +15,9 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
     PBTHouseHoldModel persondata;
     PBTTextWatchers textWatchers;
     HashMap<String, Object> updatemap = new HashMap<>();
-    public PBTMedicalDetailsFrame(PBTHouseHoldModel persondata,T parent) {
-        super((JFrame)parent,true);
+
+    public PBTMedicalDetailsFrame(PBTHouseHoldModel persondata, T parent) {
+        super((JFrame) parent, true);
         initComponents();
         this.persondata = persondata;
         textWatchers = new PBTTextWatchers();
@@ -488,7 +488,7 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PBTChronicDisease frame = new PBTChronicDisease(persondata, this);
         frame.setVisible(true);
-        chronicdisease.setText(PBTUtilities.getTypesofchronicdisease(persondata.getChronicdisease()));
+        chronicdisease.setText(addchronicDisease(persondata.getChronicdisease()));
         updatemap.put("Bgroup", persondata.getChronicdisease());
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -551,97 +551,106 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void getAllLabels() {
-        if(persondata.getHt()!=null){
+        if (persondata.getHt() != null) {
             height.setText(persondata.getHt());
         }
-        if(persondata.getWt()!=0){
+        if (persondata.getWt() != 0) {
             weight.setText("" + persondata.getWt());
         }
-        if(persondata.getBmi()!=null){
+        if (persondata.getBmi() != null) {
             bmi.setText(persondata.getBmi());
         }
-        if(persondata.getStem_cell_id()!=null){
+        if (persondata.getStem_cell_id() != null) {
             stemcellid.setText(persondata.getStem_cell_id());
         }
-        if(persondata.getBgroup()!=null){
-           bloodgrp.setText(PBTUtilities.getBloodGroup(persondata.getBgroup()));
+        if (persondata.getBgroup() != null) {
+            bloodgrp.setText(PBTUtilities.getBloodGroup(persondata.getBgroup()));
         }
-        if(persondata.getSleephrs()!=null){
+        if (persondata.getSleephrs() != null) {
             sleephrs.setText(persondata.getSleephrs());
         }
-        if(persondata.getSport()!=null){
+        if (persondata.getSport() != null) {
             sports.setText(persondata.getSport());
         }
-        if(persondata.getH_insu()!=null){
-            if(persondata.getH_insu().equals("Y")){
+        if (persondata.getH_insu() != null) {
+            if (persondata.getH_insu().equals("Y")) {
                 insuranceyes.setSelected(true);
-            }else{
+            } else {
                 Insuranceno.setSelected(true);
             }
         }
-        if(persondata.getL_insu()!=null){
-            if(persondata.getL_insu().equals("Y")){
+        if (persondata.getL_insu() != null) {
+            if (persondata.getL_insu().equals("Y")) {
                 lifeinsyes.setSelected(true);
-            }else{
+            } else {
                 lifeinsno.setSelected(true);
             }
         }
-        if(persondata.getRatyourhealth()!=0){
+        if (persondata.getRatyourhealth() != 0) {
             ratehealth.setValue(persondata.getRatyourhealth());
         }
-        if(persondata.getMeditation()!=null){
+        if (persondata.getMeditation() != null) {
             medications.setValue(Integer.parseInt(persondata.getMeditation()));
         }
-        if(persondata.getHomefood()!=null){
+        if (persondata.getHomefood() != null) {
             homefood.setValue(Integer.parseInt(persondata.getHomefood()));
         }
-        if(persondata.getOutsidefood()!=null){
+        if (persondata.getOutsidefood() != null) {
             outsidefood.setValue(Integer.parseInt(persondata.getOutsidefood()));
         }
-        if(persondata.getVeg()!=null){
+        if (persondata.getVeg() != null) {
             veg.setValue(Integer.parseInt(persondata.getVeg()));
         }
-        if(persondata.getHealth_checkup()!=null){
+        if (persondata.getHealth_checkup() != null) {
             health.setValue(Integer.parseInt(persondata.getHealth_checkup()));
         }
-        if(persondata.getYoga()!=null){
+        if (persondata.getYoga() != null) {
             yogas.setValue(Integer.parseInt(persondata.getYoga()));
         }
-        if(persondata.getMeditation()!=null){
+        if (persondata.getMeditation() != null) {
             medications.setValue(Integer.parseInt(persondata.getMeditation()));
         }
-        if(persondata.getSpiritual()!=null){
+        if (persondata.getSpiritual() != null) {
             spirituals.setValue(Integer.parseInt(persondata.getSpiritual()));
         }
-        if(persondata.getAddiction()!=null){
+        if (persondata.getAddiction() != null) {
             addictions.setValue(Integer.parseInt(persondata.getAddiction()));
         }
-        if(persondata.getPwd()!=null){
+        if (persondata.getPwd() != null) {
             Disability.setValue(Integer.parseInt(persondata.getPwd()));
         }
-        if(persondata.getChronicdisease()!=null){
-            chronicdisease.setText(PBTUtilities.getTypesofchronicdisease(persondata.getChronicdisease()));
+        if (persondata.getChronicdisease() != null) {
+            chronicdisease.setText(addchronicDisease(persondata.getChronicdisease()));
         }
     }
-    
-    private void addTextWatchers(){
-        textWatchers.addNumberTextWatcher(sleephrs,updatemap,"sleephrs");
-        textWatchers.addNameTextWatcher(sports,updatemap,"sport");
-        textWatchers.addNumberTextWatcher(weight,updatemap,"wt");
-        textWatchers.addNumberTextWatcher(bmi,updatemap,"bmi");
-        textWatchers.addNumberTextWatcher(height,updatemap,"ht");
+
+    private void addTextWatchers() {
+        textWatchers.addNumberTextWatcher(sleephrs, updatemap, "sleephrs");
+        textWatchers.addNameTextWatcher(sports, updatemap, "sport");
+        textWatchers.addNumberTextWatcher(weight, updatemap, "wt");
+        textWatchers.addNumberTextWatcher(bmi, updatemap, "bmi");
+        textWatchers.addNumberTextWatcher(height, updatemap, "ht");
         textWatchers.addYesNolistener(insuranceyes, Insuranceno, updatemap, "H_insu");
         textWatchers.addYesNolistener(lifeinsyes, lifeinsno, updatemap, "L_insu");
         textWatchers.addNameTextWatcher(stemcellid, updatemap, "Stem_cell_id");
-        textWatchers.addJSliderListener(homefood,updatemap,"Homefood");
-        textWatchers.addJSliderListener(outsidefood,updatemap,"Outsidefood");
-        textWatchers.addJSliderListener(veg,updatemap,"Veg");
-        textWatchers.addJSliderListener(health,updatemap,"Health_checkup");
-        textWatchers.addJSliderListener(yogas,updatemap,"Yoga");
-        textWatchers.addJSliderListener(medications,updatemap,"Meditation");
-        textWatchers.addJSliderListener(spirituals,updatemap,"Spiritual");
-        textWatchers.addJSliderListener(addictions,updatemap,"Addiction");
-        textWatchers.addJSliderListener(Disability,updatemap,"Pwd");
+        textWatchers.addJSliderListener(homefood, updatemap, "Homefood");
+        textWatchers.addJSliderListener(outsidefood, updatemap, "Outsidefood");
+        textWatchers.addJSliderListener(veg, updatemap, "Veg");
+        textWatchers.addJSliderListener(health, updatemap, "Health_checkup");
+        textWatchers.addJSliderListener(yogas, updatemap, "Yoga");
+        textWatchers.addJSliderListener(medications, updatemap, "Meditation");
+        textWatchers.addJSliderListener(spirituals, updatemap, "Spiritual");
+        textWatchers.addJSliderListener(addictions, updatemap, "Addiction");
+        textWatchers.addJSliderListener(Disability, updatemap, "Pwd");
         textWatchers.addJSliderListener(ratehealth, updatemap, "Ratyourhealth");
+    }
+
+    private String addchronicDisease(String chronicdiss) {
+        String split[] = chronicdiss.split(",");
+        String ans = "";
+        for (int i = 0; i < split.length; i++) {
+            ans = ans + PBTUtilities.getTypesofchronicdisease("" + (split[i])) + ",";
+        }
+        return ans.substring(0, ans.length() - 1);
     }
 }

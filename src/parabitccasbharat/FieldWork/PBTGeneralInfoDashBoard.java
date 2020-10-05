@@ -197,7 +197,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PBTGenericDisease frame = new PBTGenericDisease(houselistingdata, this);
         frame.setVisible(true);
-        geneticdisease.setText(PBTUtilities.getTypesofgeneticdisease(houselistingdata.getGendiss()));
+        geneticdisease.setText(addGenDisease(houselistingdata.getGendiss()));
         updatemap.put("Gendiss", houselistingdata.getGendiss());
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -290,7 +290,7 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
 
     private void setAllLabels() {
         if(houselistingdata.getGendiss()!=null){
-            geneticdisease.setText(houselistingdata.getGendiss());
+            geneticdisease.setText(addGenDisease(houselistingdata.getGendiss()));
         }
         if(houselistingdata.getFirstaidkit()!=null){
             if(houselistingdata.getFirstaidkit().equals("Y")){
@@ -319,6 +319,15 @@ public class PBTGeneralInfoDashBoard<T> extends javax.swing.JDialog {
         if(houselistingdata.getDeathagegroup()!=null){
             deathagegrp.setText(houselistingdata.getDeathagegroup());
         }
+    }
+
+    private String addGenDisease(String gendiss) {
+        String split[] = gendiss.split(",");
+        String ans = "";
+        for(int i = 0;i<split.length;i++){
+            ans = ans + PBTUtilities.getTypesofgeneticdisease("" + split[i]) + ",";
+        }
+        return ans.substring(0,ans.length()-1);
     }
 
 }
