@@ -22,7 +22,7 @@ public class ParabitDBC2 {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/parabitCCASbharat_util", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/parabitCCASbharat2_util", "root", "");
             stm = con.createStatement();
         } catch (Exception e) {
             System.out.println("" + e) ; 

@@ -20,12 +20,12 @@ public class PBTHappiness extends javax.swing.JFrame {
      */
     public PBTHappiness() {
         initComponents();
-        QuestionCard q1 = new QuestionCard("Question 1");
-        QuestionCard q2 = new QuestionCard("Question 1");
-        QuestionCard q3 = new QuestionCard("Question 1");
-        QuestionCard q4 = new QuestionCard("Question 1");
-        QuestionCard q5 = new QuestionCard("Question 1");
-        QuestionCard q6 = new QuestionCard("Question 1");
+        QuestionCard q1 = new QuestionCard("How Are You");
+        QuestionCard q2 = new QuestionCard("Why Are You");
+        QuestionCard q3 = new QuestionCard("How Are You");
+        QuestionCard q4 = new QuestionCard("Why Are You");
+        QuestionCard q5 = new QuestionCard("How Are You");
+        QuestionCard q6 = new QuestionCard("Why Are You");
         ((GridLayout)jPanel1.getLayout()).setColumns(1);
         ((GridLayout)jPanel1.getLayout()).setRows(6);
         jPanel1.add(q1);
