@@ -1,39 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package parabitccasbharat.FieldWork;
 
 import java.awt.GridLayout;
-import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 
-/**
- *
- * @author acer
- */
 public class PBTHappiness extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTHappiness
-     */
     public PBTHappiness() {
         initComponents();
-        QuestionCard q1 = new QuestionCard("How Are You");
-        QuestionCard q2 = new QuestionCard("Why Are You");
-        QuestionCard q3 = new QuestionCard("How Are You");
-        QuestionCard q4 = new QuestionCard("Why Are You");
-        QuestionCard q5 = new QuestionCard("How Are You");
-        QuestionCard q6 = new QuestionCard("Why Are You");
+        for(int i=0;i<6;i++){
+            QuestionCard q1 = new QuestionCard("How Are You");
+            jPanel1.add(q1);
+        }
         ((GridLayout)jPanel1.getLayout()).setColumns(1);
         ((GridLayout)jPanel1.getLayout()).setRows(6);
-        jPanel1.add(q1);
-        jPanel1.add(q3);
-        jPanel1.add(q2);
-        jPanel1.add(q4);
-        jPanel1.add(q5);
-        jPanel1.add(q6);
         pack();
     }
 
