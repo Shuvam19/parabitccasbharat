@@ -606,8 +606,8 @@ public class PBTOtherHouselistingDashboard<T> extends javax.swing.JDialog {
                 refrigno.setSelected(true);
             }
         }
-        if(houselistingdata.getTv()!=0){
-            television.setText(PBTUtilities.getTv("" + houselistingdata.getTv()));
+        if(houselistingdata.getTv()!=null){
+            television.setText(getAllTv(houselistingdata.getTv()));
         }
         if(houselistingdata.getTvsig()!=0){
             typeofsignal.setText(PBTUtilities.getTvsig("" + houselistingdata.getTvsig()));
@@ -636,5 +636,18 @@ public class PBTOtherHouselistingDashboard<T> extends javax.swing.JDialog {
         if(houselistingdata.getTnocommveh()!=0){
             commonveh.setText("" + houselistingdata.getTnocommveh());
         }
+    }
+
+    private String getAllTv(String tv) {
+        String ans = "";
+        if(!tv.isEmpty()){
+        String arr[] = tv.split(",");
+        for(int i=0;i<arr.length;i++){
+            String tvArr[] = arr[i].split("-");
+            ans = ans + " " + PBTUtilities.getTv(tvArr[0]) + "-" + tvArr[1] + ",";
+        }
+        ans = ans.substring(0,ans.length()-1);
+        }
+        return ans;
     }
 }
