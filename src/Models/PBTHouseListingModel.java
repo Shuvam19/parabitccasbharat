@@ -60,7 +60,7 @@ public class PBTHouseListingModel {
     private int cookfuel;
     private String radio;
     private String fm;
-    private int tv;
+    private String tv;
     private int tvsig;
     private String refrigerator;
     private int coolheatfact;
@@ -449,11 +449,11 @@ public class PBTHouseListingModel {
         this.fm = fm;
     }
 
-    public int getTv() {
+    public String getTv() {
         return tv;
     }
 
-    public void setTv(int tv) {
+    public void setTv(String tv) {
         this.tv = tv;
     }
 
@@ -807,7 +807,7 @@ public class PBTHouseListingModel {
                     cookfuel = db.rs1.getInt("cookfuel");
                     radio = db.rs1.getString("radio");
                     fm = db.rs1.getString("fm");
-                    tv = db.rs1.getInt("tv");
+                    tv = db.rs1.getString("tv");
                     tvsig = db.rs1.getInt("tvsig");
                     refrigerator = db.rs1.getString("refrigerator");
                     coolheatfact = db.rs1.getInt("coolheatfact");
