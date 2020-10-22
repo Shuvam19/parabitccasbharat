@@ -12,10 +12,10 @@ package Models;
 public class PBTHappinessQuestion {
     private String questionId;
     private String question;
-    private String minAge;
-    private String maxAge;
+    private int minAge;
+    private int maxAge;
 
-    public PBTHappinessQuestion(String questionId, String question, String minAge, String maxAge) {
+    public PBTHappinessQuestion(String questionId, String question, int minAge, int maxAge) {
         this.questionId = questionId;
         this.question = question;
         this.minAge = minAge;
@@ -39,19 +39,19 @@ public class PBTHappinessQuestion {
     }
     
 
-    public String getMinAge() {
+    public int getMinAge() {
         return minAge;
     }
 
-    public void setMinAge(String minAge) {
+    public void setMinAge(int minAge) {
         this.minAge = minAge;
     }
 
-    public String getMaxAge() {
+    public int getMaxAge() {
         return maxAge;
     }
 
-    public void setMaxAge(String maxAge) {
+    public void setMaxAge(int maxAge) {
         this.maxAge = maxAge;
     }
     
