@@ -5,6 +5,8 @@
  */
 package parabitccasbharat.FieldWork;
 
+import Models.PBTHappinessQuestion;
+
 /**
  *
  * @author acer
@@ -14,9 +16,15 @@ public class QuestionCard extends javax.swing.JPanel {
     /**
      * Creates new form QuestionCard
      */
-    public QuestionCard(String questionToAsk) {
+    public PBTHappinessQuestion happinessQuestion;
+    public QuestionCard(PBTHappinessQuestion happinessQuestion) {
         initComponents();
-        this.question.setText(questionToAsk);
+        this.happinessQuestion = happinessQuestion;
+        this.question.setText(happinessQuestion.getQuestion());
+    }
+    
+    public int getResult(){
+        return jSlider1.getValue();
     }
 
     /**

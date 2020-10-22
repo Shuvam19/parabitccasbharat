@@ -1,10 +1,5 @@
 package parabitccasbharat.FieldWork;
 
-import parabitccasbharat.FieldWork.PBTOthersFrame;
-import parabitccasbharat.FieldWork.PBTMedicalDetailsFrame;
-import parabitccasbharat.FieldWork.PBTEducationDetailsFrame;
-import parabitccasbharat.FieldWork.PBTBasicDetailsFrame;
-import parabitccasbharat.FieldWork.PBTBankDetailsFrame;
 import DB.ParabitDBC2;
 import Models.PBTAadhar;
 import Models.PBTHouseHoldModel;
@@ -443,7 +438,8 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_saveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        PBTHappiness frame = new PBTHappiness(persondata);
+        frame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -492,7 +488,19 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void getAllInformation(String uid) {
-        String query = "select * from pbtaadhar as aadhar LEFT JOIN pbt_itr as itr on aadhar.ANo = itr.ano LEFT JOIN pbtdisability disabity on aadhar.ANo = disabity.Ano LEFT JOIN pbtpass passport on aadhar.ANo = passport.ANo LEFT JOIN pbtpension pension on aadhar.ANo = pension.ANo LEFT JOIN pbt_police_ver police ON aadhar.ANo = police.AadNo LEFT JOIN pbt_rationcarddata ration ON aadhar.ANo = ration.AdhrNo LEFT JOIN pbtarmslicense arms on aadhar.Ano = arms.AadhNo LEFT JOIN pbtdl dl on aadhar.ANo = dl.AdhrNo LEFT JOIN pbtgas gas on aadhar.ANo = gas.AadNo LEFT JOIN pbtmarriage marriage on (aadhar.ANo = marriage.HbAadNo or aadhar.ANo = marriage.WfAadNo) LEFT JOIN pbtpan pan on aadhar.ANo = pan.AdhrNO where aadhar.ANo = '" + uid + "'";
+        String query = "select * from "
+                + "pbtaadhar as aadhar "
+                + "LEFT JOIN pbt_itr as itr on aadhar.ANo = itr.ano "
+                + "LEFT JOIN pbtdisability disabity on aadhar.ANo = disabity.Ano "
+                + "LEFT JOIN pbtpass passport on aadhar.ANo = passport.ANo "
+                + "LEFT JOIN pbtpension pension on aadhar.ANo = pension.ANo "
+                + "LEFT JOIN pbt_police_ver police ON aadhar.ANo = police.AadNo "
+                + "LEFT JOIN pbt_rationcarddata ration ON aadhar.ANo = ration.AdhrNo "
+                + "LEFT JOIN pbtarmslicense arms on aadhar.Ano = arms.AadhNo "
+                + "LEFT JOIN pbtdl dl on aadhar.ANo = dl.AdhrNo "
+                + "LEFT JOIN pbtgas gas on aadhar.ANo = gas.AadNo "
+                + "LEFT JOIN pbtmarriage marriage on (aadhar.ANo = marriage.HbAadNo or aadhar.ANo = marriage.WfAadNo) "
+                + "LEFT JOIN pbtpan pan on aadhar.ANo = pan.AdhrNO where aadhar.ANo = '" + uid + "'";
         try {
             db2.rs1 = db2.stm.executeQuery(query);
             if(db2.rs1.next()){
