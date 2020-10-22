@@ -7,8 +7,6 @@ import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PBTHappiness extends javax.swing.JFrame{
 
@@ -137,8 +135,8 @@ public class PBTHappiness extends javax.swing.JFrame{
             while(db.rs1.next()){
                 String questionId = db.rs1.getString("sno");
                 String question = db.rs1.getString("question");
-                String minAge = db.rs1.getString("min_age");
-                String maxAge = db.rs1.getString("max_age");
+                int minAge = db.rs1.getInt("min_age");
+                int maxAge = db.rs1.getInt("max_age");
                 PBTHappinessQuestion happinessQuestion = new PBTHappinessQuestion(questionId,question, minAge, maxAge);
                 if(isValid(happinessQuestion)){
                     QuestionCard q1 = new QuestionCard(happinessQuestion);
@@ -152,6 +150,11 @@ public class PBTHappiness extends javax.swing.JFrame{
     }
 
     private boolean isValid(PBTHappinessQuestion happinessQuestion) {
-        return true;
+        return isAgeValid(happinessQuestion) && true;
+    }
+
+    private boolean isAgeValid(PBTHappinessQuestion happinessQuestion) {
+        int age = Integer.parseInt(personData.getAge());
+        return happinessQuestion.getMinAge() <= age && happinessQuestion.getMaxAge() >= age;
     }
 }
