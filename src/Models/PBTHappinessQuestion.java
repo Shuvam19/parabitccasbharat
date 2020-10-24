@@ -14,6 +14,7 @@ public class PBTHappinessQuestion {
     private String question;
     private int minAge;
     private int maxAge;
+    private String jobRequired;
 
     public PBTHappinessQuestion(String questionId, String question, int minAge, int maxAge) {
         this.questionId = questionId;
@@ -54,6 +55,16 @@ public class PBTHappinessQuestion {
     public void setMaxAge(int maxAge) {
         this.maxAge = maxAge;
     }
+
+    public String getJobRequired() {
+        return jobRequired;
+    }
+
+    public void setJobRequired(String jobRequired) {
+        this.jobRequired = jobRequired;
+    }
+
+    
     
     
 }

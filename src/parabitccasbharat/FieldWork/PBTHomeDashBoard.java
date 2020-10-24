@@ -6,11 +6,14 @@
 package parabitccasbharat.FieldWork;
 
 import DB.ParabitDBC;
+import Models.PBTDataOfEmployee;
 import Models.PBTHouseHoldModel;
 import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +25,7 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     PBTHouseListingModel listingmodel;
     List<PBTHouseHoldModel> listofpeople = new ArrayList<>();
     ParabitDBC db;
+    PBTDataOfEmployee employeedata;
     public PBTHomeDashBoard(PBTHouseListingModel model) {
         initComponents();
         this.listingmodel = model;
@@ -69,6 +73,11 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         });
 
         finallock.setText("Final Lock");
+        finallock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finallockActionPerformed(evt);
+            }
+        });
 
         exitwithsave.setText("Save & Exit With Note");
         exitwithsave.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +154,12 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_exitwithsaveActionPerformed
 
+    private void finallockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finallockActionPerformed
+        if(checkEverything()){
+            finalLockCensus();
+        }
+    }//GEN-LAST:event_finallockActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,6 +227,35 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
             String age = listofpeople.get(i).getAge();
             Object row[] = {name,age,null,null};
             model.addRow(row);
+        }
+    }
+
+    private boolean checkEverything() {
+        return true;
+    }
+
+    private void finalLockCensus() {
+        updateHouseHold();
+        updateHouselisting();
+    }
+
+    private void updateHouseHold() {
+        for(int i=0;i<listofpeople.size();i++){
+            String query = "UPDATE `pbtcensus_household` SET `Status` = '1' WHERE HH_SNo = '" + listofpeople.get(i).getHh_sno() + "';";
+            try {
+                db.stm2.execute(query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void updateHouselisting() {
+        String query = "UPDATE `pbtcensus_houselisting` SET `Status` = '1' WHERE Hl_SNo = '" + listingmodel.getHl_sno() + "';";
+        try {
+            db.stm2.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }
