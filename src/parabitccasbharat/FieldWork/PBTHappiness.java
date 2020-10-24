@@ -150,11 +150,15 @@ public class PBTHappiness extends javax.swing.JFrame{
     }
 
     private boolean isValid(PBTHappinessQuestion happinessQuestion) {
-        return isAgeValid(happinessQuestion) && true;
+        return isAgeValid(happinessQuestion) && isJobValid(happinessQuestion);
     }
 
     private boolean isAgeValid(PBTHappinessQuestion happinessQuestion) {
         int age = Integer.parseInt(personData.getAge());
         return happinessQuestion.getMinAge() <= age && happinessQuestion.getMaxAge() >= age;
+    }
+
+    private boolean isJobValid(PBTHappinessQuestion happinessQuestion) {
+        return happinessQuestion.getJobRequired().isEmpty();
     }
 }

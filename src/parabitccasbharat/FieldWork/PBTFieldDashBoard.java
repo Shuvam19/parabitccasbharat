@@ -78,6 +78,11 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         });
 
         incompcensus.setText("Incomplete Census");
+        incompcensus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incompcensusActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Notification");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +206,10 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         PBTSendNotification notification = new PBTSendNotification(this, data);
         notification.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void incompcensusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incompcensusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incompcensusActionPerformed
 
     
 
