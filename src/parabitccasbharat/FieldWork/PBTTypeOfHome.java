@@ -5,6 +5,8 @@ import parabitccasbharat.Utilities.PBTTypeOfHouse;
 import DB.ParabitDBC;
 import Models.PBTHouseListingModel;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PBTTypeOfHome<T> extends javax.swing.JFrame {
 
@@ -251,8 +253,9 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
     private void saveproceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveproceedActionPerformed
         getAllInFields();
         insertIt();
+        addToEnumLogin();
         String hlsno = getHlSno();
-        PBTTypeOfHouse frame = new PBTTypeOfHouse(hlsno);
+        PBTTypeOfHouse frame = new PBTTypeOfHouse(hlsno,data);
         frame.setVisible(true);
     }//GEN-LAST:event_saveproceedActionPerformed
 
@@ -260,6 +263,8 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
         // TODO add your handling code here:
         getAllInFields();
         insertIt();
+        addToEnumLogin();
+        this.dispose();
     }//GEN-LAST:event_saveexitActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -350,5 +355,14 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    private void addToEnumLogin() {
+        String query = "UPDATE `pbtempdailylog` SET NoOfResidVisited = NoOfResidVisited + 1 WHERE CEID = '" + data.getCeid() + "' AND LogOutTime IS NULL;";
+        try {
+            db.stm2.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
