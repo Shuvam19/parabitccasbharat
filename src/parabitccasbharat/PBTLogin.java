@@ -3,7 +3,10 @@ package parabitccasbharat;
 
 import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PBTLogin extends javax.swing.JFrame {
@@ -167,30 +170,8 @@ public class PBTLogin extends javax.swing.JFrame {
             String checkotp = db.rs1.getString("otp").trim();
             if(checkotp.equals(otp))
             {
-                int grade = db.rs1.getInt("grade");
-                String name = db.rs1.getString("EmpName").trim();
-                String crepempid = db.rs1.getString("CRepEmpId").trim();
-                String pincode = db.rs1.getString("PIN");
-                String acity = db.rs1.getString("AreaCity");
-                String adist = db.rs1.getString("AreaDist");
-                String astate = db.rs1.getString("AreaState");
-                String Mobno = db.rs1.getString("EmpOffMob");
-                int status = db.rs1.getInt("status");
-                int preceid = db.rs1.getInt("note");
-                PBTDataOfEmployee data = new PBTDataOfEmployee(username, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
-                switch(status)
-                {
-                    case -1:
-                        JOptionPane.showMessageDialog(null, "You are Not Allowed To Login");
-                        break;
-                    case 2:
-                        switchrepceid(username,preceid);
-                    case 1:
-                        PBTHome home = new PBTHome(this,data);
-                        this.setVisible(false);
-                        home.setVisible(true);
-                        break;
-                }
+                sendToNextFrameAfterLogin(db.rs1);
+                
             }
             else
             {
@@ -256,6 +237,53 @@ public class PBTLogin extends javax.swing.JFrame {
             db.stm.execute(query1);
             db.stm2.execute(query2);
             System.out.println("Done");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void sendToNextFrameAfterLogin(ResultSet rs1) throws SQLException {
+        PBTDataOfEmployee data = getModel(rs1); 
+        int status = rs1.getInt("status");
+        int preceid = rs1.getInt("note");
+        if(isEnumerator(data)){
+            logEnumerator(data);
+        }
+        switch(status)
+        {
+            case -1:
+                JOptionPane.showMessageDialog(null, "You are Not Allowed To Login");
+                break;
+            case 2:
+                switchrepceid(username,preceid);
+            case 1:
+                PBTHome home = new PBTHome(this,data);
+                this.setVisible(false);
+                home.setVisible(true);
+                break;
+        }
+    }
+
+    private PBTDataOfEmployee getModel(ResultSet rs1) throws SQLException {
+        int grade = rs1.getInt("grade");
+        String name = rs1.getString("EmpName").trim();
+        String crepempid = rs1.getString("CRepEmpId").trim();
+        String pincode = rs1.getString("PIN");
+        String acity = rs1.getString("AreaCity");
+        String adist = rs1.getString("AreaDist");
+        String astate = rs1.getString("AreaState");
+        String Mobno = rs1.getString("EmpOffMob");
+        return new PBTDataOfEmployee(username, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
+    }
+
+    private boolean isEnumerator(PBTDataOfEmployee data) {
+        return data.getGrade()==5;
+    }
+
+    private void logEnumerator(PBTDataOfEmployee data) {
+        String Query = "INSERT INTO `pbtempdailylog` VALUES (NULL, " + data.getCeid() + ", CURDATE(), CURRENT_TIME(), NULL, 0, 0, NULL, NULL, NULL, NULL);";
+        try {
+            db.stm2.execute(Query);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

@@ -26,8 +26,9 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     List<PBTHouseHoldModel> listofpeople = new ArrayList<>();
     ParabitDBC db;
     PBTDataOfEmployee employeedata;
-    public PBTHomeDashBoard(PBTHouseListingModel model) {
+    public PBTHomeDashBoard(PBTHouseListingModel model,PBTDataOfEmployee employeedata) {
         initComponents();
+        this.employeedata = employeedata;
         this.listingmodel = model;
         this.db = new ParabitDBC();
         getAllPersonFromHome();
@@ -237,6 +238,10 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     private void finalLockCensus() {
         updateHouseHold();
         updateHouselisting();
+        if (employeedata!=null){
+            updateDailyLog();
+            updateEmpSchedule();
+        }
     }
 
     private void updateHouseHold() {
@@ -252,6 +257,24 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
 
     private void updateHouselisting() {
         String query = "UPDATE `pbtcensus_houselisting` SET `Status` = '1' WHERE Hl_SNo = '" + listingmodel.getHl_sno() + "';";
+        try {
+            db.stm2.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void updateEmpSchedule() {
+        String query = "UPDATE `pbtempschecdule` SET WorkDone = WorkDone + 1 WHERE CEID = '" + employeedata.getCeid() + "' AND city_vill = " + employeedata.getAreacity() + ";";
+        try {
+            db.stm2.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void updateDailyLog() {
+        String query = "UPDATE `pbtempdailylog` SET NoOfFormsSub = NoOfFormsSub + " + listofpeople.size() + " WHERE CEID = '" + employeedata.getCeid() + "' AND LogOutTime IS NULL;";
         try {
             db.stm2.execute(query);
         } catch (SQLException ex) {

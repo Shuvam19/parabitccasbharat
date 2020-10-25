@@ -1,6 +1,7 @@
 package parabitccasbharat.Utilities;
 
 import DB.ParabitDBC;
+import Models.PBTDataOfEmployee;
 import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,8 +13,18 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
     ParabitDBC db;
 
     PBTHouseListingModel model = new PBTHouseListingModel();
+    PBTDataOfEmployee employeedata;
     public PBTTypeOfHouse(String hlsno) {
         System.out.println(hlsno);
+        this.db = new ParabitDBC();
+        model.getFromhlsno(Integer.parseInt(hlsno));
+        initComponents();
+        getAllFields();
+    }
+    
+    public PBTTypeOfHouse(String hlsno,PBTDataOfEmployee employeedata) {
+        System.out.println(hlsno);
+        this.employeedata = employeedata;
         this.db = new ParabitDBC();
         model.getFromhlsno(Integer.parseInt(hlsno));
         initComponents();
@@ -90,7 +101,7 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
 
     private void setTypeOfHouse(int i) {
         model.setTypeofhouse(i);
-        PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
+        PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model,employeedata);
         dashboard.setVisible(true);
     }
     /**

@@ -185,6 +185,7 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
                 if(e.getClickCount()==2){
                     int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Work in the Area " + areaname);
                     if(ans==0){
+                        updateLoggedInPersonsArea(areaname);
                         PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(data,arealist.get(row));
                         dispose();
                         dashBoard.setVisible(true);
@@ -207,6 +208,16 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
             @Override
             public void mouseExited(MouseEvent e) {
             }
+
         });
+    }
+    
+    private void updateLoggedInPersonsArea(String areaName) {
+        String query = "UPDATE `pbtempdailylog` SET AreaVisited = '" + areaName + "' WHERE CEID = '" + data.getCeid() + "' AND LogOutTime IS NULL;";
+        try {
+            db.stm.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
