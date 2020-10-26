@@ -8,23 +8,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import parabitccasbharat.FieldWork.PBTHomeDashBoard;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTTypeOfHouse extends javax.swing.JFrame {
     ParabitDBC db;
 
     PBTHouseListingModel model = new PBTHouseListingModel();
     PBTDataOfEmployee employeedata;
+
     public PBTTypeOfHouse(String hlsno) {
         System.out.println(hlsno);
-        this.db = new ParabitDBC();
-        model.getFromhlsno(Integer.parseInt(hlsno));
-        initComponents();
-        getAllFields();
-    }
-    
-    public PBTTypeOfHouse(String hlsno,PBTDataOfEmployee employeedata) {
-        System.out.println(hlsno);
-        this.employeedata = employeedata;
+        this.employeedata = PBTCurrentEmp.getEmployeeData();
+        if(this.employeedata==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.db = new ParabitDBC();
         model.getFromhlsno(Integer.parseInt(hlsno));
         initComponents();
@@ -101,7 +99,7 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
 
     private void setTypeOfHouse(int i) {
         model.setTypeofhouse(i);
-        PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model,employeedata);
+        PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
         dashboard.setVisible(true);
     }
     /**

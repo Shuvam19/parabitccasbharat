@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTAssignedEmp extends javax.swing.JFrame {
 
@@ -17,9 +18,13 @@ public class PBTAssignedEmp extends javax.swing.JFrame {
     DefaultTableModel assignedmodel;
     ParabitDBC db;
     int whichtype;
-    public PBTAssignedEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent,int whichtype) {
+    public PBTAssignedEmp(PBTOfficeMainDashBoard parent,int whichtype) {
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         this.db = new ParabitDBC();
         this.whichtype = whichtype;
@@ -188,7 +193,7 @@ public class PBTAssignedEmp extends javax.swing.JFrame {
                                         }
                                     }break;
                                     case 1:{
-                                        PBTAssignedEmp assigned = new PBTAssignedEmp(data, parent, 3);
+                                        PBTAssignedEmp assigned = new PBTAssignedEmp( parent, 3);
                                         assigned.assignedmodel.removeRow(row);
                                         assigned.setVisible(true);
                                     }break;

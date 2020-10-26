@@ -7,6 +7,7 @@ import Models.PBTDataOfEmployee;
 import Models.PBTDataScheduledToEmp;
 import parabitccasbharat.OfficeWork.PBTNotifications;
 import parabitccasbharat.OfficeWork.PBTSendNotification;
+import parabitccasbharat.PBTCurrentEmp;
 
 
 public class PBTFieldDashBoard extends javax.swing.JFrame {
@@ -16,8 +17,12 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
     ParabitDBC db;
     PBTNotifications notify;
 
-    public PBTFieldDashBoard(PBTDataOfEmployee data,PBTDataScheduledToEmp sno) {
-        this.data = data;
+    public PBTFieldDashBoard(PBTDataScheduledToEmp sno) {
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.sno = sno;
         this.db = new ParabitDBC();
         initComponents();
@@ -198,12 +203,12 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newcensusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newcensusActionPerformed
-        PBTNewCensus newcensus = new PBTNewCensus(this, data);
+        PBTNewCensus newcensus = new PBTNewCensus(this);
         newcensus.setVisible(true);
     }//GEN-LAST:event_newcensusActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        PBTSendNotification notification = new PBTSendNotification(this, data);
+        PBTSendNotification notification = new PBTSendNotification(this);
         notification.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

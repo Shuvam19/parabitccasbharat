@@ -159,6 +159,6 @@ public class PBTHappiness extends javax.swing.JFrame{
     }
 
     private boolean isJobValid(PBTHappinessQuestion happinessQuestion) {
-        return happinessQuestion.getJobRequired().isEmpty();
+        return true;
     }
 }

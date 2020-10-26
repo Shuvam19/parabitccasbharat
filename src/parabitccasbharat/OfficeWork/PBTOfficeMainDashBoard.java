@@ -3,6 +3,7 @@ package parabitccasbharat.OfficeWork;
 
 import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
+import parabitccasbharat.PBTCurrentEmp;
 import parabitccasbharat.PBTLogin;
 
 
@@ -12,9 +13,13 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     ParabitDBC db;
     PBTNotifications notifications;
     
-    public PBTOfficeMainDashBoard(PBTDataOfEmployee data) {
+    public PBTOfficeMainDashBoard() {
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         pername.setText(data.getName());
         db = new ParabitDBC();
         this.notifications = new PBTNotifications(data);
@@ -181,22 +186,22 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manempActionPerformed
-    PBTManageEmp manageemp = new PBTManageEmp(data,this);
+    PBTManageEmp manageemp = new PBTManageEmp(this);
     manageemp.setVisible(true);
     }//GEN-LAST:event_manempActionPerformed
 
     private void workassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workassActionPerformed
-    PBTWorkAssignDashboard dashboard = new PBTWorkAssignDashboard(data, this);
+    PBTWorkAssignDashboard dashboard = new PBTWorkAssignDashboard( this);
     dashboard.setVisible(true);
     }//GEN-LAST:event_workassActionPerformed
 
     private void notifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifyActionPerformed
-    PBTSendNotification notify = new PBTSendNotification(this,data);
+    PBTSendNotification notify = new PBTSendNotification(this);
     notify.setVisible(true);
     }//GEN-LAST:event_notifyActionPerformed
 
     private void empsummActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empsummActionPerformed
-    PBTEmpSummary summary = new PBTEmpSummary(data,this,1);
+    PBTEmpSummary summary = new PBTEmpSummary(this,1);
     summary.setVisible(true);
     }//GEN-LAST:event_empsummActionPerformed
 

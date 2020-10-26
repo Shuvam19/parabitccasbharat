@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.text.DateFormatter;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTSendMessage<T> extends javax.swing.JDialog {
 
@@ -23,11 +24,15 @@ public class PBTSendMessage<T> extends javax.swing.JDialog {
     int messagetye;
     ParabitDBC db;
     
-    public PBTSendMessage(PBTDataOfEmployee data,T parent,int messagetype,String sendingceid) 
+    public PBTSendMessage(T parent,int messagetype,String sendingceid) 
     {
         super((JFrame)parent,true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         this.sendingceid = sendingceid;
         this.messagetye = messagetype;

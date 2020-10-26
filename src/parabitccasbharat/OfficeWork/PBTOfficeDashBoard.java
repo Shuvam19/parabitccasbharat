@@ -6,6 +6,7 @@
 package parabitccasbharat.OfficeWork;
 
 import Models.PBTDataOfEmployee;
+import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
@@ -18,8 +19,12 @@ public class PBTOfficeDashBoard extends javax.swing.JFrame {
     /**
      * Creates new form PBTOfficeDashBoard
      */
-    public PBTOfficeDashBoard(PBTDataOfEmployee data) {
-        this.data = data;
+    public PBTOfficeDashBoard() {
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         initComponents();
         switch (data.getGrade()) {
             case 1:
@@ -128,25 +133,25 @@ public class PBTOfficeDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargeActionPerformed
-        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard(data);
+        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard();
         this.dispose();
         dashboard.setVisible(true);
     }//GEN-LAST:event_chargeActionPerformed
 
     private void commissonerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commissonerActionPerformed
-        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard(data);
+        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard();
         this.dispose();
         dashboard.setVisible(true);
     }//GEN-LAST:event_commissonerActionPerformed
 
     private void directorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_directorActionPerformed
-        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard(data);
+        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard();
         this.dispose();
         dashboard.setVisible(true);        
     }//GEN-LAST:event_directorActionPerformed
 
     private void principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalActionPerformed
-        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard(data);
+        PBTOfficeMainDashBoard dashboard = new PBTOfficeMainDashBoard();
         this.dispose();
         dashboard.setVisible(true);        
     }//GEN-LAST:event_principalActionPerformed

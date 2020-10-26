@@ -7,6 +7,7 @@ import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTTypeOfHome<T> extends javax.swing.JFrame {
 
@@ -14,10 +15,14 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
     PBTDataOfEmployee data;
     PBTHouseListingModel dataofhome;
     ParabitDBC db;
-    public PBTTypeOfHome(T parent,PBTDataOfEmployee data) {
+    public PBTTypeOfHome(T parent) {
         initComponents();
         this.parent = parent;
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.db = new ParabitDBC();
         this.dataofhome = new PBTHouseListingModel();
     }
@@ -255,7 +260,7 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
         insertIt();
         addToEnumLogin();
         String hlsno = getHlSno();
-        PBTTypeOfHouse frame = new PBTTypeOfHouse(hlsno,data);
+        PBTTypeOfHouse frame = new PBTTypeOfHouse(hlsno);
         frame.setVisible(true);
     }//GEN-LAST:event_saveproceedActionPerformed
 

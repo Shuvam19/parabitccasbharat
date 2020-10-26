@@ -4,15 +4,20 @@ import parabitccasbharat.OfficeWork.PBTAppointedEmp;
 import parabitccasbharat.OfficeWork.PBTNewAppointment;
 import parabitccasbharat.OfficeWork.PBTOfficeMainDashBoard;
 import Models.PBTDataOfEmployee;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTManageEmp extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard dashboard;
-    public PBTManageEmp(PBTDataOfEmployee data,PBTOfficeMainDashBoard dashboard) {
+    public PBTManageEmp(PBTOfficeMainDashBoard dashboard) {
         super(dashboard,true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.dashboard = dashboard;
     }
 
@@ -76,17 +81,17 @@ public class PBTManageEmp extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
-        PBTAppointedEmp appointed = new PBTAppointedEmp(data,dashboard,2);
+        PBTAppointedEmp appointed = new PBTAppointedEmp(dashboard,2);
         appointed.setVisible(true);
     }//GEN-LAST:event_transferActionPerformed
 
     private void newappointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newappointActionPerformed
-        PBTNewAppointment appoint = new PBTNewAppointment(data,dashboard);
+        PBTNewAppointment appoint = new PBTNewAppointment(dashboard);
         appoint.setVisible(true);
     }//GEN-LAST:event_newappointActionPerformed
 
     private void appointedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointedActionPerformed
-        PBTAppointedEmp appointed = new PBTAppointedEmp(data,dashboard,1);
+        PBTAppointedEmp appointed = new PBTAppointedEmp(dashboard,1);
         appointed.setVisible(true);
     }//GEN-LAST:event_appointedActionPerformed
 
