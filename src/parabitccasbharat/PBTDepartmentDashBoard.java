@@ -11,10 +11,14 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
     PBTDataOfEmployee data;
     PBTLogin login;
     
-    public PBTDepartmentDashBoard(PBTLogin login,PBTHome parent, boolean modal,PBTDataOfEmployee data) {
+    public PBTDepartmentDashBoard(PBTLogin login,PBTHome parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.login = login;
         if(data.getGrade() == 1 || data.getGrade() == 2 || data.getGrade() == 3 || data.getGrade() == 4)
         {
@@ -78,13 +82,13 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
      /*   PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(data);
         login.dispose();
         dashBoard.setVisible(true);*/
-     PBTSelectAreaForEnum select = new PBTSelectAreaForEnum(data);
+     PBTSelectAreaForEnum select = new PBTSelectAreaForEnum();
      login.dispose();
      select.setVisible(true);
     }//GEN-LAST:event_fieldActionPerformed
 
     private void officeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_officeActionPerformed
-        PBTOfficeDashBoard dashBoard = new PBTOfficeDashBoard(data);
+        PBTOfficeDashBoard dashBoard = new PBTOfficeDashBoard();
         login.dispose();
         dashBoard.setVisible(true);
     }//GEN-LAST:event_officeActionPerformed

@@ -6,7 +6,6 @@ import DB.ParabitDBC;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PBTLogin extends javax.swing.JFrame {
@@ -243,7 +242,7 @@ public class PBTLogin extends javax.swing.JFrame {
     }
 
     private void sendToNextFrameAfterLogin(ResultSet rs1) throws SQLException {
-        PBTDataOfEmployee data = getModel(rs1); 
+        PBTDataOfEmployee data = PBTCurrentEmp.addEmployee(rs1); 
         int status = rs1.getInt("status");
         int preceid = rs1.getInt("note");
         if(isEnumerator(data)){
@@ -257,23 +256,11 @@ public class PBTLogin extends javax.swing.JFrame {
             case 2:
                 switchrepceid(username,preceid);
             case 1:
-                PBTHome home = new PBTHome(this,data);
+                PBTHome home = new PBTHome(this);
                 this.setVisible(false);
                 home.setVisible(true);
                 break;
         }
-    }
-
-    private PBTDataOfEmployee getModel(ResultSet rs1) throws SQLException {
-        int grade = rs1.getInt("grade");
-        String name = rs1.getString("EmpName").trim();
-        String crepempid = rs1.getString("CRepEmpId").trim();
-        String pincode = rs1.getString("PIN");
-        String acity = rs1.getString("AreaCity");
-        String adist = rs1.getString("AreaDist");
-        String astate = rs1.getString("AreaState");
-        String Mobno = rs1.getString("EmpOffMob");
-        return new PBTDataOfEmployee(username, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
     }
 
     private boolean isEnumerator(PBTDataOfEmployee data) {

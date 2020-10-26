@@ -9,6 +9,7 @@ import DB.ParabitDBC;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTSendNotification<T> extends javax.swing.JDialog {
 
@@ -16,10 +17,14 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
     ParabitDBC db;
     T parent;
 
-    public PBTSendNotification(T parent,PBTDataOfEmployee data) {
+    public PBTSendNotification(T parent) {
         super((JFrame)parent,true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         db = new ParabitDBC();
         fetchdatanotification();
@@ -119,17 +124,17 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_individualActionPerformed
-        PBTEmpSummary sendnotification = new PBTEmpSummary(data,parent, 2);
+        PBTEmpSummary sendnotification = new PBTEmpSummary(parent, 2);
         sendnotification.setVisible(true);
     }//GEN-LAST:event_individualActionPerformed
 
     private void channelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelActionPerformed
-        PBTAppointedEmp sendnotification = new PBTAppointedEmp(data, parent, 4);
+        PBTAppointedEmp sendnotification = new PBTAppointedEmp( parent, 4);
         sendnotification.setVisible(true);
     }//GEN-LAST:event_channelActionPerformed
 
     private void generalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalActionPerformed
-        PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 3, "");
+        PBTSendMessage sendMessage = new PBTSendMessage( parent, 3, "");
         sendMessage.setVisible(true);
     }//GEN-LAST:event_generalActionPerformed
 

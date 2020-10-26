@@ -12,15 +12,20 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTNewAppointment<T> extends javax.swing.JDialog {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
-    public PBTNewAppointment(PBTDataOfEmployee data,T parent) {
+    public PBTNewAppointment(T parent) {
         super((JFrame)parent , true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         db = new ParabitDBC();
         switch (data.getGrade()) {
             case 1:fetchStates();

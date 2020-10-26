@@ -12,9 +12,8 @@ import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
@@ -26,9 +25,13 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
     List<PBTHouseHoldModel> listofpeople = new ArrayList<>();
     ParabitDBC db;
     PBTDataOfEmployee employeedata;
-    public PBTHomeDashBoard(PBTHouseListingModel model,PBTDataOfEmployee employeedata) {
+    public PBTHomeDashBoard(PBTHouseListingModel model) {
         initComponents();
-        this.employeedata = employeedata;
+        this.employeedata = PBTCurrentEmp.getEmployeeData();
+        if(this.employeedata==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.listingmodel = model;
         this.db = new ParabitDBC();
         getAllPersonFromHome();

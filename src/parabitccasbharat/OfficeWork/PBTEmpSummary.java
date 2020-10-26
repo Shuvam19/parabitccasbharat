@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 
 public class PBTEmpSummary<T> extends javax.swing.JDialog {
@@ -29,10 +30,14 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
     int whichtype;
     T parent;
     
-    public PBTEmpSummary(PBTDataOfEmployee data,T parent,int whichtype) {
+    public PBTEmpSummary(T parent,int whichtype) {
         super((JFrame)parent,true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         this.db = new ParabitDBC();
         this.whichtype = whichtype;
@@ -196,7 +201,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
                         break;
                     case 2:
                         if(whichtype == 2){
-                            PBTSendMessage sendmessage = new PBTSendMessage(data, parent, 1, ceid);
+                            PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
                             sendmessage.setVisible(true);
                             break;
                         }
@@ -230,7 +235,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
                 String ceid = childceidlist.get(row);
                 if(whichtype == 2)
                 {
-                    PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 1, ceid);
+                    PBTSendMessage sendMessage = new PBTSendMessage( parent, 1, ceid);
                     sendMessage.setVisible(true);
                 }
             }
@@ -261,7 +266,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
                     int ans = JOptionPane.showConfirmDialog(null, "Do you Want to send message to " + sendtoparent.getSelectedItem());
                     if(ans == 0)
                     {
-                        PBTSendMessage sendmessage = new PBTSendMessage(data, parent, 1, ceid);
+                        PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
                         sendmessage.setVisible(true);
                     }
                 }

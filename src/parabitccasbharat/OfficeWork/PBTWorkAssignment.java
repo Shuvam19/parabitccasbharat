@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 
 public class PBTWorkAssignment extends javax.swing.JFrame {
@@ -28,9 +29,13 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
     int statecode,distcode,subdistcode,sumofpop,extraemp=0;
     boolean isclickable = false;
     List<Integer> townlist = new ArrayList<>();
-    public PBTWorkAssignment(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent) {
+    public PBTWorkAssignment(PBTOfficeMainDashBoard parent) {
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         db = new ParabitDBC();
         selecttown.setVisible(false);

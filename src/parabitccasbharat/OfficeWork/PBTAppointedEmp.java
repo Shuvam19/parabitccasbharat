@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTAppointedEmp<T> extends javax.swing.JDialog {
 
@@ -25,11 +26,15 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
     List<PBTDataOfEmployee> listofemp = new ArrayList<>();
     DefaultTableModel model;
 
-    public PBTAppointedEmp(PBTDataOfEmployee data,T parent,int whichtype)
+    public PBTAppointedEmp(T parent,int whichtype)
     {
         super((JFrame)parent,true);
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         this.whichtype = whichtype;
         db = new ParabitDBC();
@@ -165,7 +170,7 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
                         }
                             break;
                         case 4:
-                            PBTSendMessage sendMessage = new PBTSendMessage(data, parent, 2, ceid);
+                            PBTSendMessage sendMessage = new PBTSendMessage( parent, 2, ceid);
                             sendMessage.setVisible(true);
                             break;
                     }
@@ -205,7 +210,7 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
         int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Appoint new employee for ");
         if(ans == 0)
         {
-            PBTNewAppointment<PBTOfficeMainDashBoard> newappoint = new PBTNewAppointment(data, parent);
+            PBTNewAppointment<PBTOfficeMainDashBoard> newappoint = new PBTNewAppointment( parent);
             newappoint.setVisible(true);
         }
     }
@@ -227,7 +232,7 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
                 String Mobno = db.rs2.getString("EmpOffMob");
                 //System.out.println(ceid);
                 PBTDataOfEmployee tansdata = new PBTDataOfEmployee(ceid, crepempid, name, grade, pincode, acity, adist, astate, Mobno);
-                PBTAppointedEmp replaceemp = new PBTAppointedEmp(data, parent, 3);
+                PBTAppointedEmp replaceemp = new PBTAppointedEmp( parent, 3);
                 replaceemp.initialiseData(tansdata);
                 replaceemp.model.removeRow(row);
                 replaceemp.listofemp.remove(row);

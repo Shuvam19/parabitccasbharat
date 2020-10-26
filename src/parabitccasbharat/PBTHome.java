@@ -15,10 +15,14 @@ public class PBTHome extends javax.swing.JDialog {
     
     PBTDataOfEmployee data;
     PBTLogin login;
-    public PBTHome(PBTLogin login,PBTDataOfEmployee data) {
+    public PBTHome(PBTLogin login) {
         super(login,true);
         this.login = login;
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         initComponents();
         switch (data.getGrade()) {
             case 100:
@@ -103,7 +107,7 @@ public class PBTHome extends javax.swing.JDialog {
     }//GEN-LAST:event_ministryActionPerformed
 
     private void censusdepartentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_censusdepartentActionPerformed
-    PBTDepartmentDashBoard dashBoard = new PBTDepartmentDashBoard(login,this,true,data);
+    PBTDepartmentDashBoard dashBoard = new PBTDepartmentDashBoard(login,this,true);
     this.setVisible(false);
     dashBoard.setVisible(true);
     //this.setVisible(true);

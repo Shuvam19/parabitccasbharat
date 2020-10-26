@@ -8,6 +8,7 @@ package parabitccasbharat.OfficeWork;
 import parabitccasbharat.OfficeWork.PBTAssignedEmp;
 import parabitccasbharat.OfficeWork.PBTOfficeMainDashBoard;
 import Models.PBTDataOfEmployee;
+import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
@@ -18,9 +19,13 @@ public class PBTWorkAssignDashboard extends javax.swing.JFrame {
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard parent;
     
-    public PBTWorkAssignDashboard(PBTDataOfEmployee data,PBTOfficeMainDashBoard parent) {
+    public PBTWorkAssignDashboard(PBTOfficeMainDashBoard parent) {
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.parent = parent;
         
     }
@@ -90,17 +95,17 @@ public class PBTWorkAssignDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignedActionPerformed
-        PBTAssignedEmp assignemp = new PBTAssignedEmp(data,parent,0);
+        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent,0);
         assignemp.setVisible(true);
     }//GEN-LAST:event_assignedActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    PBTWorkAssignment assignment = new PBTWorkAssignment(data, parent);
+    PBTWorkAssignment assignment = new PBTWorkAssignment( parent);
     assignment.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PBTAssignedEmp assignemp = new PBTAssignedEmp(data,parent,1);
+        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent,1);
         assignemp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

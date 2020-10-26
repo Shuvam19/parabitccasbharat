@@ -1,16 +1,21 @@
 package parabitccasbharat.FieldWork;
 
 import Models.PBTDataOfEmployee;
+import parabitccasbharat.PBTCurrentEmp;
 
 
 public class PBTNewCensus<T> extends javax.swing.JFrame {
 
     T parent;
     PBTDataOfEmployee data;
-    public PBTNewCensus(T parent,PBTDataOfEmployee data) {
+    public PBTNewCensus(T parent) {
         initComponents();
         this.parent = parent;
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -63,7 +68,7 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void houselistingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houselistingActionPerformed
-        PBTTypeOfHome newhome = new PBTTypeOfHome(parent,data);
+        PBTTypeOfHome newhome = new PBTTypeOfHome(parent);
         newhome.setVisible(true);
     }//GEN-LAST:event_houselistingActionPerformed
 

@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
@@ -31,9 +32,13 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
     PBTNotifications notify;
     List<PBTDataScheduledToEmp> arealist = new ArrayList<>();
 
-    public PBTSelectAreaForEnum(PBTDataOfEmployee data) {
+    public PBTSelectAreaForEnum() {
         initComponents();
-        this.data = data;
+        this.data = PBTCurrentEmp.getEmployeeData();
+        if(this.data==null){
+            this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
+        }
         this.db = new ParabitDBC();
         this.notify = new PBTNotifications(data);
         notify.fetchDataOfnotification(noitfications);
@@ -186,7 +191,7 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
                     int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Work in the Area " + areaname);
                     if(ans==0){
                         updateLoggedInPersonsArea(areaname);
-                        PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(data,arealist.get(row));
+                        PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(arealist.get(row));
                         dispose();
                         dashBoard.setVisible(true);
                     }
