@@ -38,6 +38,10 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         setToTable();
     }
 
+    PBTHomeDashBoard(String hlsno) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
