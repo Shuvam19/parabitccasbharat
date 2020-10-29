@@ -170,7 +170,7 @@ public class PBTTextWatchers {
     }
     
     public static boolean isValidPan(String text) {
-        Pattern pattern = Pattern.compile("^[1-9]{1}[0-9]{4}[A-Za-z]{4}[0-9]{1}");
+        Pattern pattern = Pattern.compile("^[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }

@@ -25,6 +25,11 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
         }
         this.db = new ParabitDBC();
         model.getFromhlsno(Integer.parseInt(hlsno));
+        if(model.getTypeofhouse()==0){
+            PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
+            dashboard.setVisible(true);
+            this.dispose();
+        }
         initComponents();
         getAllFields();
     }
@@ -153,7 +158,7 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
         }
     }
 
-    private String getTable() {
+    private String getTable(){
         switch(model.getUseofhouse()){
             case "1": return "typeofhouse";
             case "2": return "typeofhouse";
@@ -162,7 +167,7 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
             case "5": return "typeofhouse";
             case "6": return "typeofhouse";
             case "7": return "typeofhouse";
-            case "8": return "typeofhouse";
+            case "8": return "placeofworship";
             case "9": return "typeofhouse";
             default : return "typeofhouse";
         }
