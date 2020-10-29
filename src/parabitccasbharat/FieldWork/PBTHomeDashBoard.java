@@ -13,13 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.FieldWork.PBTPersonInfoDashBoard.UpdateList;
 import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
  * @author acer
  */
-public class PBTHomeDashBoard extends javax.swing.JFrame {
+public class PBTHomeDashBoard extends javax.swing.JFrame implements UpdateList{
 
     PBTHouseListingModel listingmodel;
     List<PBTHouseHoldModel> listofpeople = new ArrayList<>();
@@ -53,7 +54,7 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         exitwithsave = new javax.swing.JButton();
         addnewmember = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         familyinformation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -155,6 +156,7 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
 
     private void addnewmemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewmemberActionPerformed
         PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(new PBTHouseHoldModel(),listingmodel);
+        dashboard.setUpdate(this);
         dashboard.setVisible(true);
     }//GEN-LAST:event_addnewmemberActionPerformed
 
@@ -287,5 +289,11 @@ public class PBTHomeDashBoard extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void updateList(PBTHouseHoldModel model) {
+        listofpeople.add(model);
+        setToTable();
     }
 }
