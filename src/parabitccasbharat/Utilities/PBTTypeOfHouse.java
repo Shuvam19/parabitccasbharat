@@ -25,11 +25,18 @@ public class PBTTypeOfHouse extends javax.swing.JFrame {
         }
         this.db = new ParabitDBC();
         model.getFromhlsno(Integer.parseInt(hlsno));
-        if(model.getTypeofhouse()==0){
-            PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
-            dashboard.setVisible(true);
+        initComponents();
+        getAllFields();
+    }
+    
+        public PBTTypeOfHouse(PBTHouseListingModel model) {
+        this.employeedata = PBTCurrentEmp.getEmployeeData();
+        if(this.employeedata==null){
             this.dispose();
+            PBTCurrentEmp.newLoginEmployee();
         }
+        this.db = new ParabitDBC();
+        this.model = model;
         initComponents();
         getAllFields();
     }

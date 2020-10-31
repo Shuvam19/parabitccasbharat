@@ -3,6 +3,7 @@ package parabitccasbharat.FieldWork;
 
 import DB.ParabitDBC;
 import Models.PBTDataOfEmployee;
+import Models.PBTHouseListingModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +94,16 @@ public class PBTIncompleteCensus extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int rowOfTable = jTable1.rowAtPoint(evt.getPoint());
         String hlsno = listOfIncompHLID.get(rowOfTable);
-        PBTTypeOfHouse frame = new PBTTypeOfHouse(hlsno);
+        PBTHouseListingModel model = new PBTHouseListingModel();
+        model.getFromhlsno(Integer.parseInt(hlsno));
+        if(model.getTypeofhouse()==3){
+            PBTHomeDashBoard dashboard = new PBTHomeDashBoard(model);
+            dashboard.setVisible(true);
+            this.dispose();
+        }else{
+        PBTTypeOfHouse frame = new PBTTypeOfHouse(model);
         frame.setVisible(true);
+        }
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
