@@ -337,6 +337,7 @@ public class PBTTypeOfHome<T> extends javax.swing.JFrame {
         if(placeofworship.isSelected()){
             dataofhome.setUseofhouse("8");
         }
+        dataofhome.setEmpenumno(data.getCeid());
     }
 
     private void insertIt() {

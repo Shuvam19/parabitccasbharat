@@ -320,7 +320,7 @@ public class PBTHouseListDashboard extends javax.swing.JFrame {
 
     private void addTextWatchers() {
         textwatcher.addNumberTextWatcher(wardno, updatemap, "Wardno");
-        textwatcher.addNameTextWatcher(townvillage, updatemap, "Wardno");
+        textwatcher.addNameTextWatcher(townvillage, updatemap, "TownVillage");
         textwatcher.addNameTextWatcher(tehsil, updatemap, "Tehsil");
         textwatcher.addNameTextWatcher(state, updatemap, "Stut");
         textwatcher.addNumberTextWatcher(pincode, updatemap, "Pincode");
