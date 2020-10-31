@@ -620,7 +620,7 @@ public class PBTWorkDetailsFrame<T> extends javax.swing.JDialog {
     }
 
     private void addTextWatchers() {
-        textWatchers.addNameTextWatcher(bussregno,updatemap,"busiregno");
+        textWatchers.addNumberTextWatcher(bussregno,updatemap,"busiregno");
         textWatchers.addNumberTextWatcher(distfromwork,updatemap,"distfrmworkplace");
         textWatchers.addNumberTextWatcher(income,updatemap,"income");
         textWatchers.addNumberTextWatcher(icsno,updatemap,"Icsno");
@@ -628,7 +628,7 @@ public class PBTWorkDetailsFrame<T> extends javax.swing.JDialog {
         textWatchers.addNameTextWatcher(occupation,updatemap,"occupation");
         textWatchers.addNameTextWatcher(specdiscip,updatemap,"specdescription");
         textWatchers.addNameTextWatcher(specexp,updatemap,"specexp");
-        textWatchers.addNameTextWatcher(workexp,updatemap,"workexp");
+        textWatchers.addNumberTextWatcher(workexp,updatemap,"workexp");
         textWatchers.addNameTextWatcher(proflicno,updatemap,"Proflicno");
         textWatchers.addYesNolistener(itryes,itrno,updatemap,"Itr");
         textWatchers.addYesNolistener(jobseekyes,jobseekno,updatemap,"Jobseek");

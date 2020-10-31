@@ -629,7 +629,9 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
                  String proflicno;
                  String busiregno;
                  String income = db2.rs1.getString("itr.total_income");
-                 persondata.setIncome(Integer.parseInt(income));
+                 if(income!=null && !income.isEmpty()){
+                     persondata.setIncome(Integer.parseInt(income));
+                 }
                  String itr;/////database me nhi mila ye wala
             }
             //System.out.println(persondata.toString());
