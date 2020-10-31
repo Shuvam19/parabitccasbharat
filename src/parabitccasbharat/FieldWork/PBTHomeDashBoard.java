@@ -155,7 +155,9 @@ public class PBTHomeDashBoard extends javax.swing.JFrame implements UpdateList{
     }//GEN-LAST:event_familyinformationMouseClicked
 
     private void addnewmemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewmemberActionPerformed
-        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(new PBTHouseHoldModel(),listingmodel);
+        PBTHouseHoldModel model = new PBTHouseHoldModel();
+        model.setEmpenumno(employeedata.getCeid());
+        PBTPersonInfoDashBoard dashboard = new PBTPersonInfoDashBoard(model,listingmodel);
         dashboard.setUpdate(this);
         dashboard.setVisible(true);
     }//GEN-LAST:event_addnewmemberActionPerformed

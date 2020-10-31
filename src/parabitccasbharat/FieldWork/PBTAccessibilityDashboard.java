@@ -461,6 +461,7 @@ public class PBTAccessibilityDashboard<T> extends javax.swing.JDialog {
         textwathers.addNumberTextWatcher(privatesecguard, updatemap, "Privatesecurityguard");
         textwathers.addYesNolistener(bulalarmyes, bulalarmno, updatemap, "Burglaralarm");
         textwathers.addNumberTextWatcher(fireextinguisher, updatemap, "Fireextinguisher");
+        textwathers.addIpAdressTextWatcher(ipadress, updatemap, "Cctvipadress");
     }
 
     private void getAllInformation() {

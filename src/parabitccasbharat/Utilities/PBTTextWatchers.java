@@ -157,6 +157,35 @@ public class PBTTextWatchers {
         });
     }
     
+    public void addIpAdressTextWatcher(JTextField field,HashMap<String,Object> map,String key){
+        field.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if(isIpAdress(field.getText())){
+                    showRight(field);
+                } else {
+                    showError(field);
+                }
+                map.put(key, field.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                if(isNumerical(field.getText())){
+                    showRight(field);
+                } else {
+                    showError(field);
+                }
+                map.put(key, field.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+        });
+    }
+    
     public static boolean isNumerical(String text) {
         Pattern pattern = Pattern.compile("^[0-9]\\d*");
         Matcher matcher = pattern.matcher(text);
@@ -185,6 +214,17 @@ public class PBTTextWatchers {
         Pattern pattern = Pattern.compile("^.[^@]*@.[^\\.]*\\..*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
+    }
+    
+    public static boolean isIpAdress(String text) {
+        Pattern pattern = Pattern.compile(regexOfIpAdress());
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
+    }
+    
+    private static String regexOfIpAdress() {
+        String zeroTo255=  "[0-2]{1}[0-5]{1}[0-5]{1}";
+        return zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255 + "\\." + zeroTo255;
     }
     
     public static void showError(JTextField textarea){
