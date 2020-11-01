@@ -7,6 +7,7 @@ package parabitccasbharat;
 
 import DB.ParabitDBC;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,12 +18,19 @@ import java.util.logging.Logger;
 public class savingtime {
     
     public static void main(String[] args) {
-        String table[] = {"useofhouse","tv","tvsig","coolheatfact","pc","telebroadband","phone","typesofgeneticdisease"};
-        String table2[] = {"Accessof_l","Typeof_l","Bathfact","Kitchen","Cookfuel"};
-        for(int i=0;i<table2.length;i++){
-            solve(table[i]);
-            //solve2(table2[i]);
+        Scanner sc = new Scanner(System.in);
+        for(int i=0;i<12;i++){
+            String s = sc.nextLine();
+            String[] arr = s.split(" ");
+            String ans = "case \"" + arr[3] + "\" : return " + arr[5];
+            System.out.println(ans);
         }
+//        String table[] = {"useofhouse","tv","tvsig","coolheatfact","pc","telebroadband","phone","typesofgeneticdisease"};
+//        String table2[] = {"Accessof_l","Typeof_l","Bathfact","Kitchen","Cookfuel"};
+//        for(int i=0;i<table2.length;i++){
+//            solve(table[i]);
+//            //solve2(table2[i]);
+//        }
     }
     public static void solve(String table){
         ParabitDBC db = new ParabitDBC();
