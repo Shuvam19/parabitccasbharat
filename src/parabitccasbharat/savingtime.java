@@ -5,33 +5,71 @@
  */
 package parabitccasbharat;
 
-import DB.ParabitDBC;
-import java.sql.SQLException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author acer
  */
 public class savingtime {
-    
+//    static int arr[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+//    public static void main(String[] args) {
+//        int totExtra = 0;
+//        for(int i=1900;i<=1999;i++){
+//            for(int j=0;j<12;j++){
+//                int extra = 0;
+//                if(j==2){
+//                    if(i%4==0){
+//                        extra = 29 % 7;
+//                    }else{
+//                        extra = arr[j] % 7;
+//                    }
+//                }else{
+//                    extra =  arr[j] % 7;
+//                }
+//                totExtra += extra; 
+//            }
+//        }
+//        totExtra %= totExtra % 7;
+//        System.out.println(getDay(totExtra));
+//    }
+//    static String getDay(int day){
+//        switch(day){
+//            case 0: return "Monday";
+//            case 1: return "Tuesday";
+//            case 2: return "Wednesday";
+//            case 3: return "Thrusday";
+//            case 4: return "Friday";
+//            case 5: return "Saturday";
+//            default : return "Sunday";
+//        }
+//    }
+}
+/*{
+    static int arr[];
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        for(int i=0;i<12;i++){
-            String s = sc.nextLine();
-            String[] arr = s.split(" ");
-            String ans = "case \"" + arr[3] + "\" : return " + arr[5];
-            System.out.println(ans);
+        int sum = 0;
+        arr = new int[1000000];
+        for(int i = 0;i<1000000;i++){
+            if(isPrime(i)){
+                if(sum+i>1000000){
+                    break;
+                }
+                sum+=i;
+            }
         }
+        System.out.println(sum);
+    }
+//        for(int i=0;i<12;i++){
+//            String s = sc.nextLine();
+//            String[] arr = s.split(" ");
+//            String ans = "case \"" + arr[3] + "\" : return " + arr[5];
+//            System.out.println(ans);
+//        }
 //        String table[] = {"useofhouse","tv","tvsig","coolheatfact","pc","telebroadband","phone","typesofgeneticdisease"};
 //        String table2[] = {"Accessof_l","Typeof_l","Bathfact","Kitchen","Cookfuel"};
 //        for(int i=0;i<table2.length;i++){
 //            solve(table[i]);
 //            //solve2(table2[i]);
 //        }
-    }
     public static void solve(String table){
         ParabitDBC db = new ParabitDBC();
         String query = "Select * From `" + table + "`";
@@ -62,5 +100,20 @@ public class savingtime {
 "        updatemap.put(\"" + s+ "\", houselistingdata.get" +s + "());";
         System.out.println(s2);
     }
+
+    private static boolean isPrime(int n) {
+        if(n==0 || n== 1){
+            return true;
+        }
+        if(arr[n]!=-1){
+            return true;
+        }
+      for(int i=2;i<=Math.sqrt(n-1);i++){  
+       if(n%i==0){    
+        return false;            
+       }      
+      }
+      return true;
+    }
     
-}
+}*/

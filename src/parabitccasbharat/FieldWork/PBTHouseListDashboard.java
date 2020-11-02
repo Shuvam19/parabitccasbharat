@@ -6,6 +6,7 @@ import Models.PBTHouseListingModel;
 import parabitccasbharat.Utilities.PBTTextWatchers;
 import parabitccasbharat.Utilities.PBTUtilities;
 import java.util.HashMap;
+import parabitccasbharat.Utilities.PBTOwnershipStatus;
 
 
 public class PBTHouseListDashboard extends javax.swing.JFrame {
@@ -252,10 +253,14 @@ public class PBTHouseListDashboard extends javax.swing.JFrame {
         houselistingdata.update(houselistingdata.toUpdateQuery(updatemap));
         houselistingdata.getFromhlsno(houselistingdata.getHl_sno());
         System.out.println(houselistingdata.toString());
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        PBTOwnershipStatus frame = new PBTOwnershipStatus(houselistingdata, this);
+        frame.setVisible(true);
+        ownership.setText(PBTUtilities.getOwspStOfHouse(houselistingdata.getOwspofhouse()));
+        updatemap.put("OwspOfHouse", houselistingdata.getOwspofhouse());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
