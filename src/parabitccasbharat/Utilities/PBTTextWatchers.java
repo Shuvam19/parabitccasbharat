@@ -187,7 +187,7 @@ public class PBTTextWatchers {
     }
     
     public static boolean isNumerical(String text) {
-        Pattern pattern = Pattern.compile("^[0-9]\\d*");
+        Pattern pattern = Pattern.compile("^[0-9.]*");
         Matcher matcher = pattern.matcher(text);
         return matcher.matches();
     }
