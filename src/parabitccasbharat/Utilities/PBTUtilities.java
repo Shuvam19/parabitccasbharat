@@ -1,6 +1,18 @@
 package parabitccasbharat.Utilities;
 
+import DB.ParabitDBC;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class PBTUtilities {
+    //Instance Variables
+    static ParabitDBC db = new ParabitDBC();
+    
+    //Array 
+    static List<String> bicycleDetails;
 
     public static String getReligion(String religion) {
         switch(religion){
@@ -471,6 +483,31 @@ public class PBTUtilities {
             case "3": return "Widowed";
             case "4": return "Separated";
             default : return "Divorced";
+        }
+    }
+    
+    public static String getBicycle(int bicycle){
+        if(isNull(bicycleDetails)){
+            bicycleDetails = new ArrayList<>();
+            addDataInArray(bicycleDetails,"typesofbicycle");
+        }
+        return bicycleDetails.get(bicycle);
+    }
+
+    private static boolean isNull(List<String> arrayList) {
+        return arrayList == null;
+    }
+
+    private static void addDataInArray(List<String> arrayList, String tablename) {
+        String query = "SELECT * FROM " + tablename;
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            int next = 0;
+            while (db.rs1.next()) {
+                arrayList.add(db.rs1.getString(2));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }

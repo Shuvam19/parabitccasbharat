@@ -5,7 +5,13 @@
  */
 package parabitccasbharat.Utilities;
 
+import DB.ParabitDBC;
+import Models.PBTHouseListingModel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,9 +22,14 @@ public class PBTBicyle<T> extends javax.swing.JDialog {
     /**
      * Creates new form PBTBicyle
      */
-    public PBTBicyle(T parent) {
+    ParabitDBC db ;
+    PBTHouseListingModel persondata;
+    public PBTBicyle(T parent,PBTHouseListingModel persondata) {
         super((JDialog)parent,true);
+        this.persondata = persondata;
         initComponents();
+        db = new ParabitDBC();
+        setTableDetails();
     }
 
     /**
@@ -30,22 +41,52 @@ public class PBTBicyle<T> extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bycyle Details"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        persondata.setBicycle(row);
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -83,5 +124,22 @@ public class PBTBicyle<T> extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void setTableDetails() {
+        String query = "SELECT * FROM typesofbicycle";
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            while(db.rs1.next()){
+                Object row[] = {db.rs1.getString(2)};
+                model.addRow(row);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

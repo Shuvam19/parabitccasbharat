@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ *z
  * @author acer
  */
 public class PBTCurrentEmp {

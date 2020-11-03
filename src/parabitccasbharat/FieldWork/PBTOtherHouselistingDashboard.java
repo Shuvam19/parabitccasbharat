@@ -4,6 +4,7 @@ import Models.PBTHouseListingModel;
 import parabitccasbharat.Utilities.PBTTextWatchers;
 import java.util.HashMap;
 import javax.swing.JFrame;
+import parabitccasbharat.Utilities.PBTBicyle;
 import parabitccasbharat.Utilities.PBTCoolingHeatFacility;
 import parabitccasbharat.Utilities.PBTMobilePhone;
 import parabitccasbharat.Utilities.PBTNumerical;
@@ -469,7 +470,10 @@ public class PBTOtherHouselistingDashboard<T> extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        
+        PBTBicyle frame = new PBTBicyle(this, houselistingdata);
+        frame.setVisible(true);
+        bicycle.setText(PBTUtilities.getBicycle(houselistingdata.getBicycle()));
+        updatemap.put("Bicycle",houselistingdata.getBicycle());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void fmyesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fmyesActionPerformed
@@ -625,7 +629,7 @@ public class PBTOtherHouselistingDashboard<T> extends javax.swing.JDialog {
             mobilephone.setText(PBTUtilities.getPhone(houselistingdata.getMob()));
         }
         if(houselistingdata.getBicycle()!=0){
-            //bicycle.setText("" + houselistingdata.getBicycle());
+            bicycle.setText(PBTUtilities.getBicycle(houselistingdata.getBicycle()));
         }
         if(houselistingdata.getR2wheel()!=0){
             r2wheel.setText("" + houselistingdata.getR2wheel());
