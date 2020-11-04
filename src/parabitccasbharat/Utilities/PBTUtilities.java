@@ -13,6 +13,8 @@ public class PBTUtilities {
     
     //Array 
     static List<String> bicycleDetails;
+    static List<String> domesticAnimalDetails;
+    static List<String> petAnimalDetails;
 
     public static String getReligion(String religion) {
         switch(religion){
@@ -509,5 +511,21 @@ public class PBTUtilities {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    public static String getDomesticAnimals(int bicycle){
+        if(isNull(domesticAnimalDetails)){
+            domesticAnimalDetails = new ArrayList<>();
+            addDataInArray(domesticAnimalDetails,"domesticanimal");
+        }
+        return bicycleDetails.get(bicycle);
+    }
+    
+    public static String getPetAniamls(int bicycle){
+        if(isNull(petAnimalDetails)){
+            petAnimalDetails = new ArrayList<>();
+            addDataInArray(petAnimalDetails,"petanimal");
+        }
+        return bicycleDetails.get(bicycle);
     }
 }
