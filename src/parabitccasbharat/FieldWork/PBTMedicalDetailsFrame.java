@@ -548,16 +548,20 @@ public class PBTMedicalDetailsFrame<T> extends javax.swing.JDialog {
         PBTConverter frame = new PBTConverter(PBTConverter.LENGTH,"meter",this);
         frame.setVisible(true);
         String ans = frame.getAns();
-        height.setText(ans);
-        updatemap.put("ht", ans);
+        if(!ans.isEmpty()){
+            height.setText(ans);
+            updatemap.put("ht", ans);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         PBTConverter frame = new PBTConverter(PBTConverter.WEIGHT,"kilogram",this);
         frame.setVisible(true);
         String ans = frame.getAns();
-        weight.setText(ans);
-        updatemap.put("wt", ans);
+        if(!ans.isEmpty()){
+            weight.setText(ans);
+            updatemap.put("wt", ans);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
