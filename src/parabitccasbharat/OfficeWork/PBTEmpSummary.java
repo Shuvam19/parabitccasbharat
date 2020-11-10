@@ -41,7 +41,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         this.parent = parent;
         this.db = new ParabitDBC();
         this.whichtype = whichtype;
-        String query = "SELECT * FROM `PBTEmployeeTable2` WHERE grade = " + (data.getGrade()+1) + " and status = 1";
+        String query = "SELECT * FROM `PBTEmployeeTable2` as a JOIN `pbtempschecdule` as b ON a.CEID = b.CEID WHERE a.grade = " + (data.getGrade()+1) + " and a.status = 1";
         switch(whichtype)
         {
             case 1:sendtoparent.setVisible(false);
@@ -168,18 +168,18 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
             {
-                String name = db.rs1.getString("EmpName");
-                String mobno = db.rs1.getString("EmpMob");
-                String ceid = db.rs1.getString("CEID");
+                String name = db.rs1.getString("a.EmpName");
+                String mobno = db.rs1.getString("a.EmpMob");
+                String ceid = db.rs1.getString("a.CEID");
                 if(whattype == 1)
                     ceidlist.add(ceid);
                 else
                     childceidlist.add(ceid);
-                String workd = "0";
-                String worka = "0";
+                String workd = db.rs1.getString("b.workdone");
+                String worka = db.rs1.getString("b.totalres");
                 String workp = "0";
                 String nores = "0";
-                Object row[] = {name, mobno, workd, workp, worka, nores};
+                Object row[] = {name, mobno, workd, worka, workp, nores};
                 model.addRow(row);
             }
         } catch (SQLException ex) {
@@ -196,7 +196,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
                 switch(e.getClickCount())
                 {
                     case 1:
-                        String query = "SELECT * FROM `PBTEmployeeTable2` WHERE CRepEmpId = '" + ceid + "' and status = 1";
+                        String query = "SELECT * FROM `PBTEmployeeTable2` as a JOIN `pbtempschecdule` as b ON a.CEID = b.CEID WHERE a.CRepEmpId = '" + ceid + "' and a.status = 1";
                         fetchdatatable(juniouremp, query,2);
                         break;
                     case 2:
