@@ -228,4 +228,5 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     private javax.swing.JTable tablenotify;
     private javax.swing.JButton workass;
     // End of variables declaration//GEN-END:variables
+
 }

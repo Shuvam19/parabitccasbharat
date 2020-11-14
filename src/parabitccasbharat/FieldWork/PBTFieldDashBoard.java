@@ -5,9 +5,12 @@ import DB.ParabitDBC;
 import java.sql.SQLException;
 import Models.PBTDataOfEmployee;
 import Models.PBTDataScheduledToEmp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import parabitccasbharat.OfficeWork.PBTNotifications;
 import parabitccasbharat.OfficeWork.PBTSendNotification;
 import parabitccasbharat.PBTCurrentEmp;
+import parabitccasbharat.PBTLogin;
 
 
 public class PBTFieldDashBoard extends javax.swing.JFrame {
@@ -52,6 +55,7 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         notifications = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +127,13 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
             notifications.getColumnModel().getColumn(4).setMaxWidth(250);
         }
 
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,10 +145,6 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(empname, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,7 +160,13 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
-                                        .addComponent(hhcompleted))))
+                                        .addComponent(hhcompleted))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(empname, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(95, 95, 95)
                                 .addComponent(newcensus, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,17 +174,18 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
                                 .addComponent(incompcensus)
                                 .addGap(103, 103, 103)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 142, Short.MAX_VALUE))
+                        .addGap(52, 52, 52))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(empname))
+                    .addComponent(empname)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -193,7 +207,7 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
                     .addComponent(newcensus, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(incompcensus, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -217,6 +231,12 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_incompcensusActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        logoutUser();
+        new PBTLogin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
 
 
@@ -224,6 +244,7 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel empname;
     private javax.swing.JLabel hhcompleted;
     private javax.swing.JButton incompcensus;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -246,5 +267,14 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         popremaining.setText(" " + remaining);
         String noofhh = "0";
         hhcompleted.setText(noofhh);
+    }
+
+    private void logoutUser() {
+        String query = "UPDATE `pbtempdailylog` SET LogOutTime = NOW() WHERE CEID = '" + data.getCeid() + "' AND LogOutTime IS NULL;";
+        try {
+            db.stm.execute(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

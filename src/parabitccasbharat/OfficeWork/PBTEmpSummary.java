@@ -177,7 +177,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
                     childceidlist.add(ceid);
                 String workd = db.rs1.getString("b.workdone");
                 String worka = db.rs1.getString("b.totalres");
-                String workp = "0";
+                String workp = "" + (Long.parseLong(worka) - Long.parseLong(worka));
                 String nores = "0";
                 Object row[] = {name, mobno, workd, worka, workp, nores};
                 model.addRow(row);
