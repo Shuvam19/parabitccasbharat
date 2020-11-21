@@ -731,10 +731,10 @@ public class PBTOtherHouselistingDashboard<T> extends javax.swing.JDialog {
             String tvArr[] = arr[i].split("-");
             switch(typeOfnimal){
                 case DOMESTIC_ANIMAL :
-                    ans = ans + " " + PBTUtilities.getDomesticAnimal(tvArr[0]) + "-" + tvArr[1] + ",";
+                    ans = ans + " " + PBTUtilities.getDomesticAnimals(tvArr[0]) + "-" + tvArr[1] + ",";
                     break;
                 case PET_ANIMAL :
-                    ans = ans + " " + PBTUtilities.getPetAnimal(tvArr[0]) + "-" + tvArr[1] + ",";
+                    ans = ans + " " + PBTUtilities.getPetAniamls(tvArr[0]) + "-" + tvArr[1] + ",";
                     break;
             }
         }

@@ -286,20 +286,20 @@ public class PBTUtilities {
         return bicycleDetails.get(bicycle);
     }
     
-    public static String getDomesticAnimals(int animal){
+    public static String getDomesticAnimals(String animal){
         if(isNull(domesticAnimalDetails)){
             domesticAnimalDetails = new ArrayList<>();
             addDataInArray(domesticAnimalDetails,"domesticanimal");
         }
-        return bicycleDetails.get(animal);
+        return bicycleDetails.get(Integer.parseInt(animal));
     }
     
-    public static String getPetAniamls(int petanimal){
+    public static String getPetAniamls(String petanimal){
         if(isNull(petAnimalDetails)){
             petAnimalDetails = new ArrayList<>();
             addDataInArray(petAnimalDetails,"petanimal");
         }
-        return bicycleDetails.get(petanimal);
+        return bicycleDetails.get(Integer.parseInt(petanimal));
     }
 
     private static boolean isNull(List<String> arrayList) {
