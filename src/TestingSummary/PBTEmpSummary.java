@@ -18,7 +18,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
      */
     public PBTEmpSummary() {
         initComponents();
-        JPanel panel = new SexRatioPanel();
+        JPanel panel = new PieChartPanel("pbtcensus_household", "BGroup");
         jPanel1.add(panel);
         pack();
     }

@@ -80,7 +80,6 @@ public class SexRatioPanel extends javax.swing.JPanel {
 
     private void designChart() {
         chartplot.setBackgroundAlpha(0);
-        chartplot.setSectionOutlinesVisible(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
