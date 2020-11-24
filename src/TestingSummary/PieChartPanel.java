@@ -21,14 +21,20 @@ import org.jfree.data.general.DefaultPieDataset;
 public class PieChartPanel extends javax.swing.JPanel {
     private static final ParabitDBC db = new ParabitDBC();
     private static final DefaultPieDataset piedataset = new DefaultPieDataset();
+    private static ItemName namefunction;
     private PiePlot chartplot;
     
     private String tableName;
     private String columnName;
     
-    public PieChartPanel(String tableName,String columnName) {
+    public interface ItemName{
+        public String getName(String index);
+    }
+    
+    public PieChartPanel(String tableName,String columnName,ItemName namefunction) {
         this.tableName = tableName;
         this.columnName = columnName;
+        this.namefunction = namefunction;
         initEverything();
     }
 
@@ -65,13 +71,14 @@ public class PieChartPanel extends javax.swing.JPanel {
     private void addValuesOfDB() {
         piedataset.clear();
         String query = getQuery();
+        System.out.println(query);
         try {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next()){
                 String key = db.rs1.getString(1);
                 Long count = db.rs1.getLong(2);
                 if(key != null && !key.isEmpty()){
-                    piedataset.setValue( key , count );
+                    piedataset.setValue( namefunction.getName(key) , count );
                 }
             }
         } catch (SQLException ex) {
@@ -82,7 +89,7 @@ public class PieChartPanel extends javax.swing.JPanel {
     private void designChart() {
         chartplot.setBackgroundAlpha(0);
     }
-
+    
     private String getQuery() {
         return "SELECT " + columnName + ", count(*) FROM " + tableName + " GROUP BY " + columnName;
     }

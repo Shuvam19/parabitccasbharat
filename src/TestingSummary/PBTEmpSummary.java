@@ -6,6 +6,7 @@
 package TestingSummary;
 
 import javax.swing.JPanel;
+import parabitccasbharat.Utilities.PBTUtilities;
 
 /**
  *
@@ -18,7 +19,12 @@ public class PBTEmpSummary extends javax.swing.JFrame {
      */
     public PBTEmpSummary() {
         initComponents();
-        JPanel panel = new PieChartPanel("pbtcensus_household", "BGroup");
+        PieChartPanel panel = new PieChartPanel("pbtcensus_household", "BGroup",new PieChartPanel.ItemName() {
+            @Override
+            public String getName(String index) {
+                return PBTUtilities.getBloodGroup(index);
+            }
+        });
         jPanel1.add(panel);
         pack();
     }

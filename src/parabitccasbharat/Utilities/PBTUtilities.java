@@ -51,7 +51,7 @@ public class PBTUtilities {
             religionDetails = new ArrayList<>();
             addDataInArray(religionDetails,"typeofreligion");
         }
-        return bicycleDetails.get(Integer.parseInt(religion));
+        return bicycleDetails.get(Integer.parseInt(religion) - 1);
     }
 
     public static String getCategory(String category) {
@@ -59,7 +59,7 @@ public class PBTUtilities {
             categoryDetails = new ArrayList<>();
             addDataInArray(categoryDetails, "workcategory");
         }
-        return categoryDetails.get(Integer.parseInt(category));
+        return categoryDetails.get(Integer.parseInt(category) - 1);
     }
 
     public static String getBloodGroup(String bgroup) {
@@ -67,7 +67,7 @@ public class PBTUtilities {
             bloodGroupDetails = new ArrayList<>();
             addDataInArray(bloodGroupDetails, "bloodgroup");
         }
-        return bloodGroupDetails.get(Integer.parseInt(bgroup));
+        return bloodGroupDetails.get(Integer.parseInt(bgroup) - 1);
     }
 
     public static String getCEduStatus(String cedustatus) {
@@ -75,7 +75,7 @@ public class PBTUtilities {
             cEducationDetails = new ArrayList<>();
             addDataInArray(cEducationDetails, "cedustatus");
         }
-        return cEducationDetails.get(Integer.parseInt(cedustatus));
+        return cEducationDetails.get(Integer.parseInt(cedustatus) - 1);
     }
 
     public static String getWorkSector(int workingsector) {
@@ -83,7 +83,7 @@ public class PBTUtilities {
             workSectorDetails = new ArrayList<>();
             addDataInArray(workSectorDetails, "workingsector");
         }
-        return workSectorDetails.get(workingsector);
+        return workSectorDetails.get(workingsector - 1);
     }
 
     public static String getNatureWork(int natureofwork) {
@@ -91,7 +91,7 @@ public class PBTUtilities {
             natureOfWorkDetails = new ArrayList<>();
             addDataInArray(natureOfWorkDetails, "natureofwork");
         }
-        return natureOfWorkDetails.get(natureofwork);
+        return natureOfWorkDetails.get(natureofwork - 1);
     }
 
     public static String getModOfTravel(String modoftravel) {
@@ -99,7 +99,7 @@ public class PBTUtilities {
             modeOfTravelDetails = new ArrayList<>();
             addDataInArray(modeOfTravelDetails, "modoftravel");
         }
-        return modeOfTravelDetails.get(Integer.parseInt(modoftravel));
+        return modeOfTravelDetails.get(Integer.parseInt(modoftravel) - 1);
     }
     
     public static String getOwspStOfHouse(int owspstofhouse) {
@@ -107,7 +107,7 @@ public class PBTUtilities {
             ownerShipDetails = new ArrayList<>();
             addDataInArray(ownerShipDetails, "owspstofhouse");
         }
-        return ownerShipDetails.get(owspstofhouse);
+        return ownerShipDetails.get(owspstofhouse - 1);
     }
     
     public static String getTypesofchronicdisease(String typesofchronicdisease) {
@@ -115,7 +115,7 @@ public class PBTUtilities {
             chronicDiseaseDetails = new ArrayList<>();
             addDataInArray(chronicDiseaseDetails, "typesofchronicdisease");
         }
-        return chronicDiseaseDetails.get(Integer.parseInt(typesofchronicdisease));
+        return chronicDiseaseDetails.get(Integer.parseInt(typesofchronicdisease) - 1);
     }
     
     public static String getRoof(int roof) {
@@ -123,7 +123,7 @@ public class PBTUtilities {
             roofDetails = new ArrayList<>();
             addDataInArray(roofDetails, "roof");
         }
-        return roofDetails.get(roof);
+        return roofDetails.get(roof - 1);
     }
    
     public static String getWall(int wall) {
@@ -131,7 +131,7 @@ public class PBTUtilities {
             wallDetails = new ArrayList<>();
             addDataInArray(wallDetails, "wall");
         }
-        return wallDetails.get(wall);
+        return wallDetails.get(wall - 1);
     }
     
     public static String getFloor(int floor) {
@@ -139,7 +139,7 @@ public class PBTUtilities {
             floorDetails = new ArrayList<>();
             addDataInArray(floorDetails, "floor");
         }
-        return floorDetails.get(floor);
+        return floorDetails.get(floor - 1);
     }
     
     public static String getCndtOfHouse(String cndtofhouse) {
@@ -147,7 +147,7 @@ public class PBTUtilities {
             houseCondDetails = new ArrayList<>();
             addDataInArray(houseCondDetails, "cndtofhouse");
         }
-        return houseCondDetails.get(Integer.parseInt(cndtofhouse));
+        return houseCondDetails.get(Integer.parseInt(cndtofhouse) - 1);
     }
     
     public static String getMainSrcDrWater(String mainsrcdrwater) {
@@ -155,7 +155,7 @@ public class PBTUtilities {
             drinkingWaterDetails = new ArrayList<>();
             addDataInArray(drinkingWaterDetails, "mainsrcdrwater");
         }
-        return drinkingWaterDetails.get(Integer.parseInt(mainsrcdrwater));
+        return drinkingWaterDetails.get(Integer.parseInt(mainsrcdrwater) - 1);
     }
     
     public static String getLight_source(String light_source) {
@@ -163,7 +163,7 @@ public class PBTUtilities {
             lightSourceDetails = new ArrayList<>();
             addDataInArray(lightSourceDetails, "light_source");
         }
-        return lightSourceDetails.get(Integer.parseInt(light_source));
+        return lightSourceDetails.get(Integer.parseInt(light_source) - 1);
     }
     
     public static String getAccessoflatrine(int accessoflatrine) {
@@ -171,7 +171,7 @@ public class PBTUtilities {
             latrineDetails = new ArrayList<>();
             addDataInArray(latrineDetails, "accessoflatrine");
         }
-        return latrineDetails.get(accessoflatrine);
+        return latrineDetails.get(accessoflatrine - 1);
     }
     
     public static String getTypesoflatrine(int typesoflatrine) {
@@ -179,7 +179,7 @@ public class PBTUtilities {
             latrinetypeDetails = new ArrayList<>();
             addDataInArray(latrinetypeDetails, "typesoflatrine");
         }
-        return latrinetypeDetails.get(typesoflatrine);
+        return latrinetypeDetails.get(typesoflatrine - 1);
     }
     
     public static String getBathingfacility(int bathingfacility) {
@@ -187,7 +187,7 @@ public class PBTUtilities {
             bathingDetails = new ArrayList<>();
             addDataInArray(bathingDetails, "bathingfacility");
         }
-        return bathingDetails.get(bathingfacility);
+        return bathingDetails.get(bathingfacility - 1);
     }
     
     public static String getKitchen(int kitchen) {
@@ -195,7 +195,7 @@ public class PBTUtilities {
             kitchenDetails = new ArrayList<>();
             addDataInArray(kitchenDetails, "kitchen");
         }
-        return kitchenDetails.get(kitchen);
+        return kitchenDetails.get(kitchen - 1);
     }
     
     public static String getCookfuel(int cookfuel) {
@@ -203,7 +203,7 @@ public class PBTUtilities {
             cookFuelDetails = new ArrayList<>();
             addDataInArray(cookFuelDetails, "cookfuel");
         }
-        return cookFuelDetails.get(cookfuel);
+        return cookFuelDetails.get(cookfuel - 1);
     }
 
     public static String getTv(String tv) {
@@ -211,7 +211,7 @@ public class PBTUtilities {
             tvDetails = new ArrayList<>();
             addDataInArray(tvDetails, "tv");
         }
-        return tvDetails.get(Integer.parseInt(tv));
+        return tvDetails.get(Integer.parseInt(tv) - 1);
     }
 
     public static String getTvsig(String tvsig) {
@@ -219,7 +219,7 @@ public class PBTUtilities {
             tvSigDetails = new ArrayList<>();
             addDataInArray(tvSigDetails, "tvsig");
         }
-        return tvSigDetails.get(Integer.parseInt(tvsig));
+        return tvSigDetails.get(Integer.parseInt(tvsig) - 1);
     }
 
     public static String getCoolheatfact(String coolheatfact) {
@@ -227,7 +227,7 @@ public class PBTUtilities {
             heatFacilityDetails = new ArrayList<>();
             addDataInArray(heatFacilityDetails, "coolheatfact");
         }
-        return heatFacilityDetails.get(Integer.parseInt(coolheatfact));
+        return heatFacilityDetails.get(Integer.parseInt(coolheatfact) - 1);
     }
 
     public static String getPc(String pc) {
@@ -235,7 +235,7 @@ public class PBTUtilities {
             pcDetails = new ArrayList<>();
             addDataInArray(pcDetails, "pc");
         }
-        return pcDetails.get(Integer.parseInt(pc));
+        return pcDetails.get(Integer.parseInt(pc) - 1);
     }
 
     public static String getTelebroadband(String telebroadband) {
@@ -243,7 +243,7 @@ public class PBTUtilities {
             teleBroadBandDetails = new ArrayList<>();
             addDataInArray(teleBroadBandDetails, "telebroadband");
         }
-        return teleBroadBandDetails.get(Integer.parseInt(telebroadband));
+        return teleBroadBandDetails.get(Integer.parseInt(telebroadband) - 1);
     }
 
     public static String getPhone(String phone) {
@@ -251,7 +251,7 @@ public class PBTUtilities {
             phoneDetails = new ArrayList<>();
             addDataInArray(phoneDetails, "phone");
         }
-        return phoneDetails.get(Integer.parseInt(phone));
+        return phoneDetails.get(Integer.parseInt(phone) - 1);
     }
 
     public static String getTypesofgeneticdisease(String typesofgeneticdisease) {
@@ -259,7 +259,7 @@ public class PBTUtilities {
             geneticDiseaseDetails = new ArrayList<>();
             addDataInArray(geneticDiseaseDetails, "typesofgeneticdisease");
         }
-        return geneticDiseaseDetails.get(Integer.parseInt(typesofgeneticdisease));
+        return geneticDiseaseDetails.get(Integer.parseInt(typesofgeneticdisease) - 1);
     }
     
     public static String getUseofhouse(String useofhouse) {
@@ -267,7 +267,7 @@ public class PBTUtilities {
             useOfHouseDetails = new ArrayList<>();
             addDataInArray(useOfHouseDetails, "useofhouse");
         }
-        return useOfHouseDetails.get(Integer.parseInt(useofhouse));
+        return useOfHouseDetails.get(Integer.parseInt(useofhouse) - 1);
     }
     
     public static String getMarital_status(String marital_status) {
@@ -275,7 +275,7 @@ public class PBTUtilities {
             martialDetails = new ArrayList<>();
             addDataInArray(martialDetails, "marital_status");
         }
-        return martialDetails.get(Integer.parseInt(marital_status));
+        return martialDetails.get(Integer.parseInt(marital_status) - 1);
     }
     
     public static String getBicycle(int bicycle){
@@ -283,7 +283,7 @@ public class PBTUtilities {
             bicycleDetails = new ArrayList<>();
             addDataInArray(bicycleDetails,"typesofbicycle");
         }
-        return bicycleDetails.get(bicycle);
+        return bicycleDetails.get(bicycle - 1);
     }
     
     public static String getDomesticAnimals(String animal){
@@ -291,7 +291,7 @@ public class PBTUtilities {
             domesticAnimalDetails = new ArrayList<>();
             addDataInArray(domesticAnimalDetails,"domesticanimal");
         }
-        return bicycleDetails.get(Integer.parseInt(animal));
+        return bicycleDetails.get(Integer.parseInt(animal) - 1);
     }
     
     public static String getPetAniamls(String petanimal){
@@ -299,7 +299,7 @@ public class PBTUtilities {
             petAnimalDetails = new ArrayList<>();
             addDataInArray(petAnimalDetails,"petanimal");
         }
-        return bicycleDetails.get(Integer.parseInt(petanimal));
+        return bicycleDetails.get(Integer.parseInt(petanimal) - 1);
     }
 
     private static boolean isNull(List<String> arrayList) {

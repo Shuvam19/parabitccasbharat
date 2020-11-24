@@ -2,23 +2,11 @@ package TestingSummary;
 
 import DB.ParabitDBC;
 import java.awt.BorderLayout;
-import java.awt.Paint;
-import java.awt.PaintContext;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.ColorModel;
-import java.awt.image.Raster;
-import java.awt.image.RasterOp;
-import java.awt.image.SampleModel;
 import java.sql.SQLException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.Plot;
 import org.jfree.data.general.DefaultPieDataset;
 import static parabitccasbharat.OfficeWork.DatabsePieChartFrame.TABLE_NAME;
 
