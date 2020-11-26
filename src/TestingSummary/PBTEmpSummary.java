@@ -5,6 +5,7 @@
  */
 package TestingSummary;
 
+import TestingSummary.BarChartPanel.Range;
 import javax.swing.JPanel;
 import parabitccasbharat.Utilities.PBTUtilities;
 
@@ -14,18 +15,17 @@ import parabitccasbharat.Utilities.PBTUtilities;
  */
 public class PBTEmpSummary extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PBTEmpSummary
-     */
     public PBTEmpSummary() {
         initComponents();
-        PieChartPanel panel = new PieChartPanel("pbtcensus_household", "BGroup",new PieChartPanel.ItemName() {
-            @Override
-            public String getName(String index) {
-                return PBTUtilities.getBloodGroup(index);
-            }
-        });
-        jPanel1.add(panel);
+//        PieChartPanel panel = new PieChartPanel("pbtcensus_household", "BGroup",new PieChartPanel.ItemName() {
+//            @Override
+//            public String getName(String index) {
+//                return PBTUtilities.getBloodGroup(index);
+//            }
+//        });
+//        Range range = new Range(2, 40, 0);
+//        BarChartPanel panel = new BarChartPanel("pbtcensus_household", "BGroup",range);
+//        jPanel1.add(panel);
         pack();
     }
 
@@ -49,7 +49,7 @@ public class PBTEmpSummary extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
+                .addContainerGap(458, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );

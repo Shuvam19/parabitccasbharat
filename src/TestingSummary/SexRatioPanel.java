@@ -16,6 +16,7 @@ public class SexRatioPanel extends javax.swing.JPanel {
     static DefaultPieDataset piedataset = new DefaultPieDataset();
     PiePlot chartplot;
     ParabitDBC db;
+    
     public SexRatioPanel() {
         initComponents();
         db = new ParabitDBC();
