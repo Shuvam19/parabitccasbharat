@@ -7,14 +7,11 @@ package TestingSummary;
 
 import DB.ParabitDBC;
 import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
+import java.sql.SQLException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -68,13 +65,24 @@ public class BarChartPanel extends javax.swing.JPanel {
         for(int i=range.getMinimun();i<range.getMaximum();i+=range.getRange()){
             int minRange = i,maxRange = i + range.getRange();
             String query = getQuery(minRange,maxRange);
-            series.add(i,maxRange);
+            int value = getValue(query);
+            series.add(minRange,value);
         }
         dataset.addSeries(series);
     }
 
     private String getQuery(int minRange, int maxRange) {
-        return "SELECT ";
+        return "SELECT COUNT(*) AS count FROM " + tableName + " where " + columnName + " IN (" + minRange + "," + maxRange + ") GROUP BY " + columnName;
+    }
+
+    private int getValue(String query) {
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            if (db.rs1.next()) return db.rs1.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
     
     public static class Range{
