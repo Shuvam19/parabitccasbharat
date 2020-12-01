@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 import parabitccasbharat.Utilities.Queries;
 
@@ -36,7 +37,6 @@ public class PopulationCounting extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        population = new javax.swing.JLabel();
         State = new javax.swing.JComboBox<>();
         dist = new javax.swing.JComboBox<>();
         city = new javax.swing.JComboBox<>();
@@ -54,11 +54,20 @@ public class PopulationCounting extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         bloodGroup = new javax.swing.JComboBox<>();
         martialstatus = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        PopDigit11 = new javax.swing.JLabel();
+        PopDigit10 = new javax.swing.JLabel();
+        PopDigit9 = new javax.swing.JLabel();
+        PopDigit8 = new javax.swing.JLabel();
+        PopDigit7 = new javax.swing.JLabel();
+        PopDigit6 = new javax.swing.JLabel();
+        PopDigit5 = new javax.swing.JLabel();
+        PopDigit4 = new javax.swing.JLabel();
+        PopDigit3 = new javax.swing.JLabel();
+        PopDigit2 = new javax.swing.JLabel();
+        PopDigit1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        population.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        population.setText("1");
 
         State.setModel(getModel(STATE));
         State.addItemListener(new java.awt.event.ItemListener() {
@@ -180,57 +189,175 @@ public class PopulationCounting extends javax.swing.JFrame {
 
         martialstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jPanel3.setBackground(new java.awt.Color(250, 250, 250));
+
+        PopDigit11.setBackground(new java.awt.Color(255, 255, 255));
+        PopDigit11.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit11.setText("0");
+        PopDigit11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        PopDigit11.setIconTextGap(20);
+        PopDigit11.setInheritsPopupMenu(false);
+
+        PopDigit10.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit10.setText("0");
+        PopDigit10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit9.setText("0");
+        PopDigit9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit8.setText("0");
+        PopDigit8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit7.setText("0");
+        PopDigit7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit6.setText("0");
+        PopDigit6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit5.setText("0");
+        PopDigit5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit4.setText("0");
+        PopDigit4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit3.setText("0");
+        PopDigit3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit2.setText("0");
+        PopDigit2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        PopDigit1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        PopDigit1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PopDigit1.setText("0");
+        PopDigit1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PopDigit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(PopDigit11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(PopDigit5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(PopDigit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PopDigit11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PopDigit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(city, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(State, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(10, 10, 10)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(population, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                    .addComponent(population, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(11, 11, 11)
                         .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,11 +380,11 @@ public class PopulationCounting extends javax.swing.JFrame {
     }//GEN-LAST:event_distItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        try {
-//            addAnimaton(500L);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(PopulationCounting.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            addAnimaton(99999999999L);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PopulationCounting.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -295,6 +422,17 @@ public class PopulationCounting extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Poor;
+    private javax.swing.JLabel PopDigit1;
+    private javax.swing.JLabel PopDigit10;
+    private javax.swing.JLabel PopDigit11;
+    private javax.swing.JLabel PopDigit2;
+    private javax.swing.JLabel PopDigit3;
+    private javax.swing.JLabel PopDigit4;
+    private javax.swing.JLabel PopDigit5;
+    private javax.swing.JLabel PopDigit6;
+    private javax.swing.JLabel PopDigit7;
+    private javax.swing.JLabel PopDigit8;
+    private javax.swing.JLabel PopDigit9;
     private javax.swing.JComboBox<String> State;
     private javax.swing.JComboBox<String> bloodGroup;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -307,12 +445,12 @@ public class PopulationCounting extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JComboBox<String> martialstatus;
-    private javax.swing.JLabel population;
     // End of variables declaration//GEN-END:variables
 
     private ComboBoxModel<String> getModel(String coloumn) {
@@ -352,18 +490,45 @@ public class PopulationCounting extends javax.swing.JFrame {
         ActionListener task = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                long fromvalue = Long.parseLong(population.getText());
-                long tovalue = toValue;
-                if(fromvalue != tovalue){
-                    fromvalue = getNewValueRespectToSpeed(fromvalue,toValue);
-                    population.setText("" + fromvalue);
-                }else{
-                    ((Timer)e.getSource()).stop();
+                char[] tovalueArray = toValue.toString().toCharArray();
+                boolean isbreakable = false;
+                for (int index = 0; index < 11; index++) {
+                    if(index<tovalueArray.length){
+                        isbreakable = changeChar((index + 1),Integer.parseInt("" + tovalueArray[index]));
+                    }else{
+                        isbreakable = changeChar((index + 1), 0);
+                    }
+                    if(isbreakable) break;
                 }
+                if(!isbreakable) ((Timer)e.getSource()).stop();
             }
 
-            private long getNewValueRespectToSpeed(long fromvalue, Long toValue) {
-               return fromvalue;
+            private boolean changeChar(int index, int toValue) {
+                JLabel digit = getDigit(index);
+                int from = Integer.parseInt(digit.getText());
+                if(from==toValue) return false;
+                if(from<toValue){
+                    digit.setText("" + (from + 1));
+                }else{
+                    digit.setText("" + (from - 1));                    
+                }
+                return true;
+            }
+
+            private JLabel getDigit(int index) {
+                switch(index){
+                    case 1:return PopDigit1;
+                    case 2:return PopDigit2;
+                    case 3:return PopDigit3;
+                    case 4:return PopDigit4;
+                    case 5:return PopDigit5;
+                    case 6:return PopDigit6;
+                    case 7:return PopDigit7;
+                    case 8:return PopDigit8;
+                    case 9:return PopDigit9;
+                    case 10:return PopDigit10;
+                    default : return PopDigit11;
+                }
             }
         };
         final Timer timer = new Timer(10,task);
