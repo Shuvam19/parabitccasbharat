@@ -68,23 +68,26 @@
               </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="State" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                      <Component id="dist" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="city" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="State" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                              <Component id="dist" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                              <Component id="city" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="bloodGroup" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="martialstatus" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,6 +98,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="getModel(STATE)" type="code"/>
         </Property>
+        <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="StateItemStateChanged"/>
@@ -152,13 +156,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jSpinner1" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="minAge" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jSpinner2" min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="maxAge" min="-2" pref="56" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -172,8 +176,8 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="minAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="maxAge" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -188,14 +192,14 @@
             <Property name="text" type="java.lang.String" value="Age Group :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="minAge">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner2">
+        <Component class="javax.swing.JSpinner" name="maxAge">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -206,6 +210,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ok"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -297,13 +304,8 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="bloodGroup">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getModel(BLOODGROUP)" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -312,13 +314,8 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="martialstatus">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="getModel(MARTIALSTATUS)&#xd;&#xa;" type="code"/>
         </Property>
       </Properties>
       <AuxValues>

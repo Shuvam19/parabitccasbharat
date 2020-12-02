@@ -10,16 +10,17 @@ import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import parabitccasbharat.Utilities.Queries;
 
 public class PopulationCounting extends javax.swing.JFrame {
     
-    public static final String STATE = "state";
+    public static final String STATE = "Select State";
     public static final String DISTRICT = "district";
     public static final String CITY = "city";
-//    public static final String  = "state";
-//    public static final String STATE = "state";
+    public static final String BLOODGROUP = "bloodgroup";
+    public static final String MARTIALSTATUS = "martialstatus";
 //    public static final String STATE = "state";
 
     public PopulationCounting() {
@@ -42,8 +43,8 @@ public class PopulationCounting extends javax.swing.JFrame {
         city = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        minAge = new javax.swing.JSpinner();
+        maxAge = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -70,6 +71,7 @@ public class PopulationCounting extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         State.setModel(getModel(STATE));
+        State.setAutoscrolls(true);
         State.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 StateItemStateChanged(evt);
@@ -94,11 +96,16 @@ public class PopulationCounting extends javax.swing.JFrame {
 
         jLabel2.setText("Age Group :");
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        minAge.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        maxAge.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jButton1.setText("Ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("To");
 
@@ -109,12 +116,12 @@ public class PopulationCounting extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -126,8 +133,8 @@ public class PopulationCounting extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -185,9 +192,10 @@ public class PopulationCounting extends javax.swing.JFrame {
             }
         });
 
-        bloodGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        bloodGroup.setModel(getModel(BLOODGROUP));
 
-        martialstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        martialstatus.setModel(getModel(MARTIALSTATUS)
+        );
 
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
 
@@ -345,19 +353,20 @@ public class PopulationCounting extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
+                                .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -386,6 +395,14 @@ public class PopulationCounting extends javax.swing.JFrame {
             Logger.getLogger(PopulationCounting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int minAgeNum = Integer.parseInt(this.minAge.getValue().toString());
+        int maxAgeNum = Integer.parseInt(this.maxAge.getValue().toString());
+        if(minAgeNum>maxAgeNum){
+            JOptionPane.showMessageDialog(null, "Please Enter Correct Age Group");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,18 +465,19 @@ public class PopulationCounting extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JComboBox<String> martialstatus;
+    private javax.swing.JSpinner maxAge;
+    private javax.swing.JSpinner minAge;
     // End of variables declaration//GEN-END:variables
 
     private ComboBoxModel<String> getModel(String coloumn) {
         String query = getQuery(coloumn);
-        return getModelWithData(query);
+        return getModelWithData(query,coloumn);
     }
 
-    private ComboBoxModel<String> getModelWithData(String query) {
+    private ComboBoxModel<String> getModelWithData(String query, String coloumn) {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        model.addElement(coloumn);
         try {
             ParabitDBC db = new ParabitDBC();
             db.rs1 = db.stm.executeQuery(query);
@@ -481,6 +499,10 @@ public class PopulationCounting extends javax.swing.JFrame {
                 return Queries.getDistOfStateQuery(State.getSelectedItem().toString());
             case CITY:
                 return Queries.getCityOfDistrictQuery(dist.getSelectedItem().toString());
+            case BLOODGROUP:
+                return Queries.getBloodGroupQuery();
+            case MARTIALSTATUS:
+                return Queries.getMartialStatusQuery();
             default:
                 return "";
         }
