@@ -4,6 +4,7 @@ package TestingSummary;
 import DB.ParabitDBC;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +23,13 @@ public class PopulationCounting extends javax.swing.JFrame {
     public static final String BLOODGROUP = "bloodgroup";
     public static final String MARTIALSTATUS = "martialstatus";
 //    public static final String STATE = "state";
+    
+    
+    private Queries.PopCountQuery popQuery;
 
     public PopulationCounting() {
         initComponents();
-        
+        this.popQuery = new Queries.PopCountQuery();
     }
 
     /**
@@ -373,7 +377,10 @@ public class PopulationCounting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void StateItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StateItemStateChanged
-        dist.setModel(getModel(DISTRICT));
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            dist.setModel(getModel(DISTRICT));
+            popQuery.addState(State.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_StateItemStateChanged
 
     private void PoorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoorActionPerformed
@@ -386,14 +393,12 @@ public class PopulationCounting extends javax.swing.JFrame {
 
     private void distItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_distItemStateChanged
         city.setModel(getModel(CITY));
+        changePopulation(false);
     }//GEN-LAST:event_distItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            addAnimaton(99999999999L);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PopulationCounting.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        changePopulation(true);
+        popQuery.removeWholeQuery();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -556,5 +561,21 @@ public class PopulationCounting extends javax.swing.JFrame {
         final Timer timer = new Timer(10,task);
         timer.setRepeats(true);
         timer.start();
+    }
+
+    private void changePopulation(boolean isReset) {
+        String query = "SELECT COUNT(*) as pop FROM `pbtcensus_household`";
+        if(!isReset) query += popQuery.getQuery();
+        ParabitDBC db = new ParabitDBC();
+        try {
+            System.out.println(query);
+            db.rs1 = db.stm.executeQuery(query);
+            if(db.rs1.next()){
+                Long pop = db.rs1.getLong(1);
+                addAnimaton(pop);
+            }
+        } catch (SQLException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 }

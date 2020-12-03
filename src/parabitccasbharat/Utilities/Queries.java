@@ -15,10 +15,27 @@ public class Queries {
         return "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE District = '" + district + "'";
     }
     
-//    public static class PopCountQuery{
-//        private static String mainQuery = "";
-//        private static boolean isFirstAdded = false;
-//    }
+    public static class PopCountQuery{
+        private String mainQuery = "";
+        private boolean isFirst = true;
+        private void isFirstAdded(){
+            if(isFirst){
+                isFirst = false;
+                mainQuery += " WHERE ";
+            }else
+                mainQuery += " AND ";
+        }
+        public String getQuery(){
+            return mainQuery;
+        }
+        public void removeWholeQuery(){
+            mainQuery = "";
+        }
+        public void addState(String state){
+            isFirstAdded();
+            mainQuery += " PmtStUt = '" + state + "'";
+        }
+    }
 
     public static String getBloodGroupQuery() {
         return "SELECT BloodGroup FROM `bloodgroup`";
