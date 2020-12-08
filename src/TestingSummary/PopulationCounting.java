@@ -26,10 +26,17 @@ public class PopulationCounting extends javax.swing.JFrame {
     
     
     private Queries.PopCountQuery popQuery;
+    private DigitalNumberFormat numberPad;
 
     public PopulationCounting() {
         initComponents();
+        this.numberPad = new DigitalNumberFormat();
         this.popQuery = new Queries.PopCountQuery();
+        //numberPad.setVisible(true);
+        //jPanel3.add(numberPad);
+        //jPanel3.setVisible(true);
+        //add(jPanel3);
+        pack();
     }
 
     /**
@@ -59,18 +66,13 @@ public class PopulationCounting extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         bloodGroup = new javax.swing.JComboBox<>();
         martialstatus = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        PopDigit11 = new javax.swing.JLabel();
-        PopDigit10 = new javax.swing.JLabel();
-        PopDigit9 = new javax.swing.JLabel();
-        PopDigit8 = new javax.swing.JLabel();
-        PopDigit7 = new javax.swing.JLabel();
-        PopDigit6 = new javax.swing.JLabel();
-        PopDigit5 = new javax.swing.JLabel();
-        PopDigit4 = new javax.swing.JLabel();
-        PopDigit3 = new javax.swing.JLabel();
-        PopDigit2 = new javax.swing.JLabel();
-        PopDigit1 = new javax.swing.JLabel();
+        jPanel3 = new DigitalNumberFormat();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        minAge1 = new javax.swing.JSpinner();
+        maxAge1 = new javax.swing.JSpinner();
+        jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,122 +203,62 @@ public class PopulationCounting extends javax.swing.JFrame {
         martialstatus.setModel(getModel(MARTIALSTATUS)
         );
 
-        jPanel3.setBackground(new java.awt.Color(250, 250, 250));
-
-        PopDigit11.setBackground(new java.awt.Color(255, 255, 255));
-        PopDigit11.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit11.setText("0");
-        PopDigit11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        PopDigit11.setIconTextGap(20);
-        PopDigit11.setInheritsPopupMenu(false);
-
-        PopDigit10.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit10.setText("0");
-        PopDigit10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit9.setText("0");
-        PopDigit9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit8.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit8.setText("0");
-        PopDigit8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit7.setText("0");
-        PopDigit7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit6.setText("0");
-        PopDigit6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit5.setText("0");
-        PopDigit5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit4.setText("0");
-        PopDigit4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit3.setText("0");
-        PopDigit3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit2.setText("0");
-        PopDigit2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        PopDigit1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        PopDigit1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PopDigit1.setText("0");
-        PopDigit1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PopDigit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(PopDigit11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(PopDigit5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(PopDigit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGap(0, 72, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(250, 250, 250));
+
+        jLabel5.setText("Sleep Hours :");
+
+        minAge1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        maxAge1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jButton3.setText("Ok");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("To");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PopDigit11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PopDigit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(minAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(maxAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)
+                    .addComponent(jLabel6))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -329,7 +271,7 @@ public class PopulationCounting extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,7 +284,10 @@ public class PopulationCounting extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -357,20 +302,20 @@ public class PopulationCounting extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)
-                                .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(State, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(dist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(martialstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -409,6 +354,10 @@ public class PopulationCounting extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -444,17 +393,6 @@ public class PopulationCounting extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Poor;
-    private javax.swing.JLabel PopDigit1;
-    private javax.swing.JLabel PopDigit10;
-    private javax.swing.JLabel PopDigit11;
-    private javax.swing.JLabel PopDigit2;
-    private javax.swing.JLabel PopDigit3;
-    private javax.swing.JLabel PopDigit4;
-    private javax.swing.JLabel PopDigit5;
-    private javax.swing.JLabel PopDigit6;
-    private javax.swing.JLabel PopDigit7;
-    private javax.swing.JLabel PopDigit8;
-    private javax.swing.JLabel PopDigit9;
     private javax.swing.JComboBox<String> State;
     private javax.swing.JComboBox<String> bloodGroup;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -462,17 +400,23 @@ public class PopulationCounting extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> dist;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JComboBox<String> martialstatus;
     private javax.swing.JSpinner maxAge;
+    private javax.swing.JSpinner maxAge1;
     private javax.swing.JSpinner minAge;
+    private javax.swing.JSpinner minAge1;
     // End of variables declaration//GEN-END:variables
 
     private ComboBoxModel<String> getModel(String coloumn) {
@@ -513,56 +457,6 @@ public class PopulationCounting extends javax.swing.JFrame {
         }
     }
 
-    private void addAnimaton(final Long toValue) throws InterruptedException {
-        ActionListener task = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                char[] tovalueArray = toValue.toString().toCharArray();
-                boolean isbreakable = false;
-                for (int index = 0; index < 11; index++) {
-                    if(index<tovalueArray.length){
-                        isbreakable = changeChar((index + 1),Integer.parseInt("" + tovalueArray[index]));
-                    }else{
-                        isbreakable = changeChar((index + 1), 0);
-                    }
-                    if(isbreakable) break;
-                }
-                if(!isbreakable) ((Timer)e.getSource()).stop();
-            }
-
-            private boolean changeChar(int index, int toValue) {
-                JLabel digit = getDigit(index);
-                int from = Integer.parseInt(digit.getText());
-                if(from==toValue) return false;
-                if(from<toValue){
-                    digit.setText("" + (from + 1));
-                }else{
-                    digit.setText("" + (from - 1));                    
-                }
-                return true;
-            }
-
-            private JLabel getDigit(int index) {
-                switch(index){
-                    case 1:return PopDigit1;
-                    case 2:return PopDigit2;
-                    case 3:return PopDigit3;
-                    case 4:return PopDigit4;
-                    case 5:return PopDigit5;
-                    case 6:return PopDigit6;
-                    case 7:return PopDigit7;
-                    case 8:return PopDigit8;
-                    case 9:return PopDigit9;
-                    case 10:return PopDigit10;
-                    default : return PopDigit11;
-                }
-            }
-        };
-        final Timer timer = new Timer(10,task);
-        timer.setRepeats(true);
-        timer.start();
-    }
-
     private void changePopulation(boolean isReset) {
         String query = "SELECT COUNT(*) as pop FROM `pbtcensus_household`";
         if(!isReset) query += popQuery.getQuery();
@@ -572,7 +466,7 @@ public class PopulationCounting extends javax.swing.JFrame {
             db.rs1 = db.stm.executeQuery(query);
             if(db.rs1.next()){
                 Long pop = db.rs1.getLong(1);
-                addAnimaton(pop);
+                numberPad.addAnimaton(pop);
             }
         } catch (SQLException | InterruptedException ex) {
             ex.printStackTrace();
