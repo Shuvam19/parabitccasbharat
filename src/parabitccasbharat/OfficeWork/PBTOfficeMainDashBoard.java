@@ -201,7 +201,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_notifyActionPerformed
 
     private void empsummActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empsummActionPerformed
-    PBTEmpSummary summary = new PBTEmpSummary(this,1);
+    PBTEmpSummary summary = PBTEmpSummary.getSummaryInstance(this);
     summary.setVisible(true);
     }//GEN-LAST:event_empsummActionPerformed
 

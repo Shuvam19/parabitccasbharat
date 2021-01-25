@@ -16,7 +16,7 @@ public class PBTQRCode {
 
     public PBTQRCode() {
         this.exchanger = new Exchanger<String>();
-        frame = new QrCapture();
+        frame = QrCapture.getInstance(null);
         frame.setVisible(true);
     }
     

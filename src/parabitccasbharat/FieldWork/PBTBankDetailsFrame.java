@@ -153,9 +153,11 @@ public class PBTBankDetailsFrame<T> extends javax.swing.JDialog {
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         System.out.println(persondata.toUpdateQuery(updatemap));
-        persondata.update(persondata.toUpdateQuery(updatemap));
-        persondata.getDataFromAadhar(persondata.getUid());
-        this.dispose();
+        if(!updatemap.isEmpty()){
+            persondata.update(persondata.toUpdateQuery(updatemap));
+            persondata.getDataFromAadhar(persondata.getUid());
+            this.dispose();
+        }
     }//GEN-LAST:event_saveActionPerformed
 
     /**

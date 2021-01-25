@@ -1,9 +1,6 @@
 
 package parabitccasbharat.OfficeWork;
 
-import parabitccasbharat.OfficeWork.PBTSendMessage;
-import parabitccasbharat.OfficeWork.PBTEmpSummary;
-import parabitccasbharat.OfficeWork.PBTAppointedEmp;
 import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
 import java.sql.SQLException;
@@ -124,7 +121,7 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_individualActionPerformed
-        PBTEmpSummary sendnotification = new PBTEmpSummary(parent, 2);
+        PBTEmpSummary sendnotification = PBTEmpSummary.getNotificationInstance(parent);
         sendnotification.setVisible(true);
     }//GEN-LAST:event_individualActionPerformed
 
@@ -150,8 +147,7 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
         String query4 = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = (";
         String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
         String query3 = query;
-        switch(data.getGrade())
-        {
+        switch(data.getGrade()) {
             case 5:
                 query3 = query3 + "or CEID = (" + query + ")";
                 query = query4 + query + ")";

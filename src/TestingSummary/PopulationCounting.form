@@ -326,9 +326,6 @@
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel3">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DigitalNumberFormat()"/>
-      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

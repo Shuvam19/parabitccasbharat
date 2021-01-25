@@ -245,6 +245,7 @@ public class PBTLogin extends javax.swing.JFrame {
         PBTDataOfEmployee data = PBTCurrentEmp.addEmployee(rs1); 
         int status = rs1.getInt("status");
         int preceid = rs1.getInt("note");
+        data.setAllCodeAccordingToStates();
         if(isEnumerator(data)){
             logEnumerator(data);
         }

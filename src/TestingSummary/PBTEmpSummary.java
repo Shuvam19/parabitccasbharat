@@ -6,7 +6,6 @@
 package TestingSummary;
 
 import TestingSummary.BarChartPanel.Range;
-import javax.swing.JPanel;
 import parabitccasbharat.Utilities.PBTUtilities;
 
 /**
@@ -17,15 +16,16 @@ public class PBTEmpSummary extends javax.swing.JFrame {
 
     public PBTEmpSummary() {
         initComponents();
-//        PieChartPanel panel = new PieChartPanel("pbtcensus_household", "BGroup",new PieChartPanel.ItemName() {
-//            @Override
-//            public String getName(String index) {
-//                return PBTUtilities.getBloodGroup(index);
-//            }
-//        });
+        PieChartPanel panel = new PieChartPanel("pbtcensus_household", "BGroup",new PieChartPanel.ItemName() {
+            @Override
+            public String getName(String index) {
+                return PBTUtilities.getBloodGroup(index);
+            }
+        });
 //        Range range = new Range(5, 80, 0);
 //        BarChartPanel panel = new BarChartPanel("pbtcensus_household", "Age",range);
-//        jPanel1.add(panel);
+//        SexRatioPanel panel = new SexRatioPanel();
+        jPanel1.add(panel);
         pack();
     }
 

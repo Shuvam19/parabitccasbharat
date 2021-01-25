@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import parabitccasbharat.Utilities.PBTQRCode;
 import parabitccasbharat.QrCapture;
 
 
@@ -19,7 +18,6 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     PBTAadhar aadhar;
     PBTHouseHoldModel persondata;
     PBTHouseListingModel personlistingdata;
-    PBTQRCode scanner;
     PBTTextWatchers textwatcher;
     ParabitDBC2 db2;
     QrCapture frame;
@@ -410,7 +408,7 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
 
     private void scanbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanbuttonActionPerformed
         String uid = "";
-        System.out.println(updatemap.get("marstatus"));
+        //System.out.println(updatemap.get("marstatus"));
         if(aadharno.getText().isEmpty()){
             try {
                 startWebCam();
@@ -692,7 +690,7 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
     }
     
     public void startWebCam() throws InterruptedException {
-        frame = new QrCapture();
+        frame = QrCapture.getInstance(this);
         final Thread thread = new Thread(new Runnable() {
 
             @Override
@@ -700,12 +698,14 @@ public class PBTPersonInfoDashBoard extends javax.swing.JFrame {
                 try{
                     frame.setVisible(true);
                     String result = frame.getResult();
-                    getAadhar(result);
-                    persondata.setUid(result);
-                    getAllInformation(result);
-                    setAllTnformation();
-                    persondata.insert();
-                    System.out.println(persondata.toString());
+                    if(result != null){
+                        getAadhar(result);
+                        persondata.setUid(result);
+                        getAllInformation(result);
+                        setAllTnformation();
+                        persondata.insert();
+                        System.out.println(persondata.toString());
+                    }
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

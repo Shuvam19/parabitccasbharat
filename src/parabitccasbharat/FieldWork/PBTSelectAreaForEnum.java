@@ -189,6 +189,7 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
                 String areaname = selectarea.getValueAt(row, 0).toString();
                 if(e.getClickCount()==2){
                     int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Work in the Area " + areaname);
+                    //Need To implement here
                     if(ans==0){
                         updateLoggedInPersonsArea(areaname);
                         PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(arealist.get(row));

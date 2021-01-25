@@ -636,7 +636,7 @@ public class PBTBasicDetailsFrame<T> extends javax.swing.JDialog {
                     String date = new SimpleDateFormat("yyyy-mm-dd").format(evt.getNewValue());
                     String agestr = PBTPersonInfoDashBoard.calculateAge(date);
                     try {
-                        updatemap.put("DOB", new SimpleDateFormat("yyyy-dd-MM").format(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy",Locale.US).parse(evt.getNewValue().toString())));
+                        updatemap.put("DOB", new SimpleDateFormat("yyyy-MM-dd").format(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy",Locale.US).parse(evt.getNewValue().toString())));
                     } catch (ParseException ex) {
                         Logger.getLogger(PBTBasicDetailsFrame.class.getName()).log(Level.SEVERE, null, ex);
                     }

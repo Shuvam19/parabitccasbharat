@@ -44,6 +44,7 @@ public class PBTUtilities {
     private static List<String> geneticDiseaseDetails;
     private static List<String> useOfHouseDetails;
     private static List<String> martialDetails;
+    private static List<String> regWithDetails;
     
 
     public static String getReligion(String religion) {
@@ -51,7 +52,7 @@ public class PBTUtilities {
             religionDetails = new ArrayList<>();
             addDataInArray(religionDetails,"typeofreligion");
         }
-        return bicycleDetails.get(Integer.parseInt(religion) - 1);
+        return religionDetails.get(Integer.parseInt(religion) - 1);
     }
 
     public static String getCategory(String category) {
@@ -291,7 +292,7 @@ public class PBTUtilities {
             domesticAnimalDetails = new ArrayList<>();
             addDataInArray(domesticAnimalDetails,"domesticanimal");
         }
-        return bicycleDetails.get(Integer.parseInt(animal) - 1);
+        return domesticAnimalDetails.get(Integer.parseInt(animal) - 1);
     }
     
     public static String getPetAniamls(String petanimal){
@@ -299,7 +300,15 @@ public class PBTUtilities {
             petAnimalDetails = new ArrayList<>();
             addDataInArray(petAnimalDetails,"petanimal");
         }
-        return bicycleDetails.get(Integer.parseInt(petanimal) - 1);
+        return petAnimalDetails.get(Integer.parseInt(petanimal) - 1);
+    }
+    
+    public static String getRegWith(String regwith) {
+        if(isNull(regWithDetails)){
+            regWithDetails = new ArrayList<>();
+            addDataInArray(regWithDetails, "regwith");
+        }
+        return regWithDetails.get(Integer.parseInt(regwith) - 1);
     }
 
     private static boolean isNull(List<String> arrayList) {

@@ -483,7 +483,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         }
         DefaultTableModel model = (DefaultTableModel)enumtable.getModel();
         model.setRowCount(0);
-        try 
+        try
         {
             db.rs3 = db.stm2.executeQuery(query);
             while(db.rs3.next())

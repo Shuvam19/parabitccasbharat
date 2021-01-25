@@ -5,13 +5,11 @@ import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,59 +20,95 @@ import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTEmpSummary<T> extends javax.swing.JDialog {
 
-    PBTDataOfEmployee data;
-    ParabitDBC db;
-    List<String> ceidlist = new ArrayList<>();
-    List<String> childceidlist = new ArrayList<>();
-    List<String> seniourceidlist = new ArrayList<>();
-    int whichtype;
+    public static final String NOTIFICATION = "Notification";
+    public static final String SUMMAERY = "Summary";
+    private final PBTDataOfEmployee data;
+    private final ParabitDBC db;
+    private final List<String> ceidlist = new ArrayList<>();
+    private final List<String> childceidlist = new ArrayList<>();
+    private final List<String> seniourceidlist = new ArrayList<>();
+    private static String whichtype;
     T parent;
-    
-    public PBTEmpSummary(T parent,int whichtype) {
+
+    public PBTEmpSummary(T parent) {
         super((JFrame)parent,true);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         if(this.data==null){
             this.dispose();
+            this.setVisible(false);
             PBTCurrentEmp.newLoginEmployee();
         }
         this.parent = parent;
         this.db = new ParabitDBC();
-        this.whichtype = whichtype;
-        String query = "SELECT * FROM `PBTEmployeeTable2` as a JOIN `pbtempschecdule` as b ON a.CEID = b.CEID WHERE a.grade = " + (data.getGrade()+1) + " and a.status = 1";
-        switch(whichtype)
-        {
-            case 1:sendtoparent.setVisible(false);
+        String finalQuery = getFinalQuery(data.getCeid(),data.getGrade());
+        fetchDataTable(parentemp , finalQuery,ceidlist);
+        System.out.println("final Query is " + finalQuery);
+        clicklisteners();
+
+    }
+    
+    public PBTEmpSummary addNotificationPart(){
+        whichtype = NOTIFICATION;
+        switch (data.getGrade()) {
+            case 1 : 
+                sendtoparent.setVisible(false);
                 break;
-            case 2:
-                switch(data.getGrade())
-                {
-                    case 3:
-                    case 4:
-                    case 5:
-                        fetchsendtoparent();
-                        break;
-                    default:
-                        sendtoparent.setVisible(false);
-                        break;
-                }
+            case 2 : 
+                fetchsendtoparent();
+               break;
+            case 3 : 
+                fetchsendtoparent();
+                break;
+            case 4 : 
+                fetchsendtoparent();
+                junioremppanel.setVisible(false);
+                break;
+            case 5 : 
+                fetchsendtoparent();
+                junioremppanel.setVisible(false);
+                parentempanel.setVisible(false);
                 break;
         }
-        fetchdatatable(parentemp , query,1);
-        clicklisteners();
+        pack();
+        setLocationRelativeTo(null);
+        return this;
+    }
+    
+    public PBTEmpSummary addSummaryPart(){
+        whichtype = SUMMAERY;
+        sendtoparent.setVisible(false);
+        if(data.getGrade()==4){
+            junioremppanel.setVisible(false);
+        }
+        pack();
+        setLocationRelativeTo(null);
+        return this;
+    }
+      
+    public static <K> PBTEmpSummary getNotificationInstance(K parent){
+        return new PBTEmpSummary(parent).addNotificationPart();
+    }
+    
+    public static <K> PBTEmpSummary getSummaryInstance(K parent){
+        return new PBTEmpSummary(parent).addSummaryPart();
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        sendtoparent = new javax.swing.JComboBox<>();
+        parentempanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         parentemp = new javax.swing.JTable();
+        junioremppanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         juniouremp = new javax.swing.JTable();
-        sendtoparent = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        sendtoparent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         parentemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,6 +131,23 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(parentemp);
 
+        javax.swing.GroupLayout parentempanelLayout = new javax.swing.GroupLayout(parentempanel);
+        parentempanel.setLayout(parentempanelLayout);
+        parentempanelLayout.setHorizontalGroup(
+            parentempanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parentempanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        parentempanelLayout.setVerticalGroup(
+            parentempanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parentempanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         juniouremp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -110,12 +161,22 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(juniouremp);
 
-        sendtoparent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        sendtoparent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendtoparentActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout junioremppanelLayout = new javax.swing.GroupLayout(junioremppanel);
+        junioremppanel.setLayout(junioremppanelLayout);
+        junioremppanelLayout.setHorizontalGroup(
+            junioremppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(junioremppanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        junioremppanelLayout.setVerticalGroup(
+            junioremppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(junioremppanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,23 +185,23 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
+                    .addComponent(parentempanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(junioremppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sendtoparent, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(sendtoparent, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(sendtoparent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(parentempanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(junioremppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -148,36 +209,32 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendtoparentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendtoparentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sendtoparentActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel junioremppanel;
     private javax.swing.JTable juniouremp;
     private javax.swing.JTable parentemp;
+    private javax.swing.JPanel parentempanel;
     private javax.swing.JComboBox<String> sendtoparent;
     // End of variables declaration//GEN-END:variables
 
-    private void fetchdatatable(JTable table ,String query,int whattype) {
+    private void fetchDataTable(JTable table ,String query,List listToAdd) {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         model.setRowCount(0);
         try {
+            System.out.println(query);
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
             {
-                String name = db.rs1.getString("a.EmpName");
-                String mobno = db.rs1.getString("a.EmpMob");
-                String ceid = db.rs1.getString("a.CEID");
-                if(whattype == 1)
-                    ceidlist.add(ceid);
-                else
-                    childceidlist.add(ceid);
-                String workd = db.rs1.getString("b.workdone");
-                String worka = db.rs1.getString("b.totalres");
-                String workp = "" + (Long.parseLong(worka) - Long.parseLong(worka));
+                String name = db.rs1.getString("emptable.EmpName");
+                String mobno = db.rs1.getString("emptable.EmpMob");
+                String ceid = db.rs1.getString("emptable.CEID");
+                listToAdd.add(ceid);
+                String workd = db.rs1.getString("totworkdone");
+                String worka = db.rs1.getString("totalresident");
+                String workp = "" + (Long.parseLong(worka) - Long.parseLong(workd));
                 String nores = "0";
                 Object row[] = {name, mobno, workd, worka, workp, nores};
                 model.addRow(row);
@@ -188,86 +245,40 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
     }
 
     private void clicklisteners() {
-        parentemp.addMouseListener(new MouseListener() {
+        parentemp.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = parentemp.rowAtPoint(e.getPoint());
                 String ceid = ceidlist.get(row);
-                switch(e.getClickCount())
-                {
-                    case 1:
-                        String query = "SELECT * FROM `PBTEmployeeTable2` as a JOIN `pbtempschecdule` as b ON a.CEID = b.CEID WHERE a.CRepEmpId = '" + ceid + "' and a.status = 1";
-                        fetchdatatable(juniouremp, query,2);
+                switch(e.getClickCount()) {
+                    case 1: parentFirstClickCount(ceid,data.getGrade()+1);
                         break;
-                    case 2:
-                        if(whichtype == 2){
-                            PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
-                            sendmessage.setVisible(true);
-                            break;
-                        }
+                    case 2: sendMessage(ceid);
+                        break;
                 }
             }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                
-            }
         });
-        juniouremp.addMouseListener(new MouseListener() {
+        juniouremp.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = juniouremp.rowAtPoint(e.getPoint());
                 String ceid = childceidlist.get(row);
-                if(whichtype == 2)
-                {
-                    PBTSendMessage sendMessage = new PBTSendMessage( parent, 1, ceid);
-                    sendMessage.setVisible(true);
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+                sendMessage(ceid);
             }
         });
         sendtoparent.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED){
+                if(e.getStateChange() == ItemEvent.SELECTED) {
                     System.out.println(sendtoparent.getSelectedItem());
-                    String ceid = seniourceidlist.get(sendtoparent.getSelectedIndex()-1);
-                    System.out.println(ceid);
-                    int ans = JOptionPane.showConfirmDialog(null, "Do you Want to send message to " + sendtoparent.getSelectedItem());
-                    if(ans == 0)
-                    {
-                        PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
-                        sendmessage.setVisible(true);
+                    if(sendtoparent.getSelectedIndex() > 0){
+                        String ceid = seniourceidlist.get(sendtoparent.getSelectedIndex()-1);
+                        System.out.println(ceid);
+                        int ans = JOptionPane.showConfirmDialog(null, "Do you Want to send message to " + sendtoparent.getSelectedItem());
+                        if(ans == 0) {
+                            PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
+                            sendmessage.setVisible(true);
+                        }
                     }
                 }
             }
@@ -299,8 +310,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
             model.removeAllElements();
             model.addElement("--select--");
             db.rs1 = db.stm.executeQuery(query2);
-            while(db.rs1.next())
-            {
+            while(db.rs1.next()) {
                 String name = db.rs1.getString("EmpName");
                 String design = db.rs1.getString("EmpDesig");
                 String ceid = db.rs1.getString("CEID");
@@ -311,6 +321,80 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
             model.setSelectedItem("--select--");
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void sendMessage(String ceid) {
+        if(isNotificationFrame()){
+            PBTSendMessage sendmessage = new PBTSendMessage( parent, 1, ceid);
+            sendmessage.setVisible(true);
+        }
+    }
+    
+    private boolean isNotificationFrame() {
+        return whichtype.equals(NOTIFICATION);
+    }
+
+    private void parentFirstClickCount(String ceid,int grade) {
+        String finalQuery = getFinalQuery(ceid, grade);
+        fetchDataTable(juniouremp, finalQuery ,childceidlist);
+    }
+
+    private String getFinalQuery(String ceid, int grade) {
+        String finalQuery;
+        String queryofEmployessUnderME = getQueryOfEployessWithWorkUnderMe(ceid,grade+1);
+        if(grade == 4){
+            finalQuery = getQueryOfEnumerator(queryofEmployessUnderME);
+        }else {
+            String queryofEmployessWithCode = getQueryOfJoinedEmployessAndStatesCode(queryofEmployessUnderME,grade);
+            finalQuery = getQueryOfEmpAndSchedule(queryofEmployessWithCode,grade);
+        }
+        return finalQuery;
+    }
+    
+    private String getQueryOfEployessWithWorkUnderMe(String ceid,int grade) {
+        return "SELECT * from `pbtemployeetable2` Where grade = '" + grade + "' AND status = 1 AND CrepEmpId = '" + ceid + "'";
+    }
+    
+    private String getQueryOfEnumerator(String queryofEmployessUnderME) {
+        return "SELECT *,SUM(empsched.workdone) as totworkdone,SUM(empsched.totalres) as totalresident FROM (" + queryofEmployessUnderME + ") as emptable JOIN `pbtempschecdule` as empsched ON (emptable.ceid=empsched.ceid) GROUP BY empsched.ceid";
+    }
+    
+    private String getQueryOfJoinedEmployessAndStatesCode(String queryofEmployessUnderME, int grade) {
+        String query = "SELECT * FROM (" + queryofEmployessUnderME + ") as emp JOIN `pbtstates5` as st ON (";
+        switch(grade){
+            case 3: query += "emp.areacity = st.subdist AND ";
+            case 2: query += "emp.areadist = st.district AND ";
+            case 1: query += "emp.areastate = st.states";
+        }
+        return query + ") GROUP BY " + getGroupByOfstates(grade);
+    }
+    
+    private String getQueryOfEmpAndSchedule(String queryofEmployessWithCode,int grade) {
+        String finalQuery = "SELECT *,SUM(empsched.workdone) as totworkdone,SUM(empsched.totalres) as totalresident FROM (" + queryofEmployessWithCode + ") as emptable JOIN `pbtempschecdule` as empsched ON (";
+        switch(grade){
+            case 3 : finalQuery += "emptable.subdistcode = empsched.tehsil AND ";
+            case 2 : finalQuery += "emptable.distcode = empsched.dist AND ";
+            case 1 : finalQuery += "emptable.statecode = empsched.state";
+        }
+        finalQuery += ") GROUP BY " + getGroupBy(grade);
+        return finalQuery;
+    }
+
+    private String getGroupByOfstates(int grade) {
+        switch (grade) {
+            case 1 : return "states";
+            case 2 : return "district";
+            default: return "subdist";
+        }
+    }
+    
+    private String getGroupBy(int grade) {
+        switch (grade) {
+            case 1 : return "state";
+            case 2 : return "dist";
+            case 3 : return "tehsil";
+            default: return "city_vill";
         }
     }
 }

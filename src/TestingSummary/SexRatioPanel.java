@@ -8,7 +8,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
-import static parabitccasbharat.OfficeWork.DatabsePieChartFrame.TABLE_NAME;
+import static TestingSummary.DatabsePieChartFrame.TABLE_NAME;
 
 public class SexRatioPanel extends javax.swing.JPanel {
 

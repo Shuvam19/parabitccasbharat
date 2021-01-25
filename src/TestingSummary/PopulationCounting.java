@@ -2,17 +2,12 @@
 package TestingSummary;
 
 import DB.ParabitDBC;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import parabitccasbharat.Utilities.Queries;
 
 public class PopulationCounting extends javax.swing.JFrame {
@@ -32,11 +27,11 @@ public class PopulationCounting extends javax.swing.JFrame {
         initComponents();
         this.numberPad = new DigitalNumberFormat();
         this.popQuery = new Queries.PopCountQuery();
-        //numberPad.setVisible(true);
-        //jPanel3.add(numberPad);
-        //jPanel3.setVisible(true);
-        //add(jPanel3);
-        pack();
+        numberPad.setVisible(true);
+        jPanel3.setLayout(new BorderLayout());
+        jPanel3.add(numberPad,BorderLayout.CENTER);
+        jPanel3.setVisible(true);
+        invalidate();
     }
 
     /**
@@ -66,7 +61,7 @@ public class PopulationCounting extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         bloodGroup = new javax.swing.JComboBox<>();
         martialstatus = new javax.swing.JComboBox<>();
-        jPanel3 = new DigitalNumberFormat();
+        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         minAge1 = new javax.swing.JSpinner();
@@ -322,7 +317,7 @@ public class PopulationCounting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void StateItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StateItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED){
+        if(evt.getStateChange() == ItemEvent.SELECTED) {
             dist.setModel(getModel(DISTRICT));
             popQuery.addState(State.getSelectedItem().toString());
         }

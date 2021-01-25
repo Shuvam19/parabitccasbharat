@@ -5,6 +5,9 @@
  */
 package Models;
 
+import DB.ParabitDBC;
+import java.sql.SQLException;
+
 
 public class PBTDataOfEmployee {
     String ceid;
@@ -16,7 +19,10 @@ public class PBTDataOfEmployee {
     String areadist;
     String areastate;
     String mobno;
-
+    String areacitycode;
+    String areadistcode;
+    String areastatecode;
+    
     public PBTDataOfEmployee(String ceid, String crepempid, String name, int grade, String pincode, String areacity, String areadist, String areastate, String mobno) {
         this.ceid = ceid;
         this.crepempid = crepempid;
@@ -99,9 +105,62 @@ public class PBTDataOfEmployee {
 
     public void setMobno(String mobno) {
         this.mobno = mobno;
+    }    
+
+    public String getAreacitycode() {
+        return areacitycode;
     }
 
+    public void setAreacitycode(ParabitDBC db) {
+        String query = "Select * from `pbtstates5` where subDist = '" + this.getAreacity() + "'";
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            if(db.rs1.next()) {
+                this.areacitycode = db.rs1.getString("SubDistCode");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
+    public String getAreadistcode() {
+        return areadistcode;
+    }
+
+    public void setAreadistcode(ParabitDBC db) {
+        String query = "Select * from `pbtstates5` where district = '" + this.getAreadist() + "'";
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            if(db.rs1.next()) {
+                this.areadistcode = db.rs1.getString("DistCode");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public String getAreastatecode() {
+        return areastatecode;
+    }
+
+    public void setAreastatecode(ParabitDBC db) {
+        String query = "Select * from `pbtstates5` where states = '" + this.getAreastate() + "'";
+        try {
+            db.rs1 = db.stm.executeQuery(query);
+            System.out.println(query);
+            if(db.rs1.next()) {
+                this.areastatecode = db.rs1.getString("StateCode");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
     
-    
+    public void setAllCodeAccordingToStates(){
+        ParabitDBC db = new ParabitDBC();
+        this.setAreacitycode(db);
+        this.setAreadistcode(db);
+        this.setAreastatecode(db);
+        System.out.println(this.areastatecode + " " + this.areadistcode + " " + this.areacitycode);
+    }
 }
