@@ -246,9 +246,7 @@ public class PBTLogin extends javax.swing.JFrame {
         int status = rs1.getInt("status");
         int preceid = rs1.getInt("note");
         data.setAllCodeAccordingToStates();
-        if(isEnumerator(data)){
-            logEnumerator(data);
-        }
+        data.loginEnumerator();
         switch(status)
         {
             case -1:
@@ -261,19 +259,6 @@ public class PBTLogin extends javax.swing.JFrame {
                 this.setVisible(false);
                 home.setVisible(true);
                 break;
-        }
-    }
-
-    private boolean isEnumerator(PBTDataOfEmployee data) {
-        return data.getGrade()==5;
-    }
-
-    private void logEnumerator(PBTDataOfEmployee data) {
-        String Query = "INSERT INTO `pbtempdailylog` VALUES (NULL, " + data.getCeid() + ", CURDATE(), CURRENT_TIME(), NULL, 0, 0, NULL, NULL, NULL, NULL);";
-        try {
-            db.stm2.execute(Query);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
     }
 }

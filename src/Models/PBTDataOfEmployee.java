@@ -7,6 +7,8 @@ package Models;
 
 import DB.ParabitDBC;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class PBTDataOfEmployee {
@@ -162,5 +164,46 @@ public class PBTDataOfEmployee {
         this.setAreadistcode(db);
         this.setAreastatecode(db);
         System.out.println(this.areastatecode + " " + this.areadistcode + " " + this.areacitycode);
+    }
+    
+    
+    public void logoutEnumerator(){
+        if(isEnumerator()){
+            ParabitDBC db = new ParabitDBC();
+            String query = "UPDATE `pbtempdailylog` SET LogOutTime = CURRENT_TIME() WHERE CEID = '" + getCeid() + "' AND LogOutTime IS NULL;";
+            try {
+                db.stm.execute(query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    public void loginEnumerator() {
+        if(isEnumerator()){
+            ParabitDBC db = new ParabitDBC();
+            String Query = "INSERT INTO `pbtempdailylog` VALUES (NULL, " + getCeid() + ", CURDATE(), CURRENT_TIME(), NULL, 0, 0, NULL, NULL, NULL, NULL);";
+            try {
+                db.stm2.execute(Query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    public void updateLoggedInPersonsArea(String areaName) {
+        if(isEnumerator()){
+            ParabitDBC db = new ParabitDBC();
+            String query = "UPDATE `pbtempdailylog` SET AreaVisited = '" + areaName + "' WHERE CEID = '" + getCeid() + "' AND LogOutTime IS NULL;";
+            try {
+                db.stm.execute(query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public boolean isEnumerator() {
+        return grade==5;
     }
 }

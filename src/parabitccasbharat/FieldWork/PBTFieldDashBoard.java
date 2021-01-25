@@ -58,6 +58,11 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Name :");
 
@@ -236,6 +241,10 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
         new PBTLogin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        data.logoutEnumerator();
+    }//GEN-LAST:event_formWindowClosing
 
     
 

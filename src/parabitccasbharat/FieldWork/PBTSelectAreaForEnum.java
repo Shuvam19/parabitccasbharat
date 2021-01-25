@@ -58,6 +58,11 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
         noitfications = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         selectarea.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,6 +148,10 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        data.logoutEnumerator();
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -191,7 +200,7 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
                     int ans = JOptionPane.showConfirmDialog(null, "Do You Want to Work in the Area " + areaname);
                     //Need To implement here
                     if(ans==0){
-                        updateLoggedInPersonsArea(areaname);
+                        data.updateLoggedInPersonsArea(areaname);
                         PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(arealist.get(row));
                         dispose();
                         dashBoard.setVisible(true);
@@ -216,14 +225,5 @@ public class PBTSelectAreaForEnum extends javax.swing.JFrame {
             }
 
         });
-    }
-    
-    private void updateLoggedInPersonsArea(String areaName) {
-        String query = "UPDATE `pbtempdailylog` SET AreaVisited = '" + areaName + "' WHERE CEID = '" + data.getCeid() + "' AND LogOutTime IS NULL;";
-        try {
-            db.stm.execute(query);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }
 }
