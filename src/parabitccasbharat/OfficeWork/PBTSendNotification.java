@@ -25,6 +25,10 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
         this.parent = parent;
         db = new ParabitDBC();
         fetchdatanotification();
+        if (data.isEnumerator()) {
+            general.setVisible(false);
+            channel.setVisible(false);
+        }
     }
 
    

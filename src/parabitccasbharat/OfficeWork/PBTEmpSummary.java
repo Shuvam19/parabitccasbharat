@@ -42,7 +42,9 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         this.parent = parent;
         this.db = new ParabitDBC();
         String finalQuery = getFinalQuery(data.getCeid(),data.getGrade());
-        fetchDataTable(parentemp , finalQuery,ceidlist);
+        if(!data.isEnumerator()){
+            fetchDataTable(parentemp , finalQuery,ceidlist);
+        }
         System.out.println("final Query is " + finalQuery);
         clicklisteners();
 
@@ -50,7 +52,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
     
     public PBTEmpSummary addNotificationPart(){
         whichtype = NOTIFICATION;
-        switch (data.getGrade()) {
+        switch (data.getGrade()){
             case 1 : 
                 sendtoparent.setVisible(false);
                 break;

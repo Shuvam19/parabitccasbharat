@@ -19,16 +19,22 @@ import javax.swing.table.DefaultTableModel;
 import parabitccasbharat.PBTCurrentEmp;
 
 
-public class PBTNewCensus<T> extends javax.swing.JFrame {
+public class PBTCensus<T> extends javax.swing.JFrame {
 
     private final T parent;
     private final PBTDataOfEmployee data;
     private final ParabitDBC db = new ParabitDBC();
     List<PBTDataScheduledToEmp> arealist = new ArrayList<>();
+    private final ClickListener clickListener;
     
-    public PBTNewCensus(T parent) {
+    public interface ClickListener<H> {
+        public void onHouseListingCensus(H parent);
+    }
+    
+    public PBTCensus(T parent,ClickListener clickListener) {
         initComponents();
         this.parent = parent;
+        this.clickListener=clickListener;
         this.data = PBTCurrentEmp.getEmployeeData();
         if(this.data==null){
             this.dispose();
@@ -124,7 +130,7 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
                         .addComponent(houselisting, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(industrial)
-                        .addGap(64, 64, 64)
+                        .addGap(60, 60, 60)
                         .addComponent(land, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -159,8 +165,8 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
     private void industrialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_industrialActionPerformed
         String icsno = JOptionPane.showInputDialog("Enter ICSNo First");
         if(icsno!=null && !icsno.isEmpty()) {
-            if(checkIsPresentPreviously(icsno)){
-                InsertItAndSendToNextFrame(icsno);
+            if(checkIsPresentPreviously(icsno)) {
+                insertItAndSendToNextFrame(icsno);
             }
         } else {
             JOptionPane.showMessageDialog(null,"Please Enter ICSNo First");
@@ -186,18 +192,20 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
             String query = "SELECT * From `pbtindustry` where icsno ='" + icsno + "'";
             db.rs1 = db.stm.executeQuery(query);
             if(db.rs1.next()){
-                JOptionPane.showMessageDialog(null, "This Company is Previously Registered \n Please Complete it in Incomplete Census Or It has been Completed Successfully");
+                //JOptionPane.showMessageDialog(null, "This Company is Previously Registered \n Please Complete it in Incomplete Census Or It has been Completed Successfully");
+                String sno = db.rs1.getString(1);
+                makeObjectAndSendToNextFrame(sno);
                 return false;
             }else{
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PBTNewCensus.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PBTCensus.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
-    private void InsertItAndSendToNextFrame(String icsno) {
+    private void insertItAndSendToNextFrame(String icsno) {
         try {
             String query = "INSERT INTO `pbtindustry` (`SNo`, `ICSNo`, `RegWith`, `RegNo`, `NameOfBusiness`, `CompANo`, `CompOwnrANo`, `CompRegDate`, `OfficeType`, `FSSAINo`, `EnvCertNo`, `AreaOfComp`, `TurnOverOfComp`, `FnlProdOfComp`, `PrsntCEOofComp`, `NoOfMaleEmp`, `NoOfFemEMp`, `NoOfOtherEmp`, `MinSalOfComp`, `MaxSalOfComp`, `NoOfShift`, `ExportProd`, `GSTNo`, `MainSrcLight`, `MainSrc_WatForIndus`, `MainSrc_DrnkWat_inIndus`, `NoOfWash_inIndus`, `AvbOfCant`, `NearestPS`, `NearestHsp`, `NearestFireBrgd`, `NearestRail`, `NearestBusStp`, `NearestArprt`, `NearestTrnsprtAr`, `AvbOfMedFac_InsdComp`) VALUES (NULL, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
             PreparedStatement stmt = db.con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
@@ -212,7 +220,7 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PBTNewCensus.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PBTCensus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -223,10 +231,44 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
             if(db.rs3.next()){
                 PBTIndustry industryData = new PBTIndustry();
                 industryData.setIcsno(db.rs3.getInt(2));
+                industryData.setRegwith(db.rs3.getInt(3));
+                industryData.setRegno(db.rs3.getString(4));
+                industryData.setNameofbusiness(db.rs3.getString(5));
+                industryData.setCompano(db.rs3.getString(6));
+                industryData.setCompownrano(db.rs3.getString(7));
+                industryData.setCompregdate(db.rs3.getDate(8));
+                industryData.setOfficetype(db.rs3.getInt(9));
+                industryData.setFssaino(db.rs3.getString(10));
+                industryData.setEnvcertno(db.rs3.getString(11));
+                industryData.setAreaofcomp(db.rs3.getString(12));
+                industryData.setTurnoverofcomp(db.rs3.getInt(13));
+                industryData.setFnlprodofcomp(db.rs3.getString(14));
+                industryData.setPrsntceoofcomp(db.rs3.getString(15));
+                industryData.setNoofmaleemp(db.rs3.getInt(16));
+                industryData.setNooffememp(db.rs3.getInt(17));
+                industryData.setNoofotheremp(db.rs3.getInt(18));
+                industryData.setMinsalofcomp(db.rs3.getInt(19));
+                industryData.setMaxsalofcomp(db.rs3.getInt(20));
+                industryData.setNoofshift(db.rs3.getInt(21));
+                industryData.setExportprod(db.rs3.getString(22));
+                industryData.setGstno(db.rs3.getString(23));
+                industryData.setMainsrclight(db.rs3.getString(24));
+                industryData.setMainsrc_watforindus(db.rs3.getString(25));
+                industryData.setMainsrc_drnkwat_inindus(db.rs3.getString(26));
+                industryData.setNoofwash_inindus(db.rs3.getInt(27));
+                industryData.setAvbofcant(db.rs3.getString(28));
+                industryData.setNearestps(db.rs3.getString(29));
+                industryData.setNearesthsp(db.rs3.getString(30));
+                industryData.setNearestfirebrgd(db.rs3.getString(31));
+                industryData.setNearestrail(db.rs3.getString(32));
+                industryData.setNearestbusstp(db.rs3.getString(33));
+                industryData.setNearestarprt(db.rs3.getString(34));
+                industryData.setNearesttrnsprtar(db.rs3.getString(35));
+                industryData.setAvbofmedfac_insdcomp(db.rs3.getString(36));
                 sendToNextFrame(industryData);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PBTNewCensus.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PBTCensus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -279,8 +321,7 @@ public class PBTNewCensus<T> extends javax.swing.JFrame {
 //                        PBTFieldDashBoard dashBoard = new PBTFieldDashBoard(arealist.get(row));
 //                        dispose();
 //                        dashBoard.setVisible(true);
-                        PBTTypeOfHome newhome = new PBTTypeOfHome(parent);
-                        newhome.setVisible(true);
+                        clickListener.onHouseListingCensus(parent);
                     }
                 }
             }

@@ -7,6 +7,7 @@ import Models.PBTDataOfEmployee;
 import Models.PBTDataScheduledToEmp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import parabitccasbharat.OfficeWork.PBTNotifications;
 import parabitccasbharat.OfficeWork.PBTSendNotification;
 import parabitccasbharat.PBTCurrentEmp;
@@ -222,7 +223,13 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newcensusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newcensusActionPerformed
-        PBTNewCensus newcensus = new PBTNewCensus(this);
+        PBTCensus newcensus = new PBTCensus(this,new PBTCensus.ClickListener<JFrame>() {
+            @Override
+            public void onHouseListingCensus(JFrame parent) {
+                PBTTypeOfHome newhome = new PBTTypeOfHome(parent);
+                newhome.setVisible(true);
+            }
+        });
         newcensus.setVisible(true);
     }//GEN-LAST:event_newcensusActionPerformed
 
@@ -232,8 +239,14 @@ public class PBTFieldDashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void incompcensusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incompcensusActionPerformed
-        PBTIncompleteCensus frame = new PBTIncompleteCensus();
-        frame.setVisible(true);
+        PBTCensus newcensus = new PBTCensus(this,new PBTCensus.ClickListener<JFrame>() {
+            @Override
+            public void onHouseListingCensus(JFrame parent) {
+                PBTIncompleteCensus frame = new PBTIncompleteCensus();
+                frame.setVisible(true);
+            }
+        });
+        newcensus.setVisible(true);
     }//GEN-LAST:event_incompcensusActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
