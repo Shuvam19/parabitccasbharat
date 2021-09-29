@@ -237,7 +237,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
                 String state = e.getItem().toString();
                 if(!state.equals("--select--"))
                 {
-                String query = "Select Sum(tpopulation) as pop from `pbtstates5` where states = '" + state + "' group by states";
+                String query = "Select Sum(tpopulation) as pop from `pbtstates5` where state = '" + state + "' group by state";
                 try {
                     db.rs3 = db.stm.executeQuery(query);
                     if(db.rs3.next()){
@@ -314,7 +314,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
     }
 
     private void fetchDist(String areastate) {
-        String query = "SELECT DISTINCT District FROM `pbtstates5`WHERE District NOT IN (SELECT DISTINCT AreaDist FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "'";
+        String query = "SELECT DISTINCT District FROM `pbtstates5`WHERE District NOT IN (SELECT DISTINCT AreaDist FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and  Grade > " + data.getGrade() + ") AND State = '" + data.getAreastate() + "'";
         DefaultComboBoxModel model = (DefaultComboBoxModel)districts.getModel();
         DefaultComboBoxModel statemodel  = (DefaultComboBoxModel) states.getModel();
         statemodel.removeAllElements();

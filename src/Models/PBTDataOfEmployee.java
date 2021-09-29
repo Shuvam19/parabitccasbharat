@@ -144,7 +144,7 @@ public class PBTDataOfEmployee {
     }
 
     public void setAreastatecode(ParabitDBC db) {
-        String query = "Select * from `pbtstates5` where states = '" + this.getAreastate() + "'";
+        String query = "Select * from `pbtstates5` where state = '" + this.getAreastate() + "'";
         try {
             db.rs1 = db.stm.executeQuery(query);
             System.out.println(query);
@@ -161,7 +161,7 @@ public class PBTDataOfEmployee {
         this.setAreacitycode(db);
         this.setAreadistcode(db);
         this.setAreastatecode(db);
-        System.out.println(this.areastatecode + " " + this.areadistcode + " " + this.areacitycode);
+//        System.out.println(this.areastatecode + " " + this.areadistcode + " " + this.areacitycode);
     }
     
     

@@ -367,7 +367,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         switch(grade){
             case 3: query += "emp.areacity = st.subdist AND ";
             case 2: query += "emp.areadist = st.district AND ";
-            case 1: query += "emp.areastate = st.states";
+            case 1: query += "emp.areastate = st.state";
         }
         return query + ") GROUP BY " + getGroupByOfstates(grade);
     }

@@ -15,8 +15,8 @@ public class PBTLogin extends javax.swing.JFrame {
     public PBTLogin() {
         initComponents();
         db = new ParabitDBC();
-        tfemppass.setText("qwerty");
-        tfotp.setText("1234");
+        tfemppass.setText("hello@123");
+        tfotp.setText("1601");
     }
     
     @SuppressWarnings("unchecked")

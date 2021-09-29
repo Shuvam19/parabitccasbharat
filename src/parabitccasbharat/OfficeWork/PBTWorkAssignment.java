@@ -365,7 +365,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
     }
 
     private void getCode() {
-        String query = "Select * from `pbtstates5` where states = '" + data.getAreastate() + "' and district = '" + data.getAreadist() + "' and subDist = '" + data.getAreacity() + "'";
+        String query = "Select * from `pbtstates5` where state = '" + data.getAreastate() + "' and district = '" + data.getAreadist() + "' and subDist = '" + data.getAreacity() + "'";
         try {
             db.rs1 = db.stm.executeQuery(query);
             if(db.rs1.next())
