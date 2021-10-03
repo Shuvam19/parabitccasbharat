@@ -295,7 +295,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
     }
     
     private void fetchStates() {
-        String query = "SELECT DISTINCT states FROM `pbtstates5` WHERE states NOT IN (SELECT DISTINCT AreaState FROM `pbtemployeetable2` WHERE Status = 1)";
+        String query = "SELECT DISTINCT state FROM `pbtstates5` WHERE state NOT IN (SELECT DISTINCT AreaState FROM `pbtemployeetable2` WHERE Status = 1 AND AreaState is not null)";
         DefaultComboBoxModel model = (DefaultComboBoxModel)states.getModel();
         model.removeAllElements();
         System.out.println(query);
@@ -304,7 +304,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
             {
-                String state = db.rs1.getString("states");
+                String state = db.rs1.getString("state");
                 model.addElement(state);
             }
             model.setSelectedItem("--select--");

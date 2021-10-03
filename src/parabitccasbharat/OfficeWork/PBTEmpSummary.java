@@ -385,7 +385,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
 
     private String getGroupByOfstates(int grade) {
         switch (grade) {
-            case 1 : return "states";
+            case 1 : return "state";
             case 2 : return "district";
             default: return "subdist";
         }
@@ -393,7 +393,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
     
     private String getGroupBy(int grade) {
         switch (grade) {
-            case 1 : return "state";
+            case 1 : return "emptable.state";
             case 2 : return "dist";
             case 3 : return "tehsil";
             default: return "city_vill";

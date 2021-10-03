@@ -255,9 +255,9 @@ public class PBTLogin extends javax.swing.JFrame {
             case 2:
                 switchrepceid(username,preceid);
             case 1:
-                PBTHome home = new PBTHome(this);
+                PBTDepartmentDashBoard dashBoard = new PBTDepartmentDashBoard(this,true);
                 this.setVisible(false);
-                home.setVisible(true);
+                dashBoard.setVisible(true);
                 break;
         }
     }

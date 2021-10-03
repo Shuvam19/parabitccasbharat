@@ -11,8 +11,8 @@ public class PBTDepartmentDashBoard extends javax.swing.JDialog {
     PBTDataOfEmployee data;
     PBTLogin login;
     
-    public PBTDepartmentDashBoard(PBTLogin login,PBTHome parent, boolean modal) {
-        super(parent, modal);
+    public PBTDepartmentDashBoard(PBTLogin login, boolean modal) {
+        super(login, modal);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         if(this.data==null){

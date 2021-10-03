@@ -107,9 +107,9 @@ public class PBTHome extends javax.swing.JDialog {
     }//GEN-LAST:event_ministryActionPerformed
 
     private void censusdepartentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_censusdepartentActionPerformed
-    PBTDepartmentDashBoard dashBoard = new PBTDepartmentDashBoard(login,this,true);
-    this.setVisible(false);
-    dashBoard.setVisible(true);
+//    PBTDepartmentDashBoard dashBoard = new PBTDepartmentDashBoard(login,this,true);
+//    this.setVisible(false);
+//    dashBoard.setVisible(true);
     //this.setVisible(true);
     }//GEN-LAST:event_censusdepartentActionPerformed
 
