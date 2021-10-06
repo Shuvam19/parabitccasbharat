@@ -335,7 +335,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
     }
 
     private void fetchTehsil(String areastate, String areadist) {
-        String query = "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE SubDist NOT IN (SELECT DISTINCT Areacity FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and AreaDist = '" + data.getAreadist() + "' and  Grade > " + data.getGrade() + ") AND States = '" + data.getAreastate() + "' and District = '" + data.getAreadist() + "'" ;
+        String query = "SELECT DISTINCT SubDist FROM `pbtstates5`WHERE SubDist NOT IN (SELECT DISTINCT Areacity FROM `pbtemployeetable2` WHERE Status = 1 and AreaState = '" + data.getAreastate() + "' and AreaDist = '" + data.getAreadist() + "' and  Grade > " + data.getGrade() + ") AND State = '" + data.getAreastate() + "' and District = '" + data.getAreadist() + "'" ;
         System.out.println(query);
         DefaultComboBoxModel statemodel = (DefaultComboBoxModel)states.getModel();
         DefaultComboBoxModel distmodel = (DefaultComboBoxModel)districts.getModel();

@@ -531,7 +531,8 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
         String query = "Select a.*,IF(" + condition + ",1,2) as pref,b.popalloted from `PBTEmployeetable2` as a left JOIN (SELECT CEID,sum(TotalRes) as popalloted FROM `pbtempschecdule` GROUP BY CEID) as b on a.ceid=b.ceid where (a.grade = 5 and a.cRepEmpID ='" + data.getCeid() + "' and a.percommt != 1) order by pref";
         DefaultTableModel model = (DefaultTableModel) empdata.getModel();
         model.setRowCount(0);
-        //System.out.println(query);
+        System.out.println("Query Of Employee");
+        System.out.println(query);
         try {
             db.rs1 = db.stm.executeQuery(query);
             while(db.rs1.next())
