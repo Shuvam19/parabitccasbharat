@@ -64,6 +64,11 @@ public class PBTLogin extends javax.swing.JFrame {
         tfempid.setToolTipText("");
         tfempid.setBorder(null);
         tfempid.setName(""); // NOI18N
+        tfempid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfempidFocusGained(evt);
+            }
+        });
         tfempid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfempidActionPerformed(evt);
@@ -192,7 +197,7 @@ public class PBTLogin extends javax.swing.JFrame {
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
         username = tfempid.getText().trim();
-        password = tfemppass.getText().trim();
+        password = String.valueOf(tfemppass.getPassword());
         String query = "SELECT * FROM `pbtemployeetable2` where ceid = '" + username + "' and pass = '" + password + "'";
         System.out.println(query);
         try {
@@ -213,24 +218,11 @@ public class PBTLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnokActionPerformed
 
+    private void tfempidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfempidFocusGained
+       tfempid.setText("");
+    }//GEN-LAST:event_tfempidFocusGained
+
     public static void main(String args[]) {
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PBTLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
-        //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PBTLogin().setVisible(true);
