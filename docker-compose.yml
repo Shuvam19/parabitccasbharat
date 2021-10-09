@@ -1,0 +1,20 @@
+version : "3.2"
+
+services:
+    db:
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            #MYSQL_USER: 'root2'
+        ports:
+            - 3306:3306
+        expose:
+            - 3306
+        volumes:
+            - ./databases:/docker-entrypoint-initdb.d
+#    adminer:
+#        image: adminer
+#        restart: always
+#        ports:
+#            - 8080:8080
