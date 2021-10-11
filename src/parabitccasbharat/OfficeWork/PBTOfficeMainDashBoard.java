@@ -1,24 +1,24 @@
-
 package parabitccasbharat.OfficeWork;
 
 import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JPanel;
 import parabitccasbharat.Custom.RoundedPanel;
 import parabitccasbharat.PBTCurrentEmp;
 import parabitccasbharat.PBTLogin;
-
 
 public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
     PBTNotifications notifications;
-    
+
     public PBTOfficeMainDashBoard() {
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
-        if(this.data==null){
+        if (this.data == null) {
             this.dispose();
             PBTCurrentEmp.newLoginEmployee();
         }
@@ -27,11 +27,11 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         this.notifications = new PBTNotifications(data);
 //        notifications.fetchDataOfnotification(tablenotify);
 //        notifications.clickEvents(tablenotify);
-        if(data.getGrade() != 4)
+        if (data.getGrade() != 4) {
             workass.setVisible(false);
+        }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,16 +95,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         pername.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
         pername.setText(" shuvam    ");
 
-        javax.swing.GroupLayout transactionalPanelLayout = new javax.swing.GroupLayout(transactionalPanel);
-        transactionalPanel.setLayout(transactionalPanelLayout);
-        transactionalPanelLayout.setHorizontalGroup(
-            transactionalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        transactionalPanelLayout.setVerticalGroup(
-            transactionalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        transactionalPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,25 +167,23 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manempActionPerformed
-    transactionalPanel = new PBTManageEmployee(this);
-    pack();
-//        PBTManageEmp manageemp = new PBTManageEmp(this);
-//    manageemp.setVisible(true);
+        JPanel jpanel = new PBTManageEmployee(this);
+        addPanelToTransactionalPanel(jpanel);
     }//GEN-LAST:event_manempActionPerformed
 
     private void workassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workassActionPerformed
-    PBTWorkAssignDashboard dashboard = new PBTWorkAssignDashboard( this);
-    dashboard.setVisible(true);
+        JPanel jpanel = new PBTWorkAssignDashboard(this);
+        addPanelToTransactionalPanel(jpanel);
     }//GEN-LAST:event_workassActionPerformed
 
     private void notifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifyActionPerformed
-    PBTSendNotification notify = new PBTSendNotification(this);
-    notify.setVisible(true);
+        JPanel jpanel = new PBTSendNotification(this);
+        addPanelToTransactionalPanel(jpanel);
     }//GEN-LAST:event_notifyActionPerformed
 
     private void empsummActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empsummActionPerformed
-    PBTEmpSummary summary = PBTEmpSummary.getSummaryInstance(this);
-    summary.setVisible(true);
+        PBTEmpSummary summary = PBTEmpSummary.getSummaryInstance(this);
+        summary.setVisible(true);
     }//GEN-LAST:event_empsummActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
@@ -214,5 +203,12 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
     private javax.swing.JPanel transactionalPanel;
     private javax.swing.JButton workass;
     // End of variables declaration//GEN-END:variables
+
+    private void addPanelToTransactionalPanel(JPanel jpanel) {
+        transactionalPanel.removeAll();
+        transactionalPanel.add(jpanel);
+        transactionalPanel.repaint();
+        transactionalPanel.revalidate();
+    }
 
 }

@@ -14,20 +14,19 @@ import parabitccasbharat.PBTCurrentEmp;
  *
  * @author acer
  */
-public class PBTWorkAssignDashboard extends javax.swing.JFrame {
-    
+public class PBTWorkAssignDashboard extends javax.swing.JPanel {
+
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard parent;
-    
+
     public PBTWorkAssignDashboard(PBTOfficeMainDashBoard parent) {
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
-        if(this.data==null){
-            this.dispose();
+        if (this.data == null) {
             PBTCurrentEmp.newLoginEmployee();
         }
         this.parent = parent;
-        
+
     }
 
     /**
@@ -42,8 +41,6 @@ public class PBTWorkAssignDashboard extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         assigned = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("New Assign Work");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,8 +63,8 @@ public class PBTWorkAssignDashboard extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -90,22 +87,20 @@ public class PBTWorkAssignDashboard extends javax.swing.JFrame {
                 .addContainerGap(119, Short.MAX_VALUE))
         );
 
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignedActionPerformed
-        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent,0);
+        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent, 0);
         assignemp.setVisible(true);
     }//GEN-LAST:event_assignedActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    PBTWorkAssignment assignment = new PBTWorkAssignment( parent);
-    assignment.setVisible(true);
+        PBTWorkAssignment assignment = new PBTWorkAssignment(parent);
+        assignment.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent,1);
+        PBTAssignedEmp assignemp = new PBTAssignedEmp(parent, 1);
         assignemp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -8,18 +8,16 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import parabitccasbharat.PBTCurrentEmp;
 
-public class PBTSendNotification<T> extends javax.swing.JDialog {
+public class PBTSendNotification<T> extends javax.swing.JPanel {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
     T parent;
 
     public PBTSendNotification(T parent) {
-        super((JFrame)parent,true);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         if(this.data==null){
-            this.dispose();
             PBTCurrentEmp.newLoginEmployee();
         }
         this.parent = parent;
@@ -41,8 +39,6 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
         individual = new javax.swing.JButton();
         general = new javax.swing.JButton();
         channel = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         notificationtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,8 +86,8 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -120,8 +116,6 @@ public class PBTSendNotification<T> extends javax.swing.JDialog {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_individualActionPerformed
