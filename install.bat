@@ -1,4 +1,5 @@
 @ECHO OFF
-cd build/classes/
-java parabitccasbharat.ParabitCCASBharat
+docker comose up
+cd dist/
+java -jar parabitccasbharat.jar
 

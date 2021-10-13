@@ -1,3 +1,4 @@
-cd build/classes/
-java parabitccasbharat.ParabitCCASBharat
+docker compose up
+cd dist/
+java -jar "parabitccasbharat.jar"
 
