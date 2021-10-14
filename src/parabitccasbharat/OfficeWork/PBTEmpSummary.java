@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.PBTCurrentEmp;
 
 
@@ -34,6 +35,8 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         super((JFrame)parent,true);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
+        CustomTable.designTable(parentemp);
+        CustomTable.designTable(juniouremp);
         if(this.data==null){
             this.dispose();
             this.setVisible(false);
@@ -114,10 +117,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
 
         parentemp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "Mobile No", "Work Done", "Work Alloted", "Work Pending", "Not Responding"
@@ -152,10 +152,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
 
         juniouremp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Name", "Mobille No", "Work Done", "Work Alloted", "Work Pending", "Not Responding"

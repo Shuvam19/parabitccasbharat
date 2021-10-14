@@ -27,7 +27,8 @@ public class ParabitDBC {
             String ip = socket.getLocalAddress().getHostAddress();
             DB_URL = DB_URL.replace("IP_ADRESS", ip);
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(DB_URL, "root", "password");
+//            con = DriverManager.getConnection(DB_URL, "root", "password");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/parabitccasbharat", "root", "");
             stm = con.createStatement();
             stm2 = con.createStatement();
         } catch (Exception e) {

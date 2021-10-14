@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTAppointedEmp<T> extends javax.swing.JDialog {
@@ -39,6 +40,7 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
         this.whichtype = whichtype;
         db = new ParabitDBC();
         db1 = new ParabitDBC();
+        CustomTable.designTable(appointedemp);
         fetchemployes();
         clicklisteners();
     }
@@ -73,7 +75,7 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(appemp)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -82,14 +84,14 @@ public class PBTAppointedEmp<T> extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(appemp)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                 .addGap(26, 26, 26))
         );
 
-        setSize(new java.awt.Dimension(582, 383));
+        setSize(new java.awt.Dimension(1040, 494));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -7,8 +7,7 @@ package parabitccasbharat;
 
 import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
-import parabitccasbharat.Custom.CustomJTable;
-import parabitccasbharat.OfficeWork.RoomTableCellRenderer;
+import parabitccasbharat.Custom.CustomCellRenderer;
 
 /**
  *
@@ -23,11 +22,11 @@ public class TestingFrame extends javax.swing.JFrame {
         initComponents();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             Object row[] = {"shuvam", "kumar", "is", "good"};
             model.addRow(row);
         }
-        jTable1.setDefaultRenderer(Object.class, new RoomTableCellRenderer());
+        jTable1.setDefaultRenderer(Object.class, new CustomCellRenderer());
         jTable1.setIntercellSpacing(new Dimension(5, 5));
         jTable1.setRowHeight(40);
     }
@@ -42,7 +41,7 @@ public class TestingFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new CustomJTable();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +56,10 @@ public class TestingFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setDoubleBuffered(true);
+        jTable1.setFocusable(false);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

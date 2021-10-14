@@ -1,11 +1,14 @@
-
 package parabitccasbharat.OfficeWork;
 
 import Models.PBTDataOfEmployee;
 import DB.ParabitDBC;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomCellRenderer;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTSendNotification<T> extends javax.swing.JPanel {
@@ -17,7 +20,7 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
     public PBTSendNotification(T parent) {
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
-        if(this.data==null){
+        if (this.data == null) {
             PBTCurrentEmp.newLoginEmployee();
         }
         this.parent = parent;
@@ -27,9 +30,9 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
             general.setVisible(false);
             channel.setVisible(false);
         }
+        CustomTable.designTable(notificationtable);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,7 +52,7 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -61,7 +64,7 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
             notificationtable.getColumnModel().getColumn(0).setMaxWidth(200);
             notificationtable.getColumnModel().getColumn(1).setMaxWidth(200);
             notificationtable.getColumnModel().getColumn(2).setMaxWidth(200);
-            notificationtable.getColumnModel().getColumn(3).setMaxWidth(200);
+            notificationtable.getColumnModel().getColumn(3).setMaxWidth(300);
             notificationtable.getColumnModel().getColumn(5).setMaxWidth(200);
         }
 
@@ -115,7 +118,6 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
                     .addComponent(channel))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_individualActionPerformed
@@ -124,12 +126,12 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
     }//GEN-LAST:event_individualActionPerformed
 
     private void channelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelActionPerformed
-        PBTAppointedEmp sendnotification = new PBTAppointedEmp( parent, 4);
+        PBTAppointedEmp sendnotification = new PBTAppointedEmp(parent, 4);
         sendnotification.setVisible(true);
     }//GEN-LAST:event_channelActionPerformed
 
     private void generalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalActionPerformed
-        PBTSendMessage sendMessage = new PBTSendMessage( parent, 3, "");
+        PBTSendMessage sendMessage = new PBTSendMessage(parent, 3, "");
         sendMessage.setVisible(true);
     }//GEN-LAST:event_generalActionPerformed
 
@@ -145,7 +147,7 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
         String query4 = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = (";
         String query = "SELECT CRepEmpID FROM `pbtemployeetable2`  WHERE CEID = '" + data.getCeid() + "'";
         String query3 = query;
-        switch(data.getGrade()) {
+        switch (data.getGrade()) {
             case 5:
                 query3 = query3 + "or CEID = (" + query + ")";
                 query = query4 + query + ")";
@@ -157,14 +159,13 @@ public class PBTSendNotification<T> extends javax.swing.JPanel {
                 break;
         }
         System.out.println(query);
-        String query2 = "SELECT * FROM `pbtnotification` WHERE SenderCeId = '" +data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" +  data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 +") and RecieverCeId In (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + "))  ORDER BY Time DESC";
+        String query2 = "SELECT * FROM `pbtnotification` WHERE SenderCeId = '" + data.getCeid() + "' OR (NotType = 1 and RecieverCeId = '" + data.getCeid() + "') OR (NotType = 2 and SenderCeId IN (" + query3 + ") and RecieverCeId In (" + query3 + ")) OR (NotType = 3 and SenderCeId IN (" + query3 + "))  ORDER BY Time DESC";
         System.out.println(query2);
-        DefaultTableModel model = (DefaultTableModel)notificationtable.getModel();
+        DefaultTableModel model = (DefaultTableModel) notificationtable.getModel();
         model.setRowCount(0);
         try {
             db.rs1 = db.stm.executeQuery(query2);
-            while(db.rs1.next())
-            {
+            while (db.rs1.next()) {
                 String from = db.rs1.getString("SenderCeId");
                 String to = db.rs1.getString("RecieverCeId");
                 String time = db.rs1.getTimestamp("Time").toString();

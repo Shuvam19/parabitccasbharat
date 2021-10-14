@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTNewAppointment<T> extends javax.swing.JDialog {
@@ -26,6 +27,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
             this.dispose();
             PBTCurrentEmp.newLoginEmployee();
         }
+        CustomTable.designTable(emptable);
         db = new ParabitDBC();
         switch (data.getGrade()) {
             case 1:fetchStates();
@@ -76,6 +78,11 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(emptable);
+        if (emptable.getColumnModel().getColumnCount() > 0) {
+            emptable.getColumnModel().getColumn(0).setMaxWidth(300);
+            emptable.getColumnModel().getColumn(1).setMaxWidth(300);
+            emptable.getColumnModel().getColumn(3).setMaxWidth(250);
+        }
 
         states.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -94,7 +101,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -130,7 +137,7 @@ public class PBTNewAppointment<T> extends javax.swing.JDialog {
                 .addGap(45, 45, 45))
         );
 
-        setSize(new java.awt.Dimension(627, 488));
+        setSize(new java.awt.Dimension(756, 488));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

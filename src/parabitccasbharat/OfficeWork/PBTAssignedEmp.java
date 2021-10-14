@@ -9,6 +9,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.PBTCurrentEmp;
 
 public class PBTAssignedEmp extends javax.swing.JFrame {
@@ -21,6 +22,8 @@ public class PBTAssignedEmp extends javax.swing.JFrame {
     public PBTAssignedEmp(PBTOfficeMainDashBoard parent,int whichtype) {
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
+        CustomTable.designTable(citywise);
+        CustomTable.designTable(assignedemp);
         if(this.data==null){
             this.dispose();
             PBTCurrentEmp.newLoginEmployee();

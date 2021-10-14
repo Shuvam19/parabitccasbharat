@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parabitccasbharat.OfficeWork;
+package parabitccasbharat.Custom;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -18,18 +18,15 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author acer
  */
-public class RoomTableCellRenderer extends DefaultTableCellRenderer {
+public class CustomCellRenderer extends DefaultTableCellRenderer {
 
     private Color BOOKED_COLOR = Color.RED;
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        setBackground(BOOKED_COLOR);
         setBorder(new LineBorder(Color.black, 2, true));
-//        setForeground(Color.blue);
         setHorizontalAlignment(JLabel.CENTER);
-//        setFont(getFont().deriveFont(50f));
         return this;
     }
 

@@ -30,6 +30,8 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
         if (data.getGrade() != 4) {
             workass.setVisible(false);
         }
+        JPanel jpanel = new PBTManageEmployee(this);
+        addPanelToTransactionalPanel(jpanel);
     }
 
     @SuppressWarnings("unchecked")
@@ -117,7 +119,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                         .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(pername, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 364, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 607, Short.MAX_VALUE)
                         .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
         );
@@ -140,9 +142,8 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                         .addComponent(notify, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(workass, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 121, Short.MAX_VALUE))
-                    .addComponent(transactionalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addContainerGap(178, Short.MAX_VALUE))
+                    .addComponent(transactionalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,7 +163,7 @@ public class PBTOfficeMainDashBoard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(739, 474));
+        setSize(new java.awt.Dimension(982, 520));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
