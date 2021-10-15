@@ -8,18 +8,21 @@ package parabitccasbharat.OfficeWork;
 import parabitccasbharat.OfficeWork.PBTAssignedEmp;
 import parabitccasbharat.OfficeWork.PBTOfficeMainDashBoard;
 import Models.PBTDataOfEmployee;
+import java.awt.Color;
+import parabitccasbharat.Custom.RoundedPanel;
 import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
  * @author acer
  */
-public class PBTWorkAssignDashboard extends javax.swing.JPanel {
+public class PBTWorkAssignDashboard extends RoundedPanel {
 
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard parent;
 
     public PBTWorkAssignDashboard(PBTOfficeMainDashBoard parent) {
+        super(15, Color.GREEN);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         if (this.data == null) {

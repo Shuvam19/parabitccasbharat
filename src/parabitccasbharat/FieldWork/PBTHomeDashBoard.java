@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import parabitccasbharat.Custom.CustomTable;
 import parabitccasbharat.FieldWork.PBTPersonInfoDashBoard.UpdateList;
 import parabitccasbharat.PBTCurrentEmp;
 
@@ -37,6 +38,7 @@ public class PBTHomeDashBoard extends javax.swing.JFrame implements UpdateList{
         this.db = new ParabitDBC();
         getAllPersonFromHome();
         setToTable();
+        CustomTable.designTable(familyinformation);
     }
 
     PBTHomeDashBoard(String hlsno) {

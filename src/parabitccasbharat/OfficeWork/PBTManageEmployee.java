@@ -6,13 +6,15 @@
 package parabitccasbharat.OfficeWork;
 
 import Models.PBTDataOfEmployee;
+import java.awt.Color;
+import parabitccasbharat.Custom.RoundedPanel;
 import parabitccasbharat.PBTCurrentEmp;
 
 /**
  *
  * @author acer
  */
-public class PBTManageEmployee extends javax.swing.JPanel {
+public class PBTManageEmployee extends RoundedPanel {
 
     /**
      * Creates new form PBTManageEmployee
@@ -20,6 +22,7 @@ public class PBTManageEmployee extends javax.swing.JPanel {
     PBTDataOfEmployee data;
     PBTOfficeMainDashBoard dashboard;
     public PBTManageEmployee(PBTOfficeMainDashBoard dashboard) {
+        super(15, Color.GREEN);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         this.dashboard = dashboard;

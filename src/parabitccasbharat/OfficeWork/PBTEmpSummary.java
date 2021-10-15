@@ -90,7 +90,7 @@ public class PBTEmpSummary<T> extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         return this;
     }
-      
+    
     public static <K> PBTEmpSummary getNotificationInstance(K parent){
         return new PBTEmpSummary(parent).addNotificationPart();
     }

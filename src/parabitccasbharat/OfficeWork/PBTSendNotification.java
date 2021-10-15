@@ -9,15 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import parabitccasbharat.Custom.CustomCellRenderer;
 import parabitccasbharat.Custom.CustomTable;
+import parabitccasbharat.Custom.RoundedPanel;
 import parabitccasbharat.PBTCurrentEmp;
 
-public class PBTSendNotification<T> extends javax.swing.JPanel {
+public class PBTSendNotification<T> extends RoundedPanel {
 
     PBTDataOfEmployee data;
     ParabitDBC db;
     T parent;
 
     public PBTSendNotification(T parent) {
+        super(15, Color.GREEN);
         initComponents();
         this.data = PBTCurrentEmp.getEmployeeData();
         if (this.data == null) {
