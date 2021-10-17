@@ -233,6 +233,7 @@ public class PBTWorkAssignment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void appointempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointempActionPerformed
+        //TODO NEED TO UPDATE QUERY HERE
         int enumtrow[] = enumtable.getSelectedRows();
         int emp = empdata.getSelectedRow();
         if(emp!=-1){
